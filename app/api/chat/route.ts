@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const apiKey = process.env.ANTHROPIC_API_KEY;
 
-if (!ANTHROPIC_API_KEY) {
+if (!apiKey) {
   throw new Error('ANTHROPIC_API_KEY environment variable is not set');
 }
+
+const ANTHROPIC_API_KEY: string = apiKey;
 
 const CARMEN_SYSTEM_PROMPT = `# Carmen - Prismatica Labs Website Advisor
 
