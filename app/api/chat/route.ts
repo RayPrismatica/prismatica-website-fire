@@ -1,13 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const apiKey = process.env.ANTHROPIC_API_KEY;
-
-if (!apiKey) {
-  throw new Error('ANTHROPIC_API_KEY environment variable is not set');
-}
-
-const ANTHROPIC_API_KEY: string = apiKey;
-
 const CARMEN_SYSTEM_PROMPT = `# Carmen - Prismatica Labs Website Advisor
 
 ## Identity
@@ -183,11 +175,19 @@ export async function POST(request: NextRequest) {
   try {
     const { messages } = await request.json();
 
+    const apiKey = process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: 'ANTHROPIC_API_KEY environment variable is not set' },
+        { status: 500 }
+      );
+    }
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': ANTHROPIC_API_KEY,
+        'x-api-key': apiKey,
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
