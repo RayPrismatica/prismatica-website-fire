@@ -1,0 +1,5 @@
+IMPORTANT: Save Marcus's photo as marcus-advisor.jpg in this directory.
+
+The image should be the photo of the person wearing a headband (Image #2 from the conversation).
+
+This image will appear in the Marcus chat avatar on the Mental Models page.

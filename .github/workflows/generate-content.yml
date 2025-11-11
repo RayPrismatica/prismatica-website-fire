@@ -1,0 +1,19 @@
+name: Generate Dynamic Content
+
+on:
+  schedule:
+    # Run every 15 minutes as backup to Vercel cron
+    - cron: '*/15 * * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger content generation
+        run: |
+          curl -f -X GET "https://prismatica-app.vercel.app/api/generate-content" || echo "Generation failed but workflow continues"
+
+      - name: Log completion
+        run: echo "Content generation triggered at $(date)"

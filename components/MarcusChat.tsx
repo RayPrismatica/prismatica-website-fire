@@ -8,11 +8,11 @@ interface Message {
   content: string;
 }
 
-export default function CarmenChat() {
+export default function MarcusChat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Hi. I'm Carmen. Let's figure out which path makes sense for your problem. What's keeping you up at night?"
+      content: "Hi. I'm Carmen. Let's break down your challenge using our mental models framework. What's the problem you're wrestling with?"
     }
   ]);
   const [input, setInput] = useState('');
@@ -141,7 +141,7 @@ export default function CarmenChat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="Ask Carmen anything..."
+          placeholder="Tell me about your challenge..."
           className="carmen-input"
           disabled={isLoading}
         />

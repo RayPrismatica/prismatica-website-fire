@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Noto_Sans, Passion_One } from "next/font/google";
 import "./globals.css";
 
@@ -17,6 +17,12 @@ const passionOne = Passion_One({
 export const metadata: Metadata = {
   title: "Prismatica Labs - Intelligence Lives in Questions",
   description: "Strategic thinking for problems that matter. Work with us for high-stakes challenges. Use our products for daily team intelligence.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
