@@ -10,7 +10,7 @@ export default function DynamicKSODescription() {
       try {
         const response = await fetch('/api/dynamic-content');
         const data = await response.json();
-        if (data.content?.ksoDescription) {
+        if (data.ksoDescription) {
           setDescription(data.content.ksoDescription);
         }
       } catch (error) {

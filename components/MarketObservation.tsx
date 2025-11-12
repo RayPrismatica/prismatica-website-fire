@@ -10,7 +10,7 @@ export default function MarketObservation() {
       try {
         const response = await fetch('/api/dynamic-content');
         const data = await response.json();
-        if (data.content?.marketObservation) {
+        if (data.marketObservation) {
           setObservation(data.content.marketObservation);
         }
       } catch (error) {

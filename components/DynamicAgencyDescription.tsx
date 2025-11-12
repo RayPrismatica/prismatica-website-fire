@@ -10,7 +10,7 @@ export default function DynamicAgencyDescription() {
       try {
         const response = await fetch('/api/dynamic-content');
         const data = await response.json();
-        if (data.content?.agencyDescription) {
+        if (data.agencyDescription) {
           setDescription(data.content.agencyDescription);
         }
       } catch (error) {

@@ -10,7 +10,7 @@ export default function DynamicServiceDescription() {
       try {
         const response = await fetch('/api/dynamic-content');
         const data = await response.json();
-        if (data.content?.serviceDescription) {
+        if (data.serviceDescription) {
           setDescription(data.content.serviceDescription);
         }
       } catch (error) {

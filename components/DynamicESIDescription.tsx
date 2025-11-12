@@ -10,7 +10,7 @@ export default function DynamicESIDescription() {
       try {
         const response = await fetch('/api/dynamic-content');
         const data = await response.json();
-        if (data.content?.esiDescription) {
+        if (data.esiDescription) {
           setDescription(data.content.esiDescription);
         }
       } catch (error) {
