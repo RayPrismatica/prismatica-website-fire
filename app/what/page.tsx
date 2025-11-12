@@ -52,11 +52,9 @@ export default async function WhatWeDoPage() {
 
         <p><strong>What you get:</strong> Direct access to our team. Real-time problem solving. Ability to pivot as new information emerges. We think with you, not for you.</p>
 
-        <p><strong>How it works:</strong> First call is diagnostic. Free. We figure out if we can actually help. If we're not asking better questions than you within the first hour, walk away. If we take the work and don't shift how you see the problem, we'll refund the engagement.</p>
+        <p><strong>How it works:</strong> First call is diagnostic. We figure out if we can actually help. If we're not asking better questions than you within the first hour, walk away. If we take the work and don't shift how you see the problem, we'll refund the engagement.</p>
 
         <p style={{ fontWeight: 600 }}>Starting at £5,000 per project</p>
-
-        <p style={{ fontSize: '14px', color: '#666', fontStyle: 'italic' }}>We typically book 4-6 weeks out. Current availability fills fast.</p>
 
         <h3 style={{ marginTop: '32px', marginBottom: '16px' }}>Product Suite</h3>
 
@@ -68,7 +66,7 @@ export default async function WhatWeDoPage() {
 
         <p style={{ fontWeight: 600 }}>£299/month*</p>
 
-        <p style={{ fontSize: '12px', color: '#999', marginTop: '8px' }}>* For yearly subscriptions, does not include API costs and VAT</p>
+        <p style={{ fontSize: '12px', color: '#999', marginTop: '8px' }}>*For yearly subscriptions, does not include API costs and VAT</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
