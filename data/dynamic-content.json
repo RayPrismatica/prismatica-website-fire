@@ -1,19 +1,21 @@
 {
-  "generated": "2025-11-12T10:47:11.494Z",
-  "expires": "2025-11-12T11:47:11.494Z",
+  "generated": "2025-11-12T10:45:28.108Z",
+  "expires": "2025-11-12T11:45:28.108Z",
   "content": {
-    "newsInsight": "Xi just purged his nuclear command and NYT reports unease in China's military forces. Everyone's debating Taiwan timelines. Wrong variable. When autocrats clean house this aggressively, they're not preparing for external war. They're fighting an internal one.",
+    "newsInsight": "Xi's military purges just revealed China's nuclear anxiety. Everyone's debating warheads and submarines. Wrong focus. When you purge your nuclear chiefs, you're not worried about capability. You're worried about loyalty. That changes everything about how we read Beijing's moves.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Xi's nuclear purges, for example. We read that and our mind goes to: if you're planning to use weapons, why fire the people who know how to use them? Unless the real threat isn't from outside.\n"
+    "intelligenceExample": "Xi's nuclear force purges, for example. We read that and our mind goes to: if you can't trust the people guarding your ultimate deterrent, what does that say about every other promise you make to markets?",
+    "consultingInsight": "HBR's latest on strategic foresight shows how top firms help leaders navigate uncertainty. Masterful frameworks, decades of pattern recognition. These consultants see around corners. But what if that kind of anticipatory thinking wasn't reserved for Fortune 500 boardrooms? What if every ambitious team could access that level of strategic clarity?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
     "headlinesAnalyzed": 16,
     "sources": {
       "bbc": 8,
-      "nyt": 8
+      "nyt": 8,
+      "hbr": 0
     },
-    "generationTimeMs": 7606,
+    "generationTimeMs": 10468,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
