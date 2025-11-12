@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T05:53:10.919Z",
-  "expires": "2025-11-12T06:53:10.919Z",
+  "generated": "2025-11-12T06:30:52.644Z",
+  "expires": "2025-11-12T07:30:52.644Z",
   "content": {
-    "newsInsight": "Xi's military purges reveal unease about China's nuclear forces, NYT reports. Everyone's debating corruption angles. Wrong variable. When you purge nuclear commanders, you're not cleaning house. You're signaling doubt about deterrence credibility. Markets haven't priced this uncertainty yet.",
+    "newsInsight": "China just purged more military leaders overseeing nuclear forces and everyone's debating Xi's power consolidation. Wrong focus. When you clean house in your nuclear command while building the world's fastest growing arsenal, you're not paranoid. You're pivoting.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Xi's nuclear force purges, for example. We read that and our mind goes to: if deterrence depends on adversary belief in your willingness to act, what does publicly doubting your own command structure do to the game theory?\n"
+    "intelligenceExample": "China's military nuclear purges, for example. We read that and our mind goes to: if you're Xi and you know something about nuclear readiness we don't, do you fire the old guard or promote them?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 6917,
+    "generationTimeMs": 6410,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
