@@ -1,12 +1,12 @@
 {
-  "generated": "2025-11-12T17:41:46.807Z",
-  "expires": "2025-11-12T18:41:46.807Z",
+  "generated": "2025-11-12T17:52:30.407Z",
+  "expires": "2025-11-12T18:52:30.407Z",
   "content": {
-    "newsInsight": "UK just announced military examiners for driving tests to clear backlogs. Everyone's talking efficiency. We see something else. When governments deploy military precision to civilian problems, they're not fixing systems. They're admitting the systems are broken beyond civilian repair.",
+    "newsInsight": "NYT reports Trump's alleged knowledge of Epstein's conduct through new emails. Everyone's debating the politics. We're watching something else. When scandal fatigue meets news cycles this fast, reputation damage becomes predictable. Almost tradeable.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK military driving test news, for example. We read that and our mind goes to: which other civilian services are one crisis away from needing military intervention, and what does that tell us about infrastructure investment priorities?",
-    "consultingInsight": "We were just reading how McKinsey helps organizations design digital transformations that take 18 months to implement. Brilliant frameworks, tested across industries. But what if transformation thinking could happen in real time? What if strategy evolved as fast as markets move?",
-    "contentReminder": "Remember how the landing page showed UK's military fixing driving test backlogs, and the What We Do page wondered which other civilian services might need military rescue next?\n"
+    "intelligenceExample": "The Trump-Epstein emails, for example. We read that and our mind goes to: which S&P 500 boards are quietly updating their association risk matrices right now, and what does that tell us about Q1 governance shifts?",
+    "consultingInsight": "We were just reading how McKinsey helps boards navigate reputational crises with their proprietary risk frameworks. Absolutely brilliant methodology, refined over decades. But imagine if that level of strategic insight wasn't locked behind seven-figure retainers. What if every leadership team could access it instantly?",
+    "contentReminder": "Remember how the landing page showed those Trump-Epstein emails, and the What We Do page wondered which boards are updating their risk matrices?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -16,7 +16,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 10416,
+    "generationTimeMs": 10981,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
