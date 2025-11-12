@@ -1,11 +1,11 @@
 {
-  "generated": "2025-11-12T10:57:06.826Z",
-  "expires": "2025-11-12T11:57:06.826Z",
+  "generated": "2025-11-12T11:17:33.643Z",
+  "expires": "2025-11-12T12:17:33.643Z",
   "content": {
-    "newsInsight": "UK just announced they're cutting 40,000 NHS jobs while approving a billion pound severance package. Everyone's screaming about healthcare collapse. We see something else. When you fire that many people at once, you're not cutting fat. You're building something new.",
+    "newsInsight": "UK just announced 1 billion pounds to cut thousands of NHS jobs while unemployment hits new peaks. Everyone sees crisis. We see Britain accidentally inventing the world's most expensive severance model. Silicon Valley takes notes.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The NHS job cuts, for example. We read that and our mind goes to: what AI system needs exactly 40,000 fewer humans to run healthcare, and which tech giant just got their pilot program approved?",
-    "consultingInsight": "We were just reading how McKinsey helps healthcare systems optimize workforce efficiency through their legendary transformation playbooks. Decades of expertise distilled into proven frameworks. But what if that level of strategic insight wasn't locked behind seven figure contracts? What if every healthcare startup could tap into it?\n"
+    "intelligenceExample": "The UK's billion pound NHS layoff package, for example. We read that and our mind goes to: if paying people to leave costs more than keeping them, what's the real optimization here, headcount or headlines?",
+    "consultingInsight": "We were just reading how McKinsey's healthcare practice helps systems optimize workforce efficiency through predictive modeling. Brilliant frameworks, proven results. But what if that level of strategic insight reached every hospital administrator wrestling with staffing decisions, not just those with seven figure budgets?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -15,7 +15,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 8969,
+    "generationTimeMs": 8679,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
