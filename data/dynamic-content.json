@@ -1,12 +1,12 @@
 {
-  "generated": "2025-11-12T14:45:47.978Z",
-  "expires": "2025-11-12T15:45:47.978Z",
+  "generated": "2025-11-12T15:33:13.071Z",
+  "expires": "2025-11-12T16:33:13.071Z",
   "content": {
-    "newsInsight": "NYT reports Trump donor Scott Bessent used the exact tax dodge the IRS tried killing. Everyone's shocked at the audacity. We see something else. When your Treasury pick already knows which rules break first, that's not corruption. That's system expertise.",
+    "newsInsight": "UK just announced 7,000 NHS staff cuts while approving £1bn in severance. Everyone's screaming about healthcare collapse. Wrong variable. When you pay people a billion to leave during a staffing crisis, you're not cutting costs. You're buying flexibility for something bigger.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The Bessent tax dodge story, for example. We read that and our mind goes to: If the smartest money already knows which regulations crumble under pressure, what does that mean for the next four years of fiscal policy?",
-    "consultingInsight": "We were just reading how McKinsey helps CEOs navigate regulatory complexity with their proprietary risk frameworks. Decades of pattern recognition distilled into elegant models. But what if that level of regulatory foresight wasn't just for Fortune 100 boardrooms? What if every growth company could see around corners?",
-    "contentReminder": "Remember how the landing page showed Bessent's tax dodge making headlines, and the What We Do page wondered what his regulatory knowledge means for fiscal policy?\n"
+    "intelligenceExample": "The NHS cuts, for example. We read that and our mind goes to: what massive systemic change requires clearing 7,000 positions so urgently they'll pay a billion to do it fast?",
+    "consultingInsight": "We were just reading how McKinsey's healthcare practice helps systems optimize staffing models through predictive analytics. Brilliant work, saves millions annually. But imagine if that level of strategic workforce planning wasn't just for health ministries with eight figure budgets?",
+    "contentReminder": "Remember how the landing page showed the NHS paying £1bn to cut 7,000 jobs, and the What We Do page wondered what systemic change justified that urgency?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -16,7 +16,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 10017,
+    "generationTimeMs": 11137,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
