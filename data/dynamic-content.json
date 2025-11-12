@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T09:54:19.298Z",
-  "expires": "2025-11-12T10:54:19.298Z",
+  "generated": "2025-11-12T10:22:43.945Z",
+  "expires": "2025-11-12T11:22:43.945Z",
   "content": {
-    "newsInsight": "China's military purges just exposed cracks in their nuclear command. Xi cleaning house at the top of his rocket forces? That's not corruption control. That's what panic looks like when your deterrent might not deter.",
+    "newsInsight": "Xi's military purges just exposed China's nuclear anxiety and everyone's focused on the corruption angle. Wrong variable. When you fire your entire rocket force leadership, you're not fighting graft. You're racing against a capability gap you can't publicly admit.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "China's nuclear force purges, for example. We read that and our mind goes to: if Xi doesn't trust his own generals with the launch codes, what does that say about Taiwan timeline calculations?\n"
+    "intelligenceExample": "Xi's nuclear force purges, for example. We read that and our mind goes to: what classified intel about missile readiness rates triggered this housecleaning, and which defense contractors just became acquisition targets?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 6354,
+    "generationTimeMs": 6619,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
