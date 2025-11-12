@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T07:24:07.743Z",
-  "expires": "2025-11-12T08:24:07.743Z",
+  "generated": "2025-11-12T07:40:08.906Z",
+  "expires": "2025-11-12T08:40:08.906Z",
   "content": {
-    "newsInsight": "Xi's military purges just exposed China's nuclear anxiety, NYT reports. Everyone's focused on the power struggle. Wrong lens. When you purge nuclear commanders during global tensions, you're not consolidating power. You're admitting your deterrent might be theater.",
+    "newsInsight": "Xi's military purges just hit China's nuclear forces and everyone's spooked about instability. Wrong read. When you clean house in your most sensitive division, you're not worried about today. You're positioning for something bigger.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Xi's nuclear purges, for example. We read that and our mind goes to: if your nuclear forces need purging, what percentage of your military capability is PowerPoint versus plutonium?\n"
+    "intelligenceExample": "Xi's nuclear command purges, for example. We read that and our mind goes to: what capability gap did internal audits reveal that made immediate restructuring worth the international optics hit?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 6797,
+    "generationTimeMs": 6429,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
