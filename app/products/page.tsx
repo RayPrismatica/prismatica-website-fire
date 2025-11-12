@@ -6,6 +6,7 @@ import ProductsEnquiryModal from '@/components/ProductsEnquiryModal';
 
 export default function ProductsPage() {
   const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <PageLayout>
       <section id="products" className="section active">
