@@ -1,12 +1,12 @@
 {
-  "generated": "2025-11-12T17:26:07.594Z",
-  "expires": "2025-11-12T18:26:07.594Z",
+  "generated": "2025-11-12T17:41:46.807Z",
+  "expires": "2025-11-12T18:41:46.807Z",
   "content": {
-    "newsInsight": "NYT reports Trump's pick for Treasury used the exact tax dodge the IRS tried to kill. Beautiful. While everyone debates policy positions, Bessent's already showing us the real game. Tax code isn't broken. It's working exactly as designed for those who read the manual.",
+    "newsInsight": "UK just announced military examiners for driving tests to clear backlogs. Everyone's talking efficiency. We see something else. When governments deploy military precision to civilian problems, they're not fixing systems. They're admitting the systems are broken beyond civilian repair.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The Bessent tax dodge story, for example. We read that and our mind goes to: If your Treasury Secretary uses loopholes the IRS hates, does that make him perfectly qualified or completely disqualified?",
-    "consultingInsight": "We were just reading how McKinsey helps CEOs navigate regulatory complexity with their legendary analytical frameworks. Decades of excellence, unmatched rigor. But what if that level of strategic insight wasn't just for the Fortune 100? What if every ambitious founder could tap into that thinking?",
-    "contentReminder": "Remember how the landing page showed Bessent using tax dodges the IRS tried to stop, and the What We Do page wondered if that makes him qualified or disqualified?\n"
+    "intelligenceExample": "The UK military driving test news, for example. We read that and our mind goes to: which other civilian services are one crisis away from needing military intervention, and what does that tell us about infrastructure investment priorities?",
+    "consultingInsight": "We were just reading how McKinsey helps organizations design digital transformations that take 18 months to implement. Brilliant frameworks, tested across industries. But what if transformation thinking could happen in real time? What if strategy evolved as fast as markets move?",
+    "contentReminder": "Remember how the landing page showed UK's military fixing driving test backlogs, and the What We Do page wondered which other civilian services might need military rescue next?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -16,7 +16,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 9662,
+    "generationTimeMs": 10416,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
