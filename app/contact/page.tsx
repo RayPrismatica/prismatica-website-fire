@@ -89,7 +89,7 @@ Best,
 
         <p>No database. No CMS. No manual work. Just code that thinks.</p>
 
-        <p>Want this on your site? <a href="https://github.com/RayPrismatica/prismaticalab-dynamic-ai-website-content" target="_blank" rel="noopener noreferrer" style={{ color: '#000', textDecoration: 'none', borderBottom: '1px solid #000' }}>Take it</a>. Full code on GitHub. There you have it. That's a tiny example of what we mean by "Thinking As A Service".</p>
+        <p>Want this on your site? <a href="https://github.com/RayPrismatica/synapsed-with-love" target="_blank" rel="noopener noreferrer" style={{ color: '#000', textDecoration: 'none', borderBottom: '1px solid #000' }}>Take it</a>. Full code on GitHub. There you have it. That's a tiny example of what we mean by "Thinking As A Service".</p>
 
         <p style={{ color: '#D43225', marginTop: '32px' }}>Speak soon.</p>
 
