@@ -1,12 +1,12 @@
 {
-  "generated": "2025-11-12T16:58:15.737Z",
-  "expires": "2025-11-12T17:58:15.737Z",
+  "generated": "2025-11-12T17:26:07.594Z",
+  "expires": "2025-11-12T18:26:07.594Z",
   "content": {
-    "newsInsight": "NYT reports Trump's treasury pick Scott Bessent used the exact tax dodge the IRS tried to block. Everyone's screaming hypocrisy. Wrong lens. When your treasury secretary knows every loophole personally, that's either your biggest risk or your secret weapon.",
+    "newsInsight": "NYT reports Trump's pick for Treasury used the exact tax dodge the IRS tried to kill. Beautiful. While everyone debates policy positions, Bessent's already showing us the real game. Tax code isn't broken. It's working exactly as designed for those who read the manual.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The Bessent tax story, for example. We read that and our mind goes to: If your treasury secretary personally exploited every loophole, does that make them the worst guardian or the only one who actually knows what to guard?",
-    "consultingInsight": "We were just reading how McKinsey helps CEOs navigate regulatory complexity with their legendary frameworks. Decades of pattern recognition, unmatched rigor. But imagine if that level of strategic insight wasn't just for Fortune 100 boardrooms. What if every ambitious leader could tap that thinking?",
-    "contentReminder": "Remember how the landing page showed Bessent's tax dodge revelation, and the What We Do page wondered if that makes him the worst guardian or the best?\n"
+    "intelligenceExample": "The Bessent tax dodge story, for example. We read that and our mind goes to: If your Treasury Secretary uses loopholes the IRS hates, does that make him perfectly qualified or completely disqualified?",
+    "consultingInsight": "We were just reading how McKinsey helps CEOs navigate regulatory complexity with their legendary analytical frameworks. Decades of excellence, unmatched rigor. But what if that level of strategic insight wasn't just for the Fortune 100? What if every ambitious founder could tap into that thinking?",
+    "contentReminder": "Remember how the landing page showed Bessent using tax dodges the IRS tried to stop, and the What We Do page wondered if that makes him qualified or disqualified?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -16,7 +16,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 10398,
+    "generationTimeMs": 9662,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
