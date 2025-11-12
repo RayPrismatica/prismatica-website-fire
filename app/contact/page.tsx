@@ -70,7 +70,7 @@ Best,
         <EmailButton mailtoLink={mailtoLink} />
 
         <p style={{ fontSize: '14px', color: '#666', fontStyle: 'italic', marginBottom: '32px' }}>
-          Noticed this is the only red button on the entire site? That's intentional. <span style={{ color: '#D43225' }}>Red draws the eye.</span> We promised no tricks, so here's the one we used: big red button right when you're ready. If it made you want to click, good. You already decided. We just made it easier.
+          Noticed this is red? Same as the products page button. <span style={{ color: '#D43225' }}>Red draws the eye.</span> We promised no tricks, so here's one we used twice: big red button right when you're deciding. If it made you want to click, good. You already decided. We just made it easier.
         </p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />

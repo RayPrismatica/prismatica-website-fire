@@ -31,7 +31,7 @@ export default function DemandPage() {
 
         <p>Creating what nobody wants isn't business. It's waste. And markets punish waste brutally.</p>
 
-        <p>The question isn't "can we build it?" The question is "does anyone actually want this enough to change their behavior?"</p>
+        <p>The question isn't "can we build it?" The question is "does anyone actually want this enough to change their behaviour?"</p>
 
         <h3>The Mirror Principle</h3>
         <p>Most companies look at customers through their own lens. Their processes. Their logic. Their convenience.</p>
@@ -78,7 +78,7 @@ export default function DemandPage() {
 
         <p>Want to see your business through demand's eyes? Let's flip the mirror.</p>
 
-        <Link href="/" className="cta-button red">Reach Out</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
     </PageLayout>
   );

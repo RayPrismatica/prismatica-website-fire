@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
 import ContentTracker from '@/components/ContentTracker';
 import { getDynamicContent } from '@/lib/getDynamicContent';
@@ -36,7 +37,7 @@ export default async function HomePage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <a href="/what" className="cta-button red">See What We Do</a>
+        <Link href="/what" className="cta-button red">See What We Do</Link>
       </section>
     </PageLayout>
   );

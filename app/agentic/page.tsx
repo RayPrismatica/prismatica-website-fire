@@ -11,7 +11,7 @@ export default function AgenticPage() {
 
         <p>We build intelligence that multiplies rather than replace human judgment.</p>
 
-        <p>Here's the shift most organizations are missing.</p>
+        <p>Here's the shift most organisations are missing.</p>
 
         <p>Technology is moving from tools that wait for commands to systems that act with purpose.</p>
 
@@ -43,7 +43,7 @@ export default function AgenticPage() {
         <p>Fire understands what executives don't. Transformation can't be controlled, only channeled.</p>
 
         <h3>The Trust Barrier</h3>
-        <p>The biggest obstacle isn't technical capability. It's organizational trust.</p>
+        <p>The biggest obstacle isn't technical capability. It's organisational trust.</p>
 
         <p>Leaders want the benefits of autonomous systems without surrendering control. They want intelligence that doesn't make decisions. Power that doesn't act.</p>
 
@@ -52,7 +52,7 @@ export default function AgenticPage() {
         <p>The value of agentic systems comes precisely from their ability to act independently, within defined boundaries.</p>
 
         <h3>The Design Principle</h3>
-        <p>Smart organizations don't program every step. They establish boundaries, set objectives, define values.</p>
+        <p>Smart organisations don't program every step. They establish boundaries, set objectives, define values.</p>
 
         <p>Then they let the systems act.</p>
 
@@ -68,7 +68,7 @@ export default function AgenticPage() {
         <p>This isn't productivity improvement. This is fundamental transformation of what's possible.</p>
 
         <h3>The Implementation</h3>
-        <p>Most organizations approach agentic systems wrong. They try to bolt autonomy onto existing processes.</p>
+        <p>Most organisations approach agentic systems wrong. They try to bolt autonomy onto existing processes.</p>
 
         <p>Won't work.</p>
 
@@ -89,7 +89,7 @@ export default function AgenticPage() {
 
         <p>Ready to multiply human judgment instead of replacing it? Let's build intelligence that acts.</p>
 
-        <Link href="/" className="cta-button red">Reach Out</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
     </PageLayout>
   );

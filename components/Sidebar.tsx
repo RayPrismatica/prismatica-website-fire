@@ -49,24 +49,6 @@ export default function Sidebar() {
         </Link>
 
         <Link
-          href="/mental-models"
-          className={`nav-item block w-full text-left ${isActive('/mental-models') ? 'active' : ''}`}
-          style={{
-            padding: '8px 0',
-            color: isActive('/mental-models') ? '#D43225' : '#222',
-            textDecoration: 'none',
-            fontSize: '11px',
-            fontFamily: '"Noto Sans", sans-serif',
-            fontWeight: 600,
-            letterSpacing: '1px',
-            textTransform: 'uppercase',
-            transition: 'opacity 0.2s'
-          }}
-        >
-          Mental Models
-        </Link>
-
-        <Link
           href="/consulting"
           className={`nav-item block w-full text-left ${isActive('/consulting') ? 'active' : ''}`}
           style={{
@@ -104,25 +86,6 @@ export default function Sidebar() {
         </Link>
 
         <Link
-          href="/articles"
-          className={`nav-item block w-full text-left ${isActive('/articles') ? 'active' : ''}`}
-          style={{
-            padding: '8px 0',
-            color: isActive('/articles') ? '#D43225' : '#222',
-            textDecoration: 'none',
-            fontSize: '11px',
-            fontFamily: '"Noto Sans", sans-serif',
-            fontWeight: 600,
-            letterSpacing: '1px',
-            textTransform: 'uppercase',
-            transition: 'opacity 0.2s',
-            marginTop: '24px'
-          }}
-        >
-          Articles
-        </Link>
-
-        <Link
           href="/who-we-are"
           className={`nav-item block w-full text-left ${isActive('/who-we-are') ? 'active' : ''}`}
           style={{
@@ -134,10 +97,47 @@ export default function Sidebar() {
             fontWeight: 600,
             letterSpacing: '1px',
             textTransform: 'uppercase',
-            transition: 'opacity 0.2s'
+            transition: 'opacity 0.2s',
+            marginTop: '24px'
           }}
         >
           Who We Are
+        </Link>
+
+        <Link
+          href="/mental-models"
+          className={`nav-item block w-full text-left ${isActive('/mental-models') ? 'active' : ''}`}
+          style={{
+            padding: '8px 0',
+            color: isActive('/mental-models') ? '#D43225' : '#222',
+            textDecoration: 'none',
+            fontSize: '11px',
+            fontFamily: '"Noto Sans", sans-serif',
+            fontWeight: 600,
+            letterSpacing: '1px',
+            textTransform: 'uppercase',
+            transition: 'opacity 0.2s'
+          }}
+        >
+          Mental Models
+        </Link>
+
+        <Link
+          href="/articles"
+          className={`nav-item block w-full text-left ${isActive('/articles') ? 'active' : ''}`}
+          style={{
+            padding: '8px 0',
+            color: isActive('/articles') ? '#D43225' : '#222',
+            textDecoration: 'none',
+            fontSize: '11px',
+            fontFamily: '"Noto Sans", sans-serif',
+            fontWeight: 600,
+            letterSpacing: '1px',
+            textTransform: 'uppercase',
+            transition: 'opacity 0.2s'
+          }}
+        >
+          Articles
         </Link>
 
         <Link

@@ -23,7 +23,7 @@ export default function MentalModelsPage() {
       title: 'The Search Paradigm',
       category: 'Product Strategy',
       problem: 'A SaaS company had feature requests stacking up. "Better search" was at the top. Six months of dev time estimated. Significant cost.',
-      howWeSawIt: 'We asked why users needed better search. Turns out they didn\'t. They needed better organization. They were searching because they couldn\'t find things. Different problem entirely.\n\nSearch would have made a broken system slightly more tolerable. We solved the actual problem instead.',
+      howWeSawIt: 'We asked why users needed better search. Turns out they didn\'t. They needed better organisation. They were searching because they couldn\'t find things. Different problem entirely.\n\nSearch would have made a broken system slightly more tolerable. We solved the actual problem instead.',
       result: 'Redesigned information architecture in two weeks. Search volume dropped 60%. User satisfaction went up. Saved six months of development time and built something that actually worked.\n\nSometimes the feature request is a symptom, not the cure.'
     },
     'brief-push-pull': {
@@ -50,7 +50,7 @@ export default function MentalModelsPage() {
     'brief-platform': {
       title: 'From Retail to Platform',
       category: 'Business Model Evolution',
-      problem: 'A specialized retailer was competing on price and losing. "Amazon has everything cheaper. How do we compete?"',
+      problem: 'A specialised retailer was competing on price and losing. "Amazon has everything cheaper. How do we compete?"',
       howWeSawIt: 'They couldn\'t compete on price. But they had something Amazon didn\'t: expertise. Their customers were enthusiasts who valued knowledge, not just products.\n\nWe saw an opportunity to stop selling things and start enabling people.',
       result: 'Transformed from retailer to platform. Added forums, guides, expert Q&A. Products became tools within a knowledge ecosystem.\n\nRevenue shifted from margin on goods to platform subscriptions. Customer lifetime value tripled. Amazon became irrelevant to their model.'
     },
@@ -167,7 +167,7 @@ export default function MentalModelsPage() {
         <div style={{ marginTop: '32px', marginBottom: '24px' }}>
           <div style={{ marginBottom: '24px' }}>
             <p style={{ marginBottom: '12px', color: '#444' }}>Most companies fight the wrong battle. They add supply when friction is the problem. Remove friction when demand doesn't exist. Build features when distribution is broken. Stop guessing. Map the forces. Fix what's actually stuck.</p>
-            <Link href="/trinity" className="cta-button orange" style={{ marginTop: '8px' }}>Trinity</Link>
+            <Link href="/triptych" className="cta-button orange" style={{ marginTop: '8px' }}>Triptych</Link>
           </div>
 
           <div style={{ marginBottom: '24px' }}>

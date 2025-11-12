@@ -18,7 +18,7 @@ export default function IncentivesPage() {
         <h3>The Reality</h3>
         <p>We see the world through incentive architecture, not wishful thinking.</p>
 
-        <p>Most organizations miss this completely. They draft policies then wonder why nobody follows them. Create systems nobody uses. Launch products nobody wants.</p>
+        <p>Most organisations miss this completely. They draft policies then wonder why nobody follows them. Create systems nobody uses. Launch products nobody wants.</p>
 
         <p>They're fighting human nature instead of designing for it.</p>
 
@@ -72,7 +72,7 @@ export default function IncentivesPage() {
 
         <p>Ready to design systems that flow with human nature, not against it? Let's align the forces.</p>
 
-        <Link href="/" className="cta-button red">Reach Out</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
     </PageLayout>
   );

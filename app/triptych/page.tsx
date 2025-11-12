@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
 
-export default function TrinityPage() {
+export default function TriptychPage() {
   return (
     <PageLayout>
-      <section id="trinity" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>TRINITY</h2>
+      <section id="triptych" className="section active">
+        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>TRIPTYCH</h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
@@ -60,7 +60,7 @@ export default function TrinityPage() {
 
         <p>Ready to stop separating what should never be divided? Let's build something unified.</p>
 
-        <Link href="/" className="cta-button red">Reach Out</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
     </PageLayout>
   );

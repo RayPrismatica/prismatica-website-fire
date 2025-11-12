@@ -38,7 +38,7 @@ export default async function WhatWeDoPage() {
 
         <p>So we went the opposite direction. Documented how we think. Turned patterns into mental models. Made questions into code.</p>
 
-        <p>Because when thinking becomes infrastructure, humanity levels up. Problems that took months take days. Insights that required consultants become common knowledge. The rising tide of shared thinking lifts every business.</p>
+        <p>Make thinking infrastructure. It compounds. Problems that took months take days. Insights that cost £50k become common knowledge.</p>
 
         <p>Thinking should be a utility, not a privilege.</p>
 
@@ -48,35 +48,33 @@ export default async function WhatWeDoPage() {
 
         <h3 style={{ marginTop: '32px', marginBottom: '16px' }}>Direct Engagement</h3>
 
-        <p>Some problems don't sit still. They evolve as you engage with them. The real issue isn't in the brief, it's between the lines. Algorithms find patterns in data. Humans find patterns in silence, hesitation, what's not being said. We turn outputs into outcomes. Insights into foresight. We connect dots across domains no one else considered. When the problem demands depth over speed, gravitas over volume, transformation over transaction, you need people who think, not just tools that process.</p>
-
-        <p><strong>What you get:</strong> Direct access to our team. Real-time problem solving. Ability to pivot as new information emerges. We think with you, not for you.</p>
-
-        <p><strong>How it works:</strong> First call is diagnostic. We figure out if we can actually help. If we're not asking better questions than you within the first hour, walk away. If we take the work and don't shift how you see the problem, we'll refund the engagement.</p>
+        <p>Some problems need custom work. Every consultancy, SaaS pitch deck, and agency website uses the same words. 'Transformation over transaction.' 'Strategic partnerships.' 'Solutions.' We won't. We work directly with you and adapt as the problem reveals itself. First call is diagnostic. If we're not asking better questions than you within 30 minutes, walk away.</p>
 
         <p style={{ fontWeight: 600 }}>Starting at £5,000 per project</p>
 
         <h3 style={{ marginTop: '32px', marginBottom: '16px' }}>Product Suite</h3>
 
-        <p>Most companies solve the same problem twice because thinking doesn't scale. We turned our methodology into infrastructure. Question patterns that run on demand. Mental models your entire team can access instantly. No waiting for consultants. No dependency on day rates. The same strategic thinking that costs £5,000 in a room becomes £299 in your workflow. We codified what consultants hoard. Now your team moves faster, thinks sharper, and compounds intelligence instead of renting it.</p>
+        <p>Everyone knows thinking doesn't scale. Most companies accept it. We solved it. Turned our methodology into infrastructure so your team can use it without us.</p>
 
-        <p><strong>What you get:</strong> AI tools trained on our frameworks. Question patterns you can run repeatedly. Mental models codified so your team thinks better without us in the room.</p>
+        <p>Strategic frameworks for market decisions. Question patterns for product challenges. Mental models for operational problems. The thinking consultants apply in workshops, available when you need it.</p>
 
-        <p><strong>Try it risk-free:</strong> 30 days to test every tool. If it doesn't change how your team thinks about problems, cancel for a full refund. No questions asked.</p>
+        <p>Your strategist pressure-tests an expansion plan. Your product lead reframes a roadblock. Your ops team sees what they're actually solving. No scheduling. No dependencies. Just better questions when the problem demands them.</p>
 
-        <p style={{ fontWeight: 600 }}>£299/month*</p>
+        <p>Access to 25+ live products. More launching monthly. 30 days to test everything. Cancel anytime for a full refund.</p>
 
-        <p style={{ fontSize: '12px', color: '#999', marginTop: '8px' }}>*For yearly subscriptions, does not include API costs and VAT</p>
+        <p style={{ fontWeight: 600 }}>£299/month per seat + API credits*</p>
+
+        <p style={{ fontSize: '12px', color: '#999', marginTop: '8px' }}>*Base subscription for yearly plans. API costs separate and user-controlled. Most users: £50-200/month. Heavy usage: up to £500/month. VAT excluded.</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Why there are no testimonials here</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Where did all the testimonials go?</h3>
 
         <p>We could call ten clients right now. They'd say yes. We'd get five stars, glowing quotes, the whole performance. You'd see them here, neatly arranged in a grid, with headshots and company names.</p>
 
         <p>It would mean absolutely nothing.</p>
 
-        <p>You're not here to check reviews like you're picking a restaurant. You're not evaluating if the bathrooms are clean or if we show up on time. You're here because you think differently about problems.</p>
+        <p>You're not here comparing star ratings. You don't need to see testimonials promising we 'exceeded expectations' or 'delivered on time and under budget' like we deserve a medal for basic competence. You're here because you think differently about problems.</p>
 
         <p>The decision to work with us is intellectual, not social. Either our thinking resonates or it doesn't. A wall of logos won't change that. Testimonials are manufactured credibility for commodity services.</p>
 
@@ -86,7 +84,7 @@ export default async function WhatWeDoPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p>Carmen knows our methodology inside out. She'll help you figure out what actually makes sense for your situation. Three minutes with her beats three hours researching on your own.</p>
+        <p>Three minutes with Carmen beats three hours researching on your own.</p>
 
         {/* Carmen Chat Component */}
         <CarmenChat />

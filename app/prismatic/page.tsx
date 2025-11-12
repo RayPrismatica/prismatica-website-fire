@@ -36,9 +36,9 @@ export default function PrismaticPage() {
         <p>None of these connections are obvious. Until they are.</p>
 
         <h3>The Pattern Recognition</h3>
-        <p>Smart organizations don't just borrow tactics. They recognize underlying patterns that transfer across contexts.</p>
+        <p>Smart organisations don't just borrow tactics. They recognise underlying patterns that transfer across contexts.</p>
 
-        <p>Amazon didn't copy retail stores. They recognized patterns from logistics, software development, and data management that nobody else saw as connected.</p>
+        <p>Amazon didn't copy retail stores. They recognised patterns from logistics, software development, and data management that nobody else saw as connected.</p>
 
         <p>Airbnb didn't study hotels. They studied eBay's trust mechanisms, Craigslist's network effects, and Facebook's social proof.</p>
 
@@ -76,7 +76,7 @@ export default function PrismaticPage() {
         <p>These phrases signal opportunity. When everyone in an industry agrees something is impossible, it usually just means nobody has imported the solution from elsewhere yet.</p>
 
         <h3>The Borrowed Genius</h3>
-        <p>Larry Page built Google's secret weapon understanding what was happening in research papers. He recognized that academic citations were essentially hyperlinks. The same mechanism that ranked academic authority could rank web pages.</p>
+        <p>Larry Page built Google's secret weapon understanding what was happening in research papers. He recognised that academic citations were essentially hyperlinks. The same mechanism that ranked academic authority could rank web pages.</p>
 
         <p>PageRank didn't come from studying search engines. It came from studying how academics establish credibility.</p>
 
@@ -106,7 +106,7 @@ export default function PrismaticPage() {
 
         <p>Want to find solutions where your competitors aren't looking? Let's hunt patterns across domains.</p>
 
-        <Link href="/" className="cta-button red">Reach Out</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
     </PageLayout>
   );

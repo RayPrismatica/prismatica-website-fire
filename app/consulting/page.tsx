@@ -5,6 +5,11 @@ import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
 import EnquiryModal from '@/components/EnquiryModal';
 import TrademarkModal from '@/components/TrademarkModal';
+import InlineObservation from '@/components/InlineObservation';
+import DynamicServiceDescription from '@/components/DynamicServiceDescription';
+import DynamicESIDescription from '@/components/DynamicESIDescription';
+import DynamicAgencyDescription from '@/components/DynamicAgencyDescription';
+import DynamicKSODescription from '@/components/DynamicKSODescription';
 
 // Service configuration with duration and pricing
 const serviceConfig: Record<string, { duration: number; price: string }> = {
@@ -34,7 +39,7 @@ export default function ConsultingPage() {
 
         <p>We fix things. Then we leave.</p>
 
-        <p>Most consultants optimize for retention. We optimize for resolution.</p>
+        <p>Most consultants optimise for retention. We optimise for resolution.</p>
 
         <div style={{ margin: '32px 0', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           <button
@@ -196,41 +201,18 @@ export default function ConsultingPage() {
 
         <div style={{ margin: '48px 0', borderTop: '1px solid #ccc', borderBottom: '1px solid #ccc', height: '3px' }}></div>
 
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The Big Picture</h3>
+
         {(serviceFilter === 'all' || serviceFilter === 'strategy') && (
           <>
         <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If your internal culture and external message feel misaligned...</p>
 
         <h3 id="pioneers-of-purpose" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            Pioneers of Purpose Assessment<span style={{ fontSize: '0.6em', verticalAlign: 'super' }}>™</span>
-            <button
-              onClick={() => setTrademarkModalOpen(true)}
-              title="Why the ™ matters"
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: '#666',
-                padding: 0,
-                display: 'inline-flex',
-                alignItems: 'center',
-                fontSize: '14px',
-                transition: 'color 0.2s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#222'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#666'}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-              </svg>
-            </button>
-          </span>
+          <span>Pioneers of Purpose Assessment</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
         </h3>
 
-        <p>Dissect your business from its root reason to exist. Then cascade that purpose through every system and touchpoint. Inside-out authenticity that strengthens both internal culture and external message. Purpose as operating system, not marketing tagline.</p>
+        <p><DynamicServiceDescription /></p>
 
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £30,000</p>
 
@@ -270,36 +252,11 @@ export default function ConsultingPage() {
         <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If you have insights but struggle to execute them systematically...</p>
 
         <h3 id="esi-framework" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            The ESI Framework<span style={{ fontSize: '0.6em', verticalAlign: 'super' }}>™</span>
-            <button
-              onClick={() => setTrademarkModalOpen(true)}
-              title="Why the ™ matters"
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: '#666',
-                padding: 0,
-                display: 'inline-flex',
-                alignItems: 'center',
-                fontSize: '14px',
-                transition: 'color 0.2s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#222'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#666'}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-              </svg>
-            </button>
-          </span>
+          <span>The ESI Framework</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
         </h3>
 
-        <p>Explore, Synthesize, Ignite. Our operating system for transformation. Explore uncovers truth. Synthesize turns discovery into clarity. Ignite makes clarity executable. Research, strategy, and execution as a continuous loop.</p>
+        <p><DynamicESIDescription /></p>
 
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £25,000</p>
 
@@ -343,36 +300,11 @@ export default function ConsultingPage() {
         <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If you're done adapting to generic software and want technology built around how you actually think...</p>
 
         <h3 id="secret-agency" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            The Secret Agency<span style={{ fontSize: '0.6em', verticalAlign: 'super' }}>™</span>
-            <button
-              onClick={() => setTrademarkModalOpen(true)}
-              title="Why the ™ matters"
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: '#666',
-                padding: 0,
-                display: 'inline-flex',
-                alignItems: 'center',
-                fontSize: '14px',
-                transition: 'color 0.2s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#222'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#666'}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-              </svg>
-            </button>
-          </span>
+          <span>The Secret Agency</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Technology</span>
         </h3>
 
-        <p>Your thinking, systematized. Custom AI infrastructure built exactly around how your brain works. Not productivity apps you adapt to, but systems that adapt to you. We engineer your perfect workflow from scratch. Bespoke intelligence layers that multiply your capacity.</p>
+        <p><DynamicAgencyDescription /></p>
 
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £25,000</p>
 
@@ -420,7 +352,7 @@ export default function ConsultingPage() {
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Marketing</span>
         </h3>
 
-        <p>The future of discoverability isn't about links. It's about ideas. In a world where AI systems index knowledge instead of URLs, authority belongs to those who own the narrative. We dissect your business DNA and rebuild it as a knowledge graph of authority. Purpose, values, USP, and intellectual territory mapped into content that AI systems recognise, learn from, and cite.</p>
+        <p><DynamicKSODescription /></p>
 
         <p style={{ fontWeight: 600, marginTop: '8px' }}>£18,500</p>
 
@@ -464,32 +396,7 @@ export default function ConsultingPage() {
         <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If engagement is high but conversions don't match...</p>
 
         <h3 id="transaction-architecture" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            The Transaction Architecture<span style={{ fontSize: '0.6em', verticalAlign: 'super' }}>™</span>
-            <button
-              onClick={() => setTrademarkModalOpen(true)}
-              title="Why the ™ matters"
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: '#666',
-                padding: 0,
-                display: 'inline-flex',
-                alignItems: 'center',
-                fontSize: '14px',
-                transition: 'color 0.2s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#222'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#666'}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-              </svg>
-            </button>
-          </span>
+          <span>The Transaction Architecture</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
         </h3>
 
@@ -533,32 +440,7 @@ export default function ConsultingPage() {
         <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If you know something's off but can't pinpoint where...</p>
 
         <h3 id="strategic-triptych" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            The Strategic Triptych Assessment<span style={{ fontSize: '0.6em', verticalAlign: 'super' }}>™</span>
-            <button
-              onClick={() => setTrademarkModalOpen(true)}
-              title="Why the ™ matters"
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                color: '#666',
-                padding: 0,
-                display: 'inline-flex',
-                alignItems: 'center',
-                fontSize: '14px',
-                transition: 'color 0.2s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#222'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#666'}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="16" x2="12" y2="12"></line>
-                <line x1="12" y1="8" x2="12.01" y2="8"></line>
-              </svg>
-            </button>
-          </span>
+          <span>The Strategic Triptych Assessment</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
         </h3>
 
@@ -600,6 +482,8 @@ export default function ConsultingPage() {
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
           </>
         )}
+
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The Best Steps Forward</h3>
 
         {(serviceFilter === 'all' || serviceFilter === 'marketing') && (
           <>
@@ -905,7 +789,7 @@ export default function ConsultingPage() {
 
         <p>If you want a study, hire someone else. If you want a solution, let's talk.</p>
 
-        <Link href="/" className="cta-button red">Reach Out</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
 
       {enquiryModalOpen && serviceConfig[enquiryModalOpen] && (

@@ -1,0 +1,34 @@
+{
+  "generated": "2025-11-12T17:22:18.696Z",
+  "expires": "2025-11-12T18:22:18.696Z",
+  "content": {
+    "newsInsight": "Major corruption scandal just hit Zelensky's inner circle. Everyone's shocked. We're not. When wartime leaders centralise power at hyperspeed, accountability systems can't keep up. The surprising part isn't corruption appearing. It's taking this long to surface.",
+    "patternInsight": "You're still reading. That already puts you ahead.",
+    "intelligenceExample": "The Zelensky corruption scandal, for example. We read that and our mind goes to: which Silicon Valley unicorns are building the same accountability vacuum right now, just with stock options instead of state contracts?",
+    "consultingInsight": "We were just reading how McKinsey's transformation frameworks help CEOs restructure entire organisations in 18 months. Decades of pattern recognition distilled into playbooks that actually work. But imagine if that level of strategic clarity wasn't locked behind seven-figure retainers. What if every ambitious leader could access that caliber of thinking?",
+    "contentReminder": "Remember how the landing page showed Ukraine's corruption scandal, and the What We Do page wondered which unicorns have the same accountability vacuum?",
+    "marketObservation": "This week we're watching founders realise their hypergrowth created the same blind spots as wartime governance. Speed without systems always ends the same way.",
+    "purposeContext": "Notice how organisations in crisis mode always defer the \"why do we exist\" conversation until it's too late?",
+    "serviceDescription": "Cheez-It announced ambitious UK expansion plans while Kellogg's splits into three companies because no one remembers why they exist together. Watch every conglomerate realise their divisions are just roommates sharing overhead. We excavate your actual reason for existing, then engineer that purpose into every decision filter, cultural norm, and customer promise. Not another mission statement. An operating system that makes misalignment impossible.",
+    "esiDescription": "Coca-Cola just gave Barq's root beer a \"DGAF makeover\" trying to capture Gen Z. Brilliant insight about authentic rebellion, zero system to execute it. Explore, Synthesise, Ignite: our infrastructure for closing that gap. Explore surfaces what actually resonates, Synthesise transforms discovery into executable strategy, Ignite makes ideas move through organisations. Most insights die in PowerPoint. ESI makes them operational.",
+    "agencyDescription": "Inc reports great leaders \"don't pick just one lane\" while executives everywhere try to be everything to everyone. Familiar? We work with CEOs who mistake motion for progress and Yes for leadership. Secret Agency: where accomplished leaders learn to subtract before they add. Because your 80-hour weeks aren't a badge of honor. They're a system design failure.",
+    "ksoDescription": "Prime Video hit 315 million monthly viewers while traditional SEO metrics become irrelevant. AI doesn't care about your backlinks. KSO Workshop: we architect your knowledge into structures AI systems actually understand and cite. Four weeks to shift from keyword-optimised to knowledge-authoritative. Because when ChatGPT answers your industry's questions, page one of Google is yesterday's game.",
+    "transactionDescription": "Waitrose launched a star-studded rom-com Christmas campaign. Beautiful creative, unclear value exchange. Who converts and why? Transaction Architecture maps the actual decision physics: emotional resonance, cognitive shifts, and behavioural triggers that turn appeal into action. We design every touchpoint to complete those transactions, not just create impressions. Deep value architecture dressed in surface appeal.",
+    "triptychDescription": "Bob Ross paintings sold for $600K while public TV stations struggle for funding. Marketing sees nostalgia goldmine. Finance sees revenue crisis. Nobody connecting both truths. Strategic Triptych Assessment examines how you market, compete, and execute simultaneously. Problems hide where functions don't talk. So do $600K opportunities.\n"
+  },
+  "metadata": {
+    "model": "claude-opus-4-20250514",
+    "headlinesAnalyzed": 38,
+    "sources": {
+      "bbc": 8,
+      "nyt": 8,
+      "fastCompany": 8,
+      "forbes": 8,
+      "marketingWeek": 6,
+      "hbr": 0
+    },
+    "generationTimeMs": 45416,
+    "promptFile": "content-generation-prompt.md"
+  },
+  "fallbackUsed": false
+}
