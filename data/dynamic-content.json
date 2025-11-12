@@ -1,14 +1,12 @@
 {
-  "generated": "2025-11-12T16:09:00.030Z",
-  "expires": "2025-11-12T17:09:00.030Z",
+  "generated": "2025-11-12T18:28:15.504Z",
+  "expires": "2025-11-12T19:28:15.504Z",
   "content": {
-    "newsInsight": "UK just announced thousands of NHS staff will lose their jobs after Treasury approved a £1bn severance deal. Everyone's screaming about healthcare cuts. But £1bn to reduce headcount? That's the most expensive efficiency play we've seen. Someone's solving for politics, not math.",
+    "newsInsight": "NYT reports new Epstein emails allegedly show Trump knew of his conduct. Everyone's shocked. Really? Power protects power until the cameras arrive. The real question is which current billionaire friendships we'll be shocked about in 2034.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The NHS layoffs with £1bn severance, for example. We read that and our mind goes to: what's the real cost per retained employee when you factor in survivor syndrome and institutional knowledge walking out the door?",
-    "consultingInsight": "We were just reading how McKinsey's healthcare practice helps systems optimize staffing models with surgical precision. Decades of expertise, unmatched rigor. But imagine if that level of workforce strategy insight was accessible before you needed a £1bn bandaid.",
-    "contentReminder": "Remember how the landing page showed the NHS's £1bn severance package, and the What We Do page wondered about the real cost per retained employee?",
-    "marketObservation": "This week we're watching organizations pay premium prices to eliminate positions while their competitors pay nothing to retain talent. The smart money sees what others call \"necessary cuts\" as competitor gift packages.",
-    "purposeContext": "Notice how the NHS story reveals what happens when purpose becomes an afterthought to process efficiency.\n"
+    "intelligenceExample": "The Epstein emails, for example. We read that and our mind goes to: which current billionaire \"eccentricities\" are being rationalized right now by people who'll claim ignorance later?",
+    "consultingInsight": "We were just reading how McKinsey helps boards navigate reputational crises with their legendary risk frameworks. Brilliant work, saves fortunes. But imagine if that level of strategic foresight was accessible before the crisis, not just after.",
+    "contentReminder": "Remember how the landing page showed those Epstein emails about Trump, and the What We Do page wondered which current billionaire behaviors we're ignoring?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -18,7 +16,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 14052,
+    "generationTimeMs": 10408,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
