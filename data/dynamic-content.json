@@ -1,11 +1,12 @@
 {
-  "generated": "2025-11-12T13:23:07.926Z",
-  "expires": "2025-11-12T14:23:07.926Z",
+  "generated": "2025-11-12T13:58:55.501Z",
+  "expires": "2025-11-12T14:58:55.501Z",
   "content": {
-    "newsInsight": "China just became the global climate leader while the US skipped COP29. Everyone's debating politics. We see the real story. When manufacturing superpowers flip their energy playbooks, entire supply chains get rewritten. Your competitors are already moving.",
+    "newsInsight": "Scott Bessent just got exposed by NYT for using a tax dodge the IRS tried to block. Everyone's shocked a Treasury nominee played the system. Really? The smartest money managers always find the gray zones. That's literally the job description.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "China dominating climate tech while America skips COP29, for example. We read that and our mind goes to: which Western companies are quietly building Shanghai offices right now, and what does that tell us about where innovation actually happens?",
-    "consultingInsight": "We were just reading how McKinsey helps Fortune 500s navigate sustainability transformations through their comprehensive ESG frameworks. Brilliant methodology, unmatched global reach. But what if that level of strategic clarity on green transitions wasn't just for companies with nine figure budgets?\n"
+    "intelligenceExample": "The Bessent tax story, for example. We read that and our mind goes to: If your Treasury Secretary knows every loophole because he used them, is that corruption or competitive advantage?",
+    "consultingInsight": "We were just reading how McKinsey's latest framework helps companies navigate regulatory complexity with surgical precision. Brilliant work, essential for Fortune 500s. But what if that level of strategic insight could help startups dance through the same minefields before they hit scale?",
+    "contentReminder": "Remember how the landing page showed Bessent's tax moves, and the What We Do page wondered if knowing loopholes makes you corrupt or competitive?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -15,7 +16,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 8308,
+    "generationTimeMs": 9937,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false

@@ -80,6 +80,22 @@ Pick ONE recent HBR article (from the list above) about consulting, strategy, tr
 **Example:**
 "We were just reading how BCG's new framework helps Fortune 500 CEOs navigate digital transformation. World class thinking, decades of refinement. But what if that caliber of strategic insight wasn't reserved for $50K engagements? What if every ambitious team could access it?"
 
+## PIECE 4 - CONTENT REMINDER (for the Contact page callback)
+
+This appears on the Contact page to remind visitors what they just saw on the previous pages.
+
+Write ONE sentence (under 35 words) that:
+1. References what appeared on the Focus page (the news insight from PIECE 1)
+2. References what appeared on What We Do (the question from PIECE 2)
+3. Shows they're connected - same story, different angles
+
+**Format:** "Remember how the landing page showed [brief reference to the news], and the What We Do page wondered [brief reference to the question]?"
+
+**Example:**
+"Remember how the landing page showed Tesla's price cuts, and the What We Do page wondered if it was margin testing or demand panic?"
+
+Keep it super casual and conversational.
+
 ## Response Format
 
 Format your response EXACTLY like this:
@@ -88,6 +104,7 @@ Format your response EXACTLY like this:
 INSIGHT: [your piece 1 here]
 QUESTION: [your piece 2 here]
 CONSULTING: [your piece 3 here]
+REMINDER: [your piece 4 here]
 ```
 
-Write ONLY those three pieces. No preamble. Start immediately.
+Write ONLY those four pieces. No preamble. Start immediately.

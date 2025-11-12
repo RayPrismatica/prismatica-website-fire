@@ -94,10 +94,10 @@ async function generateContent() {
       .replace('{{NEWS_HEADLINES}}', `\n- ${topNewsHeadlines}`)
       .replace('{{HBR_HEADLINES}}', `\n- ${topHBRHeadlines}`);
 
-    // 3. Have Claude select the most newsworthy and generate ALL THREE pieces
+    // 3. Have Claude select the most newsworthy and generate ALL FOUR pieces
     const response = await anthropic.messages.create({
       model: 'claude-opus-4-20250514',
-      max_tokens: 500,
+      max_tokens: 600,
       messages: [{
         role: 'user',
         content: prompt
@@ -109,18 +109,20 @@ async function generateContent() {
     // Parse the response
     const insightMatch = responseText.match(/INSIGHT:\s*(.+?)(?=\nQUESTION:)/s);
     const questionMatch = responseText.match(/QUESTION:\s*(.+?)(?=\nCONSULTING:)/s);
-    const consultingMatch = responseText.match(/CONSULTING:\s*(.+)/s);
+    const consultingMatch = responseText.match(/CONSULTING:\s*(.+?)(?=\nREMINDER:)/s);
+    const reminderMatch = responseText.match(/REMINDER:\s*(.+)/s);
 
-    if (!insightMatch || !questionMatch || !consultingMatch) {
+    if (!insightMatch || !questionMatch || !consultingMatch || !reminderMatch) {
       throw new Error('Failed to parse Claude response');
     }
 
     const newsInsight = insightMatch[1].trim().replace(/```/g, '');
     const intelligenceExample = questionMatch[1].trim().replace(/```/g, '');
     const consultingInsight = consultingMatch[1].trim().replace(/```/g, '');
+    const contentReminder = reminderMatch[1].trim().replace(/```/g, '');
 
     const generationTime = Date.now() - startTime;
-    console.log(`\n✓ Claude generated all three pieces in ${generationTime}ms`);
+    console.log(`\n✓ Claude generated all four pieces in ${generationTime}ms`);
 
     // 3. Save to cache with metadata
     const content = {
@@ -130,7 +132,8 @@ async function generateContent() {
         newsInsight: newsInsight,
         patternInsight: "You're still reading. That already puts you ahead.",
         intelligenceExample: intelligenceExample,
-        consultingInsight: consultingInsight
+        consultingInsight: consultingInsight,
+        contentReminder: contentReminder
       },
       metadata: {
         model: 'claude-opus-4-20250514',
@@ -166,6 +169,8 @@ async function generateContent() {
     console.log(`   ${intelligenceExample}`);
     console.log(`\n💼 Consulting Insight:`);
     console.log(`   ${consultingInsight}`);
+    console.log(`\n🔔 Content Reminder:`);
+    console.log(`   ${contentReminder}`);
     console.log('═══════════════════════════════════════\n');
 
   } catch (error) {
@@ -183,7 +188,8 @@ async function generateContent() {
         newsInsight: "Notice how every CEO says they want innovation but hires for predictability? That's not contradiction. That's institutional self-preservation disguised as strategy.",
         patternInsight: "You're still reading. That already puts you ahead.",
         intelligenceExample: "Unemployment hitting 5%, for example. We read that and our mind goes to: what industries are hardest hit, and what does that tell us about which skills are becoming obsolete?",
-        consultingInsight: "We were just reading about how the big consulting firms built something remarkable. World class thinking, rigorous frameworks, proven methodologies. But what if that caliber of strategic insight wasn't locked behind day rates? What if the mental models that transform Fortune 500 companies could be infrastructure instead of scarcity?"
+        consultingInsight: "We were just reading about how the big consulting firms built something remarkable. World class thinking, rigorous frameworks, proven methodologies. But what if that caliber of strategic insight wasn't locked behind day rates? What if the mental models that transform Fortune 500 companies could be infrastructure instead of scarcity?",
+        contentReminder: "Remember how the landing page showed CEOs hiring for predictability, and the What We Do page wondered which skills are becoming obsolete?"
       },
       metadata: {
         error: error.message,
