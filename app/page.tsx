@@ -1,4 +1,5 @@
 import PageLayout from '@/components/PageLayout';
+import ContentTracker from '@/components/ContentTracker';
 import { getDynamicContent } from '@/lib/getDynamicContent';
 
 export const revalidate = 0; // Disable caching
@@ -8,6 +9,7 @@ export default async function HomePage() {
 
   return (
     <PageLayout>
+      <ContentTracker newsInsight={content.newsInsight} intelligenceExample={content.intelligenceExample} />
       <section id="focus" className="section active">
         <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>
           FINALLY<br/>

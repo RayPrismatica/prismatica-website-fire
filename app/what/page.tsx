@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
+import ContentTracker from '@/components/ContentTracker';
 import CarmenChat from '@/components/CarmenChat';
 import { getDynamicContent } from '@/lib/getDynamicContent';
 
@@ -11,6 +12,7 @@ export default async function WhatWeDoPage() {
 
   return (
     <PageLayout>
+      <ContentTracker newsInsight={content.newsInsight} intelligenceExample={content.intelligenceExample} />
       <section id="what" className="section active">
         <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>WHAT WE DO</h2>
 

@@ -101,7 +101,17 @@ export default function CarmenChat() {
           </div>
           <div>
             <div className="carmen-name">Carmen</div>
-            <div className="carmen-status">Online</div>
+            <div className="carmen-status" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{
+                display: 'inline-block',
+                width: '8px',
+                height: '8px',
+                backgroundColor: '#10b981',
+                borderRadius: '50%',
+                boxShadow: '0 0 0 2px rgba(16, 185, 129, 0.2)'
+              }}></span>
+              Online
+            </div>
           </div>
         </div>
       </div>

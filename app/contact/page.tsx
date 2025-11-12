@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
 import EmailButton from '@/components/EmailButton';
+import UserContentReminder from '@/components/UserContentReminder';
 import { getDynamicContent } from '@/lib/getDynamicContent';
 
 export default async function ContactPage() {
@@ -78,7 +79,9 @@ Best,
 
         <p>The opening paragraph on the landing page and on What We Do changes every 15 minutes.</p>
 
-        <p>{content.contentReminder ? content.contentReminder.replace("Focus showed", "the landing page showed").replace("What We Do wondered", "What We Do page wondered") : "Remember how the landing page showed today's news story, and the What We Do page showed what question immediately came to mind?"} Same story, different angles.</p>
+        <UserContentReminder fallbackReminder={content.contentReminder || "Remember how the landing page showed today's news story, and the What We Do page wondered what question immediately came to mind?"} />
+
+        <p style={{ marginTop: '16px' }}>Same story, different angles.</p>
 
         <p>{isContentStale ? "It's been over 15 minutes since the content updated, so go back now. They're probably showing something completely different." : "But it's only been a few minutes since the content updated. Still probably the same. Check back in 15."}</p>
 
