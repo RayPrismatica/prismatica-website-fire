@@ -8,7 +8,7 @@ export default function DynamicTriptychDescription() {
   useEffect(() => {
     async function loadContent() {
       try {
-        const response = await fetch('/data/dynamic-content.json');
+        const response = await fetch('/api/dynamic-content');
         const data = await response.json();
         if (data.content?.triptychDescription) {
           setDescription(data.content.triptychDescription);

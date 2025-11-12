@@ -8,7 +8,7 @@ export default function DynamicKSODescription() {
   useEffect(() => {
     async function loadContent() {
       try {
-        const response = await fetch('/data/dynamic-content.json');
+        const response = await fetch('/api/dynamic-content');
         const data = await response.json();
         if (data.content?.ksoDescription) {
           setDescription(data.content.ksoDescription);
