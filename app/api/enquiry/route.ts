@@ -84,9 +84,9 @@ Reply to: ${email}
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    // TEMPORARY: Hardcoded for testing
-    const fromEmail = 'onboarding@resend.dev';
-    const toEmail = 'ray.tarantino@gmail.com';
+    // Using verified domain
+    const fromEmail = 'hello@send.prismaticalabs.com';
+    const toEmail = 'ray@prismaticalabs.com';
 
     console.log('DEBUG: Sending email FROM:', fromEmail, 'TO:', toEmail);
 
