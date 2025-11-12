@@ -84,9 +84,9 @@ Reply to: ${email}
 
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    // Using verified domain (no 's' in prismaticalab)
+    // Using verified domain with alias forwarding to Gmail
     const fromEmail = 'hello@prismaticalab.com';
-    const toEmail = 'ray@prismaticalab.com';
+    const toEmail = 'hello@prismaticalab.com';
 
     console.log('DEBUG: Sending email FROM:', fromEmail, 'TO:', toEmail);
 
