@@ -1,11 +1,22 @@
 {
-  "generated": "2025-11-12T12:52:26.351Z",
-  "expires": "2025-11-12T13:52:26.351Z",
+  "generated": "2025-11-12T13:23:07.926Z",
+  "expires": "2025-11-12T14:23:07.926Z",
   "content": {
-    "newsInsight": "China just dominated at the UN climate summit while American CEOs stayed home. Beijing's playing the long game, filling the leadership vacuum Trump created. Smart money sees this as the real geopolitical shift of 2024.",
+    "newsInsight": "China just became the global climate leader while the US skipped COP29. Everyone's debating politics. We see the real story. When manufacturing superpowers flip their energy playbooks, entire supply chains get rewritten. Your competitors are already moving.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "China dominating climate talks while US execs skip, for example. We read that and our mind goes to: Which Western companies will lose their ESG credentials by missing this power shift?",
-    "contentReminder": "Remember how Focus showed China seizing climate leadership, and What We Do wondered about Western ESG credential risks?"
+    "intelligenceExample": "China dominating climate tech while America skips COP29, for example. We read that and our mind goes to: which Western companies are quietly building Shanghai offices right now, and what does that tell us about where innovation actually happens?",
+    "consultingInsight": "We were just reading how McKinsey helps Fortune 500s navigate sustainability transformations through their comprehensive ESG frameworks. Brilliant methodology, unmatched global reach. But what if that level of strategic clarity on green transitions wasn't just for companies with nine figure budgets?\n"
+  },
+  "metadata": {
+    "model": "claude-opus-4-20250514",
+    "headlinesAnalyzed": 16,
+    "sources": {
+      "bbc": 8,
+      "nyt": 8,
+      "hbr": 0
+    },
+    "generationTimeMs": 8308,
+    "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
 }
