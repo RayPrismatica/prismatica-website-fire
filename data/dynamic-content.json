@@ -1,14 +1,20 @@
 {
-  "generated": "2025-11-12T03:05:21.896Z",
-  "expires": "2025-11-12T04:05:21.896Z",
+  "generated": "2025-11-12T03:24:25.970Z",
+  "expires": "2025-11-12T04:24:25.970Z",
   "content": {
-    "newsInsight": "Notice how every CEO says they want innovation but hires for predictability? That's not contradiction. That's institutional self-preservation disguised as strategy.",
+    "newsInsight": "Israel destroyed 1,500 buildings in Gaza this week after the ceasefire. Everyone's debating violations and peace talks. We see something else. When demolition accelerates after fighting stops, someone's testing what the world will tolerate when cameras turn away.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Unemployment hitting 5%, for example. We read that and our mind goes to: what industries are hardest hit, and what does that tell us about which skills are becoming obsolete?"
+    "intelligenceExample": "The Gaza demolitions, for example. We read that and our mind goes to: if destruction speeds up after ceasefires, what does that reveal about how power actually calculates international attention spans?\n"
   },
   "metadata": {
-    "error": "Headers.append: \"sk-ant-api03-1TqGXPJiEVvWCdFGW_1O180_zQcofDOjXTsJAJA_g6y3WGxNO\n  LnIemYf6EqSw1HHVOsycVLeXXv1ANrtXVa_sA-mMJ8uQAA\" is an invalid header value.",
-    "errorTime": "2025-11-12T03:05:21.896Z"
+    "model": "claude-opus-4-20250514",
+    "headlinesAnalyzed": 16,
+    "sources": {
+      "bbc": 8,
+      "nyt": 8
+    },
+    "generationTimeMs": 7143,
+    "promptFile": "content-generation-prompt.md"
   },
-  "fallbackUsed": true
+  "fallbackUsed": false
 }
