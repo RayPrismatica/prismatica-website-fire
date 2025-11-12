@@ -28,7 +28,7 @@ export default async function WhatWeDoPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>The consulting paradox</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The consulting paradox</h3>
 
         <p>Brilliant minds. World-class thinking. Trapped in day rates and retainers. Proprietary methodologies you can rent but never own. Frameworks applied FOR you, never shared WITH you.</p>
 
@@ -44,9 +44,9 @@ export default async function WhatWeDoPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>Two ways to think with us</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Two ways to think with us</h3>
 
-        <h3>Direct Engagement</h3>
+        <h3 style={{ marginTop: '32px', marginBottom: '16px' }}>Direct Engagement</h3>
 
         <p>Some problems don't sit still. They evolve as you engage with them. The real issue isn't in the brief, it's between the lines. Algorithms find patterns in data. Humans find patterns in silence, hesitation, what's not being said. We turn outputs into outcomes. Insights into foresight. We connect dots across domains no one else considered. When the problem demands depth over speed, gravitas over volume, transformation over transaction, you need people who think, not just tools that process.</p>
 
@@ -58,7 +58,7 @@ export default async function WhatWeDoPage() {
 
         <p style={{ fontSize: '14px', color: '#666', fontStyle: 'italic' }}>We typically book 4-6 weeks out. Current availability fills fast.</p>
 
-        <h3>Product Suite</h3>
+        <h3 style={{ marginTop: '32px', marginBottom: '16px' }}>Product Suite</h3>
 
         <p>Most companies solve the same problem twice because thinking doesn't scale. We turned our methodology into infrastructure. Question patterns that run on demand. Mental models your entire team can access instantly. No waiting for consultants. No dependency on day rates. The same strategic thinking that costs £5,000 in a room becomes £299 in your workflow. We codified what consultants hoard. Now your team moves faster, thinks sharper, and compounds intelligence instead of renting it.</p>
 
@@ -72,7 +72,7 @@ export default async function WhatWeDoPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>What this looks like in practice</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>What this looks like in practice</h3>
 
         <div style={{ marginBottom: '32px' }}>
           <div style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid #f0f0f0' }}>

@@ -1,22 +1,11 @@
 {
-  "generated": "2025-11-12T11:17:33.643Z",
-  "expires": "2025-11-12T12:17:33.643Z",
+  "generated": "2025-11-12T12:52:26.351Z",
+  "expires": "2025-11-12T13:52:26.351Z",
   "content": {
-    "newsInsight": "UK just announced 1 billion pounds to cut thousands of NHS jobs while unemployment hits new peaks. Everyone sees crisis. We see Britain accidentally inventing the world's most expensive severance model. Silicon Valley takes notes.",
+    "newsInsight": "China just dominated at the UN climate summit while American CEOs stayed home. Beijing's playing the long game, filling the leadership vacuum Trump created. Smart money sees this as the real geopolitical shift of 2024.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK's billion pound NHS layoff package, for example. We read that and our mind goes to: if paying people to leave costs more than keeping them, what's the real optimization here, headcount or headlines?",
-    "consultingInsight": "We were just reading how McKinsey's healthcare practice helps systems optimize workforce efficiency through predictive modeling. Brilliant frameworks, proven results. But what if that level of strategic insight reached every hospital administrator wrestling with staffing decisions, not just those with seven figure budgets?\n"
-  },
-  "metadata": {
-    "model": "claude-opus-4-20250514",
-    "headlinesAnalyzed": 16,
-    "sources": {
-      "bbc": 8,
-      "nyt": 8,
-      "hbr": 0
-    },
-    "generationTimeMs": 8679,
-    "promptFile": "content-generation-prompt.md"
+    "intelligenceExample": "China dominating climate talks while US execs skip, for example. We read that and our mind goes to: Which Western companies will lose their ESG credentials by missing this power shift?",
+    "contentReminder": "Remember how Focus showed China seizing climate leadership, and What We Do wondered about Western ESG credential risks?"
   },
   "fallbackUsed": false
 }

@@ -887,7 +887,7 @@ export default function ConsultingPage() {
 
         <div style={{ margin: '48px 0', borderTop: '1px solid #ccc', borderBottom: '1px solid #ccc', height: '3px' }}></div>
 
-        <h3>Who Gets Special Terms</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Who Gets Special Terms</h3>
 
         <p><strong>B-Corps</strong> get 20% off because you're accountable to more than shareholders, and so are we. <strong>NGOs</strong> get 50% off or pro-bono for the right project, impact over income. <strong>Startups</strong> can do equity deals, we bet on futurists, not just futures.</p>
 
@@ -895,13 +895,13 @@ export default function ConsultingPage() {
 
         <div style={{ margin: '48px 0', borderTop: '1px solid #ccc', borderBottom: '1px solid #ccc', height: '3px' }}></div>
 
-        <h3>How This Works</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>How This Works</h3>
 
         <p>Tell us the problem. We'll quote a fixed price and timeline. No surprises.</p>
 
         <p>Some fixes take two weeks. Some take two months. None take two years.</p>
 
-        <h3>The Test</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The Test</h3>
 
         <p>If you want a study, hire someone else. If you want a solution, let's talk.</p>
 

@@ -6,6 +6,8 @@ interface DynamicContent {
   patternInsight: string;
   intelligenceExample: string;
   consultingInsight: string;
+  contentReminder?: string;
+  generated?: string;
 }
 
 const fallbackContent: DynamicContent = {
@@ -34,7 +36,10 @@ export async function getDynamicContent(): Promise<DynamicContent> {
       return fallbackContent;
     }
 
-    return cache.content as DynamicContent;
+    return {
+      ...cache.content,
+      generated: cache.generated
+    } as DynamicContent;
   } catch (error) {
     console.error('Error loading dynamic content:', error);
     return fallbackContent;

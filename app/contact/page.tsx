@@ -1,7 +1,36 @@
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
+import EmailButton from '@/components/EmailButton';
+import { getDynamicContent } from '@/lib/getDynamicContent';
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const content = await getDynamicContent();
+
+  // Check if content is 15+ minutes old
+  const isContentStale = content.generated
+    ? (new Date().getTime() - new Date(content.generated).getTime()) / 60000 >= 15
+    : false;
+
+  const emailSubject = "Let's talk";
+  const emailBody = `Hi Prismatica,
+
+I've read your site. Here's what I'm solving:
+
+[Describe your specific problem]
+
+What I've already tried:
+
+[What hasn't worked]
+
+What I need:
+
+[What you're looking for]
+
+Best,
+[Your name]`;
+
+  const mailtoLink = `mailto:hello@prismaticalab.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
   return (
     <PageLayout>
       <section id="contact" className="section active">
@@ -17,74 +46,49 @@ export default function ContactPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>Two ways to start</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>What you're actually signing up for</h3>
 
-        <p><strong>Email us directly:</strong> Best if you already know what you need. Skip the forms, skip the qualifiers. Just tell us what's broken.</p>
+        <p>We're about clarity, not comfort. We tend to challenge assumptions more than validate them. If you want validation, this won't work.</p>
 
-        <div style={{
-          backgroundColor: '#f8f8f8',
-          padding: '24px',
-          borderLeft: '3px solid #D43225',
-          marginTop: '24px',
-          marginBottom: '32px'
-        }}>
-          <p style={{
-            fontSize: '16px',
-            marginBottom: '0'
-          }}>
-            <a href="mailto:hello@prismaticalab.com" style={{
-              color: '#D43225',
-              textDecoration: 'none',
-              borderBottom: '1px solid #D43225'
-            }}>
-              hello@prismaticalab.com
-            </a>
-          </p>
-        </div>
+        <p>First conversation is diagnostic. You'll know within 30 minutes if we're asking good questions.</p>
 
-        <p><strong>Book a service directly:</strong> Want to skip the back and forth? Pick what you need. We'll confirm feasibility and start.</p>
-
-        <div style={{ marginTop: '24px', marginBottom: '32px' }}>
-          <Link href="/consulting" className="cta-button red">
-            See Services & Pricing
-          </Link>
-        </div>
+        <p>We optimize for honesty over politeness. Outcomes over output.</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>What happens next</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Why there's no calendar here</h3>
 
-        <p>We respond within 24 hours. If we can help, we'll tell you how. If we can't, we'll tell you that too.</p>
+        <p>Others optimize for volume. We optimize for fit.</p>
 
-        <p>No discovery calls where we ask you to repeat everything you wrote. No "let me loop in my team." No 47-slide pitch deck.</p>
+        <p>When you email first, you clarify the problem. We read it. If we can help, we show up already thinking through solutions. If not, we tell you before wasting your time.</p>
 
-        <p>First conversation is diagnostic. Free. We figure out if this makes sense. If we're not asking better questions than you within the first 30 minutes, walk away.</p>
-
-        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
-
-        <h3>Who this works for</h3>
-
-        <p>You're solving something specific. Not "we need innovation." Not "help us with strategy." Actual problems with edges.</p>
-
-        <p>You've already tried the obvious solutions. Hired smart people. Followed best practices. Still stuck.</p>
-
-        <p>You value thinking over execution. You know the bottleneck isn't doing more, it's knowing what to do.</p>
+        <p>Calendars are convenient. Email is intentional. We'll take intentional every time.</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>Who this doesn't work for</h3>
+        <EmailButton mailtoLink={mailtoLink} />
 
-        <p>You need validation more than solutions. We're not here to make you feel smart. We're here to make you effective.</p>
-
-        <p>You're shopping for consultants like you're shopping for sofas. Comparing day rates. Asking for proposals. We don't do beauty contests.</p>
-
-        <p>You want someone to execute your plan. Hire an agency. We change the plan.</p>
+        <p style={{ fontSize: '14px', color: '#666', fontStyle: 'italic', marginBottom: '32px' }}>
+          Noticed this is the only red button on the entire site? That's intentional. <span style={{ color: '#D43225' }}>Red draws the eye.</span> We promised no tricks, so here's the one we used: big red button right when you're ready. If it made you want to click, good. You already decided. We just made it easier.
+        </p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p>Still reading? Good sign.</p>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px', color: '#D43225' }}>One more thing</h3>
 
-        <p>Email us. Let's see if this fits.</p>
+        <p>The opening paragraph on the landing page and on What We Do changes every 15 minutes.</p>
+
+        <p>{content.contentReminder ? content.contentReminder.replace("Focus showed", "the landing page showed").replace("What We Do wondered", "What We Do page wondered") : "Remember how the landing page showed today's news story, and the What We Do page showed what question immediately came to mind?"} Same story, different angles.</p>
+
+        <p>{isContentStale ? "It's been over 15 minutes since the content updated, so go back now. They're probably showing something completely different." : "But it's only been a few minutes since the content updated. Still probably the same. Check back in 15."}</p>
+
+        <p>It's a sweet piece of code. A GitHub Action runs on schedule. Fetches headlines from BBC and NYT, same stuff we read. Sends them to Claude with prompts that encode how we think. Claude picks the most significant story, writes two contextual takes (one for each page), commits the update to our repo. Vercel detects the change. Site rebuilds. New content live.</p>
+
+        <p>No database. No CMS. No manual work. Just code that thinks.</p>
+
+        <p>Want this on your site? <a href="https://github.com/RayPrismatica/prismaticalab-dynamic-ai-website-content" target="_blank" rel="noopener noreferrer" style={{ color: '#000', textDecoration: 'none', borderBottom: '1px solid #000' }}>Take it</a>. Full code on GitHub. There you have it. That's a tiny example of what we mean by "Thinking As A Service".</p>
+
+        <p style={{ color: '#D43225', marginTop: '32px' }}>Speak soon.</p>
 
       </section>
     </PageLayout>
