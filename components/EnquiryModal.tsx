@@ -207,19 +207,18 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
           onClick={onClose}
         >&times;</span>
 
-        <h3 style={{ fontFamily: '"Passion One", sans-serif', fontSize: '32px', marginTop: 0, marginBottom: '8px' }}>
-          {serviceName}
-        </h3>
-        {currentStep < 4 && (
-          <p style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', color: '#999', marginBottom: '32px' }}>
-            Step {currentStep} of 3
-          </p>
-        )}
-        {currentStep === 4 && (
-          <div style={{ marginBottom: '32px' }} />
-        )}
+        <div style={{ marginBottom: '24px' }}>
+          <h3 style={{ fontFamily: '"Passion One", sans-serif', fontSize: '32px', marginTop: 0, marginBottom: '8px' }}>
+            {serviceName}
+          </h3>
+          {currentStep < 4 && (
+            <p style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', color: '#999', marginBottom: 0 }}>
+              Step {currentStep} of 3
+            </p>
+          )}
+        </div>
 
-        <div style={{ flex: 1, overflowY: 'auto', minHeight: 0 }}>
+        <div style={{ flex: 1, overflowY: 'auto', minHeight: 0, marginBottom: '20px' }}>
 
           {/* Step 1: Deadline */}
           {currentStep === 1 && (
@@ -228,7 +227,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                 When do you need results by?
               </p>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '20px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '16px' }}>
                 <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
                   <input
                     type="radio"
@@ -276,23 +275,48 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                   />
                   <span style={{ fontSize: '14px' }}>Specific deadline:</span>
                 </label>
-
-                {formData.deadlineOption === 'specific' && (
-                  <input
-                    type="date"
-                    value={formData.specificDeadline}
-                    onChange={(e) => setFormData({ ...formData, specificDeadline: e.target.value })}
-                    style={{
-                      marginLeft: '28px',
-                      padding: '8px 12px',
-                      border: '1px solid #ddd',
-                      borderRadius: '4px',
-                      fontSize: '14px',
-                      width: 'calc(100% - 28px)'
-                    }}
-                  />
-                )}
               </div>
+
+              {/* Fixed date display area */}
+              {formData.deadlineOption === 'specific' ? (
+                <input
+                  type="date"
+                  value={formData.specificDeadline}
+                  onChange={(e) => setFormData({ ...formData, specificDeadline: e.target.value })}
+                  placeholder="Select a date"
+                  style={{
+                    padding: '8px 12px',
+                    border: '1px solid #ddd',
+                    borderRadius: '4px',
+                    fontSize: '14px',
+                    width: '100%',
+                    marginBottom: '16px',
+                    boxSizing: 'border-box'
+                  }}
+                />
+              ) : (
+                <div style={{
+                  padding: '8px 12px',
+                  background: '#f5f5f5',
+                  borderRadius: '4px',
+                  fontSize: '13px',
+                  color: '#666',
+                  marginBottom: '16px',
+                  minHeight: '40px',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  {formData.deadlineOption === 'asap' && (
+                    <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getTime() + (serviceDurationWeeks + 1) * 7 * 24 * 60 * 60 * 1000))}</strong></>
+                  )}
+                  {formData.deadlineOption === 'end-of-month' && (
+                    <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0))}</strong></>
+                  )}
+                  {formData.deadlineOption === 'within-3-months' && (
+                    <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getTime() + 90 * 24 * 60 * 60 * 1000))}</strong></>
+                  )}
+                </div>
+              )}
 
               {calculatedStartDate && (
                 <div style={{
@@ -300,32 +324,15 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                   background: isFeasible ? '#f0fdf4' : '#fef2f2',
                   border: `1px solid ${isFeasible ? '#86efac' : '#fca5a5'}`,
                   borderRadius: '6px',
-                  marginBottom: '20px'
+                  minHeight: '68px',
+                  display: 'flex',
+                  alignItems: 'center'
                 }}>
                   <p style={{ fontSize: '13px', lineHeight: '1.6', margin: 0 }}>
                     {getTimelineMessage()}
                   </p>
                 </div>
               )}
-
-              <button
-                onClick={() => setCurrentStep(2)}
-                disabled={formData.deadlineOption === 'specific' && !formData.specificDeadline}
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  background: '#222',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: '6px',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  opacity: (formData.deadlineOption === 'specific' && !formData.specificDeadline) ? 0.5 : 1
-                }}
-              >
-                Continue →
-              </button>
             </div>
           )}
 
@@ -438,43 +445,6 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                   </div>
                 </div>
               </div>
-
-              <div style={{ display: 'flex', gap: '12px' }}>
-                <button
-                  onClick={() => setCurrentStep(1)}
-                  style={{
-                    flex: 1,
-                    padding: '12px',
-                    background: '#fff',
-                    color: '#222',
-                    border: '1px solid #ddd',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    fontWeight: 600,
-                    cursor: 'pointer'
-                  }}
-                >
-                  ← Back
-                </button>
-                <button
-                  onClick={() => setCurrentStep(3)}
-                  disabled={!formData.name || !formData.email}
-                  style={{
-                    flex: 1,
-                    padding: '12px',
-                    background: '#222',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    opacity: (!formData.name || !formData.email) ? 0.5 : 1
-                  }}
-                >
-                  Continue →
-                </button>
-              </div>
             </div>
           )}
 
@@ -506,49 +476,12 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                     fontSize: '14px',
                     boxSizing: 'border-box',
                     fontFamily: 'inherit',
-                    resize: 'vertical'
+                    resize: 'none'
                   }}
                 />
                 <p style={{ fontSize: '12px', color: '#666', marginTop: '4px', textAlign: 'right' }}>
                   {formData.challenge.length}/200 characters
                 </p>
-              </div>
-
-              <div style={{ display: 'flex', gap: '12px' }}>
-                <button
-                  onClick={() => setCurrentStep(2)}
-                  style={{
-                    flex: 1,
-                    padding: '12px',
-                    background: '#fff',
-                    color: '#222',
-                    border: '1px solid #ddd',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    fontWeight: 600,
-                    cursor: 'pointer'
-                  }}
-                >
-                  ← Back
-                </button>
-                <button
-                  onClick={handleSubmit}
-                  disabled={!formData.challenge.trim() || isSubmitting}
-                  style={{
-                    flex: 1,
-                    padding: '12px',
-                    background: '#222',
-                    color: '#fff',
-                    border: 'none',
-                    borderRadius: '6px',
-                    fontSize: '14px',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    opacity: (!formData.challenge.trim() || isSubmitting) ? 0.5 : 1
-                  }}
-                >
-                  {isSubmitting ? 'Sending...' : 'Send enquiry →'}
-                </button>
               </div>
             </div>
           )}
@@ -560,25 +493,135 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
               <p style={{ fontSize: '18px', fontWeight: 600, marginBottom: '12px' }}>
                 Got it
               </p>
-              <p style={{ fontSize: '14px', color: '#666', marginBottom: '24px' }}>
+              <p style={{ fontSize: '14px', color: '#666', marginBottom: 0 }}>
                 We'll respond within 24 hours
               </p>
+            </div>
+          )}
+        </div>
+
+        {/* Fixed footer for buttons */}
+        <div style={{
+          borderTop: '1px solid #e0e0e0',
+          paddingTop: '20px',
+          flexShrink: 0
+        }}>
+          {currentStep === 1 && (
+            <button
+              onClick={() => setCurrentStep(2)}
+              disabled={formData.deadlineOption === 'specific' && !formData.specificDeadline}
+              style={{
+                width: '100%',
+                padding: '12px',
+                background: '#222',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '6px',
+                fontSize: '14px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                opacity: (formData.deadlineOption === 'specific' && !formData.specificDeadline) ? 0.5 : 1
+              }}
+            >
+              Continue →
+            </button>
+          )}
+
+          {currentStep === 2 && (
+            <div style={{ display: 'flex', gap: '12px' }}>
               <button
-                onClick={onClose}
+                onClick={() => setCurrentStep(1)}
                 style={{
-                  padding: '12px 24px',
-                  background: '#222',
-                  color: '#fff',
-                  border: 'none',
+                  flex: 1,
+                  padding: '12px',
+                  background: '#fff',
+                  color: '#222',
+                  border: '1px solid #ddd',
                   borderRadius: '6px',
                   fontSize: '14px',
                   fontWeight: 600,
                   cursor: 'pointer'
                 }}
               >
-                Close
+                ← Back
+              </button>
+              <button
+                onClick={() => setCurrentStep(3)}
+                disabled={!formData.name || !formData.email}
+                style={{
+                  flex: 1,
+                  padding: '12px',
+                  background: '#222',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '6px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  opacity: (!formData.name || !formData.email) ? 0.5 : 1
+                }}
+              >
+                Continue →
               </button>
             </div>
+          )}
+
+          {currentStep === 3 && (
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button
+                onClick={() => setCurrentStep(2)}
+                style={{
+                  flex: 1,
+                  padding: '12px',
+                  background: '#fff',
+                  color: '#222',
+                  border: '1px solid #ddd',
+                  borderRadius: '6px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  cursor: 'pointer'
+                }}
+              >
+                ← Back
+              </button>
+              <button
+                onClick={handleSubmit}
+                disabled={!formData.challenge.trim() || isSubmitting}
+                style={{
+                  flex: 1,
+                  padding: '12px',
+                  background: '#222',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '6px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  opacity: (!formData.challenge.trim() || isSubmitting) ? 0.5 : 1
+                }}
+              >
+                {isSubmitting ? 'Sending...' : 'Send enquiry →'}
+              </button>
+            </div>
+          )}
+
+          {currentStep === 4 && (
+            <button
+              onClick={onClose}
+              style={{
+                width: '100%',
+                padding: '12px',
+                background: '#222',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '6px',
+                fontSize: '14px',
+                fontWeight: 600,
+                cursor: 'pointer'
+              }}
+            >
+              Close
+            </button>
           )}
         </div>
       </div>

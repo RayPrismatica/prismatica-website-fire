@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
@@ -65,22 +68,30 @@ Submitted at: ${new Date().toLocaleString('en-GB', {
 Reply to: ${email}
     `.trim();
 
-    // Log to console for now (in production, this would send an actual email)
+    // Log to console for debugging
     console.log('\n' + '='.repeat(60));
     console.log(emailSubject);
     console.log('='.repeat(60));
     console.log(emailBody);
     console.log('='.repeat(60) + '\n');
 
-    // TODO: Integrate with email service (SendGrid, Resend, etc.)
-    // Example with Resend:
-    // const resend = new Resend(process.env.RESEND_API_KEY);
-    // await resend.emails.send({
-    //   from: 'enquiries@prismaticalabs.com',
-    //   to: 'hello@prismaticalabs.com',
-    //   subject: emailSubject,
-    //   text: emailBody,
-    // });
+    // Send email via Resend
+    if (!process.env.RESEND_API_KEY) {
+      console.warn('⚠️  RESEND_API_KEY not set - email not sent');
+      return NextResponse.json({
+        success: true,
+        message: 'Enquiry received (email disabled - no API key)'
+      });
+    }
+
+    const data = await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
+      to: process.env.RESEND_TO_EMAIL || 'hello@prismaticalabs.com',
+      subject: emailSubject,
+      text: emailBody,
+    });
+
+    console.log('✓ Email sent successfully:', data);
 
     return NextResponse.json({
       success: true,

@@ -1,10 +1,20 @@
 {
-  "generated": "2025-11-11T19:00:07.350Z",
-  "expires": "2025-11-11T20:00:07.350Z",
+  "generated": "2025-11-12T01:46:12.509Z",
+  "expires": "2025-11-12T02:46:12.509Z",
   "content": {
-    "newsInsight": "UK just freed 90 prisoners by mistake since April. Everyone's debating prison reform. Wrong conversation. When your error rate on prisoner releases hits double digits, you're not having a justice problem. You're having a data architecture problem that happens to involve humans in cages.",
+    "newsInsight": "NYT reports shutdown's ending but private aviation is booming while commercial flights stayed grounded. Classic crisis arbitrage. When systems break, money finds new paths. Rich folks discovered NetJets while we waited for Congress. Bet those habits stick.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK prisoner release errors, for example. We read that and our mind goes to: what other critical systems are running on the same broken data infrastructure, and which one fails catastrophically next?"
+    "intelligenceExample": "The private jet boom during the shutdown, for example. We read that and our mind goes to: if crisis converts 5% of first class to fractional ownership permanently, which airline valuations just became fiction?\n"
+  },
+  "metadata": {
+    "model": "claude-opus-4-20250514",
+    "headlinesAnalyzed": 16,
+    "sources": {
+      "bbc": 8,
+      "nyt": 8
+    },
+    "generationTimeMs": 7046,
+    "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
 }

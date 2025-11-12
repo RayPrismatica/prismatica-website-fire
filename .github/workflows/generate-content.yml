@@ -2,18 +2,69 @@ name: Generate Dynamic Content
 
 on:
   schedule:
-    # Run every 15 minutes as backup to Vercel cron
+    # Run every 15 minutes
     - cron: '*/15 * * * *'
-  workflow_dispatch:  # Allow manual trigger
+  
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
 
 jobs:
-  generate:
+  generate-content:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Trigger content generation
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for git log
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Generate dynamic content
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npm run generate-content
+      
+      - name: Check if cache updated
+        id: check-changes
         run: |
-          curl -f -X GET "https://prismatica-app.vercel.app/api/generate-content" || echo "Generation failed but workflow continues"
-
-      - name: Log completion
-        run: echo "Content generation triggered at $(date)"
+          if git diff --quiet data/dynamic-content.json; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Configure git
+        if: steps.check-changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "bot@prismatica.ai"
+          git config --local user.name "Content Generator Bot"
+      
+      - name: Commit and push cache update
+        if: steps.check-changes.outputs.changed == 'true'
+        run: |
+          git add data/dynamic-content.json
+          git commit -m "chore: update dynamic content [skip ci]"
+          git push origin main
+      
+      - name: Report success
+        if: success()
+        run: |
+          echo "✅ Content generation completed successfully"
+          echo "📅 Timestamp: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "📊 Cache file: data/dynamic-content.json"
+      
+      - name: Report failure
+        if: failure()
+        run: |
+          echo "❌ Content generation failed"
+          echo "📅 Timestamp: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "⚠️  Check logs above for details"
+          exit 1
