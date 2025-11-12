@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T07:40:08.906Z",
-  "expires": "2025-11-12T08:40:08.906Z",
+  "generated": "2025-11-12T07:51:15.085Z",
+  "expires": "2025-11-12T08:51:15.085Z",
   "content": {
-    "newsInsight": "Xi's military purges just hit China's nuclear forces and everyone's spooked about instability. Wrong read. When you clean house in your most sensitive division, you're not worried about today. You're positioning for something bigger.",
+    "newsInsight": "Today's data shows oil demand forecasts getting cloudier just as China's military purges reveal nuclear anxieties. Everyone's watching energy markets. We're watching something else. When superpowers doubt their own arsenals while energy certainties evaporate, that's not separate news. That's the same story.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Xi's nuclear command purges, for example. We read that and our mind goes to: what capability gap did internal audits reveal that made immediate restructuring worth the international optics hit?\n"
+    "intelligenceExample": "The cloudy oil forecasts amid China's nuclear force anxieties, for example. We read that and our mind goes to: if energy security drives military doctrine, what happens to deterrence theory when nobody knows what fuel mix we'll need in five years?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 6429,
+    "generationTimeMs": 7401,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
