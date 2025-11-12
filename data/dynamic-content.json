@@ -1,12 +1,12 @@
 {
-  "generated": "2025-11-12T15:57:35.054Z",
-  "expires": "2025-11-12T16:57:35.054Z",
+  "generated": "2025-11-12T16:34:04.327Z",
+  "expires": "2025-11-12T17:34:04.327Z",
   "content": {
-    "newsInsight": "NYT reports Trump knew about Epstein's conduct according to new emails. Everyone's focused on the scandal. We see something else. When billionaires protect predators, it's not friendship. It's portfolio insurance. The real story? What other liabilities are hiding in plain sight.",
+    "newsInsight": "NYT just exposed how Trump's Treasury pick still uses the exact tax dodge the IRS tried banning. Every politician promises to close loopholes. Then picks the guy who perfected them. Maybe that's the qualification.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The Trump-Epstein emails, for example. We read that and our mind goes to: if powerful people knowingly shield criminal behavior, what does that say about the due diligence standards of their business partners and investors?",
-    "consultingInsight": "We were just reading how McKinsey helps companies navigate reputational crises with their legendary risk frameworks. Absolutely brilliant methodology, honed over decades. But what if that level of strategic insight wasn't just for damage control after the fact? What if every leadership team could spot these patterns before they explode?",
-    "contentReminder": "Remember how the landing page showed those Trump-Epstein emails, and the What We Do page wondered about due diligence standards among the ultra-wealthy?\n"
+    "intelligenceExample": "Bessent's tax dodge story, for example. We read that and our mind goes to: if the best person to close loopholes is the one who used them, why do compliance departments never hire hackers?",
+    "consultingInsight": "We were just reading how McKinsey's latest framework revolutionizes organizational design through AI integration. Absolutely brilliant synthesis of behavioral economics and machine learning. But what if that level of strategic thinking wasn't just for companies with nine figure budgets?",
+    "contentReminder": "Remember how the landing page showed Trump's Treasury pick using banned tax dodges, and the What We Do page wondered why compliance teams never hire hackers?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -16,7 +16,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 10192,
+    "generationTimeMs": 9906,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
