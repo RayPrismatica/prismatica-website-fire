@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T09:43:34.278Z",
-  "expires": "2025-11-12T10:43:34.278Z",
+  "generated": "2025-11-12T09:54:19.298Z",
+  "expires": "2025-11-12T10:54:19.298Z",
   "content": {
-    "newsInsight": "China just purged more nuclear force commanders and everyone's focused on Xi's paranoia. Wrong lens. When you clean house in your nuclear command while ramping military drills, you're not scared. You're synchronizing clocks for something bigger.",
+    "newsInsight": "China's military purges just exposed cracks in their nuclear command. Xi cleaning house at the top of his rocket forces? That's not corruption control. That's what panic looks like when your deterrent might not deter.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "China's military purges, for example. We read that and our mind goes to: if you're purging nuclear commanders while increasing Taiwan drills, are you eliminating hesitation or creating it?\n"
+    "intelligenceExample": "China's nuclear force purges, for example. We read that and our mind goes to: if Xi doesn't trust his own generals with the launch codes, what does that say about Taiwan timeline calculations?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 6450,
+    "generationTimeMs": 6354,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
