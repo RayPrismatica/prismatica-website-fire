@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T06:30:52.644Z",
-  "expires": "2025-11-12T07:30:52.644Z",
+  "generated": "2025-11-12T06:57:13.567Z",
+  "expires": "2025-11-12T07:57:13.567Z",
   "content": {
-    "newsInsight": "China just purged more military leaders overseeing nuclear forces and everyone's debating Xi's power consolidation. Wrong focus. When you clean house in your nuclear command while building the world's fastest growing arsenal, you're not paranoid. You're pivoting.",
+    "newsInsight": "Xi's military purges just revealed China's nuclear anxiety. NYT reports top brass getting axed for corruption in missile forces. When nuclear commanders start disappearing, that's not housecleaning. That's Beijing discovering their deterrent might be made of cardboard.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "China's military nuclear purges, for example. We read that and our mind goes to: if you're Xi and you know something about nuclear readiness we don't, do you fire the old guard or promote them?\n"
+    "intelligenceExample": "Xi's nuclear purges, for example. We read that and our mind goes to: if corruption reached the missile silos, what percentage of China's nuclear arsenal actually works, and who's been buying that intelligence?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 6410,
+    "generationTimeMs": 6125,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
