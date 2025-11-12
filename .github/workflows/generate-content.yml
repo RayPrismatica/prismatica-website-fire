@@ -4,9 +4,12 @@ on:
   schedule:
     # Run every 15 minutes
     - cron: '*/15 * * * *'
-  
+
   # Allow manual trigger from GitHub UI
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   generate-content:
@@ -16,7 +19,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for git log
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
