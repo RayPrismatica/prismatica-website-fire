@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T05:20:17.259Z",
-  "expires": "2025-11-12T06:20:17.259Z",
+  "generated": "2025-11-12T05:43:09.593Z",
+  "expires": "2025-11-12T06:43:09.593Z",
   "content": {
-    "newsInsight": "Xi's military purges just revealed China's nuclear forces are in chaos. Everyone's debating warheads and missiles. Wrong variable. When you purge your nuclear command twice in 18 months, you're not worried about weapons. You're worried about loyalty.",
+    "newsInsight": "Xi's military purges just exposed China's nuclear anxiety. Everyone's debating arsenal size. Wrong variable. When you're firing generals who oversee nukes, you're not worried about warheads. You're worried about who has the keys.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Xi's nuclear purges, for example. We read that and our mind goes to: if you can't trust the guys with the launch codes, what exactly are you planning that requires absolute loyalty over competence?\n"
+    "intelligenceExample": "Xi's nuclear force purges, for example. We read that and our mind goes to: if you can't trust your own generals with nukes, how do you signal deterrence to enemies who know you don't trust your own command?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 6339,
+    "generationTimeMs": 11700,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
