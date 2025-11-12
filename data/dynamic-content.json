@@ -1,12 +1,12 @@
 {
-  "generated": "2025-11-12T15:33:13.071Z",
-  "expires": "2025-11-12T16:33:13.071Z",
+  "generated": "2025-11-12T15:45:24.835Z",
+  "expires": "2025-11-12T16:45:24.835Z",
   "content": {
-    "newsInsight": "UK just announced 7,000 NHS staff cuts while approving £1bn in severance. Everyone's screaming about healthcare collapse. Wrong variable. When you pay people a billion to leave during a staffing crisis, you're not cutting costs. You're buying flexibility for something bigger.",
+    "newsInsight": "NYT reports Trump climate snub while Newsom takes center stage at UN talks. Everyone sees political theater. We see the real play. When governors bypass federal to negotiate directly with global leaders, that's not defiance. That's the new power topology forming in real time.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The NHS cuts, for example. We read that and our mind goes to: what massive systemic change requires clearing 7,000 positions so urgently they'll pay a billion to do it fast?",
-    "consultingInsight": "We were just reading how McKinsey's healthcare practice helps systems optimize staffing models through predictive analytics. Brilliant work, saves millions annually. But imagine if that level of strategic workforce planning wasn't just for health ministries with eight figure budgets?",
-    "contentReminder": "Remember how the landing page showed the NHS paying £1bn to cut 7,000 jobs, and the What We Do page wondered what systemic change justified that urgency?\n"
+    "intelligenceExample": "The Newsom climate story, for example. We read that and our mind goes to: if states can now bypass federal on climate deals, what happens when Texas starts negotiating its own oil agreements with OPEC?",
+    "consultingInsight": "We were just reading how McKinsey mapped 127 megatrends reshaping global business through 2050. Breathtaking scope, unmatched data depth. But what if you didn't need a yearlong engagement to spot the patterns that matter to your business tomorrow? What if strategic foresight came in digestible, actionable doses?",
+    "contentReminder": "Remember how the landing page showed Newsom at climate talks while Trump stayed home, and the What We Do page wondered about states negotiating their own international deals?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -16,7 +16,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 11137,
+    "generationTimeMs": 11497,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
