@@ -1,7 +1,11 @@
 import PageLayout from '@/components/PageLayout';
-import DynamicNewsInsight from '@/components/DynamicNewsInsight';
+import { getDynamicContent } from '@/lib/getDynamicContent';
 
-export default function HomePage() {
+export const revalidate = 0; // Disable caching
+
+export default async function HomePage() {
+  const content = await getDynamicContent();
+
   return (
     <PageLayout>
       <section id="focus" className="section active">
@@ -10,7 +14,7 @@ export default function HomePage() {
           <span style={{ color: '#D43225' }}>THINKING</span> AS A SERVICE
         </h2>
 
-        <DynamicNewsInsight />
+        <p>{content.newsInsight}</p>
 
         <p>We're Prismatica Labs. We solve problems with thinking, not themes.</p>
 

@@ -1,12 +1,13 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
 import CarmenChat from '@/components/CarmenChat';
-import DynamicIntelligenceExample from '@/components/DynamicIntelligenceExample';
+import { getDynamicContent } from '@/lib/getDynamicContent';
 
-export default function WhatWeDoPage() {
+export const revalidate = 0; // Disable caching
+
+export default async function WhatWeDoPage() {
+  const content = await getDynamicContent();
 
   return (
     <PageLayout>
@@ -17,7 +18,7 @@ export default function WhatWeDoPage() {
 
         <p>We believe intelligence lives in questions, not answers.</p>
 
-        <DynamicIntelligenceExample />
+        <p>{content.intelligenceExample}</p>
 
         <p>Answers are cheap. Google has them. ChatGPT has them. Your competitor's intern has them.</p>
 
