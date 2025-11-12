@@ -1,11 +1,11 @@
 {
-  "generated": "2025-11-12T11:51:05.712Z",
-  "expires": "2025-11-12T12:51:05.712Z",
+  "generated": "2025-11-12T12:41:43.885Z",
+  "expires": "2025-11-12T13:41:43.885Z",
   "content": {
-    "newsInsight": "UK just announced thousands of NHS staff will lose jobs in a £1bn restructuring. Everyone's debating healthcare costs. Wrong variable. When your health system employs 1.5 million people and Amazon employs AI, maybe the real question is why healthcare still runs like it's 1950.",
+    "newsInsight": "China just unveiled the world's largest green energy grid while everyone else debates climate targets. Not a moonshot. A market capture. When you control 80% of solar manufacturing and build the infrastructure to use it, that's not environmentalism. That's economic warfare with better PR.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The NHS job cuts, for example. We read that and our mind goes to: if healthcare productivity hasn't improved in 70 years while every other industry transformed, what happens when someone finally cracks the code?",
-    "consultingInsight": "We were just reading how McKinsey helps healthcare systems optimize operations through lean management principles. Decades of proven frameworks, genuine impact. But what if those insights weren't locked in PowerPoints? What if every healthcare startup could access that strategic thinking instantly?\n"
+    "intelligenceExample": "China's green energy dominance, for example. We read that and our mind goes to: if fossil fuels are the past and China owns the future's supply chain, which Western companies are secretly building parallel capacity right now?",
+    "consultingInsight": "We were just reading how McKinsey's latest sustainability practice helps Fortune 500s navigate the energy transition with proprietary carbon modeling tools. Absolutely brilliant work, years of data refinement. But what if that level of strategic foresight wasn't limited to companies with eight figure consulting budgets?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -15,7 +15,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 9086,
+    "generationTimeMs": 9613,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
