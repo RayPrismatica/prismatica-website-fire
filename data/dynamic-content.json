@@ -1,11 +1,11 @@
 {
-  "generated": "2025-11-12T10:45:28.108Z",
-  "expires": "2025-11-12T11:45:28.108Z",
+  "generated": "2025-11-12T10:57:06.826Z",
+  "expires": "2025-11-12T11:57:06.826Z",
   "content": {
-    "newsInsight": "Xi's military purges just revealed China's nuclear anxiety. Everyone's debating warheads and submarines. Wrong focus. When you purge your nuclear chiefs, you're not worried about capability. You're worried about loyalty. That changes everything about how we read Beijing's moves.",
+    "newsInsight": "UK just announced they're cutting 40,000 NHS jobs while approving a billion pound severance package. Everyone's screaming about healthcare collapse. We see something else. When you fire that many people at once, you're not cutting fat. You're building something new.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Xi's nuclear force purges, for example. We read that and our mind goes to: if you can't trust the people guarding your ultimate deterrent, what does that say about every other promise you make to markets?",
-    "consultingInsight": "HBR's latest on strategic foresight shows how top firms help leaders navigate uncertainty. Masterful frameworks, decades of pattern recognition. These consultants see around corners. But what if that kind of anticipatory thinking wasn't reserved for Fortune 500 boardrooms? What if every ambitious team could access that level of strategic clarity?\n"
+    "intelligenceExample": "The NHS job cuts, for example. We read that and our mind goes to: what AI system needs exactly 40,000 fewer humans to run healthcare, and which tech giant just got their pilot program approved?",
+    "consultingInsight": "We were just reading how McKinsey helps healthcare systems optimize workforce efficiency through their legendary transformation playbooks. Decades of expertise distilled into proven frameworks. But what if that level of strategic insight wasn't locked behind seven figure contracts? What if every healthcare startup could tap into it?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -15,7 +15,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 10468,
+    "generationTimeMs": 8969,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false

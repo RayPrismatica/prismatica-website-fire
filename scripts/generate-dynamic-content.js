@@ -183,7 +183,7 @@ async function generateContent() {
         newsInsight: "Notice how every CEO says they want innovation but hires for predictability? That's not contradiction. That's institutional self-preservation disguised as strategy.",
         patternInsight: "You're still reading. That already puts you ahead.",
         intelligenceExample: "Unemployment hitting 5%, for example. We read that and our mind goes to: what industries are hardest hit, and what does that tell us about which skills are becoming obsolete?",
-        consultingInsight: "The big firms built something remarkable. World class thinking, rigorous frameworks, proven methodologies. But here's what we imagine: what if that caliber of strategic thinking wasn't locked behind day rates? What if the mental models that transform Fortune 500 companies could be infrastructure instead of scarcity?"
+        consultingInsight: "We were just reading about how the big consulting firms built something remarkable. World class thinking, rigorous frameworks, proven methodologies. But what if that caliber of strategic insight wasn't locked behind day rates? What if the mental models that transform Fortune 500 companies could be infrastructure instead of scarcity?"
       },
       metadata: {
         error: error.message,

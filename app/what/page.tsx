@@ -28,11 +28,11 @@ export default async function WhatWeDoPage() {
 
         <h3>The problem with consulting</h3>
 
-        <p>{content.consultingInsight}</p>
-
         <p>Brilliant minds. World-class thinking. Trapped in day rates and retainers. Proprietary methodologies you can rent but never own. Frameworks applied FOR you, never shared WITH you.</p>
 
         <p>Every firm guards their thinking like gold. Makes sense. Scarcity creates value.</p>
+
+        <p>{content.consultingInsight}</p>
 
         <p>We went the opposite direction. Documented how we think. Turned patterns into mental models. Made questions into code.</p>
 

@@ -65,18 +65,20 @@ The question should connect dots others miss - economics, human behavior, incent
 
 ## PIECE 3 - CONSULTING INSIGHT (for the "What's wrong with consulting" section)
 
-This appears right after: "The problem with consulting" heading and before describing the issue.
+This appears after: "Every firm guards their thinking like gold. Makes sense. Scarcity creates value." and before "We went the opposite direction."
 
 Pick ONE recent HBR article (from the list above) about consulting, strategy, transformation, or business advisory. Write 2-3 sentences (under 50 words) that:
 
-1. **Acknowledge excellence:** Start by recognizing the brilliance of consulting firms - their rigor, their frameworks, the value they create
-2. **Show the limitation:** Point out the model itself (scarcity, proprietary knowledge, day rates) limits access
-3. **Paint the alternative:** "But what if..." or "Imagine a world where..." - aspirational, not critical
+1. **Start with "We were just reading how..."** - Reference a specific HBR article/firm/framework
+2. **Acknowledge excellence:** Recognize the brilliance - their rigor, frameworks, the value they create
+3. **Paint the alternative:** "But what if..." or "Imagine if..." - aspirational, not critical
 
 **Tone:** Respectful admiration + aspirational vision. NOT critical or adversarial.
 
+**Format:** MUST start with "We were just reading how..." or "We were just reading about..."
+
 **Example:**
-"HBR just published BCG's framework on digital transformation. Brilliant work. These firms have perfected strategic thinking over decades. But what if that caliber of insight wasn't limited by billable hours? What if every team could access world class thinking, not just those who can afford $10K days?"
+"We were just reading how BCG's new framework helps Fortune 500 CEOs navigate digital transformation. World class thinking, decades of refinement. But what if that caliber of strategic insight wasn't reserved for $50K engagements? What if every ambitious team could access it?"
 
 ## Response Format
 
