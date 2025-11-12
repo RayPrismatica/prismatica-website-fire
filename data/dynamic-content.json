@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T08:52:31.246Z",
-  "expires": "2025-11-12T09:52:31.246Z",
+  "generated": "2025-11-12T09:21:51.572Z",
+  "expires": "2025-11-12T10:21:51.572Z",
   "content": {
-    "newsInsight": "Xi's military purges just hit China's nuclear forces and everyone's focused on loyalty tests. Wrong variable. When you purge nuclear commanders during peak oil uncertainty and climate talks, you're not worried about loyalty. You're repositioning for energy wars nobody's pricing in yet.",
+    "newsInsight": "Xi's military purges just hit China's nuclear forces and everyone's reading it as standard corruption cleanup. Wrong lens. When you purge your nuclear command while rushing Taiwan reunification timelines, that's not housekeeping. That's removing the brakes.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Xi's nuclear purges, for example. We read that and our mind goes to: if you're cleaning house in nuclear command while oil forecasts collapse, are you preparing for loyalty or for a world where energy security requires different deterrence?\n"
+    "intelligenceExample": "Xi's nuclear force purges, for example. We read that and our mind goes to: if you're purging the cautious voices from your nuclear command, are you solving a loyalty problem or creating a deterrence one?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 7457,
+    "generationTimeMs": 6951,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
