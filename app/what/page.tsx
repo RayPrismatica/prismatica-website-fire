@@ -28,7 +28,7 @@ export default async function WhatWeDoPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>The problem with consulting</h3>
+        <h3>The consulting paradox</h3>
 
         <p>Brilliant minds. World-class thinking. Trapped in day rates and retainers. Proprietary methodologies you can rent but never own. Frameworks applied FOR you, never shared WITH you.</p>
 
