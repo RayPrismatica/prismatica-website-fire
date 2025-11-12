@@ -1,12 +1,12 @@
 {
-  "generated": "2025-11-12T17:52:30.407Z",
-  "expires": "2025-11-12T18:52:30.407Z",
+  "generated": "2025-11-12T18:28:15.504Z",
+  "expires": "2025-11-12T19:28:15.504Z",
   "content": {
-    "newsInsight": "NYT reports Trump's alleged knowledge of Epstein's conduct through new emails. Everyone's debating the politics. We're watching something else. When scandal fatigue meets news cycles this fast, reputation damage becomes predictable. Almost tradeable.",
+    "newsInsight": "NYT reports new Epstein emails allegedly show Trump knew of his conduct. Everyone's shocked. Really? Power protects power until the cameras arrive. The real question is which current billionaire friendships we'll be shocked about in 2034.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The Trump-Epstein emails, for example. We read that and our mind goes to: which S&P 500 boards are quietly updating their association risk matrices right now, and what does that tell us about Q1 governance shifts?",
-    "consultingInsight": "We were just reading how McKinsey helps boards navigate reputational crises with their proprietary risk frameworks. Absolutely brilliant methodology, refined over decades. But imagine if that level of strategic insight wasn't locked behind seven-figure retainers. What if every leadership team could access it instantly?",
-    "contentReminder": "Remember how the landing page showed those Trump-Epstein emails, and the What We Do page wondered which boards are updating their risk matrices?\n"
+    "intelligenceExample": "The Epstein emails, for example. We read that and our mind goes to: which current billionaire \"eccentricities\" are being rationalized right now by people who'll claim ignorance later?",
+    "consultingInsight": "We were just reading how McKinsey helps boards navigate reputational crises with their legendary risk frameworks. Brilliant work, saves fortunes. But imagine if that level of strategic foresight was accessible before the crisis, not just after.",
+    "contentReminder": "Remember how the landing page showed those Epstein emails about Trump, and the What We Do page wondered which current billionaire behaviors we're ignoring?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -16,7 +16,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 10981,
+    "generationTimeMs": 10408,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
