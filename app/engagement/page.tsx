@@ -10,6 +10,8 @@ import DynamicServiceDescription from '@/components/DynamicServiceDescription';
 import DynamicESIDescription from '@/components/DynamicESIDescription';
 import DynamicAgencyDescription from '@/components/DynamicAgencyDescription';
 import DynamicKSODescription from '@/components/DynamicKSODescription';
+import DynamicTransactionDescription from '@/components/DynamicTransactionDescription';
+import DynamicTriptychDescription from '@/components/DynamicTriptychDescription';
 
 // Service configuration with duration and pricing
 const serviceConfig: Record<string, { duration: number; price: string }> = {
@@ -40,6 +42,8 @@ export default function ConsultingPage() {
         <p>We fix things. Then we leave.</p>
 
         <p>Most consultants optimise for retention. We optimise for resolution.</p>
+
+        <p><InlineObservation /></p>
 
         <div style={{ margin: '32px 0', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           <button
@@ -400,7 +404,7 @@ export default function ConsultingPage() {
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
         </h3>
 
-        <p>Vision to transaction to validation. Map how value exchanges actually happen across three dimensions: spiritual (emotional resonance), cognitive (understanding shifts), and tangible (measurable actions). Then design every touchpoint to trigger those transactions. Surface-level appeal meets deep-level truth. Conversion through understanding, not manipulation.</p>
+        <p><DynamicTransactionDescription /></p>
 
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £15,000</p>
 
@@ -444,7 +448,7 @@ export default function ConsultingPage() {
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
         </h3>
 
-        <p>We examine your business through three lenses simultaneously: how you market, how you compete, how you build. Most problems live in the gaps between these. Most opportunities too.</p>
+        <p><DynamicTriptychDescription /></p>
 
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £12,000</p>
 

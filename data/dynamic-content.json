@@ -1,22 +1,33 @@
 {
-  "generated": "2025-11-12T18:28:15.504Z",
-  "expires": "2025-11-12T19:28:15.504Z",
+  "generated": "2025-11-12T22:39:39.861Z",
+  "expires": "2025-11-12T23:39:39.861Z",
   "content": {
-    "newsInsight": "NYT reports new Epstein emails allegedly show Trump knew of his conduct. Everyone's shocked. Really? Power protects power until the cameras arrive. The real question is which current billionaire friendships we'll be shocked about in 2034.",
+    "newsInsight": "UK just released unemployment data showing 5% jobless rate while job listings hit record highs. Everyone sees recession. We see something else. When unemployment spikes but vacancies soar, that's not economic decline. That's a matching crisis.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The Epstein emails, for example. We read that and our mind goes to: which current billionaire \"eccentricities\" are being rationalized right now by people who'll claim ignorance later?",
-    "consultingInsight": "We were just reading how McKinsey helps boards navigate reputational crises with their legendary risk frameworks. Brilliant work, saves fortunes. But imagine if that level of strategic foresight was accessible before the crisis, not just after.",
-    "contentReminder": "Remember how the landing page showed those Epstein emails about Trump, and the What We Do page wondered which current billionaire behaviors we're ignoring?\n"
+    "intelligenceExample": "The UK unemployment paradox, for example. We read that and our mind goes to: if there are more jobs than people but more people without jobs, what broke in the system that connects them?",
+    "consultingInsight": "We were just reading how McKinsey's workforce analytics help Fortune 500s navigate talent shortages. Brilliant frameworks, decades of data. But what if that calibre of strategic insight wasn't locked behind seven-figure retainers? What if every ambitious leader could access it?",
+    "contentReminder": "Remember how the landing page showed UK's unemployment paradox, and the What We Do page wondered what broke in the system that connects jobs to people?",
+    "marketObservation": "Right now we're watching companies panic about talent shortages while unemployment rises. That's not a supply problem. That's everyone optimising for the wrong match.",
+    "purposeContext": "Notice how organisations struggling most with hiring can't explain why someone should work there beyond the salary?",
+    "serviceDescription": "MSNBC just rebranded itself as a startup while laying off journalists who embodied its original mission. Watch companies everywhere realise their 'purpose' is whatever this quarter demands. We dissect why your business actually exists, then engineer that truth into every hiring criterion, customer promise, and strategic choice. Purpose as decision filter, not marketing copy. Because organisations that know their 'why' never wonder why their best people leave.",
+    "esiDescription": "Paramount offered 600 employees buyouts after mandating return-to-office, discovering too late that policy and culture exist in different universes. Classic insight-to-execution canyon. Explore, Synthesise, Ignite: our operating system for bridging that gap. Explore surfaces what's actually happening, Synthesise transforms discovery into executable clarity, Ignite makes strategy move through the organisation. Not three separate engagements. One continuous system that turns knowing into doing.",
+    "agencyDescription": "Inc reports this Russian humanoid robot fell on its face during its debut. Perfect metaphor for executives pushing themselves beyond design specs. We work with leaders whose 80-hour weeks produce 30 hours of value because they've confused motion with progress. Secret Agency: where high-performers learn to optimise for leverage, not activity. Your calendar's full but your impact's diluted. We fix that.",
+    "ksoDescription": "Anthropic just taught Claude to control a robot dog while most brands can't even get cited by ChatGPT. SEO teams still chasing backlinks while AI systems build knowledge graphs. KSO Workshop: we map your intellectual territory into structures AI actually understands and cites. Four weeks to transform from searchable to authoritative. Because when customers ask AI for recommendations, your Google ranking means nothing.",
+    "transactionDescription": "Prime Video's ad tier just hit 315 million viewers but brands still can't crack why people tolerate ads they used to pay to avoid. They optimised the inventory without understanding the value exchange. Transaction Architecture: we decode how decisions actually happen across emotional tolerance, cognitive load, and action triggers. Then engineer every touchpoint to complete that exchange. Because getting eyeballs is easy. Getting transactions requires understanding why people say yes.",
+    "triptychDescription": "Microsoft's Surface laptop gets discounted by $350 while the Penny gets discontinued. One's a pricing decision, one's strategic. Most companies can't tell which is which because nobody's watching all three horizons. Strategic Triptych Assessment: we examine how you market, where you compete, and what you build simultaneously. Problems hide where these perspectives don't align. So do your biggest opportunities.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
-    "headlinesAnalyzed": 16,
+    "headlinesAnalyzed": 38,
     "sources": {
       "bbc": 8,
       "nyt": 8,
+      "fastCompany": 8,
+      "forbes": 8,
+      "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 10408,
+    "generationTimeMs": 46035,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false

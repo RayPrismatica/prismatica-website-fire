@@ -378,6 +378,11 @@ p {
         transform: translateX(0);
     }
 
+    .sidebar-logo img,
+    .sidebar-logo h1 {
+        display: none;
+    }
+
     .main {
         margin-left: 0;
         margin-top: 60px;
@@ -396,28 +401,30 @@ p {
     }
 
     .main {
-        padding: 20px 16px;
+        padding: 32px 20px;
         max-width: 100%;
     }
 
     h2 {
-        font-size: 36px;
+        font-size: 48px;
         line-height: 1;
-        margin-bottom: 20px;
+        margin-bottom: 24px;
     }
 
     h3 {
-        font-size: 16px;
-        margin-top: 24px;
+        font-size: 20px;
+        margin-top: 32px;
+        margin-bottom: 8px;
     }
 
     p {
-        font-size: 14px;
-        line-height: 1.6;
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 20px;
     }
 
     body {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .case-studies-grid {
@@ -463,6 +470,9 @@ p {
     background: #222;
     padding: 16px 20px;
     color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .carmen-avatar {
@@ -510,7 +520,7 @@ p {
     background: #fafafa;
     padding: 20px;
     min-height: 350px;
-    max-height: 500px;
+    max-height: min(500px, 60vh);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -554,12 +564,20 @@ p {
     border-bottom-right-radius: 4px;
 }
 
+.user-bubble .message-text {
+    color: white;
+}
+
 .assistant-bubble {
     background: white;
     color: #222;
     border: 1px solid #ddd;
     border-bottom-left-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.assistant-bubble .message-text {
+    color: #222;
 }
 
 .message-text {
@@ -656,6 +674,78 @@ p {
     cursor: not-allowed;
 }
 
+/* Carmen Close Button */
+.carmen-close-button {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+    border-radius: 50%;
+}
+
+.carmen-close-button:hover {
+    opacity: 0.7;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Carmen Modal & Tablet Optimization (Mobile Only) */
+@media (max-width: 768px) {
+    .carmen-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 9998;
+        animation: fadeIn 0.2s ease;
+    }
+
+    .carmen-modal-active {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100vh !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        z-index: 9999;
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .carmen-modal-active .carmen-messages {
+        flex: 1;
+        max-height: none !important;
+        min-height: 0 !important;
+    }
+
+    .carmen-chat-container:not(.carmen-modal-active) .carmen-messages {
+        min-height: 250px;
+        max-height: min(400px, 50vh);
+    }
+}
+
+/* Medium Mobile Carmen Chat Optimization */
+@media (max-width: 640px) {
+    .carmen-chat-container:not(.carmen-modal-active) .carmen-messages {
+        min-height: 220px;
+        max-height: min(350px, 45vh);
+    }
+
+    .carmen-chat-container:not(.carmen-modal-active) {
+        margin-top: 16px;
+    }
+}
+
 @media (max-width: 480px) {
     .main {
         padding: 16px 12px;
@@ -675,28 +765,28 @@ p {
     }
 
     /* Carmen Chat Mobile Styles */
-    .carmen-chat-container {
+    .carmen-chat-container:not(.carmen-modal-active) {
         border-radius: 12px;
     }
 
-    .carmen-header {
+    .carmen-chat-container:not(.carmen-modal-active) .carmen-header {
         padding: 12px 16px;
     }
 
-    .carmen-avatar {
+    .carmen-chat-container:not(.carmen-modal-active) .carmen-avatar {
         width: 36px;
         height: 36px;
     }
 
-    .carmen-avatar-image {
+    .carmen-chat-container:not(.carmen-modal-active) .carmen-avatar-image {
         width: 100%;
         height: 100%;
     }
 
-    .carmen-messages {
+    .carmen-chat-container:not(.carmen-modal-active) .carmen-messages {
         padding: 16px;
-        min-height: 300px;
-        max-height: 400px;
+        min-height: 200px;
+        max-height: min(350px, 40vh);
     }
 
     .message-bubble {
@@ -813,8 +903,63 @@ p {
 }
 
 @media (max-width: 768px) {
+    .modal-overlay {
+        padding: 0;
+        align-items: stretch;
+    }
+
     .modal-content {
-        padding: 32px 24px;
-        max-height: 95vh;
+        padding: 24px 20px;
+        max-height: 100vh !important;
+        height: auto !important;
+        min-height: 100vh;
+        border-radius: 0;
+        margin: 0;
+        overflow-y: auto;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* Remove internal scrolling on mobile - let the whole modal scroll */
+    .modal-content > div[style*="overflowY"] {
+        overflow-y: visible !important;
+        flex: none !important;
+    }
+
+    /* Adjust modal close button for mobile */
+    .modal-close {
+        top: 16px !important;
+        right: 16px !important;
+        font-size: 28px !important;
+    }
+
+    /* Better spacing for form elements on mobile */
+    .modal-content input[type="text"],
+    .modal-content input[type="email"],
+    .modal-content textarea {
+        font-size: 16px !important;
+        padding: 12px !important;
+    }
+
+    /* Modal buttons on mobile */
+    .modal-content button {
+        padding: 14px 24px !important;
+        font-size: 15px !important;
+    }
+
+    /* Modal title/heading on mobile */
+    .modal-content h2,
+    .modal-content h3 {
+        font-size: 24px !important;
+        line-height: 1.2 !important;
+    }
+}
+
+/* Prevent zoom on iOS when focusing inputs */
+@media (max-width: 768px) {
+    .modal-content select,
+    .modal-content textarea,
+    .modal-content input {
+        font-size: 16px !important;
     }
 }

@@ -85,7 +85,7 @@ Best,
 
         <p>{isContentStale ? "It's been over 15 minutes since the content updated, so go back now. They're probably showing something completely different." : "But it's only been a few minutes since the content updated. Still probably the same. Check back in 15."}</p>
 
-        <p>It's a sweet piece of code. A GitHub Action runs on schedule. Fetches headlines from BBC and NYT, same stuff we read. Sends them to Claude with prompts that encode how we think. Claude picks the most significant story, writes two contextual takes (one for each page), commits the update to our repo. Vercel detects the change. Site rebuilds. New content live.</p>
+        <p>It's a sweet piece of code. A GitHub Action runs on schedule. Reads the newsfeeds we read. Sends them to Claude with prompts that encode how we think. Claude picks the most significant story, writes two contextual takes (one for each page), commits the update to our repo. Vercel detects the change. Site rebuilds. New content live.</p>
 
         <p>No database. No CMS. No manual work. Just code that thinks.</p>
 

@@ -1,0 +1,28 @@
+{
+  "name": "synapsed",
+  "version": "1.0.0",
+  "description": "Transform your static website into a living organism that reads the news and updates itself",
+  "scripts": {
+    "generate-content": "node scripts/generate-dynamic-content.js"
+  },
+  "keywords": [
+    "dynamic-content",
+    "ai",
+    "claude",
+    "nextjs",
+    "automation",
+    "content-generation"
+  ],
+  "author": "Ray Tarantino <ray@prismaticalab.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.68.0",
+    "rss-parser": "^3.13.0",
+    "dotenv": "^17.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RayPrismatica/prismaticalab-dynamic-ai-website-content.git"
+  },
+  "homepage": "https://github.com/RayPrismatica/prismaticalab-dynamic-ai-website-content#readme"
+}

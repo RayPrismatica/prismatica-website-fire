@@ -12,13 +12,38 @@ export default function CarmenChat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "Hi. I'm Carmen. Let's figure out which path makes sense for your problem. What's keeping you up at night?"
+      content: "Most people think they know what they need. Let's find out if you're one of them. What's the challenge?"
     }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isModalOpen]);
 
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
@@ -86,8 +111,18 @@ export default function CarmenChat() {
     }
   };
 
-  return (
-    <div className="carmen-chat-container">
+  const handleInputFocus = () => {
+    if (isMobile) {
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const chatContent = (
+    <div className={`carmen-chat-container ${isModalOpen ? 'carmen-modal-active' : ''}`}>
       <div className="carmen-header">
         <div className="flex items-center gap-2">
           <div className="carmen-avatar">
@@ -114,6 +149,18 @@ export default function CarmenChat() {
             </div>
           </div>
         </div>
+        {isModalOpen && (
+          <button
+            onClick={handleCloseModal}
+            className="carmen-close-button"
+            aria-label="Close chat"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        )}
       </div>
 
       <div ref={messagesContainerRef} className="carmen-messages">
@@ -151,6 +198,7 @@ export default function CarmenChat() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={handleKeyPress}
+          onFocus={handleInputFocus}
           placeholder="Ask Carmen anything..."
           className="carmen-input"
           disabled={isLoading}
@@ -166,5 +214,12 @@ export default function CarmenChat() {
         </button>
       </div>
     </div>
+  );
+
+  return (
+    <>
+      {isModalOpen && <div className="carmen-modal-overlay" onClick={handleCloseModal} />}
+      {chatContent}
+    </>
   );
 }

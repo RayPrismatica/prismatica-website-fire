@@ -10,12 +10,12 @@ export default function InlineObservation() {
       try {
         const response = await fetch('/data/dynamic-content.json');
         const data = await response.json();
-        if (data.content?.purposeContext) {
-          setObservation(data.content.purposeContext);
+        if (data.content?.marketObservation) {
+          setObservation(data.content.marketObservation);
         }
       } catch (error) {
         // Fallback content
-        setObservation("The companies surviving best are the ones whose teams already knew the answer to 'why do we exist beyond making money?'");
+        setObservation("Right now we're watching companies panic about efficiency while missing the real pattern: their best people are solving the wrong problems brilliantly.");
       }
     }
     loadContent();

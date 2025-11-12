@@ -274,7 +274,7 @@ async function generateContent() {
     };
 
     // Create directory if doesn't exist
-    const dataDir = join(__dirname, '..', 'public', 'data');
+    const dataDir = join(__dirname, '..', 'data');
     if (!fs.existsSync(dataDir)) {
       fs.mkdirSync(dataDir, { recursive: true });
     }
@@ -335,7 +335,9 @@ async function generateContent() {
         serviceDescription: "Dissect your business from its root reason to exist. Then cascade that purpose through every system and touchpoint. Inside-out authenticity that strengthens both internal culture and external message. Purpose as operating system, not marketing tagline.",
         esiDescription: "Explore, Synthesize, Ignite. Our operating system for transformation. Explore uncovers truth. Synthesize turns discovery into clarity. Ignite makes clarity executable. Research, strategy, and execution as a continuous loop.",
         agencyDescription: "For high-performers who realize their 70-hour weeks produce 40 hours of value. Secret Agency: where executives learn to optimize for impact, not inbox zero. Because busy and effective stopped being the same thing years ago.",
-        ksoDescription: "The future of discoverability isn't about links. It's about ideas. In a world where AI systems index knowledge instead of URLs, authority belongs to those who own the narrative. We dissect your business DNA and rebuild it as a knowledge graph of authority."
+        ksoDescription: "The future of discoverability isn't about links. It's about ideas. In a world where AI systems index knowledge instead of URLs, authority belongs to those who own the narrative. We dissect your business DNA and rebuild it as a knowledge graph of authority.",
+        transactionDescription: "Vision to transaction to validation. Map how value exchanges actually happen across three dimensions: spiritual (emotional resonance), cognitive (understanding shifts), and tangible (measurable actions). Then design every touchpoint to trigger those transactions. Conversion through understanding, not manipulation.",
+        triptychDescription: "We examine your business through three lenses simultaneously: how you market, how you compete, how you build. Most problems live in the gaps between these. Most opportunities too."
       },
       metadata: {
         error: error.message,
@@ -344,7 +346,7 @@ async function generateContent() {
       fallbackUsed: true
     };
 
-    const dataDir = join(__dirname, '..', 'public', 'data');
+    const dataDir = join(__dirname, '..', 'data');
     if (!fs.existsSync(dataDir)) {
       fs.mkdirSync(dataDir, { recursive: true });
     }
