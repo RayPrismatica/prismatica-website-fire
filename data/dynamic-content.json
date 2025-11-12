@@ -1,20 +1,14 @@
 {
-  "generated": "2025-11-12T01:46:12.509Z",
-  "expires": "2025-11-12T02:46:12.509Z",
+  "generated": "2025-11-12T02:37:14.219Z",
+  "expires": "2025-11-12T03:37:14.219Z",
   "content": {
-    "newsInsight": "NYT reports shutdown's ending but private aviation is booming while commercial flights stayed grounded. Classic crisis arbitrage. When systems break, money finds new paths. Rich folks discovered NetJets while we waited for Congress. Bet those habits stick.",
+    "newsInsight": "Notice how every CEO says they want innovation but hires for predictability? That's not contradiction. That's institutional self-preservation disguised as strategy.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The private jet boom during the shutdown, for example. We read that and our mind goes to: if crisis converts 5% of first class to fractional ownership permanently, which airline valuations just became fiction?\n"
+    "intelligenceExample": "Unemployment hitting 5%, for example. We read that and our mind goes to: what industries are hardest hit, and what does that tell us about which skills are becoming obsolete?"
   },
   "metadata": {
-    "model": "claude-opus-4-20250514",
-    "headlinesAnalyzed": 16,
-    "sources": {
-      "bbc": 8,
-      "nyt": 8
-    },
-    "generationTimeMs": 7046,
-    "promptFile": "content-generation-prompt.md"
+    "error": "Headers.append: \"sk-ant-api03-1TqGXPJiEVvWCdFGW_1O180_zQcofDOjXTsJAJA_g6y3WGxNO\n  LnIemYf6EqSw1HHVOsycVLeXXv1ANrtXVa_sA-mMJ8uQAA\" is an invalid header value.",
+    "errorTime": "2025-11-12T02:37:14.219Z"
   },
-  "fallbackUsed": false
+  "fallbackUsed": true
 }
