@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T09:21:51.572Z",
-  "expires": "2025-11-12T10:21:51.572Z",
+  "generated": "2025-11-12T09:43:34.278Z",
+  "expires": "2025-11-12T10:43:34.278Z",
   "content": {
-    "newsInsight": "Xi's military purges just hit China's nuclear forces and everyone's reading it as standard corruption cleanup. Wrong lens. When you purge your nuclear command while rushing Taiwan reunification timelines, that's not housekeeping. That's removing the brakes.",
+    "newsInsight": "China just purged more nuclear force commanders and everyone's focused on Xi's paranoia. Wrong lens. When you clean house in your nuclear command while ramping military drills, you're not scared. You're synchronizing clocks for something bigger.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Xi's nuclear force purges, for example. We read that and our mind goes to: if you're purging the cautious voices from your nuclear command, are you solving a loyalty problem or creating a deterrence one?\n"
+    "intelligenceExample": "China's military purges, for example. We read that and our mind goes to: if you're purging nuclear commanders while increasing Taiwan drills, are you eliminating hesitation or creating it?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 6951,
+    "generationTimeMs": 6450,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
