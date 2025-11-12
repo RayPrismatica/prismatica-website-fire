@@ -1,11 +1,11 @@
 {
-  "generated": "2025-11-12T13:23:07.926Z",
-  "expires": "2025-11-12T14:23:07.926Z",
+  "generated": "2025-11-12T13:49:55.500Z",
+  "expires": "2025-11-12T14:49:55.500Z",
   "content": {
-    "newsInsight": "China just became the global climate leader while the US skipped COP29. Everyone's debating politics. We see the real story. When manufacturing superpowers flip their energy playbooks, entire supply chains get rewritten. Your competitors are already moving.",
+    "newsInsight": "NYT reports Trump knew about Epstein's conduct according to new emails. Everyone's diving into the scandal angles. We see something else. When powerful networks protect each other this long, it reveals how trust actually works at the top. Not morality. Just mutually assured destruction.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "China dominating climate tech while America skips COP29, for example. We read that and our mind goes to: which Western companies are quietly building Shanghai offices right now, and what does that tell us about where innovation actually happens?",
-    "consultingInsight": "We were just reading how McKinsey helps Fortune 500s navigate sustainability transformations through their comprehensive ESG frameworks. Brilliant methodology, unmatched global reach. But what if that level of strategic clarity on green transitions wasn't just for companies with nine figure budgets?\n"
+    "intelligenceExample": "Those Epstein emails about Trump, for example. We read that and our mind goes to: if everyone knew and no one spoke, what does that tell us about how boards really evaluate CEO risk?",
+    "consultingInsight": "We were just reading how McKinsey's latest research maps CEO succession patterns across 500 global firms. Incredible data, unmatched rigor. But what if that level of pattern recognition could be applied in real time, not just retrospectively? What if every leadership decision could tap that intelligence?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -15,7 +15,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 8308,
+    "generationTimeMs": 9992,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
