@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T03:24:25.970Z",
-  "expires": "2025-11-12T04:24:25.970Z",
+  "generated": "2025-11-12T03:51:24.560Z",
+  "expires": "2025-11-12T04:51:24.560Z",
   "content": {
-    "newsInsight": "Israel destroyed 1,500 buildings in Gaza this week after the ceasefire. Everyone's debating violations and peace talks. We see something else. When demolition accelerates after fighting stops, someone's testing what the world will tolerate when cameras turn away.",
+    "newsInsight": "Israel just destroyed 1,500 buildings in Gaza post-ceasefire. Everyone's debating violations. We see something else. When destruction accelerates after peace agreements, that's not defiance. That's someone creating facts before enforcement mechanisms kick in.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The Gaza demolitions, for example. We read that and our mind goes to: if destruction speeds up after ceasefires, what does that reveal about how power actually calculates international attention spans?\n"
+    "intelligenceExample": "The Gaza destruction surge, for example. We read that and our mind goes to: what's the optimal window between ceasefire signature and monitoring deployment, and who's been studying it?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 7143,
+    "generationTimeMs": 5754,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
