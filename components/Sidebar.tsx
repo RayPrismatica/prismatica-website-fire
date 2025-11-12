@@ -168,6 +168,7 @@ export default function Sidebar() {
           style={{ width: '40px', height: 'auto', marginBottom: '8px' }}
         />
         <h1 style={{ fontFamily: 'var(--font-passion), sans-serif', fontSize: '18px', fontWeight: 600, letterSpacing: '-0.5px', margin: 0, textAlign: 'left' }}>PRISMATICA LABS</h1>
+        <p style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '9px', color: '#999', margin: '4px 0 0 0', textAlign: 'left' }}>© 2025 Prismatica Labs Limited</p>
       </div>
     </nav>
   );
