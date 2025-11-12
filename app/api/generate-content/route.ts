@@ -90,8 +90,8 @@ Write ONLY those two pieces. No preamble. Start immediately.`
     const responseText = textBlock.text;
 
     // Parse the response
-    const insightMatch = responseText.match(/INSIGHT:\s*(.+?)(?=\nQUESTION:)/s);
-    const questionMatch = responseText.match(/QUESTION:\s*(.+)/s);
+    const insightMatch = responseText.match(/INSIGHT:\s*([\s\S]+?)(?=\nQUESTION:)/);
+    const questionMatch = responseText.match(/QUESTION:\s*([\s\S]+)/);
 
     if (!insightMatch || !questionMatch) {
       throw new Error('Failed to parse Claude response');
