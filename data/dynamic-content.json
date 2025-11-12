@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T05:43:09.593Z",
-  "expires": "2025-11-12T06:43:09.593Z",
+  "generated": "2025-11-12T05:53:10.919Z",
+  "expires": "2025-11-12T06:53:10.919Z",
   "content": {
-    "newsInsight": "Xi's military purges just exposed China's nuclear anxiety. Everyone's debating arsenal size. Wrong variable. When you're firing generals who oversee nukes, you're not worried about warheads. You're worried about who has the keys.",
+    "newsInsight": "Xi's military purges reveal unease about China's nuclear forces, NYT reports. Everyone's debating corruption angles. Wrong variable. When you purge nuclear commanders, you're not cleaning house. You're signaling doubt about deterrence credibility. Markets haven't priced this uncertainty yet.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Xi's nuclear force purges, for example. We read that and our mind goes to: if you can't trust your own generals with nukes, how do you signal deterrence to enemies who know you don't trust your own command?\n"
+    "intelligenceExample": "Xi's nuclear force purges, for example. We read that and our mind goes to: if deterrence depends on adversary belief in your willingness to act, what does publicly doubting your own command structure do to the game theory?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 11700,
+    "generationTimeMs": 6917,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
