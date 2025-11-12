@@ -1,11 +1,11 @@
 {
-  "generated": "2025-11-12T11:38:43.149Z",
-  "expires": "2025-11-12T12:38:43.149Z",
+  "generated": "2025-11-12T11:51:05.712Z",
+  "expires": "2025-11-12T12:51:05.712Z",
   "content": {
-    "newsInsight": "UK just announced 5,000 NHS staff cuts despite record waiting lists. Everyone's debating healthcare efficiency. Wrong variable. When you're cutting headcount while demand explodes, you're not solving a budget problem. You're creating a capacity crisis that'll cost triple to fix.",
+    "newsInsight": "UK just announced thousands of NHS staff will lose jobs in a £1bn restructuring. Everyone's debating healthcare costs. Wrong variable. When your health system employs 1.5 million people and Amazon employs AI, maybe the real question is why healthcare still runs like it's 1950.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The NHS cuts, for example. We read that and our mind goes to: what's the real cost when fixing next year's crisis requires 15,000 emergency hires at premium rates?",
-    "consultingInsight": "We were just reading how McKinsey helps healthcare systems optimize staffing models through predictive analytics. Brilliant frameworks, proven ROI. But what if every hospital administrator could access that level of strategic thinking before making cuts that compound into crises?\n"
+    "intelligenceExample": "The NHS job cuts, for example. We read that and our mind goes to: if healthcare productivity hasn't improved in 70 years while every other industry transformed, what happens when someone finally cracks the code?",
+    "consultingInsight": "We were just reading how McKinsey helps healthcare systems optimize operations through lean management principles. Decades of proven frameworks, genuine impact. But what if those insights weren't locked in PowerPoints? What if every healthcare startup could access that strategic thinking instantly?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -15,7 +15,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 9263,
+    "generationTimeMs": 9086,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
