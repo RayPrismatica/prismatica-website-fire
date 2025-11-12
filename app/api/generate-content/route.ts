@@ -82,7 +82,12 @@ Write ONLY those two pieces. No preamble. Start immediately.`
       }]
     });
 
-    const responseText = response.content[0].text;
+    // Find the first text block in the response
+    const textBlock = response.content.find(block => block.type === 'text');
+    if (!textBlock || textBlock.type !== 'text') {
+      throw new Error('No text content in response');
+    }
+    const responseText = textBlock.text;
 
     // Parse the response
     const insightMatch = responseText.match(/INSIGHT:\s*(.+?)(?=\nQUESTION:)/s);
