@@ -36,7 +36,7 @@ export default async function WhatWeDoPage() {
 
         <p>{content.consultingInsight}</p>
 
-        <p>We went the opposite direction. Documented how we think. Turned patterns into mental models. Made questions into code.</p>
+        <p>So we went the opposite direction. Documented how we think. Turned patterns into mental models. Made questions into code.</p>
 
         <p>Because when thinking becomes infrastructure, humanity levels up. Problems that took months take days. Insights that required consultants become common knowledge. The rising tide of shared thinking lifts every business.</p>
 

@@ -9,77 +9,83 @@ export default function ContactPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
-        <p>We work with leaders who see their market differently.</p>
+        <p>Most contact pages try to convince you to reach out.</p>
 
-        <p>If you're building something that matters and need thinking that cuts through, let's talk.</p>
+        <p>This one filters.</p>
 
-        <h3>Who We Work With</h3>
-        <p>Founders launching category-defining products. Executives navigating transformation. Teams solving problems their industry hasn't cracked yet.</p>
+        <p>If you're here, you've already decided. You read the site. You get what we do. You're not shopping. You're solving.</p>
 
-        <p>We're selective. Not because we're exclusive. Because fit matters more than volume.</p>
+        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>What Happens Next</h3>
-        <p>Reach out. We'll have a conversation. No pitch. No pressure. Just signal.</p>
+        <h3>Two ways to start</h3>
 
-        <p>If there's alignment, we'll explore what's possible. If not, we'll tell you honestly.</p>
-
-        <p>Most consulting relationships start with vague promises and end with mediocre results. We prefer clarity from the start.</p>
-
-        <h3>Get In Touch</h3>
+        <p><strong>Email us directly:</strong> Best if you already know what you need. Skip the forms, skip the qualifiers. Just tell us what's broken.</p>
 
         <div style={{
           backgroundColor: '#f8f8f8',
           padding: '24px',
           borderLeft: '3px solid #D43225',
-          marginTop: '32px',
+          marginTop: '24px',
           marginBottom: '32px'
         }}>
-          <p style={{
-            fontFamily: '"Noto Sans", sans-serif',
-            fontSize: '14px',
-            fontWeight: 600,
-            marginBottom: '16px',
-            letterSpacing: '0.5px',
-            textTransform: 'uppercase'
-          }}>
-            Email
-          </p>
           <p style={{
             fontSize: '16px',
             marginBottom: '0'
           }}>
-            <a href="mailto:hello@prismaticlabs.com" style={{
+            <a href="mailto:hello@prismaticalab.com" style={{
               color: '#D43225',
               textDecoration: 'none',
               borderBottom: '1px solid #D43225'
             }}>
-              hello@prismaticlabs.com
+              hello@prismaticalab.com
             </a>
           </p>
         </div>
 
-        <h3>What To Include</h3>
-        <p>Tell us what you're building. What's working. What's not. What you've tried. What you need.</p>
+        <p><strong>Book a service directly:</strong> Want to skip the back and forth? Pick what you need. We'll confirm feasibility and start.</p>
 
-        <p>We'll respond within 48 hours. Usually faster.</p>
-
-        <p>If it makes sense to talk, we'll schedule a proper conversation. If it doesn't, we'll say so and point you toward resources that might help.</p>
+        <div style={{ marginTop: '24px', marginBottom: '32px' }}>
+          <Link href="/consulting" className="cta-button red">
+            See Services & Pricing
+          </Link>
+        </div>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>Not Ready Yet?</h3>
-        <p>Explore our mental models. Read about our consulting approach. Understand how we think.</p>
+        <h3>What happens next</h3>
 
-        <p>When the timing is right, you'll know where to find us.</p>
+        <p>We respond within 24 hours. If we can help, we'll tell you how. If we can't, we'll tell you that too.</p>
 
-        <div style={{ marginTop: '32px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-          <Link href="/mental-models" className="cta-button orange">
-            Mental Models
-          </Link>
-          <Link href="/consulting" className="cta-button green">
-            Consulting
-          </Link>
-        </div>
+        <p>No discovery calls where we ask you to repeat everything you wrote. No "let me loop in my team." No 47-slide pitch deck.</p>
+
+        <p>First conversation is diagnostic. Free. We figure out if this makes sense. If we're not asking better questions than you within the first 30 minutes, walk away.</p>
+
+        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
+
+        <h3>Who this works for</h3>
+
+        <p>You're solving something specific. Not "we need innovation." Not "help us with strategy." Actual problems with edges.</p>
+
+        <p>You've already tried the obvious solutions. Hired smart people. Followed best practices. Still stuck.</p>
+
+        <p>You value thinking over execution. You know the bottleneck isn't doing more, it's knowing what to do.</p>
+
+        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
+
+        <h3>Who this doesn't work for</h3>
+
+        <p>You need validation more than solutions. We're not here to make you feel smart. We're here to make you effective.</p>
+
+        <p>You're shopping for consultants like you're shopping for sofas. Comparing day rates. Asking for proposals. We don't do beauty contests.</p>
+
+        <p>You want someone to execute your plan. Hire an agency. We change the plan.</p>
+
+        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
+
+        <p>Still reading? Good sign.</p>
+
+        <p>Email us. Let's see if this fits.</p>
+
       </section>
     </PageLayout>
   );
