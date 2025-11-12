@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T08:28:12.831Z",
-  "expires": "2025-11-12T09:28:12.831Z",
+  "generated": "2025-11-12T08:52:31.246Z",
+  "expires": "2025-11-12T09:52:31.246Z",
   "content": {
-    "newsInsight": "Xi's military purges just exposed China's nuclear anxiety while NYT reports peak oil forecasts are suddenly cloudy. Everyone's debating energy security. We see the real story: when nuclear powers doubt their own arsenals, oil becomes the only reliable power currency left.",
+    "newsInsight": "Xi's military purges just hit China's nuclear forces and everyone's focused on loyalty tests. Wrong variable. When you purge nuclear commanders during peak oil uncertainty and climate talks, you're not worried about loyalty. You're repositioning for energy wars nobody's pricing in yet.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Xi's nuclear force purges, for example. We read that and our mind goes to: if China doesn't trust its own nuclear deterrent, does that make oil reserves the new mutually assured destruction?\n"
+    "intelligenceExample": "Xi's nuclear purges, for example. We read that and our mind goes to: if you're cleaning house in nuclear command while oil forecasts collapse, are you preparing for loyalty or for a world where energy security requires different deterrence?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 7132,
+    "generationTimeMs": 7457,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
