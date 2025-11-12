@@ -1,10 +1,10 @@
 {
-  "generated": "2025-11-12T10:22:43.945Z",
-  "expires": "2025-11-12T11:22:43.945Z",
+  "generated": "2025-11-12T10:47:11.494Z",
+  "expires": "2025-11-12T11:47:11.494Z",
   "content": {
-    "newsInsight": "Xi's military purges just exposed China's nuclear anxiety and everyone's focused on the corruption angle. Wrong variable. When you fire your entire rocket force leadership, you're not fighting graft. You're racing against a capability gap you can't publicly admit.",
+    "newsInsight": "Xi just purged his nuclear command and NYT reports unease in China's military forces. Everyone's debating Taiwan timelines. Wrong variable. When autocrats clean house this aggressively, they're not preparing for external war. They're fighting an internal one.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Xi's nuclear force purges, for example. We read that and our mind goes to: what classified intel about missile readiness rates triggered this housecleaning, and which defense contractors just became acquisition targets?\n"
+    "intelligenceExample": "Xi's nuclear purges, for example. We read that and our mind goes to: if you're planning to use weapons, why fire the people who know how to use them? Unless the real threat isn't from outside.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -13,7 +13,7 @@
       "bbc": 8,
       "nyt": 8
     },
-    "generationTimeMs": 6619,
+    "generationTimeMs": 7606,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
