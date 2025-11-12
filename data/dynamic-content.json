@@ -1,6 +1,6 @@
 {
-  "generated": "2025-11-12T03:02:06.106Z",
-  "expires": "2025-11-12T04:02:06.106Z",
+  "generated": "2025-11-12T03:04:53.425Z",
+  "expires": "2025-11-12T04:04:53.425Z",
   "content": {
     "newsInsight": "Notice how every CEO says they want innovation but hires for predictability? That's not contradiction. That's institutional self-preservation disguised as strategy.",
     "patternInsight": "You're still reading. That already puts you ahead.",
@@ -8,7 +8,7 @@
   },
   "metadata": {
     "error": "Headers.append: \"sk-ant-api03-1TqGXPJiEVvWCdFGW_1O180_zQcofDOjXTsJAJA_g6y3WGxNO\n  LnIemYf6EqSw1HHVOsycVLeXXv1ANrtXVa_sA-mMJ8uQAA\" is an invalid header value.",
-    "errorTime": "2025-11-12T03:02:06.106Z"
+    "errorTime": "2025-11-12T03:04:53.425Z"
   },
   "fallbackUsed": true
 }
