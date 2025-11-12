@@ -83,9 +83,15 @@ Reply to: ${email}
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
+
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+    const toEmail = process.env.RESEND_TO_EMAIL || 'hello@prismaticalabs.com';
+
+    console.log('📧 Sending email FROM:', fromEmail, 'TO:', toEmail);
+
     const data = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
-      to: process.env.RESEND_TO_EMAIL || 'hello@prismaticalabs.com',
+      from: fromEmail,
+      to: toEmail,
       subject: emailSubject,
       text: emailBody,
     });

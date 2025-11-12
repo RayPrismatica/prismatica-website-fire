@@ -1,14 +1,20 @@
 {
-  "generated": "2025-11-12T02:41:45.728Z",
-  "expires": "2025-11-12T03:41:45.728Z",
+  "generated": "2025-11-12T02:34:16.907Z",
+  "expires": "2025-11-12T03:34:16.907Z",
   "content": {
-    "newsInsight": "Notice how every CEO says they want innovation but hires for predictability? That's not contradiction. That's institutional self-preservation disguised as strategy.",
+    "newsInsight": "UK government just backed down on pension compensation for millions of women. Everyone's debating fairness. Wrong lens. When governments reverse decisions this fast, they're not reading polls. They're reading deposit flows. Banks know something.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Unemployment hitting 5%, for example. We read that and our mind goes to: what industries are hardest hit, and what does that tell us about which skills are becoming obsolete?"
+    "intelligenceExample": "The UK pension reversal, for example. We read that and our mind goes to: which major bank's stress test just failed, and why did they need pensioner deposits stabilized before January?\n"
   },
   "metadata": {
-    "error": "Headers.append: \"sk-ant-api03-1TqGXPJiEVvWCdFGW_1O180_zQcofDOjXTsJAJA_g6y3WGxNO\n  LnIemYf6EqSw1HHVOsycVLeXXv1ANrtXVa_sA-mMJ8uQAA\" is an invalid header value.",
-    "errorTime": "2025-11-12T02:41:45.728Z"
+    "model": "claude-opus-4-20250514",
+    "headlinesAnalyzed": 16,
+    "sources": {
+      "bbc": 8,
+      "nyt": 8
+    },
+    "generationTimeMs": 6260,
+    "promptFile": "content-generation-prompt.md"
   },
-  "fallbackUsed": true
+  "fallbackUsed": false
 }
