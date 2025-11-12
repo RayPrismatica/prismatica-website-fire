@@ -24,6 +24,8 @@ export default async function WhatWeDoPage() {
 
         <p>But answers only work if you're asking the right questions.</p>
 
+        <p>Wonderful things emerge when you split a challenge into multiple questions. Like light through a prism.</p>
+
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
         <h3>The problem with consulting</h3>
