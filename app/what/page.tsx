@@ -18,15 +18,13 @@ export default async function WhatWeDoPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
-        <p>We believe intelligence lives in questions, not answers.</p>
+        <p>We believe intelligence begins where answers end.</p>
 
         <p>{content.intelligenceExample}</p>
 
         <p>Answers are cheap. Google has them. ChatGPT has them. Your competitor's intern has them.</p>
 
-        <p>But answers only work if you're asking the right questions.</p>
-
-        <p>Wonderful things emerge when you split a challenge into multiple questions. Like light through a prism.</p>
+        <p>Split reality into new questions. New colours emerge. Like light through a prism.</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
