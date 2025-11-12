@@ -12,6 +12,9 @@ export default function DynamicServiceDescription() {
         const data = await response.json();
         if (data.serviceDescription) {
           setDescription(data.serviceDescription);
+        } else {
+          // Fallback if field doesn't exist
+          setDescription("Dissect your business from its root reason to exist. Then cascade that purpose through every system and touchpoint. Inside-out authenticity that strengthens both internal culture and external message. Purpose as operating system, not marketing tagline.");
         }
       } catch (error) {
         // Fallback content

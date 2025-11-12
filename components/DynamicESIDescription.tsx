@@ -12,6 +12,8 @@ export default function DynamicESIDescription() {
         const data = await response.json();
         if (data.esiDescription) {
           setDescription(data.esiDescription);
+        } else {
+          // Fallback if field doesn't exist
         }
       } catch (error) {
         // Fallback content

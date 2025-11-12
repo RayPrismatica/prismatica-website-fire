@@ -12,6 +12,9 @@ export default function DynamicAgencyDescription() {
         const data = await response.json();
         if (data.agencyDescription) {
           setDescription(data.agencyDescription);
+        } else {
+          // Fallback if field doesn't exist
+          setDescription("For high-performers who realize their 70-hour weeks produce 40 hours of value. Secret Agency: where executives learn to optimize for impact, not inbox zero. Because busy and effective stopped being the same thing years ago.");
         }
       } catch (error) {
         // Fallback content

@@ -12,6 +12,8 @@ export default function InlineObservation() {
         const data = await response.json();
         if (data.marketObservation) {
           setObservation(data.content.marketObservation);
+        } else {
+          // Fallback if field doesn't exist
         }
       } catch (error) {
         // Fallback content

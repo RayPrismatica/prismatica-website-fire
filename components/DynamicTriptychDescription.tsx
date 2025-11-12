@@ -12,6 +12,8 @@ export default function DynamicTriptychDescription() {
         const data = await response.json();
         if (data.triptychDescription) {
           setDescription(data.triptychDescription);
+        } else {
+          // Fallback if field doesn't exist
         }
       } catch (error) {
         // Fallback content

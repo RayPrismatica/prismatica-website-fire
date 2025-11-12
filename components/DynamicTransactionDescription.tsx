@@ -12,6 +12,8 @@ export default function DynamicTransactionDescription() {
         const data = await response.json();
         if (data.transactionDescription) {
           setDescription(data.transactionDescription);
+        } else {
+          // Fallback if field doesn't exist
         }
       } catch (error) {
         // Fallback content

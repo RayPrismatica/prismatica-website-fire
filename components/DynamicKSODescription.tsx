@@ -12,6 +12,8 @@ export default function DynamicKSODescription() {
         const data = await response.json();
         if (data.ksoDescription) {
           setDescription(data.ksoDescription);
+        } else {
+          // Fallback if field doesn't exist
         }
       } catch (error) {
         // Fallback content
