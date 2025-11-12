@@ -11,7 +11,7 @@ export default function DynamicKSODescription() {
         const response = await fetch('/api/dynamic-content');
         const data = await response.json();
         if (data.ksoDescription) {
-          setDescription(data.content.ksoDescription);
+          setDescription(data.ksoDescription);
         }
       } catch (error) {
         // Fallback content

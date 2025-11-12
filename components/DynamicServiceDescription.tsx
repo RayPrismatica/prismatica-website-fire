@@ -11,7 +11,7 @@ export default function DynamicServiceDescription() {
         const response = await fetch('/api/dynamic-content');
         const data = await response.json();
         if (data.serviceDescription) {
-          setDescription(data.content.serviceDescription);
+          setDescription(data.serviceDescription);
         }
       } catch (error) {
         // Fallback content

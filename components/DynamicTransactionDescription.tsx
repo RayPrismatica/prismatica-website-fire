@@ -11,7 +11,7 @@ export default function DynamicTransactionDescription() {
         const response = await fetch('/api/dynamic-content');
         const data = await response.json();
         if (data.transactionDescription) {
-          setDescription(data.content.transactionDescription);
+          setDescription(data.transactionDescription);
         }
       } catch (error) {
         // Fallback content

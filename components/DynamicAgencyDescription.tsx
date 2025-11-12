@@ -11,7 +11,7 @@ export default function DynamicAgencyDescription() {
         const response = await fetch('/api/dynamic-content');
         const data = await response.json();
         if (data.agencyDescription) {
-          setDescription(data.content.agencyDescription);
+          setDescription(data.agencyDescription);
         }
       } catch (error) {
         // Fallback content

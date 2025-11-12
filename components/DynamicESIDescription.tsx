@@ -11,7 +11,7 @@ export default function DynamicESIDescription() {
         const response = await fetch('/api/dynamic-content');
         const data = await response.json();
         if (data.esiDescription) {
-          setDescription(data.content.esiDescription);
+          setDescription(data.esiDescription);
         }
       } catch (error) {
         // Fallback content

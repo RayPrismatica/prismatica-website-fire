@@ -11,7 +11,7 @@ export default function DynamicTriptychDescription() {
         const response = await fetch('/api/dynamic-content');
         const data = await response.json();
         if (data.triptychDescription) {
-          setDescription(data.content.triptychDescription);
+          setDescription(data.triptychDescription);
         }
       } catch (error) {
         // Fallback content
