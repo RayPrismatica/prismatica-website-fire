@@ -1,24 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const [expandedMenus, setExpandedMenus] = useState({
-    howWeWork: false,
-    services: false,
-    products: false
-  });
-
-  const toggleMenu = (menu: string) => {
-    setExpandedMenus(prev => ({
-      ...prev,
-      [menu]: !prev[menu]
-    }));
-  };
 
   const isActive = (path: string) => pathname === path;
 
