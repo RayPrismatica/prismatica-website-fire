@@ -1,12 +1,12 @@
 {
-  "generated": "2025-11-12T16:34:04.327Z",
-  "expires": "2025-11-12T17:34:04.327Z",
+  "generated": "2025-11-12T16:58:15.737Z",
+  "expires": "2025-11-12T17:58:15.737Z",
   "content": {
-    "newsInsight": "NYT just exposed how Trump's Treasury pick still uses the exact tax dodge the IRS tried banning. Every politician promises to close loopholes. Then picks the guy who perfected them. Maybe that's the qualification.",
+    "newsInsight": "NYT reports Trump's treasury pick Scott Bessent used the exact tax dodge the IRS tried to block. Everyone's screaming hypocrisy. Wrong lens. When your treasury secretary knows every loophole personally, that's either your biggest risk or your secret weapon.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "Bessent's tax dodge story, for example. We read that and our mind goes to: if the best person to close loopholes is the one who used them, why do compliance departments never hire hackers?",
-    "consultingInsight": "We were just reading how McKinsey's latest framework revolutionizes organizational design through AI integration. Absolutely brilliant synthesis of behavioral economics and machine learning. But what if that level of strategic thinking wasn't just for companies with nine figure budgets?",
-    "contentReminder": "Remember how the landing page showed Trump's Treasury pick using banned tax dodges, and the What We Do page wondered why compliance teams never hire hackers?\n"
+    "intelligenceExample": "The Bessent tax story, for example. We read that and our mind goes to: If your treasury secretary personally exploited every loophole, does that make them the worst guardian or the only one who actually knows what to guard?",
+    "consultingInsight": "We were just reading how McKinsey helps CEOs navigate regulatory complexity with their legendary frameworks. Decades of pattern recognition, unmatched rigor. But imagine if that level of strategic insight wasn't just for Fortune 100 boardrooms. What if every ambitious leader could tap that thinking?",
+    "contentReminder": "Remember how the landing page showed Bessent's tax dodge revelation, and the What We Do page wondered if that makes him the worst guardian or the best?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -16,7 +16,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 9906,
+    "generationTimeMs": 10398,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
