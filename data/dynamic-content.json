@@ -1,12 +1,12 @@
 {
-  "generated": "2025-11-12T15:45:24.835Z",
-  "expires": "2025-11-12T16:45:24.835Z",
+  "generated": "2025-11-12T15:57:35.054Z",
+  "expires": "2025-11-12T16:57:35.054Z",
   "content": {
-    "newsInsight": "NYT reports Trump climate snub while Newsom takes center stage at UN talks. Everyone sees political theater. We see the real play. When governors bypass federal to negotiate directly with global leaders, that's not defiance. That's the new power topology forming in real time.",
+    "newsInsight": "NYT reports Trump knew about Epstein's conduct according to new emails. Everyone's focused on the scandal. We see something else. When billionaires protect predators, it's not friendship. It's portfolio insurance. The real story? What other liabilities are hiding in plain sight.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The Newsom climate story, for example. We read that and our mind goes to: if states can now bypass federal on climate deals, what happens when Texas starts negotiating its own oil agreements with OPEC?",
-    "consultingInsight": "We were just reading how McKinsey mapped 127 megatrends reshaping global business through 2050. Breathtaking scope, unmatched data depth. But what if you didn't need a yearlong engagement to spot the patterns that matter to your business tomorrow? What if strategic foresight came in digestible, actionable doses?",
-    "contentReminder": "Remember how the landing page showed Newsom at climate talks while Trump stayed home, and the What We Do page wondered about states negotiating their own international deals?\n"
+    "intelligenceExample": "The Trump-Epstein emails, for example. We read that and our mind goes to: if powerful people knowingly shield criminal behavior, what does that say about the due diligence standards of their business partners and investors?",
+    "consultingInsight": "We were just reading how McKinsey helps companies navigate reputational crises with their legendary risk frameworks. Absolutely brilliant methodology, honed over decades. But what if that level of strategic insight wasn't just for damage control after the fact? What if every leadership team could spot these patterns before they explode?",
+    "contentReminder": "Remember how the landing page showed those Trump-Epstein emails, and the What We Do page wondered about due diligence standards among the ultra-wealthy?\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -16,7 +16,7 @@
       "nyt": 8,
       "hbr": 0
     },
-    "generationTimeMs": 11497,
+    "generationTimeMs": 10192,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
