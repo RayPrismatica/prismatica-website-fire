@@ -1,20 +1,20 @@
 {
-  "generated": "2025-11-13T18:25:31.332Z",
-  "expires": "2025-11-13T19:25:31.332Z",
+  "generated": "2025-11-13T20:24:45.539Z",
+  "expires": "2025-11-13T21:24:45.539Z",
   "content": {
-    "newsInsight": "UK just scrapped police and crime commissioners in England and Wales. Everyone's debating local democracy. We see something else. When governments eliminate entire oversight structures overnight, it's never about efficiency. It's about velocity.",
+    "newsInsight": "UK military survey reveals two-thirds of servicewomen experienced sexualised behaviour. Everyone's shocked. We're not. Any organisation where 90% of leadership is one gender creates this. Physics, not morality.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK scrapping police commissioners, for example. We read that and our mind goes to: which decisions move faster when oversight vanishes, and who notices first?",
-    "consultingInsight": "We were just reading how McKinsey transforms government structures through rigorous stakeholder analysis and change management frameworks. Brilliant methodology, proven results. But what if that same strategic lens wasn't just for nation-states? What if every ambitious organisation could architect their own governance evolution?",
-    "contentReminder": "Remember how the landing page showed UK eliminating oversight structures, and the What We Do page wondered which decisions accelerate when supervision disappears?",
-    "marketObservation": "This week three boards asked us about streamlining decision rights. That's the same pattern we saw before UK announced commissioner cuts. Markets telegraph moves through questions.",
-    "purposeContext": "Notice how organisations cutting oversight layers can't explain why beyond \"efficiency\"?",
-    "serviceDescription": "Disney's stock collapsed 5% as their TV business implodes while streaming burns cash. Classic case of knowing your legacy model is dying but not why you exist beyond it. We excavate the actual reason your business matters, then architect that purpose into every strategic choice and customer moment. Inside-out alignment that makes hard decisions obvious. Purpose as navigation system when all your maps are obsolete.",
-    "esiDescription": "Ralph Lauren created a viral Christmas trend by accident because their brand team discovered something but couldn't systematise it into repeatable success. Classic insight-to-execution gap. Explore, Synthesise, Ignite: our operating system for making discovery actionable. Explore surfaces the pattern, Synthesise converts insight into strategic clarity, Ignite transforms understanding into market momentum. Not three consultants in sequence. One system that actually works.",
-    "agencyDescription": "The Atlantic reports executives creating elaborate evening rituals just to remember they have a life outside email. Peak performance theater. We work with leaders who've optimised everything except what matters. Secret Agency: where accomplished people learn their 80-hour weeks are mostly motion, not progress. Because knowing you're drowning and actually swimming to shore require different muscles.",
-    "ksoDescription": "LinkedIn just launched AI people search that completely reimagines professional discovery. Meanwhile most B2B brands still stuff keywords for Google crawlers. KSO Workshop: we architect your knowledge into structures AI systems actually understand and cite. Four weeks to shift from searchable commodity to cited authority. Because when AI answers \"who's the expert on X?\", page rankings become irrelevant.",
-    "transactionDescription": "Burberry finally returned to growth after two years by discovering customers wanted heritage, not hype. Classic transaction architecture failure. Transaction Architecture: we decode the actual value exchange beneath surface preferences. Map the emotional resonance, cognitive shifts, and action triggers that create conversion. Then engineer every touchpoint to complete those transactions. Deep structure meets market surface.",
-    "triptychDescription": "Premier Foods expanded into new categories without asking if their brand promise translates. Marketing sees opportunity, operations sees complexity, nobody sees the gap. Strategic Triptych Assessment: we examine how you market, compete, and build simultaneously. Because most failures hide where functions don't talk. Most breakthroughs too.\n"
+    "intelligenceExample": "The military harassment data, for example. We read that and our mind goes to: which FTSE 100 companies have the same ratio but better lawyers?",
+    "consultingInsight": "We were just reading how McKinsey's transformation frameworks help Fortune 500s navigate cultural change with surgical precision. Decades of pattern recognition distilled into playbooks worth millions. But what if that calibre of insight wasn't locked behind seven-figure minimums? What if every ambitious leader could access it?",
+    "contentReminder": "Remember how the landing page showed military harassment statistics, and the What We Do page wondered which corporations have similar ratios but better NDAs?",
+    "marketObservation": "This week three boards asked us about \"culture transformation\" without mentioning their 90% male leadership teams. The pattern's obvious once you see it.",
+    "purposeContext": "Notice how organisations with harassment scandals never had a clear answer to \"why do we exist beyond hierarchy and power?\"",
+    "serviceDescription": "Burberry just returned to growth by remembering they're not actually about trenches. Watch every heritage brand realise their \"timeless values\" expired in 2019. We excavate your actual reason to exist, not the museum version, then engineer that truth into every hiring decision, product choice, and customer moment. Purpose as daily operating system. Because authenticity isn't vintage, it's voltage.",
+    "esiDescription": "Disney's TV collapse shows what happens when strategic insights stay trapped in PowerPoints while operations runs last year's playbook. Everyone knew streaming would eat linear TV, nobody built a bridge. Explore, Synthesise, Ignite: our systematic method for closing that knowing-doing gap. Explore surfaces truth, Synthesise makes it actionable, Ignite ensures it actually happens. Not three meetings. One continuous system.",
+    "agencyDescription": "Inc reports top CEOs struggle with feedback because they've optimised for being right, not learning. Familiar? We work with executives who've won so much they forgot how to grow. Secret Agency: where accomplished leaders relearn the difference between performing leadership and actual leading. Less inbox heroics, more strategic silence. Because your 14-hour days aren't impressive, they're a systems failure.",
+    "ksoDescription": "Fast Company reveals Trump's admin hasn't implemented Grok on their flagship AI app while AI search quietly eats Google's lunch. Your SEO team's still fighting yesterday's war. KSO Workshop: four weeks to map your expertise into knowledge structures AI actually understands and cites. We transform you from searchable to quotable. Because when AI answers questions, page rankings become archaeological artifacts.",
+    "transactionDescription": "Vitality smashed life insurance targets by discovering people buy security, not statistics. They mapped emotional territory competitors ignored. Transaction Architecture: we decode your value exchange across three dimensions - what moves hearts, minds, and mice. Then orchestrate every touchpoint to complete those transactions. Deep resonance meets surface excellence. Because great products with misaligned value architecture just create confused prospects.",
+    "triptychDescription": "Premier Foods expanded successfully by first understanding how brand, product, and distribution actually connect. Most companies optimise each function while missing the system. Strategic Triptych Assessment: we examine how you market, compete, and execute simultaneously. Problems hide where functions meet. So do breakthrough opportunities. One integrated diagnosis beats three separate consultants every time.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -27,7 +27,7 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 43774,
+    "generationTimeMs": 42745,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
