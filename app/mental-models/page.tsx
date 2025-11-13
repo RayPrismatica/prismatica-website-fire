@@ -122,13 +122,13 @@ export default function MentalModelsPage() {
         <p>Strip away the details. Seven components remain:</p>
 
         <div style={{ marginTop: '24px', marginBottom: '24px' }}>
-          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Time</span><br/><span style={{ color: '#666' }}>The window narrows. Momentum builds or dies. Opportunity decays.</span></p>
-          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Actors</span><br/><span style={{ color: '#666' }}>Who can say yes. Who can say no. Who just gets affected.</span></p>
-          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Resources</span><br/><span style={{ color: '#666' }}>What you have to work with. Never enough of what matters.</span></p>
-          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Objectives</span><br/><span style={{ color: '#666' }}>What everyone's actually after. Surprisingly identical across industries.</span></p>
-          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Constraints</span><br/><span style={{ color: '#666' }}>The edges of possibility. Physics, budgets, regulations, human nature.</span></p>
-          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Information</span><br/><span style={{ color: '#666' }}>What you know, what they know, what nobody knows yet.</span></p>
-          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Incentives</span><br/><span style={{ color: '#666' }}>What people say drives them. What actually drives them.</span></p>
+          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Time</span><br/><span style={{ color: '#666' }}>The window narrows. Momentum builds or dies. Opportunity decays.</span></p>
+          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Actors</span><br/><span style={{ color: '#666' }}>Who can say yes. Who can say no. Who just gets affected.</span></p>
+          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Resources</span><br/><span style={{ color: '#666' }}>What you have to work with. Never enough of what matters.</span></p>
+          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Objectives</span><br/><span style={{ color: '#666' }}>What everyone's actually after. Surprisingly identical across industries.</span></p>
+          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Constraints</span><br/><span style={{ color: '#666' }}>The edges of possibility. Physics, budgets, regulations, human nature.</span></p>
+          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Information</span><br/><span style={{ color: '#666' }}>What you know, what they know, what nobody knows yet.</span></p>
+          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Incentives</span><br/><span style={{ color: '#666' }}>What people say drives them. What actually drives them.</span></p>
         </div>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
@@ -139,27 +139,27 @@ export default function MentalModelsPage() {
 
         <div style={{ marginTop: '24px', marginBottom: '24px' }}>
           <p style={{ marginBottom: '16px' }}>
-            <span style={{ fontWeight: 700, fontSize: '15px' }}>Demand</span><br/>
+            <span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Demand</span><br/>
             <span style={{ color: '#666' }}>People who want something, know something, need something.</span><br/>
             <span style={{ fontSize: '10px', color: '#888', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'inline-block' }}>Actors + Objectives + Information</span>
           </p>
           <p style={{ marginBottom: '16px' }}>
-            <span style={{ fontWeight: 700, fontSize: '15px' }}>Supply</span><br/>
+            <span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Supply</span><br/>
             <span style={{ color: '#666' }}>What's possible to deliver, given what you have and how long you have it.</span><br/>
             <span style={{ fontSize: '10px', color: '#888', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'inline-block' }}>Resources + Constraints + Time</span>
           </p>
           <p style={{ marginBottom: '16px' }}>
-            <span style={{ fontWeight: 700, fontSize: '15px' }}>Friction</span><br/>
+            <span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Friction</span><br/>
             <span style={{ color: '#666' }}>Everything that slows you down. Rules, misaligned incentives, missing information.</span><br/>
             <span style={{ fontSize: '10px', color: '#888', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'inline-block' }}>Constraints + Information + Incentives</span>
           </p>
           <p style={{ marginBottom: '16px' }}>
-            <span style={{ fontWeight: 700, fontSize: '15px' }}>Value</span><br/>
+            <span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Value</span><br/>
             <span style={{ color: '#666' }}>What you can create when resources meet real objectives for real people.</span><br/>
             <span style={{ fontSize: '10px', color: '#888', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'inline-block' }}>Resources + Objectives + Actors</span>
           </p>
           <p style={{ marginBottom: '16px' }}>
-            <span style={{ fontWeight: 700, fontSize: '15px' }}>Risk</span><br/>
+            <span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Risk</span><br/>
             <span style={{ color: '#666' }}>The gap between what you're betting on and what you actually know. Ticking.</span><br/>
             <span style={{ fontSize: '10px', color: '#888', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'inline-block' }}>Time + Information + Objectives</span>
           </p>
@@ -173,31 +173,31 @@ export default function MentalModelsPage() {
 
         <div style={{ marginTop: '32px', marginBottom: '24px' }}>
           <div style={{ marginBottom: '32px' }}>
-            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', color: '#D43225' }}>Demand</h4>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>Demand</h4>
             <p style={{ marginBottom: '8px', color: '#444' }}>Rolex doesn't sell watches. Peloton doesn't sell bikes. Slack doesn't sell chat. They sell status, tribe membership, professional identity. Your product is the excuse. The demand is primal. Miss this and your marketing is just noise.</p>
             <Link href="/demand" className="cta-button red" style={{ marginTop: 0 }}>Explore Demand</Link>
           </div>
 
           <div style={{ marginBottom: '32px' }}>
-            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', color: '#D43225' }}>Incentives</h4>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>Incentives</h4>
             <p style={{ marginBottom: '8px', color: '#444' }}>Sales says they want better leads. What they optimize for is easy closes. Product says they want user feedback. What they optimize for is no complaints. Executives say they want innovation. What they optimize for is no surprises. Watch what they do, not what they say.</p>
             <Link href="/incentives" className="cta-button red" style={{ marginTop: 0 }}>Explore Incentives</Link>
           </div>
 
           <div style={{ marginBottom: '32px' }}>
-            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', color: '#D43225' }}>Agentic</h4>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>Agentic</h4>
             <p style={{ marginBottom: '8px', color: '#444' }}>Humans need meetings, check-ins, approvals, reassurance. AI doesn't. Give it clear objectives, hard constraints, quality thresholds, and kill switches. Then let it run while you sleep. The bottleneck isn't the AI. It's your need to feel in control.</p>
             <Link href="/agentic" className="cta-button red" style={{ marginTop: 0 }}>Explore Agentic</Link>
           </div>
 
           <div style={{ marginBottom: '32px' }}>
-            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', color: '#D43225' }}>Prismatic</h4>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>Prismatic</h4>
             <p style={{ marginBottom: '8px', color: '#444' }}>Every industry thinks it's special. None of them are. Nightclubs and enterprise sales are both gatekeeping. Museums and Netflix are both attention retention. Airports and emergency rooms are both triage under constraints. See structure, not surface, and solutions transfer instantly.</p>
             <Link href="/prismatic" className="cta-button red" style={{ marginTop: 0 }}>Explore Prismatic</Link>
           </div>
 
           <div style={{ marginBottom: '32px' }}>
-            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', color: '#D43225' }}>Triptych</h4>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>Triptych</h4>
             <p style={{ marginBottom: '8px', color: '#444' }}>Most companies fight the wrong battle. They add supply when friction is the problem. Remove friction when demand doesn't exist. Build features when distribution is broken. Stop guessing. Map the forces. Fix what's actually stuck.</p>
             <Link href="/triptych" className="cta-button red" style={{ marginTop: 0 }}>Explore Triptych</Link>
           </div>
@@ -215,7 +215,7 @@ export default function MentalModelsPage() {
 
         <p>Ready to see the structure in your problem?</p>
 
-        <Link href="/contact" className="cta-button red">Let's Talk</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
 
       {/* Brief Modal */}

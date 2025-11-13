@@ -59,7 +59,7 @@ export default function AgenticPage() {
 
         <p>Ready to build intelligence that multiplies capacity instead of replacing it?</p>
 
-        <Link href="/contact" className="cta-button red">Let's Talk</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
     </PageLayout>
   );

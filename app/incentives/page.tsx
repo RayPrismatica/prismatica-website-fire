@@ -59,7 +59,7 @@ export default function IncentivesPage() {
 
         <p>Ready to stop fighting human nature and start designing for it?</p>
 
-        <Link href="/contact" className="cta-button red">Let's Talk</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
     </PageLayout>
   );

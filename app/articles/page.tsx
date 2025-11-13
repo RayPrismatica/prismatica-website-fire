@@ -418,7 +418,7 @@ export default function ArticlesPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '48px 0 32px 0' }} />
 
-        <Link href="/contact" className="cta-button red">Get In Touch</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
     </PageLayout>
   );

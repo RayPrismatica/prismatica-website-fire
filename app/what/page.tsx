@@ -47,13 +47,13 @@ export default async function WhatWeDoPage() {
 
         <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Two ways to think with us</h3>
 
-        <h3 style={{ marginTop: '32px', marginBottom: '16px' }}>Direct Engagement</h3>
+        <h3 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '32px', marginBottom: '16px' }}>Direct Engagement</h3>
 
         <p>Some problems need custom work. Every consultancy, SaaS pitch deck, and agency website uses the same words. 'Transformation over transaction.' 'Strategic partnerships.' 'Solutions.' We won't. We work directly with you and adapt as the problem reveals itself. First call is diagnostic. If we're not asking better questions than you within 30 minutes, walk away.</p>
 
         <p style={{ fontWeight: 600 }}>Starting at £5,000 per project</p>
 
-        <h3 style={{ marginTop: '32px', marginBottom: '16px' }}>Product Suite</h3>
+        <h3 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '32px', marginBottom: '16px' }}>Product Suite</h3>
 
         <p>Everyone knows thinking doesn't scale. Most companies accept it. We solved it. Turned our methodology into infrastructure so your team can use it without us.</p>
 
@@ -85,9 +85,7 @@ export default async function WhatWeDoPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p>Would you rather speak to a human?</p>
-
-        <Link href="/contact" className="cta-button red">Get In Touch</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
 
       </section>
     </PageLayout>

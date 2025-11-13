@@ -51,8 +51,8 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
 
     switch (formData.deadlineOption) {
       case 'asap':
-        // ASAP means we calculate the earliest possible completion
-        targetDeadline = new Date(today.getTime() + (serviceDurationWeeks + 1) * 7 * 24 * 60 * 60 * 1000);
+        // ASAP means we calculate the earliest possible completion (duration + 2 weeks to get started)
+        targetDeadline = new Date(today.getTime() + (serviceDurationWeeks + 2) * 7 * 24 * 60 * 60 * 1000);
         break;
       case 'end-of-month':
         targetDeadline = new Date(today.getFullYear(), today.getMonth() + 1, 0);
@@ -71,8 +71,8 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
         return;
     }
 
-    // Calculate required start date (deadline - service duration - 1 week buffer)
-    const requiredStartDate = new Date(targetDeadline.getTime() - (serviceDurationWeeks + 1) * 7 * 24 * 60 * 60 * 1000);
+    // Calculate required start date (deadline - service duration - 2 weeks to get started)
+    const requiredStartDate = new Date(targetDeadline.getTime() - (serviceDurationWeeks + 2) * 7 * 24 * 60 * 60 * 1000);
     setCalculatedStartDate(requiredStartDate);
 
     // Check if start date is in the past
@@ -84,7 +84,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
     const today = new Date();
     switch (formData.deadlineOption) {
       case 'asap':
-        return new Date(today.getTime() + (serviceDurationWeeks + 1) * 7 * 24 * 60 * 60 * 1000);
+        return new Date(today.getTime() + (serviceDurationWeeks + 2) * 7 * 24 * 60 * 60 * 1000);
       case 'end-of-month':
         return new Date(today.getFullYear(), today.getMonth() + 1, 0);
       case 'within-3-months':
@@ -146,7 +146,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
     const daysUntilStart = Math.ceil((calculatedStartDate.getTime() - today.getTime()) / (24 * 60 * 60 * 1000));
 
     if (!isFeasible) {
-      const earliestDeadline = new Date(today.getTime() + (serviceDurationWeeks + 1) * 7 * 24 * 60 * 60 * 1000);
+      const earliestDeadline = new Date(today.getTime() + (serviceDurationWeeks + 2) * 7 * 24 * 60 * 60 * 1000);
       return `⚠️ That deadline isn't realistic for this service. Earliest possible: ${formatDate(earliestDeadline)}`;
     }
 
@@ -327,7 +327,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                         alignItems: 'center'
                       }}>
                         {formData.deadlineOption === 'asap' && (
-                          <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getTime() + (serviceDurationWeeks + 1) * 7 * 24 * 60 * 60 * 1000))}</strong></>
+                          <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getTime() + (serviceDurationWeeks + 2) * 7 * 24 * 60 * 60 * 1000))}</strong></>
                         )}
                         {formData.deadlineOption === 'end-of-month' && (
                           <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0))}</strong></>

@@ -71,7 +71,7 @@ export default function DemandPage() {
 
         <p>Ready to stop fighting demand and start riding it?</p>
 
-        <Link href="/contact" className="cta-button red">Let's Talk</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
     </PageLayout>
   );

@@ -26,6 +26,8 @@ export default function ProductsPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The Method</h3>
+
         <p>You know the old saying. Give a man a fish, feed him for a day. Teach a man to fish, feed him for life.</p>
 
         <p>This is different. This is send a guy who knows how to fish and will just stick around.</p>
@@ -43,10 +45,11 @@ export default function ProductsPage() {
           }}>
             <h4 style={{
               fontFamily: '"Noto Sans", sans-serif',
-              fontSize: '16px',
-              fontWeight: 600,
+              fontSize: '14px',
+              fontWeight: 700,
               marginBottom: '12px',
-              letterSpacing: '0.5px'
+              letterSpacing: '1px',
+              textTransform: 'uppercase'
             }}>
               The Focus Matrix
             </h4>
@@ -63,10 +66,11 @@ export default function ProductsPage() {
           }}>
             <h4 style={{
               fontFamily: '"Noto Sans", sans-serif',
-              fontSize: '16px',
-              fontWeight: 600,
+              fontSize: '14px',
+              fontWeight: 700,
               marginBottom: '12px',
-              letterSpacing: '0.5px'
+              letterSpacing: '1px',
+              textTransform: 'uppercase'
             }}>
               Sir Alfie
             </h4>
@@ -83,10 +87,11 @@ export default function ProductsPage() {
           }}>
             <h4 style={{
               fontFamily: '"Noto Sans", sans-serif',
-              fontSize: '16px',
-              fontWeight: 600,
+              fontSize: '14px',
+              fontWeight: 700,
               marginBottom: '12px',
-              letterSpacing: '0.5px'
+              letterSpacing: '1px',
+              textTransform: 'uppercase'
             }}>
               Value Channel Matrix
             </h4>
@@ -102,6 +107,8 @@ export default function ProductsPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Real Constraints</h3>
+
         <p>Most products say they're 'exclusive' to sound premium. That's not this.</p>
 
         <p>We filter access because selling the same advantage to competing firms destroys the advantage. If every law firm in London has the same tools, nobody has an edge. That's not strategy. That's just noise at scale.</p>
@@ -112,7 +119,7 @@ export default function ProductsPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '12px' }}>How pricing works</p>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>How pricing works</h3>
 
         <p>£299/month per seat gets you access to all 25+ products. API costs are separate and fully under your control.</p>
 

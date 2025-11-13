@@ -56,7 +56,7 @@ export default function PrismaticPage() {
 
         <p>Ready to find solutions where your competitors aren't looking?</p>
 
-        <Link href="/contact" className="cta-button red">Let's Talk</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
     </PageLayout>
   );

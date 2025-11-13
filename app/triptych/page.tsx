@@ -59,7 +59,7 @@ export default function TriptychPage() {
 
         <p>Ready to stop dividing what should never be separated?</p>
 
-        <Link href="/contact" className="cta-button red">Let's Talk</Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>
     </PageLayout>
   );

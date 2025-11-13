@@ -50,6 +50,16 @@ export default function EngagementClient({
   const [serviceFilter, setServiceFilter] = useState<string>('all');
   const [enquiryModalOpen, setEnquiryModalOpen] = useState<string | null>(null);
 
+  // Helper function to calculate delivery date: duration + 2 weeks to get started
+  const getDeliveryDate = (serviceKey: string): string => {
+    const config = serviceConfig[serviceKey];
+    if (!config) return '[DATE]';
+    const totalWeeks = config.duration + 2;
+    if (typeof window === 'undefined') return '[DATE]';
+    return new Date(Date.now() + (totalWeeks * 7 * 24 * 60 * 60 * 1000))
+      .toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+  };
+
   return (
     <PageLayout>
       <section id="consulting" className="section active">
@@ -225,9 +235,9 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'strategy') && (
           <>
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If your internal culture and external message feel misaligned...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If your internal culture and external message feel misaligned...</p>
 
-        <h3 id="pioneers-of-purpose" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="pioneers-of-purpose" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>Pioneers of Purpose Assessment</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
         </h3>
@@ -237,12 +247,12 @@ export default function EngagementClient({
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £30,000</p>
 
         <p style={{ fontSize: '13px', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-          Give us four to eight weeks and you'll have purpose architecture mapped across every system and touchpoint by <span style={{ fontWeight: 'bold' }}>{typeof window !== 'undefined' ? new Date(Date.now() + (9 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}</span>. That's operating system, not marketing fluff.
+          Give us four to eight weeks and you'll have purpose architecture mapped across every system and touchpoint by <span style={{ fontWeight: 'bold' }}>{getDeliveryDate('pioneers-of-purpose')}</span>. That's operating system, not marketing fluff.
         </p>
 
         <p style={{ marginTop: '12px', fontSize: '13px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a
-            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Pioneers of Purpose Assessment')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Pioneers of Purpose - they dissect your business from its core reason to exist and cascade that purpose through every system and customer touchpoint. Inside-out authenticity that actually strengthens both culture and message.\n\nFour to eight weeks, starts at £30,000. They map purpose as operating system, not marketing tagline.\n\nIf we talk to them next week, we could have results by ${typeof window !== 'undefined' ? new Date(Date.now() + (9 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'} or earlier.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#pioneers-of-purpose' : 'https://prismaticalabs.com/services#pioneers-of-purpose'}\n\nWorth a conversation?`)}`}
+            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Pioneers of Purpose Assessment')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Pioneers of Purpose - they dissect your business from its core reason to exist and cascade that purpose through every system and customer touchpoint. Inside-out authenticity that actually strengthens both culture and message.\n\nFour to eight weeks, starts at £30,000. They map purpose as operating system, not marketing tagline.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('pioneers-of-purpose')} or earlier.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#pioneers-of-purpose' : 'https://prismaticalabs.com/services#pioneers-of-purpose'}\n\nWorth a conversation?`)}`}
             title="Share with your team"
             style={{ color: '#666', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -269,9 +279,9 @@ export default function EngagementClient({
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If you have insights but struggle to execute them systematically...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If you have insights but struggle to execute them systematically...</p>
 
-        <h3 id="esi-framework" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="esi-framework" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>The ESI Framework</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
         </h3>
@@ -281,12 +291,12 @@ export default function EngagementClient({
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £25,000</p>
 
         <p style={{ fontSize: '13px', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-          Three to six weeks. Start Monday, and by <span style={{ fontWeight: 'bold' }}>{typeof window !== 'undefined' ? new Date(Date.now() + (7 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}</span> you'll have a roadmap that actually gets executed instead of gathering dust.
+          Three to six weeks. Start Monday, and by <span style={{ fontWeight: 'bold' }}>{getDeliveryDate('esi-framework')}</span> you'll have a roadmap that actually gets executed instead of gathering dust.
         </p>
 
         <p style={{ marginTop: '12px', fontSize: '13px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a
-            href={`mailto:?subject=${encodeURIComponent('Worth looking at: ESI Framework from Prismatica Labs')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the ESI Framework - basically a system that connects insights to actual implementation. Explore uncovers truth, Synthesize turns it into strategy, Ignite makes it executable.\n\nThree to six weeks, starts at £25,000. They map the whole thing from research through execution.\n\nIf we talk to them next week, we could have results by ${typeof window !== 'undefined' ? new Date(Date.now() + (7 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'} or earlier.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#esi-framework' : 'https://prismaticalabs.com/services#esi-framework'}\n\nWorth a conversation?`)}`}
+            href={`mailto:?subject=${encodeURIComponent('Worth looking at: ESI Framework from Prismatica Labs')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the ESI Framework - basically a system that connects insights to actual implementation. Explore uncovers truth, Synthesize turns it into strategy, Ignite makes it executable.\n\nThree to six weeks, starts at £25,000. They map the whole thing from research through execution.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('esi-framework')} or earlier.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#esi-framework' : 'https://prismaticalabs.com/services#esi-framework'}\n\nWorth a conversation?`)}`}
             title="Share with your team"
             style={{ color: '#666', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -317,9 +327,9 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'technology') && (
           <>
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If you're done adapting to generic software and want technology built around how you actually think...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If you're done adapting to generic software and want technology built around how you actually think...</p>
 
-        <h3 id="secret-agency" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="secret-agency" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>The Secret Agency</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Technology</span>
         </h3>
@@ -365,9 +375,9 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'marketing') && (
           <>
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If AI systems are mediating how customers discover you...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If AI systems are mediating how customers discover you...</p>
 
-        <h3 id="kso-workshop" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="kso-workshop" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>Knowledge Search Optimisation (KSO) Workshop</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Marketing</span>
         </h3>
@@ -377,12 +387,12 @@ export default function EngagementClient({
         <p style={{ fontWeight: 600, marginTop: '8px' }}>£18,500</p>
 
         <p style={{ fontSize: '13px', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-          Four weeks. Workshop next week and by <span style={{ fontWeight: 'bold' }}>{typeof window !== 'undefined' ? new Date(Date.now() + (4 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}</span> you'll have a KSO blueprint showing what intellectual space you own and how to operationalise it. SEO makes you searchable. KSO makes you unforgettable.
+          Four weeks. Workshop next week and by <span style={{ fontWeight: 'bold' }}>{getDeliveryDate('kso-workshop')}</span> you'll have a KSO blueprint showing what intellectual space you own and how to operationalise it. SEO makes you searchable. KSO makes you unforgettable.
         </p>
 
         <p style={{ marginTop: '12px', fontSize: '13px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a
-            href={`mailto:?subject=${encodeURIComponent('Worth looking at: KSO Workshop from Prismatica Labs')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the KSO Workshop - Knowledge Search Optimisation. The future of discoverability isn't about links, it's about ideas. They map your business DNA into a knowledge graph that AI systems recognise and cite.\n\nFour weeks, £18,500. They position you as a recognised source in your space, not just another site.\n\nIf we talk to them next week, we could have results by ${typeof window !== 'undefined' ? new Date(Date.now() + (4 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#kso-workshop' : 'https://prismaticalabs.com/services#kso-workshop'}\n\nWorth a conversation?`)}`}
+            href={`mailto:?subject=${encodeURIComponent('Worth looking at: KSO Workshop from Prismatica Labs')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the KSO Workshop - Knowledge Search Optimisation. The future of discoverability isn't about links, it's about ideas. They map your business DNA into a knowledge graph that AI systems recognise and cite.\n\nFour weeks, £18,500. They position you as a recognised source in your space, not just another site.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('kso-workshop')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#kso-workshop' : 'https://prismaticalabs.com/services#kso-workshop'}\n\nWorth a conversation?`)}`}
             title="Share with your team"
             style={{ color: '#666', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -413,9 +423,9 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'strategy') && (
           <>
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If engagement is high but conversions don't match...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If engagement is high but conversions don't match...</p>
 
-        <h3 id="transaction-architecture" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="transaction-architecture" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>The Transaction Architecture</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
         </h3>
@@ -425,12 +435,12 @@ export default function EngagementClient({
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £15,000</p>
 
         <p style={{ fontSize: '13px', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-          Give us three to five weeks and by <span style={{ fontWeight: 'bold' }}>{typeof window !== 'undefined' ? new Date(Date.now() + (6 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}</span> you'll know exactly how value flows through your business and where to increase conversion velocity.
+          Give us three to five weeks and by <span style={{ fontWeight: 'bold' }}>{getDeliveryDate('transaction-architecture')}</span> you'll know exactly how value flows through your business and where to increase conversion velocity.
         </p>
 
         <p style={{ marginTop: '12px', fontSize: '13px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a
-            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Transaction Architecture')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Transaction Architecture - they map how value actually flows through your business across three dimensions: emotional, cognitive, and tangible. Then they design every touchpoint to trigger those transactions. Conversion through understanding, not manipulation.\n\nThree to five weeks, starts at £15,000.\n\nIf we talk to them next week, we could have results by ${typeof window !== 'undefined' ? new Date(Date.now() + (6 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#transaction-architecture' : 'https://prismaticalabs.com/services#transaction-architecture'}\n\nWorth a conversation?`)}`}
+            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Transaction Architecture')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Transaction Architecture - they map how value actually flows through your business across three dimensions: emotional, cognitive, and tangible. Then they design every touchpoint to trigger those transactions. Conversion through understanding, not manipulation.\n\nThree to five weeks, starts at £15,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('transaction-architecture')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#transaction-architecture' : 'https://prismaticalabs.com/services#transaction-architecture'}\n\nWorth a conversation?`)}`}
             title="Share with your team"
             style={{ color: '#666', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -457,9 +467,9 @@ export default function EngagementClient({
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If you know something's off but can't pinpoint where...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If you know something's off but can't pinpoint where...</p>
 
-        <h3 id="strategic-triptych" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="strategic-triptych" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>The Strategic Triptych Assessment</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
         </h3>
@@ -469,12 +479,12 @@ export default function EngagementClient({
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £12,000</p>
 
         <p style={{ fontSize: '13px', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-          Two to four weeks. By <span style={{ fontWeight: 'bold' }}>{typeof window !== 'undefined' ? new Date(Date.now() + (5 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}</span> you'll know exactly where you're leaving money on the table and what to do about it.
+          Two to four weeks. By <span style={{ fontWeight: 'bold' }}>{getDeliveryDate('strategic-triptych')}</span> you'll know exactly where you're leaving money on the table and what to do about it.
         </p>
 
         <p style={{ marginTop: '12px', fontSize: '13px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a
-            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Strategic Triptych Assessment')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Strategic Triptych - they examine your business through three lenses at once: how you market, compete, and build. Most problems live in the gaps between these. Most opportunities too.\n\nTwo to four weeks, starts at £12,000. They show you exactly where you're leaving money on the table.\n\nIf we talk to them next week, we could have results by ${typeof window !== 'undefined' ? new Date(Date.now() + (5 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#strategic-triptych' : 'https://prismaticalabs.com/services#strategic-triptych'}\n\nWorth a conversation?`)}`}
+            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Strategic Triptych Assessment')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Strategic Triptych - they examine your business through three lenses at once: how you market, compete, and build. Most problems live in the gaps between these. Most opportunities too.\n\nTwo to four weeks, starts at £12,000. They show you exactly where you're leaving money on the table.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('strategic-triptych')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#strategic-triptych' : 'https://prismaticalabs.com/services#strategic-triptych'}\n\nWorth a conversation?`)}`}
             title="Share with your team"
             style={{ color: '#666', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -503,13 +513,13 @@ export default function EngagementClient({
           </>
         )}
 
-        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The Best Steps Forward</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Tactical Steps Forward</h3>
 
         {(serviceFilter === 'all' || serviceFilter === 'marketing') && (
           <>
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If you're launching something new and can't afford to get it wrong...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If you're launching something new and can't afford to get it wrong...</p>
 
-        <h3 id="go-to-market" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="go-to-market" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>Go-to-Market</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Marketing</span>
         </h3>
@@ -519,12 +529,12 @@ export default function EngagementClient({
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £8,000</p>
 
         <p style={{ fontSize: '13px', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-          Four to six weeks now beats six months of "let's try this and see." Launch strategy ready by <span style={{ fontWeight: 'bold' }}>{typeof window !== 'undefined' ? new Date(Date.now() + (7 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}</span>, budget intact.
+          Four to six weeks now beats six months of "let's try this and see." Launch strategy ready by <span style={{ fontWeight: 'bold' }}>{getDeliveryDate('go-to-market')}</span>, budget intact.
         </p>
 
         <p style={{ marginTop: '12px', fontSize: '13px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a
-            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Go-to-Market Strategy')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a complete go-to-market strategy service. They map everything from positioning to channels to messaging to timeline. Who you're targeting, what you're saying, where, and when. Everything mapped before you spend a pound on execution.\n\nFour to six weeks, starts at £8,000.\n\nIf we talk to them next week, we could have results by ${typeof window !== 'undefined' ? new Date(Date.now() + (7 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#go-to-market' : 'https://prismaticalabs.com/services#go-to-market'}\n\nWorth a conversation?`)}`}
+            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Go-to-Market Strategy')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a complete go-to-market strategy service. They map everything from positioning to channels to messaging to timeline. Who you're targeting, what you're saying, where, and when. Everything mapped before you spend a pound on execution.\n\nFour to six weeks, starts at £8,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('go-to-market')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#go-to-market' : 'https://prismaticalabs.com/services#go-to-market'}\n\nWorth a conversation?`)}`}
             title="Share with your team"
             style={{ color: '#666', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -555,9 +565,9 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'process') && (
           <>
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If traditional solutions keep failing on the same recurring problem...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If traditional solutions keep failing on the same recurring problem...</p>
 
-        <h3 id="design-thinking" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="design-thinking" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>Design Thinking</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Process</span>
         </h3>
@@ -567,12 +577,12 @@ export default function EngagementClient({
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £6,000</p>
 
         <p style={{ fontSize: '13px', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-          First sprint done by <span style={{ fontWeight: 'bold' }}>{typeof window !== 'undefined' ? new Date(Date.now() + (3 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}</span>. Real users, real prototypes, real learning. Then we iterate or pivot. No six-month waterfall nonsense.
+          First sprint done by <span style={{ fontWeight: 'bold' }}>{getDeliveryDate('design-thinking')}</span>. Real users, real prototypes, real learning. Then we iterate or pivot. No six-month waterfall nonsense.
         </p>
 
         <p style={{ marginTop: '12px', fontSize: '13px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a
-            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Design Thinking')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a design thinking approach for problems that traditional solutions can't fix. They reframe the problem, rapid prototype, and test with real users. Fast iteration before you commit to expensive solutions.\n\nStarts at £6,000, first sprint done in 3 weeks.\n\nIf we talk to them next week, we could have results by ${typeof window !== 'undefined' ? new Date(Date.now() + (3 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#design-thinking' : 'https://prismaticalabs.com/services#design-thinking'}\n\nWorth a conversation?`)}`}
+            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Design Thinking')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a design thinking approach for problems that traditional solutions can't fix. They reframe the problem, rapid prototype, and test with real users. Fast iteration before you commit to expensive solutions.\n\nStarts at £6,000, first sprint done in 3 weeks.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('design-thinking')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#design-thinking' : 'https://prismaticalabs.com/services#design-thinking'}\n\nWorth a conversation?`)}`}
             title="Share with your team"
             style={{ color: '#666', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -603,9 +613,9 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'technology') && (
           <>
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If your team sees AI potential everywhere but can't identify clear use cases...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If your team sees AI potential everywhere but can't identify clear use cases...</p>
 
-        <h3 id="ai-without-hallucination" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="ai-without-hallucination" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>AI Without the Hallucination</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Technology</span>
         </h3>
@@ -615,12 +625,12 @@ export default function EngagementClient({
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £5,000</p>
 
         <p style={{ fontSize: '13px', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-          We'll cut through the hype in two to four weeks. By <span style={{ fontWeight: 'bold' }}>{typeof window !== 'undefined' ? new Date(Date.now() + (5 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}</span> you'll have AI use cases with actual ROI, not just ChatGPT screenshots in your deck.
+          We'll cut through the hype in two to four weeks. By <span style={{ fontWeight: 'bold' }}>{getDeliveryDate('ai-without-hallucination')}</span> you'll have AI use cases with actual ROI, not just ChatGPT screenshots in your deck.
         </p>
 
         <p style={{ marginTop: '12px', fontSize: '13px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a
-            href={`mailto:?subject=${encodeURIComponent('Worth looking at: AI Without the Hallucination')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called AI Without the Hallucination. They cut through the hype to find the boring, profitable AI applications. They map your workflows, identify real value, and prioritize by ROI. Practical automations, not flashy demos.\n\nTwo to four weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${typeof window !== 'undefined' ? new Date(Date.now() + (5 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#ai-without-hallucination' : 'https://prismaticalabs.com/services#ai-without-hallucination'}\n\nWorth a conversation?`)}`}
+            href={`mailto:?subject=${encodeURIComponent('Worth looking at: AI Without the Hallucination')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called AI Without the Hallucination. They cut through the hype to find the boring, profitable AI applications. They map your workflows, identify real value, and prioritize by ROI. Practical automations, not flashy demos.\n\nTwo to four weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('ai-without-hallucination')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#ai-without-hallucination' : 'https://prismaticalabs.com/services#ai-without-hallucination'}\n\nWorth a conversation?`)}`}
             title="Share with your team"
             style={{ color: '#666', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -651,9 +661,9 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'marketing') && (
           <>
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If your brand looks professional but doesn't drive sales or premium pricing...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If your brand looks professional but doesn't drive sales or premium pricing...</p>
 
-        <h3 id="creative-converts" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="creative-converts" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>Creative That Converts</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Marketing</span>
         </h3>
@@ -663,12 +673,12 @@ export default function EngagementClient({
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £5,000</p>
 
         <p style={{ fontSize: '13px', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-          Three to six weeks from now, call it <span style={{ fontWeight: 'bold' }}>{typeof window !== 'undefined' ? new Date(Date.now() + (7 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}</span>, your brand actually drives revenue instead of just looking pretty.
+          Three to six weeks from now, call it <span style={{ fontWeight: 'bold' }}>{getDeliveryDate('creative-converts')}</span>, your brand actually drives revenue instead of just looking pretty.
         </p>
 
         <p style={{ marginTop: '12px', fontSize: '13px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a
-            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Creative That Converts')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Creative That Converts. They rebuild brand positioning based on what actually shifts customer perception and pricing power. Every design decision gets tested: does this make people pay more or buy faster?\n\nThree to six weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${typeof window !== 'undefined' ? new Date(Date.now() + (7 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#creative-converts' : 'https://prismaticalabs.com/services#creative-converts'}\n\nWorth a conversation?`)}`}
+            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Creative That Converts')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Creative That Converts. They rebuild brand positioning based on what actually shifts customer perception and pricing power. Every design decision gets tested: does this make people pay more or buy faster?\n\nThree to six weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('creative-converts')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#creative-converts' : 'https://prismaticalabs.com/services#creative-converts'}\n\nWorth a conversation?`)}`}
             title="Share with your team"
             style={{ color: '#666', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -695,9 +705,9 @@ export default function EngagementClient({
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If your marketing looks busy but results feel random...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If your marketing looks busy but results feel random...</p>
 
-        <h3 id="marketing-reality-check" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="marketing-reality-check" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>Marketing Reality Check</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Marketing</span>
         </h3>
@@ -707,12 +717,12 @@ export default function EngagementClient({
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £5,000</p>
 
         <p style={{ fontSize: '13px', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-          Two to three weeks. By <span style={{ fontWeight: 'bold' }}>{typeof window !== 'undefined' ? new Date(Date.now() + (4 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}</span> you'll know what's actually moving the needle and what's just moving budget around.
+          Two to three weeks. By <span style={{ fontWeight: 'bold' }}>{getDeliveryDate('marketing-reality-check')}</span> you'll know what's actually moving the needle and what's just moving budget around.
         </p>
 
         <p style={{ marginTop: '12px', fontSize: '13px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a
-            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Marketing Reality Check')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a marketing reality check based on actual customer behavior, not research reports. They track real patterns and show you what's working despite your strategy, not because of it.\n\nTwo to three weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${typeof window !== 'undefined' ? new Date(Date.now() + (4 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#marketing-reality-check' : 'https://prismaticalabs.com/services#marketing-reality-check'}\n\nWorth a conversation?`)}`}
+            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Marketing Reality Check')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a marketing reality check based on actual customer behavior, not research reports. They track real patterns and show you what's working despite your strategy, not because of it.\n\nTwo to three weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('marketing-reality-check')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#marketing-reality-check' : 'https://prismaticalabs.com/services#marketing-reality-check'}\n\nWorth a conversation?`)}`}
             title="Share with your team"
             style={{ color: '#666', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -743,9 +753,9 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'process') && (
           <>
-        <p style={{ fontStyle: 'italic', color: '#666', fontSize: '14px', marginBottom: '4px' }}>If you're hiring faster than you're fixing processes...</p>
+        <p style={{ fontStyle: 'italic', color: '#D43225', fontSize: '14px', marginBottom: '4px' }}>If you're hiring faster than you're fixing processes...</p>
 
-        <h3 id="process-surgery" style={{ marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <h3 id="process-surgery" style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
           <span>Process Surgery</span>
           <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Process</span>
         </h3>
@@ -755,12 +765,12 @@ export default function EngagementClient({
         <p style={{ fontWeight: 600, marginTop: '8px' }}>From £5,000</p>
 
         <p style={{ fontSize: '13px', color: '#666', marginTop: '8px', fontStyle: 'italic' }}>
-          Two to four weeks. By <span style={{ fontWeight: 'bold' }}>{typeof window !== 'undefined' ? new Date(Date.now() + (5 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}</span> your team will spend less time managing workflows and more time doing actual work.
+          Two to four weeks. By <span style={{ fontWeight: 'bold' }}>{getDeliveryDate('process-surgery')}</span> your team will spend less time managing workflows and more time doing actual work.
         </p>
 
         <p style={{ marginTop: '12px', fontSize: '13px', display: 'flex', gap: '12px', alignItems: 'center' }}>
           <a
-            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Process Surgery')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Process Surgery. They find the 20% of processes causing 80% of pain, eliminate unnecessary steps, and rebuild critical paths. Process that makes work easier, not just documented.\n\nTwo to four weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${typeof window !== 'undefined' ? new Date(Date.now() + (5 * 7 * 24 * 60 * 60 * 1000)).toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) : '[DATE]'}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#process-surgery' : 'https://prismaticalabs.com/services#process-surgery'}\n\nWorth a conversation?`)}`}
+            href={`mailto:?subject=${encodeURIComponent('Worth looking at: Process Surgery')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Process Surgery. They find the 20% of processes causing 80% of pain, eliminate unnecessary steps, and rebuild critical paths. Process that makes work easier, not just documented.\n\nTwo to four weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('process-surgery')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#process-surgery' : 'https://prismaticalabs.com/services#process-surgery'}\n\nWorth a conversation?`)}`}
             title="Share with your team"
             style={{ color: '#666', transition: 'opacity 0.2s' }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.6'}
@@ -807,7 +817,7 @@ export default function EngagementClient({
 
         <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The Test</h3>
 
-        <p>If you want a study, hire someone else. If you want a solution, let's talk.</p>
+        <p>If you want a study, hire someone else. If you want a solution...</p>
 
         <Link href="/contact" className="cta-button red">Reach Out</Link>
       </section>

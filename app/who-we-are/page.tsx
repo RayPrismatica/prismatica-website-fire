@@ -19,7 +19,7 @@ export default function WhoWeArePage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>Our Background</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Our Background</h3>
         <p>We've worked with everyone from individual artists to Fortune 500s. The size doesn't matter. The problem does.</p>
 
         <p>We've seen enough innovation theatre to know the difference between motion and progress. We've sat through enough strategy decks to know that most strategy is procrastination with charts.</p>
@@ -36,7 +36,7 @@ export default function WhoWeArePage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>The 5% we work with</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The 5% we work with</h3>
 
         <p>Most companies hire consultants for credibility or convenience. Shareholder confidence. Framework delivery. Someone else to blame.</p>
 
