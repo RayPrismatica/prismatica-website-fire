@@ -9,8 +9,8 @@ interface ContentTrackerProps {
 
 export default function ContentTracker({ newsInsight, intelligenceExample }: ContentTrackerProps) {
   useEffect(() => {
-    // Only store if user hasn't already seen content this session
-    if (typeof window !== 'undefined' && !sessionStorage.getItem('userSeenContent')) {
+    // Always update with the most recent content
+    if (typeof window !== 'undefined') {
       sessionStorage.setItem('userSeenContent', JSON.stringify({
         newsInsight,
         intelligenceExample,
