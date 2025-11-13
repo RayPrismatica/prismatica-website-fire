@@ -10,6 +10,21 @@
     box-sizing: border-box;
 }
 
+/* Performance optimizations for smooth animations */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* GPU acceleration for animated elements */
+[class*="transition"],
+[class*="animate"],
+[class*="duration"] {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
 body {
     font-family: "Noto Sans", sans-serif;
     font-weight: 300;

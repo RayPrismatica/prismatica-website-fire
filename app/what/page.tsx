@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
 import ContentTracker from '@/components/ContentTracker';
-import CarmenChat from '@/components/CarmenChat';
 import { getDynamicContent } from '@/lib/getDynamicContent';
 
 export const revalidate = 0; // Disable caching
@@ -83,13 +82,6 @@ export default async function WhatWeDoPage() {
         <p>We're not a commodity. You're not a crowd. Respect works both ways.</p>
 
         <p>If you need proof we can think, read what we write. Look at how we built this site. Watch how Carmen responds. That's the proof.</p>
-
-        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
-
-        <p>Three minutes with Carmen beats three hours researching on your own.</p>
-
-        {/* Carmen Chat Component */}
-        <CarmenChat />
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 

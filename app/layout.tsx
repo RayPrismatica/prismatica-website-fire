@@ -34,6 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" href="/images/carmen-advisor.jpg" as="image" />
+      </head>
       <body
         className={`${notoSans.variable} ${passionOne.variable} antialiased`}
       >

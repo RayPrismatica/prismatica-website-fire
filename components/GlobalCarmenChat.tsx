@@ -23,6 +23,12 @@ export default function GlobalCarmenChat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
+  // Preload Carmen's avatar image for instant display
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = '/images/carmen-advisor.jpg';
+  }, []);
+
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
       messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
@@ -90,16 +96,16 @@ export default function GlobalCarmenChat() {
           {/* Backdrop */}
           <Transition.Child
             as={Fragment}
-            enter="ease-in-out duration-700"
+            enter="ease-out duration-500"
             enterFrom="opacity-0"
             enterTo="opacity-100"
-            leave="ease-in-out duration-700"
+            leave="ease-in duration-300"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
             <div
               className="fixed inset-0 bg-black/30 transition-opacity"
-              style={{ left: 'var(--sidebar-width, 0px)' }}
+              style={{ left: 'var(--sidebar-width, 0px)', transform: 'translateZ(0)' }}
               onClick={closeChat}
               aria-hidden="true"
             />
@@ -110,17 +116,17 @@ export default function GlobalCarmenChat() {
               {/* Full-width drawer starting from sidebar edge */}
               <Transition.Child
                 as={Fragment}
-                enter="transform transition ease-in-out duration-700 sm:duration-1000"
+                enter="transform transition ease-out duration-500"
                 enterFrom="-translate-x-full"
                 enterTo="translate-x-0"
-                leave="transform transition ease-in-out duration-700 sm:duration-1000"
+                leave="transform transition ease-in duration-300"
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto h-full w-full absolute inset-0" style={{ willChange: 'transform' }}>
-                    <div className="flex h-full flex-col bg-white pt-[60px] md:pt-0" style={{ transform: 'translateZ(0)' }}>
+                <Dialog.Panel className="pointer-events-auto h-full w-full absolute inset-0" style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}>
+                    <div className="flex h-full flex-col bg-white pt-[60px] md:pt-0" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}>
                       {/* Header */}
-                      <div className="flex flex-shrink-0 justify-center border-b border-gray-200 bg-gradient-to-b from-white to-gray-50/30 shadow-sm relative" style={{ paddingTop: '1.8rem', paddingBottom: '1.8rem' }}>
+                      <div className="flex flex-shrink-0 justify-center border-b border-gray-200 bg-gradient-to-b from-white to-gray-50/30 shadow-sm relative" style={{ paddingTop: '1.8rem', paddingBottom: '1.8rem', transform: 'translateZ(0)' }}>
                         {/* Desktop Header */}
                         <div className="hidden md:block w-full max-w-5xl" style={{ paddingLeft: '3rem', paddingRight: '3rem', paddingTop: '1.8rem', paddingBottom: '1.8rem' }}>
                           <div className="flex items-center justify-between">
@@ -134,6 +140,8 @@ export default function GlobalCarmenChat() {
                                   className="ring-2 ring-gray-100 shadow-md"
                                   priority
                                   loading="eager"
+                                  quality={95}
+                                  style={{ transform: 'translateZ(0)' }}
                                 />
                                 <span className="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-green-500 ring-2 ring-white animate-pulse"></span>
                               </div>
@@ -173,16 +181,17 @@ export default function GlobalCarmenChat() {
                                 {message.role === 'assistant' ? (
                                   <div className="flex gap-3 md:gap-4">
                                     <div className="flex-shrink-0">
-                                      <div className="relative flex items-center justify-center" style={{ width: 'clamp(28px, 5vw, 36px)', height: 'clamp(28px, 5vw, 36px)' }}>
+                                      <div className="relative flex items-center justify-center" style={{ width: 'clamp(28px, 5vw, 36px)', height: 'clamp(28px, 5vw, 36px)', transform: 'translateZ(0)' }}>
                                         <Image
                                           src="/images/carmen-advisor.jpg"
                                           alt="Carmen"
                                           width={36}
                                           height={36}
                                           className="rounded-full ring-2 ring-gray-100 shadow-sm"
-                                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                          style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(0)' }}
                                           priority
                                           loading="eager"
+                                          quality={95}
                                         />
                                       </div>
                                     </div>
@@ -232,16 +241,17 @@ export default function GlobalCarmenChat() {
                             {isLoading && (
                               <div className="flex gap-3 md:gap-4">
                                 <div className="flex-shrink-0">
-                                  <div className="relative flex items-center justify-center" style={{ width: 'clamp(28px, 5vw, 36px)', height: 'clamp(28px, 5vw, 36px)' }}>
+                                  <div className="relative flex items-center justify-center" style={{ width: 'clamp(28px, 5vw, 36px)', height: 'clamp(28px, 5vw, 36px)', transform: 'translateZ(0)' }}>
                                     <Image
                                       src="/images/carmen-advisor.jpg"
                                       alt="Carmen"
                                       width={36}
                                       height={36}
                                       className="rounded-full ring-2 ring-gray-100 shadow-sm"
-                                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                      style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(0)' }}
                                       priority
                                       loading="eager"
+                                      quality={95}
                                     />
                                   </div>
                                 </div>
