@@ -3,15 +3,15 @@
 import { useState, useRef, useEffect, Fragment } from 'react';
 import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react';
-import { useCarmenChat } from '@/contexts/CarmenChatContext';
+import { useAthenaChat } from '@/contexts/AthenaChatContext';
 
 interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
 
-export default function GlobalCarmenChat() {
-  const { isOpen, closeChat } = useCarmenChat();
+export default function GlobalAthenaChat() {
+  const { isOpen, closeChat } = useAthenaChat();
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
@@ -23,10 +23,10 @@ export default function GlobalCarmenChat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
-  // Preload Carmen's avatar image for instant display
+  // Preload Athena's avatar image for instant display
   useEffect(() => {
     const img = new window.Image();
-    img.src = '/images/carmen-advisor.jpg';
+    img.src = '/images/athena-advisor.jpg';
   }, []);
 
   const scrollToBottom = () => {
@@ -158,8 +158,8 @@ export default function GlobalCarmenChat() {
                             <div className="flex items-center gap-4">
                               <div className="relative">
                                 <Image
-                                  src="/images/carmen-advisor.jpg"
-                                  alt="Carmen"
+                                  src="/images/athena-advisor.jpg"
+                                  alt="Athena"
                                   width={48}
                                   height={48}
                                   className="ring-2 ring-gray-100 shadow-md"
@@ -182,7 +182,7 @@ export default function GlobalCarmenChat() {
                                     marginBottom: '0.25rem'
                                   }}
                                 >
-                                  Carmen
+                                  Athena
                                 </Dialog.Title>
                                 <div className="flex items-center gap-2">
                                   <p className="text-xs text-gray-600" style={{ fontFamily: '"Noto Sans", sans-serif', fontWeight: 400 }}>Strategic AI Advisor</p>
@@ -208,8 +208,8 @@ export default function GlobalCarmenChat() {
                                     <div className="flex-shrink-0">
                                       <div className="relative flex items-center justify-center" style={{ width: 'clamp(28px, 5vw, 36px)', height: 'clamp(28px, 5vw, 36px)', transform: 'translateZ(0)' }}>
                                         <Image
-                                          src="/images/carmen-advisor.jpg"
-                                          alt="Carmen"
+                                          src="/images/athena-advisor.jpg"
+                                          alt="Athena"
                                           width={36}
                                           height={36}
                                           className="rounded-full ring-2 ring-gray-100 shadow-sm"
@@ -226,9 +226,9 @@ export default function GlobalCarmenChat() {
                                           className="font-semibold text-gray-900"
                                           style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: 'clamp(12px, 2vw, 14px)' }}
                                         >
-                                          Carmen
+                                          Athena
                                         </span>
-                                        <span className="text-gray-400" style={{ fontSize: 'clamp(10px, 1.5vw, 12px)' }}>Strategic Advisor</span>
+                                        <span className="text-gray-400" style={{ fontSize: 'clamp(10px, 1.5vw, 12px)' }}>Strategic AI Advisor</span>
                                       </div>
                                       <div
                                         className="prose prose-sm max-w-none text-gray-800"
@@ -268,8 +268,8 @@ export default function GlobalCarmenChat() {
                                 <div className="flex-shrink-0">
                                   <div className="relative flex items-center justify-center" style={{ width: 'clamp(28px, 5vw, 36px)', height: 'clamp(28px, 5vw, 36px)', transform: 'translateZ(0)' }}>
                                     <Image
-                                      src="/images/carmen-advisor.jpg"
-                                      alt="Carmen"
+                                      src="/images/athena-advisor.jpg"
+                                      alt="Athena"
                                       width={36}
                                       height={36}
                                       className="rounded-full ring-2 ring-gray-100 shadow-sm"
@@ -287,7 +287,7 @@ export default function GlobalCarmenChat() {
                                       <div className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#D43225] [animation-delay:-0.15s]"></div>
                                       <div className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#D43225]"></div>
                                     </div>
-                                    <span className="text-gray-400 italic" style={{ fontSize: 'clamp(11px, 2vw, 12px)' }}>Carmen is thinking...</span>
+                                    <span className="text-gray-400 italic" style={{ fontSize: 'clamp(11px, 2vw, 12px)' }}>Athena is thinking...</span>
                                   </div>
                                 </div>
                               </div>

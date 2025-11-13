@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Sans, Passion_One } from "next/font/google";
 import "./globals.css";
-import GlobalCarmenChat from "@/components/GlobalCarmenChat";
-import { CarmenChatProvider } from "@/contexts/CarmenChatContext";
+import GlobalAthenaChat from "@/components/GlobalAthenaChat";
+import { AthenaChatProvider } from "@/contexts/AthenaChatContext";
 
 const notoSans = Noto_Sans({
   variable: "--font-noto-sans",
@@ -35,15 +35,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preload" href="/images/carmen-advisor.jpg" as="image" />
+        <link rel="preload" href="/images/athena-advisor.jpg" as="image" />
       </head>
       <body
         className={`${notoSans.variable} ${passionOne.variable} antialiased`}
       >
-        <CarmenChatProvider>
+        <AthenaChatProvider>
           {children}
-          <GlobalCarmenChat />
-        </CarmenChatProvider>
+          <GlobalAthenaChat />
+        </AthenaChatProvider>
       </body>
     </html>
   );

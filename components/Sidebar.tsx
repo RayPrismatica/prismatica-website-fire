@@ -4,12 +4,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useCarmenChat } from '@/contexts/CarmenChatContext';
+import { useAthenaChat } from '@/contexts/AthenaChatContext';
 
 export default function Sidebar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { isOpen, openChat, closeChat } = useCarmenChat();
+  const { isOpen, openChat, closeChat } = useAthenaChat();
 
   const isActive = (path: string) => pathname === path;
 
@@ -227,6 +227,7 @@ export default function Sidebar() {
             Contact
           </Link>
 
+          {/* Carmen Chat Button */}
           <button
             onClick={() => {
               if (isOpen) {
@@ -236,28 +237,27 @@ export default function Sidebar() {
               }
               closeMobileMenu();
             }}
-            className="block w-full text-left transition-all hover:shadow-md"
+            className="block w-full text-left transition-all"
             style={{
-              marginTop: '24px',
-              background: isOpen ? '#f5f5f5' : 'white',
-              border: '1px solid #e5e5e5',
+              marginTop: '32px',
+              background: 'transparent',
+              border: 'none',
               cursor: 'pointer',
-              borderRadius: '12px',
-              padding: '16px 12px',
-              boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
+              padding: '0'
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <div style={{ position: 'relative', flexShrink: 0 }}>
                 <Image
-                  src="/images/carmen-advisor.jpg"
-                  alt="Carmen"
+                  src="/images/athena-advisor.jpg"
+                  alt="Athena"
                   width={40}
                   height={40}
                   style={{
                     width: '40px',
                     height: '40px',
-                    borderRadius: '50%'
+                    borderRadius: '50%',
+                    objectFit: 'cover'
                   }}
                 />
                 <span style={{
