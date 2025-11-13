@@ -1,0 +1,16 @@
+{
+  "dynamicContent": {
+    "promptFile": "prompts/dynamic-content.md",
+    "model": "claude-opus-4-20250514",
+    "temperature": 1,
+    "maxTokens": 2200,
+    "description": "Generates news insights and intelligence examples for all dynamic content across the site"
+  },
+  "athenaChat": {
+    "promptFile": "prompts/athena-chat.md",
+    "model": "claude-sonnet-4-5-20250929",
+    "temperature": 0.7,
+    "maxTokens": 1024,
+    "description": "Athena chat advisor system prompt and settings"
+  }
+}

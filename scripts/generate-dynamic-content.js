@@ -11,15 +11,22 @@ const __dirname = dirname(__filename);
 // Load environment variables
 dotenv.config({ path: join(__dirname, '..', '.env.local') });
 
+// Load configuration
+const configPath = join(__dirname, 'configs', 'generation-config.json');
+const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const contentConfig = config.dynamicContent;
+
+// Use separate API key for content generation (fallback to main key for backward compatibility)
+const apiKey = process.env.ANTHROPIC_API_KEY_CONTENT || process.env.ANTHROPIC_API_KEY;
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+  apiKey: apiKey,
 });
 
 const parser = new Parser();
 
 // Load the system prompt from markdown file
 function loadPrompt() {
-  const promptPath = join(__dirname, 'content-generation-prompt.md');
+  const promptPath = join(__dirname, contentConfig.promptFile);
   return fs.readFileSync(promptPath, 'utf8');
 }
 
@@ -193,8 +200,9 @@ async function generateContent() {
 
     // 3. Have Claude select the most newsworthy and generate ALL TWELVE pieces
     const response = await anthropic.messages.create({
-      model: 'claude-opus-4-20250514',
-      max_tokens: 2200,
+      model: contentConfig.model,
+      max_tokens: contentConfig.maxTokens,
+      temperature: contentConfig.temperature,
       messages: [{
         role: 'user',
         content: prompt
@@ -257,7 +265,9 @@ async function generateContent() {
         triptychDescription: triptychDescription
       },
       metadata: {
-        model: 'claude-opus-4-20250514',
+        model: contentConfig.model,
+        temperature: contentConfig.temperature,
+        maxTokens: contentConfig.maxTokens,
         headlinesAnalyzed: globalNewsHeadlines.length + businessHeadlines.length + hbrHeadlines.length,
         sources: {
           bbc: bbcHeadlines.length,
@@ -268,7 +278,7 @@ async function generateContent() {
           hbr: hbrHeadlines.length
         },
         generationTimeMs: generationTime,
-        promptFile: 'content-generation-prompt.md'
+        promptFile: contentConfig.promptFile
       },
       fallbackUsed: false
     };
