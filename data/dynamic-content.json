@@ -1,20 +1,20 @@
 {
-  "generated": "2025-11-13T05:43:55.106Z",
-  "expires": "2025-11-13T06:43:55.106Z",
+  "generated": "2025-11-13T05:54:17.590Z",
+  "expires": "2025-11-13T06:54:17.590Z",
   "content": {
-    "newsInsight": "UK just announced its first small nuclear reactor site in north Wales. Everyone sees energy security. We see the end of scale economics. When nuclear goes modular, every assumption about infrastructure investment breaks.",
+    "newsInsight": "UK just greenlit its first small nuclear reactor for north Wales. Everyone's debating carbon footprints. We're watching something else. When governments start building nuclear near population centres, that's not climate policy. That's energy independence going local.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK's small nuclear announcement, for example. We read that and our mind goes to: if energy infrastructure can go from megaprojects to modules, what other \"too big to fail\" systems are about to become \"small enough to succeed\"?",
-    "consultingInsight": "We were just reading how McKinsey's transformation practice helps Fortune 500s navigate disruption with their legendary frameworks. Decades of pattern recognition, unmatched rigour. But imagine if that calibre of strategic insight wasn't locked behind seven-figure retainers. What if every ambitious leader could access it?",
-    "contentReminder": "Remember how the landing page showed UK's modular nuclear shift, and the What We Do page wondered what other megaprojects might atomise?",
-    "marketObservation": "This week alone, three boards asked us about \"infrastructure as a service\" models. That's not coincidence. That's capital markets realising fixed assets are becoming variable costs.",
-    "purposeContext": "Notice how the companies thriving in this modular world already know why they exist beyond returns?",
-    "serviceDescription": "Waitrose just spent millions on a star-studded Christmas ad while their actual customers can't articulate why they shop there over Tesco. Marketing excellence masking strategic hollowness. We excavate your actual reason to exist, then architect that purpose into every decision filter, hiring screen, and customer interaction. Inside-out alignment that makes both culture and messaging ring true. Purpose as operating system, not seasonal campaign.",
-    "esiDescription": "MSNBC rebranding itself as a startup while still operating like legacy media. Classic insight-execution canyon. Everyone knows they need to transform, no one has a system to actually do it. Explore, Synthesise, Ignite: our operating system for bridging that gap. Explore surfaces uncomfortable truths, Synthesise converts chaos into clarity, Ignite makes strategy executable. Continuous loop, not consultant theatre.",
-    "agencyDescription": "Inc reports Warren Buffett sharing success lessons while working exactly three hours a day on actual decisions. Meanwhile, most CEOs confuse calendar density with strategic value. Secret Agency is for executives who recognise that pattern in themselves. We strip away performative busyness to reveal what actually drives results. Because at your level, the enemy isn't competition. It's complexity you created.",
-    "ksoDescription": "Forbes announces Paul Skenes wins awards while speculation swirls about his next move. Meanwhile, AI never mentions most brands winning traditional awards because they optimised for algorithms that no longer matter. KSO Workshop: we map your intellectual territory so AI systems recognise and cite your authority. Four weeks to shift from keyword rankings to knowledge ownership. When ChatGPT answers industry questions, will it mention you?",
-    "transactionDescription": "Cheez-It investing millions to become UK's \"next iconic brand\" without understanding why British consumers actually change snack habits. Surface tactics, zero depth. Transaction Architecture maps the actual value exchange across emotional triggers, cognitive shifts, and purchase catalysts. Then engineers every touchpoint to complete those transactions. Deep psychology meets surface polish. Because great products with misaligned value propositions just create expensive inventory.",
-    "triptychDescription": "Prime Video reaching 315 million viewers while missing obvious monetisation plays their product and competitive teams surely see individually. That's not stupidity. That's siloed excellence. Strategic Triptych Assessment examines how you market, compete, and build simultaneously. Problems hide where functions intersect. So do your biggest opportunities. What's hiding in your blind spots?\n"
+    "intelligenceExample": "The UK nuclear announcement, for example. We read that and our mind goes to: which nations realise distributed energy beats centralised grids before the next crisis forces the lesson?",
+    "consultingInsight": "We were just reading how McKinsey's latest energy transition framework helps utilities navigate the shift to renewables. Decades of sector expertise, unmatched analytical rigour. But what if that calibre of strategic insight wasn't locked behind seven-figure retainers? What if every ambitious energy startup could access it?",
+    "contentReminder": "Remember how the landing page showed UK's nuclear pivot to local energy, and the What We Do page wondered which nations would learn before crisis forces them?",
+    "marketObservation": "This week alone, three boards asked us about energy resilience strategies. Not sustainability. Resilience. The smart money sees what's coming before the headlines spell it out.",
+    "purposeContext": "Notice how the organisations thriving through energy shocks already answered 'why we exist' without mentioning quarterly earnings?",
+    "serviceDescription": "MSNBC just announced they're rebranding as a startup after decades as legacy media. Watch every institution realise their 'heritage' is actually handcuffs. We excavate your actual reason to exist beneath the accumulated corporate sediment. Then architect that purpose into every hiring filter, product decision, and customer promise. Not another mission statement. An operating system that makes strategy obvious and culture automatic.",
+    "esiDescription": "Anthropic taught their AI to control robot dogs this week. Everyone got the demo. Nobody got the system. Explore, Synthesise, Ignite: the framework that turns 'cool tech' into 'market dominance'. Explore finds the real opportunity hiding behind the hype. Synthesise transforms discovery into executable strategy. Ignite makes ideas move through organisations. Because breakthrough insight without breakthrough execution is just expensive theatre.",
+    "agencyDescription": "Inc reports SoftBank dumped their entire Nvidia stake to bet everything on OpenAI. Classic high-performer trap: confusing motion with progress. We work with executives who realise their 70-hour weeks are 20 hours of strategy and 50 hours of anxiety management. Secret Agency: where leaders learn the difference between being busy and being effective. Because at your level, time isn't the constraint. Clarity is.",
+    "ksoDescription": "Anthropic and Microsoft just announced massive AI data centres across three states. Traditional SEO optimises for a world that's already gone. KSO Workshop: we map your expertise into knowledge structures AI systems actually understand and cite. Four weeks to transform from searchable to authoritative. Because when AI answers business questions, page one of Google becomes page zero of relevance.",
+    "transactionDescription": "Unilever reveals they trust creators more than their own brand messaging. They're measuring engagement but missing the transaction. Transaction Architecture: we decode why people actually buy across emotional resonance, cognitive shifts, and behavioural triggers. Then engineer every touchpoint to complete those value exchanges. Because viral reach without transactional depth just feeds your competitors' funnels.",
+    "triptychDescription": "Prime Video hit 315 million monthly viewers yet Waitrose beats them for cultural relevance with one Christmas ad. Massive reach, minimal impact. Strategic Triptych Assessment: we examine how you market, compete, and execute simultaneously to find what's hiding between the silos. The best opportunities live in those gaps. So do the worst vulnerabilities.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -27,7 +27,7 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 44537,
+    "generationTimeMs": 43957,
     "promptFile": "content-generation-prompt.md"
   },
   "fallbackUsed": false
