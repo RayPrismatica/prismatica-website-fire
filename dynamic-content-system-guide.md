@@ -1,7 +1,7 @@
 # Prismatica App - Dynamic Content System Guide
 
-> Last Updated: 2025-11-12
-> Status: ✅ FIXED & OPERATIONAL
+> Last Updated: 2025-11-14
+> Status: ✅ UPDATED - 48 HOUR THRESHOLD
 
 ---
 
@@ -69,7 +69,7 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ GITHUB ACTIONS (Every 15 minutes)                           │
+│ GITHUB ACTIONS (Every 6 hours)                              │
 │ .github/workflows/generate-content.yml                      │
 │ • Runs: npm run generate-content                           │
 │ • Checks: git diff data/dynamic-content.json               │
@@ -195,22 +195,22 @@ const isContentStale = content.generated
 - Makes the dynamic content feel alive and worth checking
 - Subtle behavioral nudge that demonstrates "code that thinks"
 
-**2. 70-Minute Cache Validity** (`lib/getDynamicContent.ts:52`)
+**2. 48-Hour Cache Validity** (`lib/getDynamicContent.ts:53`)
 
 ```typescript
 const ageInMinutes = (now.getTime() - generated.getTime()) / 60000;
-if (ageInMinutes > 70) {
+if (ageInMinutes > 2880) { // 48 hours
   return fallbackContent;
 }
 ```
 
-**Purpose:** System reliability - prevents serving stale content
+**Purpose:** System reliability - safety fallback in case GitHub Actions/Vercel systems fail
 
 **Rationale:**
-- Generation runs every 15 minutes
-- 70 minutes = 4 failed generation attempts
-- After 4 failures, serve hardcoded fallback instead of outdated content
-- Keeps content feeling current even when systems fail
+- Generation runs every 6 hours
+- 48 hours = 8 failed generation attempts
+- This is an emergency fallback only - GitHub and Vercel handle normal content updates
+- Prevents serving extremely stale content if systems completely fail
 
 ### Personalized Content Reminder System
 
@@ -442,7 +442,7 @@ name: Generate Dynamic Content
 
 on:
   schedule:
-    - cron: '*/15 * * * *'  # Every 15 minutes
+    - cron: '0 */6 * * *'   # Every 6 hours
   workflow_dispatch:         # Manual trigger available
 
 jobs:
@@ -464,7 +464,7 @@ jobs:
 - `VERCEL_DEPLOY_HOOK` - Webhook URL for triggering deployments
 
 ### Workflow Logic
-1. Runs every 15 minutes automatically
+1. Runs every 6 hours automatically
 2. Generates fresh content using Claude
 3. Only commits if content actually changed
 4. Triggers Vercel rebuild when new content committed
@@ -493,7 +493,7 @@ catch (error) {
 ```typescript
 // In lib/getDynamicContent.ts
 const ageInMinutes = (now - generated) / 60000;
-if (!fs.existsSync(dataPath) || ageInMinutes > 70) {
+if (!fs.existsSync(dataPath) || ageInMinutes > 2880) { // 48 hours
   return fallbackContent;  // Hardcoded defaults
 }
 ```
@@ -507,9 +507,9 @@ catch (error) {
 ```
 
 ### Cache Validity
-- **Generation Interval:** Every 15 minutes
-- **Cache Validity:** 70 minutes (15 + 55 min buffer)
-- **Rationale:** Allows 4 failed generation attempts before serving fallback
+- **Generation Interval:** Every 6 hours
+- **Cache Validity:** 48 hours (6 hours × 8 attempts)
+- **Rationale:** Emergency fallback only - GitHub Actions and Vercel handle normal updates
 
 ---
 
@@ -607,7 +607,7 @@ node -e "console.log((Date.now() - new Date('$(cat data/dynamic-content.json | j
 
 ### Caching Strategy
 - ✅ Single cache location: `/data/dynamic-content.json` ✅ **FIXED**
-- ✅ 70-minute validity window (allows 4 failed attempts)
+- ✅ 48-hour validity window (emergency fallback for system failures)
 - ✅ Always provide fallback content
 - ✅ Track generation metadata (timestamp, sources, model)
 

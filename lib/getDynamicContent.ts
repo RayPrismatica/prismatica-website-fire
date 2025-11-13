@@ -44,12 +44,13 @@ export async function getDynamicContent(): Promise<DynamicContent> {
 
     const cache = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 
-    // Check if cache is still valid (70 minutes)
+    // Check if cache is still valid (48 hours = 2880 minutes)
+    // This is a safety fallback in case GitHub Actions/Vercel systems fail
     const generated = new Date(cache.generated);
     const now = new Date();
     const ageInMinutes = (now.getTime() - generated.getTime()) / 60000;
 
-    if (ageInMinutes > 70) {
+    if (ageInMinutes > 2880) { // 48 hours
       return fallbackContent;
     }
 
