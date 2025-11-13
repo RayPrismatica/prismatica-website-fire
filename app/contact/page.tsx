@@ -7,11 +7,6 @@ import { getDynamicContent } from '@/lib/getDynamicContent';
 export default async function ContactPage() {
   const content = await getDynamicContent();
 
-  // Check if content is 15+ minutes old
-  const isContentStale = content.generated
-    ? (new Date().getTime() - new Date(content.generated).getTime()) / 60000 >= 15
-    : false;
-
   const emailSubject = "Let's talk";
   const emailBody = `Hi Prismatica,
 
@@ -73,13 +68,11 @@ Best,
 
         <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>One more thing</h3>
 
-        <p>The opening paragraph on the landing page and on What We Do changes every 15 minutes.</p>
+        <p>The opening paragraph on the landing page and on What We Do changes every 6 hours.</p>
 
         <UserContentReminder fallbackReminder={content.contentReminder || "Remember how the landing page showed today's news story, and the What We Do page wondered what question immediately came to mind?"} />
 
-        <p style={{ marginTop: '16px' }}>Same story, different angles.</p>
-
-        <p>{isContentStale ? "It's been over 15 minutes since the content updated, so go back now. They're probably showing something completely different." : "But it's only been a few minutes since the content updated. Still probably the same. Check back in 15."}</p>
+        <p style={{ marginTop: '16px' }}>Same story, different angles. But if you come back tomorrow it'll be another event.</p>
 
         <p>It's a sweet piece of code. A GitHub Action runs on schedule. Reads the newsfeeds we read. Sends them to Claude with prompts that encode how we think. Claude picks the most significant story, writes two contextual takes (one for each page), commits the update to our repo. Vercel detects the change. Site rebuilds. New content live.</p>
 

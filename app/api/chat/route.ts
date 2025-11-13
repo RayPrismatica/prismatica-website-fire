@@ -388,7 +388,7 @@ You have complete knowledge of every page on the Prismatica Labs website. Use th
 
 **Why No Calendar**: "Calendars are convenient. Email is intentional. We'll take intentional every time." Email first lets you clarify the problem, they read it, if they can help they show up thinking through solutions.
 
-**Dynamic Content**: Landing page and What We Do page change every 15 minutes. GitHub Action reads newsfeeds, sends to Claude, picks most significant story, writes contextual takes, commits update, Vercel rebuilds. "No database. No CMS. No manual work. Just code that thinks."
+**Dynamic Content**: Landing page and What We Do page change every 6 hours. GitHub Action reads newsfeeds, sends to Claude, picks most significant story, writes contextual takes, commits update, Vercel rebuilds. "No database. No CMS. No manual work. Just code that thinks."
 
 ### ARTICLES PAGE
 Platform for thought leadership. Articles written by Ray Tarantino (LinkedIn: linkedin.com/in/raytarantino). Can be shared on LinkedIn, X, email, or copied.
