@@ -1,23 +1,25 @@
 {
-  "generated": "2025-11-13T20:24:45.539Z",
-  "expires": "2025-11-13T21:24:45.539Z",
+  "generated": "2025-11-13T20:43:51.954Z",
+  "expires": "2025-11-13T21:43:51.954Z",
   "content": {
-    "newsInsight": "UK military survey reveals two-thirds of servicewomen experienced sexualised behaviour. Everyone's shocked. We're not. Any organisation where 90% of leadership is one gender creates this. Physics, not morality.",
+    "newsInsight": "Sara Sharif's murder investigation just exposed how social services, schools, and police all documented warning signs but never connected them. Classic optimisation failure. Everyone perfecting their process while a child dies in the gaps between systems.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The military harassment data, for example. We read that and our mind goes to: which FTSE 100 companies have the same ratio but better lawyers?",
-    "consultingInsight": "We were just reading how McKinsey's transformation frameworks help Fortune 500s navigate cultural change with surgical precision. Decades of pattern recognition distilled into playbooks worth millions. But what if that calibre of insight wasn't locked behind seven-figure minimums? What if every ambitious leader could access it?",
-    "contentReminder": "Remember how the landing page showed military harassment statistics, and the What We Do page wondered which corporations have similar ratios but better NDAs?",
-    "marketObservation": "This week three boards asked us about \"culture transformation\" without mentioning their 90% male leadership teams. The pattern's obvious once you see it.",
-    "purposeContext": "Notice how organisations with harassment scandals never had a clear answer to \"why do we exist beyond hierarchy and power?\"",
-    "serviceDescription": "Burberry just returned to growth by remembering they're not actually about trenches. Watch every heritage brand realise their \"timeless values\" expired in 2019. We excavate your actual reason to exist, not the museum version, then engineer that truth into every hiring decision, product choice, and customer moment. Purpose as daily operating system. Because authenticity isn't vintage, it's voltage.",
-    "esiDescription": "Disney's TV collapse shows what happens when strategic insights stay trapped in PowerPoints while operations runs last year's playbook. Everyone knew streaming would eat linear TV, nobody built a bridge. Explore, Synthesise, Ignite: our systematic method for closing that knowing-doing gap. Explore surfaces truth, Synthesise makes it actionable, Ignite ensures it actually happens. Not three meetings. One continuous system.",
-    "agencyDescription": "Inc reports top CEOs struggle with feedback because they've optimised for being right, not learning. Familiar? We work with executives who've won so much they forgot how to grow. Secret Agency: where accomplished leaders relearn the difference between performing leadership and actual leading. Less inbox heroics, more strategic silence. Because your 14-hour days aren't impressive, they're a systems failure.",
-    "ksoDescription": "Fast Company reveals Trump's admin hasn't implemented Grok on their flagship AI app while AI search quietly eats Google's lunch. Your SEO team's still fighting yesterday's war. KSO Workshop: four weeks to map your expertise into knowledge structures AI actually understands and cites. We transform you from searchable to quotable. Because when AI answers questions, page rankings become archaeological artifacts.",
-    "transactionDescription": "Vitality smashed life insurance targets by discovering people buy security, not statistics. They mapped emotional territory competitors ignored. Transaction Architecture: we decode your value exchange across three dimensions - what moves hearts, minds, and mice. Then orchestrate every touchpoint to complete those transactions. Deep resonance meets surface excellence. Because great products with misaligned value architecture just create confused prospects.",
-    "triptychDescription": "Premier Foods expanded successfully by first understanding how brand, product, and distribution actually connect. Most companies optimise each function while missing the system. Strategic Triptych Assessment: we examine how you market, compete, and execute simultaneously. Problems hide where functions meet. So do breakthrough opportunities. One integrated diagnosis beats three separate consultants every time.\n"
+    "intelligenceExample": "The Sara Sharif case, for example. We read that and our mind goes to: how many corporate disasters follow the same pattern of everyone documenting problems in their silo while catastrophe builds in the blind spots?",
+    "consultingInsight": "We were just reading how McKinsey's transformation frameworks help Fortune 500s navigate complexity with surgical precision. Decades of pattern recognition distilled into systematic approaches. But what if that calibre of strategic thinking wasn't reserved for seven-figure engagements? What if every ambitious leader could access it?",
+    "contentReminder": "Remember how the landing page showed Sara Sharif's systemic failures, and the What We Do page wondered about corporate disasters hiding in organisational blind spots?",
+    "marketObservation": "This week we're watching companies announce \"transformation initiatives\" while their best people document problems no one connects. That's the pattern before every preventable crisis.",
+    "purposeContext": "Notice how organisations in crisis can list their values but can't explain why those values failed to prevent disaster?",
+    "serviceDescription": "Burberry just celebrated brand desirability gains after two years of decline, but Premier Foods is crushing it by knowing exactly why they exist beyond shareholder returns. Watch the pattern: companies with decorative purpose statements struggle while those with operational purpose thrive. We excavate your actual reason for existing, then engineer it into every hiring decision, product choice, and customer interaction. Purpose as decision filter, not conference room poster.",
+    "esiDescription": "Disney's TV business is collapsing while they optimize streaming metrics, missing how the entire value exchange shifted. Classic insight-execution gap. Explore, Synthesise, Ignite: our system for connecting discovery to action. Explore reveals uncomfortable truths, Synthesise turns chaos into clarity, Ignite makes strategy actually happen. Not three consulting phases. One continuous loop.",
+    "agencyDescription": "Inc reports CEOs struggling with performance management because they're optimising for activity not outcomes. Familiar? We work with executives drowning in 70-hour weeks that produce 40 hours of value. Secret Agency: where high-performers learn the difference between motion and progress. Because being busy stopped correlating with being effective somewhere around your third promotion.",
+    "ksoDescription": "Fast Company reports Trump administration hasn't implemented Grok on their AI platform while businesses still chase Google rankings. Meanwhile, AI search grows 40% quarterly. KSO Workshop: we map your knowledge territory so AI systems cite you as the authority. Four weeks to shift from searchable to essential. Because when ChatGPT answers industry questions, your SEO strategy becomes archaeology.",
+    "transactionDescription": "Vitality smashed sales targets by discovering people don't buy life insurance, they buy permission to stop worrying. Every insurer sells coverage, Vitality sold psychological relief. Transaction Architecture: we map the actual value exchange across emotional, cognitive, and behavioural dimensions. Then design every touchpoint to complete that exchange. Deep psychological truth meets elegant user journey.",
+    "triptychDescription": "Verizon cutting 15,000 jobs while restructuring reveals what happens when strategy, operations, and market position drift apart unnoticed. Each function optimised perfectly. The system still failed. Strategic Triptych Assessment: simultaneous examination of how you market, compete, and build. Problems hide where functions intersect. So do breakthrough opportunities. See the whole system at once."
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
+    "temperature": 1,
+    "maxTokens": 2200,
     "headlinesAnalyzed": 38,
     "sources": {
       "bbc": 8,
@@ -27,8 +29,8 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 42745,
-    "promptFile": "content-generation-prompt.md"
+    "generationTimeMs": 43072,
+    "promptFile": "prompts/dynamic-content.md"
   },
   "fallbackUsed": false
 }
