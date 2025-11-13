@@ -2,10 +2,23 @@
 
 import { useEffect, useState } from 'react';
 
-export default function DynamicServiceDescription() {
-  const [description, setDescription] = useState<string>('');
+interface DynamicServiceDescriptionProps {
+  content?: string;
+}
+
+export default function DynamicServiceDescription({ content: propContent }: DynamicServiceDescriptionProps = {}) {
+  const fallback = "Dissect your business from its root reason to exist. Then cascade that purpose through every system and touchpoint. Inside-out authenticity that strengthens both internal culture and external message. Purpose as operating system, not marketing tagline.";
+
+  const [description, setDescription] = useState<string>(propContent || '');
 
   useEffect(() => {
+    // If content provided as prop, use it immediately
+    if (propContent) {
+      setDescription(propContent);
+      return;
+    }
+
+    // Otherwise fetch
     async function loadContent() {
       try {
         const response = await fetch('/api/dynamic-content');
@@ -13,16 +26,14 @@ export default function DynamicServiceDescription() {
         if (data.serviceDescription) {
           setDescription(data.serviceDescription);
         } else {
-          // Fallback if field doesn't exist
-          setDescription("Dissect your business from its root reason to exist. Then cascade that purpose through every system and touchpoint. Inside-out authenticity that strengthens both internal culture and external message. Purpose as operating system, not marketing tagline.");
+          setDescription(fallback);
         }
       } catch (error) {
-        // Fallback content
-        setDescription("Dissect your business from its root reason to exist. Then cascade that purpose through every system and touchpoint. Inside-out authenticity that strengthens both internal culture and external message. Purpose as operating system, not marketing tagline.");
+        setDescription(fallback);
       }
     }
     loadContent();
-  }, []);
+  }, [propContent]);
 
   if (!description) return null;
 

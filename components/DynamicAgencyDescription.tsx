@@ -2,10 +2,23 @@
 
 import { useEffect, useState } from 'react';
 
-export default function DynamicAgencyDescription() {
-  const [description, setDescription] = useState<string>('');
+interface DynamicAgencyDescriptionProps {
+  content?: string;
+}
+
+export default function DynamicAgencyDescription({ content: propContent }: DynamicAgencyDescriptionProps = {}) {
+  const fallback = "For high-performers who realize their 70-hour weeks produce 40 hours of value. Secret Agency: where executives learn to optimize for impact, not inbox zero. Because busy and effective stopped being the same thing years ago.";
+
+  const [description, setDescription] = useState<string>(propContent || '');
 
   useEffect(() => {
+    // If content provided as prop, use it immediately
+    if (propContent) {
+      setDescription(propContent);
+      return;
+    }
+
+    // Otherwise fetch
     async function loadContent() {
       try {
         const response = await fetch('/api/dynamic-content');
@@ -13,16 +26,14 @@ export default function DynamicAgencyDescription() {
         if (data.agencyDescription) {
           setDescription(data.agencyDescription);
         } else {
-          // Fallback if field doesn't exist
-          setDescription("For high-performers who realize their 70-hour weeks produce 40 hours of value. Secret Agency: where executives learn to optimize for impact, not inbox zero. Because busy and effective stopped being the same thing years ago.");
+          setDescription(fallback);
         }
       } catch (error) {
-        // Fallback content
-        setDescription("For high-performers who realize their 70-hour weeks produce 40 hours of value. Secret Agency: where executives learn to optimize for impact, not inbox zero. Because busy and effective stopped being the same thing years ago.");
+        setDescription(fallback);
       }
     }
     loadContent();
-  }, []);
+  }, [propContent]);
 
   if (!description) return null;
 

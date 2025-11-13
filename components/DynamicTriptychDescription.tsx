@@ -2,10 +2,23 @@
 
 import { useEffect, useState } from 'react';
 
-export default function DynamicTriptychDescription() {
-  const [description, setDescription] = useState<string>('');
+interface DynamicTriptychDescriptionProps {
+  content?: string;
+}
+
+export default function DynamicTriptychDescription({ content: propContent }: DynamicTriptychDescriptionProps = {}) {
+  const fallback = "We examine your business through three lenses simultaneously: how you market, how you compete, how you build. Most problems live in the gaps between these. Most opportunities too.";
+
+  const [description, setDescription] = useState<string>(propContent || '');
 
   useEffect(() => {
+    // If content provided as prop, use it immediately
+    if (propContent) {
+      setDescription(propContent);
+      return;
+    }
+
+    // Otherwise fetch
     async function loadContent() {
       try {
         const response = await fetch('/api/dynamic-content');
@@ -13,15 +26,14 @@ export default function DynamicTriptychDescription() {
         if (data.triptychDescription) {
           setDescription(data.triptychDescription);
         } else {
-          // Fallback if field doesn't exist
+          setDescription(fallback);
         }
       } catch (error) {
-        // Fallback content
-        setDescription("We examine your business through three lenses simultaneously: how you market, how you compete, how you build. Most problems live in the gaps between these. Most opportunities too.");
+        setDescription(fallback);
       }
     }
     loadContent();
-  }, []);
+  }, [propContent]);
 
   if (!description) return null;
 

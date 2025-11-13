@@ -2,10 +2,23 @@
 
 import { useEffect, useState } from 'react';
 
-export default function DynamicKSODescription() {
-  const [description, setDescription] = useState<string>('');
+interface DynamicKSODescriptionProps {
+  content?: string;
+}
+
+export default function DynamicKSODescription({ content: propContent }: DynamicKSODescriptionProps = {}) {
+  const fallback = "The future of discoverability isn't about links. It's about ideas. In a world where AI systems index knowledge instead of URLs, authority belongs to those who own the narrative. We dissect your business DNA and rebuild it as a knowledge graph of authority. Purpose, values, USP, and intellectual territory mapped into content that AI systems recognise, learn from, and cite.";
+
+  const [description, setDescription] = useState<string>(propContent || '');
 
   useEffect(() => {
+    // If content provided as prop, use it immediately
+    if (propContent) {
+      setDescription(propContent);
+      return;
+    }
+
+    // Otherwise fetch
     async function loadContent() {
       try {
         const response = await fetch('/api/dynamic-content');
@@ -13,15 +26,14 @@ export default function DynamicKSODescription() {
         if (data.ksoDescription) {
           setDescription(data.ksoDescription);
         } else {
-          // Fallback if field doesn't exist
+          setDescription(fallback);
         }
       } catch (error) {
-        // Fallback content
-        setDescription("The future of discoverability isn't about links. It's about ideas. In a world where AI systems index knowledge instead of URLs, authority belongs to those who own the narrative. We dissect your business DNA and rebuild it as a knowledge graph of authority. Purpose, values, USP, and intellectual territory mapped into content that AI systems recognise, learn from, and cite.");
+        setDescription(fallback);
       }
     }
     loadContent();
-  }, []);
+  }, [propContent]);
 
   if (!description) return null;
 

@@ -2,10 +2,23 @@
 
 import { useEffect, useState } from 'react';
 
-export default function DynamicTransactionDescription() {
-  const [description, setDescription] = useState<string>('');
+interface DynamicTransactionDescriptionProps {
+  content?: string;
+}
+
+export default function DynamicTransactionDescription({ content: propContent }: DynamicTransactionDescriptionProps = {}) {
+  const fallback = "Vision to transaction to validation. Map how value exchanges actually happen across three dimensions: spiritual (emotional resonance), cognitive (understanding shifts), and tangible (measurable actions). Then design every touchpoint to trigger those transactions. Surface-level appeal meets deep-level truth. Conversion through understanding, not manipulation.";
+
+  const [description, setDescription] = useState<string>(propContent || '');
 
   useEffect(() => {
+    // If content provided as prop, use it immediately
+    if (propContent) {
+      setDescription(propContent);
+      return;
+    }
+
+    // Otherwise fetch
     async function loadContent() {
       try {
         const response = await fetch('/api/dynamic-content');
@@ -13,15 +26,14 @@ export default function DynamicTransactionDescription() {
         if (data.transactionDescription) {
           setDescription(data.transactionDescription);
         } else {
-          // Fallback if field doesn't exist
+          setDescription(fallback);
         }
       } catch (error) {
-        // Fallback content
-        setDescription("Vision to transaction to validation. Map how value exchanges actually happen across three dimensions: spiritual (emotional resonance), cognitive (understanding shifts), and tangible (measurable actions). Then design every touchpoint to trigger those transactions. Surface-level appeal meets deep-level truth. Conversion through understanding, not manipulation.");
+        setDescription(fallback);
       }
     }
     loadContent();
-  }, []);
+  }, [propContent]);
 
   if (!description) return null;
 
