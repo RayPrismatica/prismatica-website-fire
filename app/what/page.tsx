@@ -81,7 +81,7 @@ export default async function WhatWeDoPage() {
 
         <p>We're not a commodity. You're not a crowd. Respect works both ways.</p>
 
-        <p>If you need proof we can think, read what we write. Look at how we built this site. Watch how Carmen responds. That's the proof.</p>
+        <p>If you need proof we can think, read what we write. Look at how we built this site. Watch how Athena, our AI Advisor, responds. That's the proof.</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 

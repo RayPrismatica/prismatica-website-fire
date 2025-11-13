@@ -227,7 +227,7 @@ export default function Sidebar() {
             Contact
           </Link>
 
-          {/* Carmen Chat Button */}
+          {/* Athena Chat Button */}
           <button
             onClick={() => {
               if (isOpen) {
