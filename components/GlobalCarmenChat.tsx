@@ -128,7 +128,7 @@ export default function GlobalCarmenChat() {
                       {/* Header */}
                       <div className="flex flex-shrink-0 justify-center border-b border-gray-200 bg-gradient-to-b from-white to-gray-50/30 shadow-sm relative" style={{ paddingTop: '1.8rem', paddingBottom: '1.8rem', transform: 'translateZ(0)' }}>
                         {/* Desktop Header */}
-                        <div className="hidden md:block w-full max-w-5xl" style={{ paddingLeft: '3rem', paddingRight: '3rem', paddingTop: '1.8rem', paddingBottom: '1.8rem' }}>
+                        <div className="hidden md:block w-full max-w-3xl" style={{ paddingLeft: '3rem', paddingRight: '3rem', paddingTop: '1.8rem', paddingBottom: '1.8rem' }}>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
                               <div className="relative">
@@ -174,7 +174,7 @@ export default function GlobalCarmenChat() {
 
                       {/* Messages Area - Enhanced chat layout */}
                       <div ref={messagesContainerRef} className="flex flex-1 justify-center overflow-y-auto bg-gradient-to-b from-gray-50/30 to-white" style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
-                        <div className="w-full max-w-5xl px-4 md:px-12 lg:px-16" style={{ paddingLeft: 'clamp(1rem, 2vw, 3rem)', paddingRight: 'clamp(1rem, 2vw, 3rem)' }}>
+                        <div className="w-full max-w-3xl px-4 md:px-12 lg:px-16" style={{ paddingLeft: 'clamp(1rem, 2vw, 3rem)', paddingRight: 'clamp(1rem, 2vw, 3rem)' }}>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
                             {messages.map((message, index) => (
                               <div key={index} className="group">
@@ -275,7 +275,7 @@ export default function GlobalCarmenChat() {
 
                       {/* Input Area */}
                       <div className="flex flex-shrink-0 justify-center border-t border-gray-200 bg-gradient-to-t from-gray-50/50 to-white" style={{ paddingTop: '2.5rem', paddingBottom: '2.5rem' }}>
-                        <div className="w-full max-w-5xl" style={{ paddingLeft: 'clamp(1rem, 2vw, 3rem)', paddingRight: 'clamp(1rem, 2vw, 3rem)' }}>
+                        <div className="w-full max-w-3xl" style={{ paddingLeft: 'clamp(1rem, 2vw, 3rem)', paddingRight: 'clamp(1rem, 2vw, 3rem)' }}>
                           <div className="relative">
                             <div className="flex items-center gap-3 rounded-2xl border-2 border-gray-200 bg-white px-5 py-4 shadow-sm transition-all focus-within:border-[#D43225] focus-within:shadow-md">
                               <div className="flex-1 flex items-center">
