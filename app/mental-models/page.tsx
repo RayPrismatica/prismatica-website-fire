@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
+import { Dialog, Transition } from '@headlessui/react';
 
 export default function MentalModelsPage() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
@@ -20,7 +21,7 @@ export default function MentalModelsPage() {
       result: 'Fixed forecasting. Smoothed order flow. Warehouse performance improved 40% without hiring anyone or changing a single process.\n\nThe bottleneck wasn\'t where everyone was looking.'
     },
     'brief-search': {
-      title: 'The Search Paradigm',
+      title: 'The Search Nobody Needed',
       category: 'Product Strategy',
       problem: 'A SaaS company had feature requests stacking up. "Better search" was at the top. Six months of dev time estimated. Significant cost.',
       howWeSawIt: 'We asked why users needed better search. Turns out they didn\'t. They needed better organisation. They were searching because they couldn\'t find things. Different problem entirely.\n\nSearch would have made a broken system slightly more tolerable. We solved the actual problem instead.',
@@ -41,7 +42,7 @@ export default function MentalModelsPage() {
       result: 'Implemented a pre-approval checklist. Nothing reached approval until it met minimum standards. Approvals got faster because the work got better.\n\nThe bottleneck wasn\'t the gate. It was everything before it.'
     },
     'brief-friction': {
-      title: 'Removing Existential Friction',
+      title: 'The £15K Canyon',
       category: 'Customer Experience',
       problem: 'A professional services firm had high consultation show-up rates but low conversion to paid work. "People like talking to us but won\'t commit."',
       howWeSawIt: 'The consultation was free. The next step was £15K. That\'s not a gap. That\'s a canyon.\n\nProspects liked the conversation but couldn\'t justify the jump. They needed a middle step. Something that proved value before the big commitment.',
@@ -55,7 +56,7 @@ export default function MentalModelsPage() {
       result: 'Transformed from retailer to platform. Added forums, guides, expert Q&A. Products became tools within a knowledge ecosystem.\n\nRevenue shifted from margin on goods to platform subscriptions. Customer lifetime value tripled. Amazon became irrelevant to their model.'
     },
     'brief-music': {
-      title: 'Extraordinary in Ordinary Context',
+      title: 'Classical Music for Running',
       category: 'Brand Positioning',
       problem: 'A classical musician was incredibly talented but unknown. "Nobody cares about classical music anymore."',
       howWeSawIt: 'Classical music hadn\'t changed. Context had. People stream music while working, exercising, or commuting. Concert halls felt formal and inaccessible.\n\nThe music was beautiful. The context was wrong. We moved it.',
@@ -73,29 +74,33 @@ export default function MentalModelsPage() {
   return (
     <PageLayout>
       <section id="how" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>MENTAL MODELS</h2>
+        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>MENTAL <span style={{ borderBottom: '4px solid #D43225' }}>MODELS</span></h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
-        <p>Before we explain how we think, let's show you what we've done.</p>
+        <p>Most consultancies explain their frameworks. We show you what happened when we used them.</p>
 
-        <p>Real problems. Real companies. Real results.</p>
+        <p>Eight problems. Eight different industries. Same way of seeing.</p>
 
-        <h3>Problems We've Thought About</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Problems We've Thought About</h3>
 
         <p style={{ marginBottom: '24px' }}>
-          Each problem is unique. Each required thinking differently. No frameworks. Just intelligence applied to specific situations.
+          Details are vague by design. Not just NDAs. We don't trade client specifics for marketing material.
+        </p>
+
+        <p style={{ marginBottom: '24px' }}>
+          What matters: the problem structure, how we saw it, what changed.
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', marginBottom: '32px' }}>
-          <button onClick={() => openModal('brief-warehouse')} className="cta-button" style={{ marginTop: 0 }}>The Warehouse That Wasn't</button>
-          <button onClick={() => openModal('brief-search')} className="cta-button" style={{ marginTop: 0 }}>The Search Paradigm</button>
-          <button onClick={() => openModal('brief-push-pull')} className="cta-button" style={{ marginTop: 0 }}>From Push to Pull</button>
-          <button onClick={() => openModal('brief-bottleneck')} className="cta-button" style={{ marginTop: 0 }}>The Misdiagnosed Bottleneck</button>
-          <button onClick={() => openModal('brief-friction')} className="cta-button" style={{ marginTop: 0 }}>Removing Existential Friction</button>
-          <button onClick={() => openModal('brief-platform')} className="cta-button" style={{ marginTop: 0 }}>From Retail to Platform</button>
-          <button onClick={() => openModal('brief-music')} className="cta-button" style={{ marginTop: 0 }}>Extraordinary in Ordinary Context</button>
-          <button onClick={() => openModal('brief-coaching')} className="cta-button" style={{ marginTop: 0 }}>The Coaching Wave</button>
+          <button onClick={() => openModal('brief-warehouse')} className="cta-button red" style={{ marginTop: 0 }}>The Warehouse That Wasn't</button>
+          <button onClick={() => openModal('brief-search')} className="cta-button red" style={{ marginTop: 0 }}>The Search Nobody Needed</button>
+          <button onClick={() => openModal('brief-push-pull')} className="cta-button red" style={{ marginTop: 0 }}>From Push to Pull</button>
+          <button onClick={() => openModal('brief-bottleneck')} className="cta-button red" style={{ marginTop: 0 }}>The Misdiagnosed Bottleneck</button>
+          <button onClick={() => openModal('brief-friction')} className="cta-button red" style={{ marginTop: 0 }}>The £15K Canyon</button>
+          <button onClick={() => openModal('brief-platform')} className="cta-button red" style={{ marginTop: 0 }}>From Retail to Platform</button>
+          <button onClick={() => openModal('brief-music')} className="cta-button red" style={{ marginTop: 0 }}>Classical Music for Running</button>
+          <button onClick={() => openModal('brief-coaching')} className="cta-button red" style={{ marginTop: 0 }}>The Coaching Wave</button>
         </div>
 
         <p>See? Different industries. Different contexts. Different surface problems.</p>
@@ -108,16 +113,18 @@ export default function MentalModelsPage() {
 
         <p>The details change. The structure doesn't.</p>
 
+        <p>Physics governs reality. So it should govern how we think. Light through a prism reveals what was always there but invisible. That's what we are passionate about. The tangible invisible. That's why we're called Prismatica.</p>
+
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>First Principles</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>First Principles</h3>
 
-        <p>Every problem contains the same components:</p>
+        <p>Strip away the details. Seven components remain:</p>
 
         <div style={{ marginTop: '24px', marginBottom: '24px' }}>
           <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Time</span><br/><span style={{ color: '#666' }}>The window narrows. Momentum builds or dies. Opportunity decays.</span></p>
           <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Actors</span><br/><span style={{ color: '#666' }}>Who can say yes. Who can say no. Who just gets affected.</span></p>
-          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Resources</span><br/><span style={{ color: '#666' }}>What you have to work with. Energy, money, attention, people, materials.</span></p>
+          <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Resources</span><br/><span style={{ color: '#666' }}>What you have to work with. Never enough of what matters.</span></p>
           <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Objectives</span><br/><span style={{ color: '#666' }}>What everyone's actually after. Surprisingly identical across industries.</span></p>
           <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Constraints</span><br/><span style={{ color: '#666' }}>The edges of possibility. Physics, budgets, regulations, human nature.</span></p>
           <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '15px' }}>Information</span><br/><span style={{ color: '#666' }}>What you know, what they know, what nobody knows yet.</span></p>
@@ -126,7 +133,7 @@ export default function MentalModelsPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>Emergent Patterns</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Emergent Patterns</h3>
 
         <p>When parts collide, they form molecules. Structures with mass, direction, momentum. These patterns have velocity. They want to move:</p>
 
@@ -160,34 +167,39 @@ export default function MentalModelsPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3>The Models</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The Models</h3>
 
-        <p>We've built systems to see these parts clearly and move them:</p>
+        <p>Five systems for seeing what's actually happening:</p>
 
         <div style={{ marginTop: '32px', marginBottom: '24px' }}>
-          <div style={{ marginBottom: '24px' }}>
-            <p style={{ marginBottom: '12px', color: '#444' }}>Most companies fight the wrong battle. They add supply when friction is the problem. Remove friction when demand doesn't exist. Build features when distribution is broken. Stop guessing. Map the forces. Fix what's actually stuck.</p>
-            <Link href="/triptych" className="cta-button orange" style={{ marginTop: '8px' }}>Triptych</Link>
+          <div style={{ marginBottom: '32px' }}>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', color: '#D43225' }}>Demand</h4>
+            <p style={{ marginBottom: '8px', color: '#444' }}>Rolex doesn't sell watches. Peloton doesn't sell bikes. Slack doesn't sell chat. They sell status, tribe membership, professional identity. Your product is the excuse. The demand is primal. Miss this and your marketing is just noise.</p>
+            <Link href="/demand" className="cta-button red" style={{ marginTop: 0 }}>Explore Demand</Link>
           </div>
 
-          <div style={{ marginBottom: '24px' }}>
-            <p style={{ marginBottom: '12px', color: '#444' }}>Rolex doesn't sell watches. Peloton doesn't sell bikes. Slack doesn't sell chat. They sell status, tribe membership, professional identity. Your product is the excuse. The demand is primal. Miss this and your marketing is just noise.</p>
-            <Link href="/demand" className="cta-button orange" style={{ marginTop: '8px' }}>Demand</Link>
+          <div style={{ marginBottom: '32px' }}>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', color: '#D43225' }}>Incentives</h4>
+            <p style={{ marginBottom: '8px', color: '#444' }}>Sales says they want better leads. What they optimize for is easy closes. Product says they want user feedback. What they optimize for is no complaints. Executives say they want innovation. What they optimize for is no surprises. Watch what they do, not what they say.</p>
+            <Link href="/incentives" className="cta-button red" style={{ marginTop: 0 }}>Explore Incentives</Link>
           </div>
 
-          <div style={{ marginBottom: '24px' }}>
-            <p style={{ marginBottom: '12px', color: '#444' }}>Sales says they want better leads. What they optimize for is easy closes. Product says they want user feedback. What they optimize for is no complaints. Executives say they want innovation. What they optimize for is no surprises. Watch what they do, not what they say.</p>
-            <Link href="/incentives" className="cta-button orange" style={{ marginTop: '8px' }}>Incentives</Link>
+          <div style={{ marginBottom: '32px' }}>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', color: '#D43225' }}>Agentic</h4>
+            <p style={{ marginBottom: '8px', color: '#444' }}>Humans need meetings, check-ins, approvals, reassurance. AI doesn't. Give it clear objectives, hard constraints, quality thresholds, and kill switches. Then let it run while you sleep. The bottleneck isn't the AI. It's your need to feel in control.</p>
+            <Link href="/agentic" className="cta-button red" style={{ marginTop: 0 }}>Explore Agentic</Link>
           </div>
 
-          <div style={{ marginBottom: '24px' }}>
-            <p style={{ marginBottom: '12px', color: '#444' }}>Humans need meetings, check-ins, approvals, reassurance. AI doesn't. Give it clear objectives, hard constraints, quality thresholds, and kill switches. Then let it run while you sleep. The bottleneck isn't the AI. It's your need to feel in control.</p>
-            <Link href="/agentic" className="cta-button orange" style={{ marginTop: '8px' }}>Agentic</Link>
+          <div style={{ marginBottom: '32px' }}>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', color: '#D43225' }}>Prismatic</h4>
+            <p style={{ marginBottom: '8px', color: '#444' }}>Every industry thinks it's special. None of them are. Nightclubs and enterprise sales are both gatekeeping. Museums and Netflix are both attention retention. Airports and emergency rooms are both triage under constraints. See structure, not surface, and solutions transfer instantly.</p>
+            <Link href="/prismatic" className="cta-button red" style={{ marginTop: 0 }}>Explore Prismatic</Link>
           </div>
 
-          <div style={{ marginBottom: '24px' }}>
-            <p style={{ marginBottom: '12px', color: '#444' }}>Every industry thinks it's special. None of them are. Nightclubs and enterprise sales are both gatekeeping. Museums and Netflix are both attention retention. Airports and emergency rooms are both triage under constraints. See structure, not surface, and solutions transfer instantly.</p>
-            <Link href="/prismatic" className="cta-button orange" style={{ marginTop: '8px' }}>Prismatic</Link>
+          <div style={{ marginBottom: '32px' }}>
+            <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', color: '#D43225' }}>Triptych</h4>
+            <p style={{ marginBottom: '8px', color: '#444' }}>Most companies fight the wrong battle. They add supply when friction is the problem. Remove friction when demand doesn't exist. Build features when distribution is broken. Stop guessing. Map the forces. Fix what's actually stuck.</p>
+            <Link href="/triptych" className="cta-button red" style={{ marginTop: 0 }}>Explore Triptych</Link>
           </div>
         </div>
 
@@ -201,56 +213,104 @@ export default function MentalModelsPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p>Got a problem that needs solving? Let's apply these models to your situation.</p>
+        <p>Ready to see the structure in your problem?</p>
 
-        <Link href="/contact" className="cta-button red">Reach Out</Link>
+        <Link href="/contact" className="cta-button red">Let's Talk</Link>
       </section>
 
       {/* Brief Modal */}
-      {activeModal && briefs[activeModal] && (
-        <div className="modal-overlay" onClick={() => setActiveModal(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setActiveModal(null)}
-              style={{
-                position: 'absolute',
-                top: '16px',
-                right: '16px',
-                background: 'none',
-                border: 'none',
-                fontSize: '24px',
-                cursor: 'pointer',
-                color: '#666',
-                padding: '4px 8px',
-                lineHeight: 1
-              }}
+      <Transition appear show={activeModal !== null} as={Fragment}>
+        <Dialog as="div" className="modal active" onClose={() => setActiveModal(null)}>
+          {/* Backdrop */}
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-200"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-150"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div
+              className="fixed inset-0 z-[1000]"
+              style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)' }}
+            />
+          </Transition.Child>
+
+          {/* Modal Container */}
+          <div className="fixed inset-0 z-[1000] flex items-center justify-center p-5">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 translate-y-4"
+              enterTo="opacity-100 translate-y-0"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-4"
             >
-              ×
-            </button>
+              <Dialog.Panel
+                className="modal-content"
+                style={{
+                  backgroundColor: '#fafafa',
+                  padding: '48px',
+                  borderRadius: '8px',
+                  maxWidth: '700px',
+                  width: '100%',
+                  maxHeight: '90vh',
+                  overflowY: 'auto',
+                  position: 'relative',
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setActiveModal(null)}
+                  style={{
+                    position: 'absolute',
+                    top: '16px',
+                    right: '16px',
+                    background: 'none',
+                    border: 'none',
+                    fontSize: '24px',
+                    cursor: 'pointer',
+                    color: '#666',
+                    padding: '4px 8px',
+                    lineHeight: 1
+                  }}
+                >
+                  ×
+                </button>
 
-            <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
-              {briefs[activeModal].category}
-            </div>
+                {activeModal && briefs[activeModal] && (
+                  <>
+                    <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', color: '#666', textTransform: 'uppercase', marginBottom: '8px' }}>
+                      {briefs[activeModal].category}
+                    </div>
 
-            <h3 style={{ marginTop: 0, marginBottom: '24px', fontSize: '24px' }}>{briefs[activeModal].title}</h3>
+                    <Dialog.Title as="h3" style={{ marginTop: 0, marginBottom: '24px', fontSize: '24px' }}>
+                      {briefs[activeModal].title}
+                    </Dialog.Title>
 
-            <div style={{ marginBottom: '24px' }}>
-              <h4 style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: '#666', marginBottom: '8px' }}>The Problem</h4>
-              <p style={{ whiteSpace: 'pre-line' }}>{briefs[activeModal].problem}</p>
-            </div>
+                    <div style={{ marginBottom: '24px' }}>
+                      <h4 style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: '#666', marginBottom: '8px' }}>The Problem</h4>
+                      <p style={{ whiteSpace: 'pre-line' }}>{briefs[activeModal].problem}</p>
+                    </div>
 
-            <div style={{ marginBottom: '24px' }}>
-              <h4 style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: '#666', marginBottom: '8px' }}>How We Saw It</h4>
-              <p style={{ whiteSpace: 'pre-line' }}>{briefs[activeModal].howWeSawIt}</p>
-            </div>
+                    <div style={{ marginBottom: '24px' }}>
+                      <h4 style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: '#666', marginBottom: '8px' }}>How We Saw It</h4>
+                      <p style={{ whiteSpace: 'pre-line' }}>{briefs[activeModal].howWeSawIt}</p>
+                    </div>
 
-            <div>
-              <h4 style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: '#666', marginBottom: '8px' }}>The Result</h4>
-              <p style={{ whiteSpace: 'pre-line' }}>{briefs[activeModal].result}</p>
-            </div>
+                    <div>
+                      <h4 style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: '#666', marginBottom: '8px' }}>The Result</h4>
+                      <p style={{ whiteSpace: 'pre-line' }}>{briefs[activeModal].result}</p>
+                    </div>
+                  </>
+                )}
+              </Dialog.Panel>
+            </Transition.Child>
           </div>
-        </div>
-      )}
+        </Dialog>
+      </Transition>
     </PageLayout>
   );
 }

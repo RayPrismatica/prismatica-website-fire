@@ -1,66 +1,65 @@
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
+import ModelNav from '@/components/ModelNav';
 
 export default function TriptychPage() {
   return (
     <PageLayout>
       <section id="triptych" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>TRIPTYCH</h2>
+        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>MENTAL <span style={{ borderBottom: '4px solid #D43225' }}>MODELS</span></h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
-        <p>Three forces. One system. No boundaries.</p>
+        <ModelNav currentModel="triptych" />
 
+        <p>Marketing is how you're found. Technology is how you deliver. Game theory is how you win.</p>
+
+        <p>Most companies separate these into departments. Different budgets. Different leaders. Different meetings.</p>
+
+        <p>The boundaries were always fake.</p>
+
+        <h3>The Reversal</h3>
         <p>Everyone else divides to conquer. We unite to understand.</p>
 
-        <p>Marketing is how you're found. Technology is how you deliver. Game theory is how you win. Separate them and you get corporate theatre. Unite them and you get unfair advantages.</p>
+        <p>Marketing without technology is noise. Technology without strategy is toys. Strategy without execution is expensive thinking.</p>
 
-        <p>The boundaries were always fake anyway.</p>
-
-        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
+        <p>Separate them and you get corporate theatre. Unite them and you get unfair advantages.</p>
 
         <h3>Marketing</h3>
-        <p>Marketing is the space between who you are and who knows you exist. Stories made wisdom portable. Symbols made belonging visible. Money made value exchangeable. We're working on making truth profitable.</p>
+        <p>Marketing is the space between who you are and who knows you exist.</p>
 
-        <p>Stories that reach the right people at the right time. Not spray and pray. Not growth hacking. Just clear communication that respects intelligence and accelerates decisions.</p>
+        <p>Not spray and pray. Not growth hacking. Clear communication that respects intelligence and accelerates decisions.</p>
 
-        <p>The only rule that matters: Meet people where they are, learn what moves them, then trigger the change they're already considering. That's not marketing. That's respect with a business model.</p>
-
-        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
+        <p>Meet people where they are, learn what moves them, then trigger the change they're already considering.</p>
 
         <h3>Technology</h3>
-        <p>Technology is anything that makes impossible things boring. Writing made memory optional. Wheels made distance negotiable. Internet made geography irrelevant. We're working on making complexity invisible.</p>
+        <p>Technology is anything that makes impossible things boring.</p>
 
-        <p>We build tomorrow's solutions with today's constraints. Innovation isn't about what's possible, it's about what's useful. Every line of code serves the strategy. Every feature serves a purpose.</p>
+        <p>Innovation isn't about what's possible. It's about what's useful. Every line of code serves the strategy. Every feature serves a purpose.</p>
 
-        <p>The only rule that matters: When given the choice between using humans to improve technology or technology to improve being human, choose human. Every time. That's not idealism. That's sustainable business.</p>
-
-        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
+        <p>When given the choice between using humans to improve technology or technology to improve being human, choose human. Every time.</p>
 
         <h3>Game Theory</h3>
-        <p>Game theory is how finite beings navigate infinite possibilities. War made strategy necessary. Trade made trust profitable. Democracy made consensus valuable. Internet made reputation everything. We're working on making competition collaborative.</p>
+        <p>Game theory is how finite beings navigate infinite possibilities.</p>
 
-        <p>Markets are games. People are players. We think three moves ahead because everyone else is looking at their shoes. We map real behaviour, not wishful thinking. We hunt for patterns in chaos.</p>
+        <p>Markets are games. People are players. We think three moves ahead because everyone else is looking at their shoes.</p>
 
-        <p>The only rule that matters: Every decision creates the next game. Know what game you're playing. Know what game they think they're playing. Play the game that hasn't started yet.</p>
+        <p>Every decision creates the next game. Know what game you're playing. Know what game they think they're playing. Play the game that hasn't started yet.</p>
 
-        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
+        <h3>What Changes</h3>
+        <p>When all three work as one system, everything aligns.</p>
 
-        <p>The convergence is where the magic lives.</p>
-
-        <p>Marketing without technology is just noise. Technology without strategy is just toys. Strategy without execution is just expensive thinking.</p>
-
-        <p>When all three work as one system, you get something rare: Solutions that actually work.</p>
-
-        <p>Not because they're clever. Not because they're beautiful. Because they understand how the world actually operates, not how we wish it would.</p>
+        <p>Marketing messages that actually convert because technology delivers on the promise and game theory predicts the competitive response. Products that scale because marketing creates pull and strategy creates moats. Strategies that execute because technology enables them and marketing funds them.</p>
 
         <p>This isn't interdisciplinary. It's anti-disciplinary.</p>
 
+        <p>Solutions that actually work. Not because they're clever. Because they understand how the world operates.</p>
+
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p>Ready to stop separating what should never be divided? Let's build something unified.</p>
+        <p>Ready to stop dividing what should never be separated?</p>
 
-        <Link href="/contact" className="cta-button red">Reach Out</Link>
+        <Link href="/contact" className="cta-button red">Let's Talk</Link>
       </section>
     </PageLayout>
   );

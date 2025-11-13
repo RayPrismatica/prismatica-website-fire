@@ -35,7 +35,7 @@ Best,
   return (
     <PageLayout>
       <section id="contact" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>CONTACT</h2>
+        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}><span style={{ borderBottom: '4px solid #D43225' }}>CONTACT</span></h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
@@ -69,13 +69,9 @@ Best,
 
         <EmailButton mailtoLink={mailtoLink} />
 
-        <p style={{ fontSize: '14px', color: '#666', fontStyle: 'italic', marginBottom: '32px' }}>
-          Noticed this is red? Same as the products page button. <span style={{ color: '#D43225' }}>Red draws the eye.</span> We promised no tricks, so here's one we used twice: big red button right when you're deciding. If it made you want to click, good. You already decided. We just made it easier.
-        </p>
-
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px', color: '#D43225' }}>One more thing</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>One more thing</h3>
 
         <p>The opening paragraph on the landing page and on What We Do changes every 15 minutes.</p>
 

@@ -14,7 +14,7 @@ export default async function WhatWeDoPage() {
     <PageLayout>
       <ContentTracker newsInsight={content.newsInsight} intelligenceExample={content.intelligenceExample} />
       <section id="what" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>WHAT WE DO</h2>
+        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>WHAT WE <span style={{ borderBottom: '4px solid #D43225' }}>DO</span></h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
@@ -33,6 +33,8 @@ export default async function WhatWeDoPage() {
         <p>Brilliant minds. World-class thinking. Trapped in day rates and retainers. Proprietary methodologies you can rent but never own. Frameworks applied FOR you, never shared WITH you.</p>
 
         <p>Every firm guards their thinking like gold. Makes sense. Scarcity creates value.</p>
+
+        <p>Beautiful slides without implementable insights are expensive decoration.</p>
 
         <p>{content.consultingInsight}</p>
 
@@ -60,7 +62,7 @@ export default async function WhatWeDoPage() {
 
         <p>Your strategist pressure-tests an expansion plan. Your product lead reframes a roadblock. Your ops team sees what they're actually solving. No scheduling. No dependencies. Just better questions when the problem demands them.</p>
 
-        <p>Access to 25+ live products. More launching monthly. 30 days to test everything. Cancel anytime for a full refund.</p>
+        <p>Access to 25+ live products. More launching monthly. 30-day trial. No commitment.</p>
 
         <p style={{ fontWeight: 600 }}>£299/month per seat + API credits*</p>
 

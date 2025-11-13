@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Sans, Passion_One } from "next/font/google";
 import "./globals.css";
+import GlobalCarmenChat from "@/components/GlobalCarmenChat";
+import { CarmenChatProvider } from "@/contexts/CarmenChatContext";
 
 const notoSans = Noto_Sans({
   variable: "--font-noto-sans",
@@ -35,7 +37,10 @@ export default function RootLayout({
       <body
         className={`${notoSans.variable} ${passionOne.variable} antialiased`}
       >
-        {children}
+        <CarmenChatProvider>
+          {children}
+          <GlobalCarmenChat />
+        </CarmenChatProvider>
       </body>
     </html>
   );

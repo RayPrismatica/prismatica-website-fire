@@ -1,22 +1,25 @@
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
+import ModelNav from '@/components/ModelNav';
 
 export default function DemandPage() {
   return (
     <PageLayout>
       <section id="demand" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>DEMAND</h2>
+        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>MENTAL <span style={{ borderBottom: '4px solid #D43225' }}>MODELS</span></h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
-        <p>We're obsessed with unearthing what people will actually want, not what they say they want.</p>
+        <ModelNav currentModel="demand" />
 
-        <p>Here's the dynamic most companies refuse to see.</p>
+        <p>What people say they want and what they actually buy are rarely the same thing.</p>
+
+        <p>Most companies build products, then hunt for buyers. That's backwards.</p>
 
         <p>Growth is demand driven. Not supply driven. Not product driven. Not business driven. Demand driven.</p>
 
         <h3>The Reversal</h3>
-        <p>We keep watching companies build products then hunt for buyers. Create systems that serve themselves. Design experiences that fit their processes.</p>
+        <p>Companies create systems that serve themselves. Design experiences that fit their processes. Build what's convenient for them, not what customers actually want.</p>
 
         <p>They have it backward. Completely backward.</p>
 
@@ -42,12 +45,9 @@ export default function DemandPage() {
 
         <p>The view from the other side reveals truths you can't see from inside the building.</p>
 
-        <h3>The Signal Truth</h3>
-        <p>Demand sends signals. Constantly. Clearly. Most companies just aren't listening.</p>
+        <p>Most companies aren't listening to the signals. They're too busy broadcasting their message, too invested in their plan.</p>
 
-        <p>They're too busy broadcasting. Too focused on their message. Too invested in their plan.</p>
-
-        <p>Smart companies listen first, speak second. They read the signals. They follow the data. They adapt to what demand actually is, not what they hoped it would be.</p>
+        <p>Smart companies listen first, speak second.</p>
 
         <h3>The Friction Map</h3>
         <p>Every business has friction. The gap between what customers want and what you deliver.</p>
@@ -58,27 +58,20 @@ export default function DemandPage() {
 
         <p>Because demand flows like water. It takes the path of least resistance. Always.</p>
 
-        <h3>The Elephant Force</h3>
-        <p>Demand is the elephant in the room. Massive. Unmistakable. Unstoppable.</p>
+        <h3>What Changes</h3>
+        <p>Start with demand and everything realigns.</p>
 
-        <p>You can ignore it. Fight it. Wish it were different.</p>
+        <p>Product roadmaps stop chasing features nobody wants. Marketing budget flows to channels that actually convert. Pricing reflects what people will pay, not what you hope they'll pay.</p>
 
-        <p>Or you can study it. Understand it. Ride it.</p>
+        <p>Churn drops. Acquisition costs drop. Lifetime value climbs.</p>
 
-        <h3>The Transformation</h3>
-        <p>When you view your company through demand architecture, everything shifts.</p>
-
-        <p>Product roadmaps change. Priorities realign. Blind spots vanish. Opportunities emerge where none existed.</p>
-
-        <p>This isn't incremental change. It's seeing the system differently.</p>
-
-        <p>Because when demand leads, growth follows.</p>
+        <p>Not because you worked harder. Because you stopped fighting the current.</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p>Want to see your business through demand's eyes? Let's flip the mirror.</p>
+        <p>Ready to stop fighting demand and start riding it?</p>
 
-        <Link href="/contact" className="cta-button red">Reach Out</Link>
+        <Link href="/contact" className="cta-button red">Let's Talk</Link>
       </section>
     </PageLayout>
   );

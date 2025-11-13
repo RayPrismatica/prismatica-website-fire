@@ -5,13 +5,15 @@ export default function WhoWeArePage() {
   return (
     <PageLayout>
       <section id="who" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>WHO WE ARE</h2>
+        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}><span style={{ borderBottom: '4px solid #D43225' }}>WHO</span> WE ARE</h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
         <p>A small team that thinks first and decorates never.</p>
 
         <p>We're not an agency. Agencies have account managers, creative directors, and people whose job is to make you feel important. We have people who do the work.</p>
+
+        <p>We're not a vendor. Vendors deliver what you ordered. We solve what you need.</p>
 
         <p>Founded in London. Operating globally. Small by design, not by accident.</p>
 
@@ -29,6 +31,8 @@ export default function WhoWeArePage() {
         <p>• Testing rather than assuming</p>
         <p>• Building rather than presenting</p>
         <p>• Solving rather than discussing</p>
+
+        <p>Complexity is the job. Clarity is the deliverable.</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 

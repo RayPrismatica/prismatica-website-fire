@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 
 interface EnquiryModalProps {
   serviceName: string;
@@ -157,474 +158,536 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
   };
 
   return (
-    <div
-      className="modal active"
-      style={{
-        display: 'flex',
-        position: 'fixed',
-        zIndex: 1000,
-        left: 0,
-        top: 0,
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        alignItems: 'center',
-        justifyContent: 'center',
-        animation: 'fadeIn 0.2s ease'
-      }}
-      onClick={onClose}
-    >
-      <div
-        className="modal-content"
-        style={{
-          backgroundColor: '#fafafa',
-          padding: '48px',
-          borderRadius: '8px',
-          maxWidth: '600px',
-          width: '100%',
-          height: '750px',
-          maxHeight: '90vh',
-          display: 'flex',
-          flexDirection: 'column',
-          position: 'relative',
-          animation: 'slideUp 0.3s ease'
-        }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <span
-          className="modal-close"
-          style={{
-            position: 'absolute',
-            top: '24px',
-            right: '24px',
-            fontSize: '32px',
-            fontWeight: 300,
-            color: '#666',
-            cursor: 'pointer',
-            lineHeight: 1,
-            transition: 'color 0.2s'
-          }}
-          onClick={onClose}
-        >&times;</span>
+    <Transition appear show={true} as={Fragment}>
+      <Dialog as="div" className="modal active" onClose={onClose}>
+        {/* Backdrop */}
+        <Transition.Child
+          as={Fragment}
+          enter="ease-out duration-200"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in duration-150"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div
+            className="fixed inset-0 z-[1000]"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)' }}
+          />
+        </Transition.Child>
 
-        <div style={{ marginBottom: '24px' }}>
-          <h3 style={{ fontFamily: '"Passion One", sans-serif', fontSize: '32px', marginTop: 0, marginBottom: '8px' }}>
-            {serviceName}
-          </h3>
-          {currentStep < 4 && (
-            <p style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', color: '#999', marginBottom: 0 }}>
-              Step {currentStep} of 3
-            </p>
-          )}
-        </div>
-
-        <div style={{ flex: 1, overflowY: 'auto', minHeight: 0, marginBottom: '20px' }}>
-
-          {/* Step 1: Deadline */}
-          {currentStep === 1 && (
-            <div>
-              <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '16px' }}>
-                When do you need results by?
-              </p>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '16px' }}>
-                <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-                  <input
-                    type="radio"
-                    name="deadline"
-                    value="asap"
-                    checked={formData.deadlineOption === 'asap'}
-                    onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
-                    style={{ marginRight: '8px' }}
-                  />
-                  <span style={{ fontSize: '14px' }}>ASAP (as soon as possible)</span>
-                </label>
-
-                <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-                  <input
-                    type="radio"
-                    name="deadline"
-                    value="end-of-month"
-                    checked={formData.deadlineOption === 'end-of-month'}
-                    onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
-                    style={{ marginRight: '8px' }}
-                  />
-                  <span style={{ fontSize: '14px' }}>End of this month</span>
-                </label>
-
-                <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-                  <input
-                    type="radio"
-                    name="deadline"
-                    value="within-3-months"
-                    checked={formData.deadlineOption === 'within-3-months'}
-                    onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
-                    style={{ marginRight: '8px' }}
-                  />
-                  <span style={{ fontSize: '14px' }}>Within 3 months</span>
-                </label>
-
-                <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-                  <input
-                    type="radio"
-                    name="deadline"
-                    value="specific"
-                    checked={formData.deadlineOption === 'specific'}
-                    onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
-                    style={{ marginRight: '8px' }}
-                  />
-                  <span style={{ fontSize: '14px' }}>Specific deadline:</span>
-                </label>
-              </div>
-
-              {/* Fixed date display area */}
-              {formData.deadlineOption === 'specific' ? (
-                <input
-                  type="date"
-                  value={formData.specificDeadline}
-                  onChange={(e) => setFormData({ ...formData, specificDeadline: e.target.value })}
-                  placeholder="Select a date"
-                  style={{
-                    padding: '8px 12px',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                    fontSize: '14px',
-                    width: '100%',
-                    marginBottom: '16px',
-                    boxSizing: 'border-box'
-                  }}
-                />
-              ) : (
-                <div style={{
-                  padding: '8px 12px',
-                  background: '#f5f5f5',
-                  borderRadius: '4px',
-                  fontSize: '13px',
+        {/* Modal Container */}
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center">
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0 translate-y-4"
+            enterTo="opacity-100 translate-y-0"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100 translate-y-0"
+            leaveTo="opacity-0 translate-y-4"
+          >
+            <Dialog.Panel
+              className="modal-content"
+              style={{
+                backgroundColor: '#fafafa',
+                padding: '48px',
+                borderRadius: '8px',
+                maxWidth: '600px',
+                width: '100%',
+                height: '750px',
+                maxHeight: '90vh',
+                display: 'flex',
+                flexDirection: 'column',
+                position: 'relative',
+              }}
+            >
+              <button
+                type="button"
+                className="modal-close"
+                style={{
+                  position: 'absolute',
+                  top: '24px',
+                  right: '24px',
+                  fontSize: '32px',
+                  fontWeight: 300,
                   color: '#666',
-                  marginBottom: '16px',
-                  minHeight: '40px',
-                  display: 'flex',
-                  alignItems: 'center'
-                }}>
-                  {formData.deadlineOption === 'asap' && (
-                    <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getTime() + (serviceDurationWeeks + 1) * 7 * 24 * 60 * 60 * 1000))}</strong></>
-                  )}
-                  {formData.deadlineOption === 'end-of-month' && (
-                    <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0))}</strong></>
-                  )}
-                  {formData.deadlineOption === 'within-3-months' && (
-                    <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getTime() + 90 * 24 * 60 * 60 * 1000))}</strong></>
-                  )}
-                </div>
-              )}
+                  cursor: 'pointer',
+                  lineHeight: 1,
+                  transition: 'color 0.2s',
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                }}
+                onClick={onClose}
+              >
+                &times;
+              </button>
 
-              {calculatedStartDate && (
-                <div style={{
-                  padding: '12px 16px',
-                  background: isFeasible ? '#f0fdf4' : '#fef2f2',
-                  border: `1px solid ${isFeasible ? '#86efac' : '#fca5a5'}`,
-                  borderRadius: '6px',
-                  minHeight: '68px',
-                  display: 'flex',
-                  alignItems: 'center'
-                }}>
-                  <p style={{ fontSize: '13px', lineHeight: '1.6', margin: 0 }}>
-                    {getTimelineMessage()}
+              <div style={{ marginBottom: '24px' }}>
+                <Dialog.Title
+                  as="h3"
+                  style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, marginTop: 0, marginBottom: '8px', textTransform: 'uppercase' }}
+                >
+                  {serviceName.replace(/-/g, ' ')}
+                </Dialog.Title>
+                {currentStep < 4 && (
+                  <p style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', color: '#999', marginBottom: 0 }}>
+                    Step {currentStep} of 3
                   </p>
-                </div>
-              )}
-            </div>
-          )}
+                )}
+              </div>
 
-          {/* Step 2: Details */}
-          {currentStep === 2 && (
-            <div>
-              <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '16px' }}>
-                Your details
-              </p>
+              <div style={{ flex: 1, overflowY: 'auto', minHeight: 0, marginBottom: '20px' }}>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '20px' }}>
-                <div>
-                  <label style={{ fontSize: '13px', fontWeight: 600, marginBottom: '4px', display: 'block' }}>
-                    Your name *
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    autoComplete="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="John Smith"
-                    style={{
-                      width: '100%',
-                      padding: '10px 12px',
-                      border: '1px solid #ddd',
-                      borderRadius: '4px',
-                      fontSize: '14px',
-                      boxSizing: 'border-box'
-                    }}
-                  />
-                </div>
+                {/* Step 1: Deadline */}
+                {currentStep === 1 && (
+                  <div>
+                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '16px' }}>
+                      When do you need results by?
+                    </p>
 
-                <div>
-                  <label style={{ fontSize: '13px', fontWeight: 600, marginBottom: '4px', display: 'block' }}>
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    autoComplete="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="john@company.com"
-                    style={{
-                      width: '100%',
-                      padding: '10px 12px',
-                      border: '1px solid #ddd',
-                      borderRadius: '4px',
-                      fontSize: '14px',
-                      boxSizing: 'border-box'
-                    }}
-                  />
-                </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '16px' }}>
+                      <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                        <input
+                          type="radio"
+                          name="deadline"
+                          value="asap"
+                          checked={formData.deadlineOption === 'asap'}
+                          onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
+                          style={{ marginRight: '8px' }}
+                        />
+                        <span style={{ fontSize: '14px' }}>ASAP (as soon as possible)</span>
+                      </label>
 
-                <div>
-                  <label style={{ fontSize: '13px', fontWeight: 600, marginBottom: '4px', display: 'block' }}>
-                    Company (optional)
-                  </label>
-                  <input
-                    type="text"
-                    name="organization"
-                    autoComplete="organization"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    placeholder="Acme Inc"
-                    style={{
-                      width: '100%',
-                      padding: '10px 12px',
-                      border: '1px solid #ddd',
-                      borderRadius: '4px',
-                      fontSize: '14px',
-                      boxSizing: 'border-box'
-                    }}
-                  />
-                </div>
+                      <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                        <input
+                          type="radio"
+                          name="deadline"
+                          value="end-of-month"
+                          checked={formData.deadlineOption === 'end-of-month'}
+                          onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
+                          style={{ marginRight: '8px' }}
+                        />
+                        <span style={{ fontSize: '14px' }}>End of this month</span>
+                      </label>
 
-                <div>
-                  <label style={{ fontSize: '13px', fontWeight: 600, marginBottom: '8px', display: 'block' }}>
-                    Special terms (if applicable)
-                  </label>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '14px' }}>
+                      <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                        <input
+                          type="radio"
+                          name="deadline"
+                          value="within-3-months"
+                          checked={formData.deadlineOption === 'within-3-months'}
+                          onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
+                          style={{ marginRight: '8px' }}
+                        />
+                        <span style={{ fontSize: '14px' }}>Within 3 months</span>
+                      </label>
+
+                      <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                        <input
+                          type="radio"
+                          name="deadline"
+                          value="specific"
+                          checked={formData.deadlineOption === 'specific'}
+                          onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
+                          style={{ marginRight: '8px' }}
+                        />
+                        <span style={{ fontSize: '14px' }}>Specific deadline:</span>
+                      </label>
+                    </div>
+
+                    {/* Fixed date display area */}
+                    {formData.deadlineOption === 'specific' ? (
                       <input
-                        type="checkbox"
-                        checked={formData.isNGO}
-                        onChange={(e) => setFormData({ ...formData, isNGO: e.target.checked })}
-                        style={{ marginRight: '8px' }}
+                        type="date"
+                        value={formData.specificDeadline}
+                        onChange={(e) => setFormData({ ...formData, specificDeadline: e.target.value })}
+                        placeholder="Select a date"
+                        style={{
+                          padding: '8px 12px',
+                          border: '1px solid #ddd',
+                          borderRadius: '4px',
+                          fontSize: '14px',
+                          width: '100%',
+                          marginBottom: '16px',
+                          boxSizing: 'border-box'
+                        }}
                       />
-                      <span>We're an NGO (50% off)</span>
-                    </label>
-                    <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '14px' }}>
-                      <input
-                        type="checkbox"
-                        checked={formData.isBCorp}
-                        onChange={(e) => setFormData({ ...formData, isBCorp: e.target.checked })}
-                        style={{ marginRight: '8px' }}
-                      />
-                      <span>We're a B-Corp (20% off)</span>
-                    </label>
-                    <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '14px' }}>
-                      <input
-                        type="checkbox"
-                        checked={formData.isStartup}
-                        onChange={(e) => setFormData({ ...formData, isStartup: e.target.checked })}
-                        style={{ marginRight: '8px' }}
-                      />
-                      <span>We're a startup (equity deals available)</span>
-                    </label>
+                    ) : (
+                      <div style={{
+                        padding: '8px 12px',
+                        background: '#f5f5f5',
+                        borderRadius: '4px',
+                        fontSize: '13px',
+                        color: '#666',
+                        marginBottom: '16px',
+                        minHeight: '40px',
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}>
+                        {formData.deadlineOption === 'asap' && (
+                          <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getTime() + (serviceDurationWeeks + 1) * 7 * 24 * 60 * 60 * 1000))}</strong></>
+                        )}
+                        {formData.deadlineOption === 'end-of-month' && (
+                          <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0))}</strong></>
+                        )}
+                        {formData.deadlineOption === 'within-3-months' && (
+                          <>Target deadline: <strong style={{ marginLeft: '4px' }}>{formatDate(new Date(new Date().getTime() + 90 * 24 * 60 * 60 * 1000))}</strong></>
+                        )}
+                      </div>
+                    )}
+
+                    {calculatedStartDate && (
+                      <div style={{
+                        padding: '12px 16px',
+                        background: isFeasible ? '#f0fdf4' : '#fef2f2',
+                        border: `1px solid ${isFeasible ? '#86efac' : '#fca5a5'}`,
+                        borderRadius: '6px',
+                        minHeight: '68px',
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}>
+                        <p style={{ fontSize: '13px', lineHeight: '1.6', margin: 0 }}>
+                          {getTimelineMessage()}
+                        </p>
+                      </div>
+                    )}
                   </div>
-                </div>
+                )}
+
+                {/* Step 2: Details */}
+                {currentStep === 2 && (
+                  <div>
+                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '16px' }}>
+                      Your details
+                    </p>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '20px' }}>
+                      <div>
+                        <label style={{ fontSize: '13px', fontWeight: 600, marginBottom: '4px', display: 'block' }}>
+                          Your name *
+                        </label>
+                        <input
+                          type="text"
+                          name="name"
+                          autoComplete="name"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          placeholder="John Smith"
+                          style={{
+                            width: '100%',
+                            padding: '10px 12px',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px',
+                            fontSize: '14px',
+                            boxSizing: 'border-box'
+                          }}
+                        />
+                      </div>
+
+                      <div>
+                        <label style={{ fontSize: '13px', fontWeight: 600, marginBottom: '4px', display: 'block' }}>
+                          Email *
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          autoComplete="email"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder="john@company.com"
+                          style={{
+                            width: '100%',
+                            padding: '10px 12px',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px',
+                            fontSize: '14px',
+                            boxSizing: 'border-box'
+                          }}
+                        />
+                      </div>
+
+                      <div>
+                        <label style={{ fontSize: '13px', fontWeight: 600, marginBottom: '4px', display: 'block' }}>
+                          Company (optional)
+                        </label>
+                        <input
+                          type="text"
+                          name="organization"
+                          autoComplete="organization"
+                          value={formData.company}
+                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          placeholder="Acme Inc"
+                          style={{
+                            width: '100%',
+                            padding: '10px 12px',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px',
+                            fontSize: '14px',
+                            boxSizing: 'border-box'
+                          }}
+                        />
+                      </div>
+
+                      <div>
+                        <label style={{ fontSize: '13px', fontWeight: 600, marginBottom: '8px', display: 'block' }}>
+                          Special terms (if applicable)
+                        </label>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                          <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '14px' }}>
+                            <input
+                              type="checkbox"
+                              checked={formData.isNGO}
+                              onChange={(e) => setFormData({ ...formData, isNGO: e.target.checked })}
+                              style={{ marginRight: '8px' }}
+                            />
+                            <span>We're an NGO (50% off)</span>
+                          </label>
+                          <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '14px' }}>
+                            <input
+                              type="checkbox"
+                              checked={formData.isBCorp}
+                              onChange={(e) => setFormData({ ...formData, isBCorp: e.target.checked })}
+                              style={{ marginRight: '8px' }}
+                            />
+                            <span>We're a B-Corp (20% off)</span>
+                          </label>
+                          <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '14px' }}>
+                            <input
+                              type="checkbox"
+                              checked={formData.isStartup}
+                              onChange={(e) => setFormData({ ...formData, isStartup: e.target.checked })}
+                              style={{ marginRight: '8px' }}
+                            />
+                            <span>We're a startup (equity deals available)</span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Step 3: Challenge */}
+                {currentStep === 3 && (
+                  <div>
+                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>
+                      What's the challenge?
+                    </p>
+                    <p style={{ fontSize: '13px', color: '#666', marginBottom: '16px' }}>
+                      Don't overthink it - just tell us what's keeping you up at night
+                    </p>
+
+                    <div style={{ marginBottom: '20px' }}>
+                      <textarea
+                        value={formData.challenge}
+                        onChange={(e) => {
+                          if (e.target.value.length <= 200) {
+                            setFormData({ ...formData, challenge: e.target.value });
+                          }
+                        }}
+                        placeholder="Our team sees AI potential everywhere but can't identify clear use cases that would actually generate ROI..."
+                        rows={5}
+                        style={{
+                          width: '100%',
+                          padding: '10px 12px',
+                          border: '1px solid #ddd',
+                          borderRadius: '4px',
+                          fontSize: '14px',
+                          boxSizing: 'border-box',
+                          fontFamily: 'inherit',
+                          resize: 'none'
+                        }}
+                      />
+                      <p style={{ fontSize: '12px', color: '#666', marginTop: '4px', textAlign: 'right' }}>
+                        {formData.challenge.length}/200 characters
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Step 4: Confirmation */}
+                {currentStep === 4 && (
+                  <div style={{ textAlign: 'center', padding: '20px 0' }}>
+                    <div style={{ fontSize: '48px', marginBottom: '16px' }}>✓</div>
+                    <p style={{ fontSize: '18px', fontWeight: 600, marginBottom: '12px' }}>
+                      Got it
+                    </p>
+                    <p style={{ fontSize: '14px', color: '#666', marginBottom: 0 }}>
+                      We'll respond within 24 hours
+                    </p>
+                  </div>
+                )}
               </div>
-            </div>
-          )}
 
-          {/* Step 3: Challenge */}
-          {currentStep === 3 && (
-            <div>
-              <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>
-                What's the challenge?
-              </p>
-              <p style={{ fontSize: '13px', color: '#666', marginBottom: '16px' }}>
-                Don't overthink it - just tell us what's keeping you up at night
-              </p>
+              {/* Fixed footer for buttons */}
+              <div style={{
+                borderTop: '1px solid #e0e0e0',
+                paddingTop: '20px',
+                flexShrink: 0
+              }}>
+                {currentStep === 1 && (
+                  <button
+                    onClick={() => setCurrentStep(2)}
+                    disabled={formData.deadlineOption === 'specific' && !formData.specificDeadline}
+                    style={{
+                      width: '100%',
+                      padding: '8px 0',
+                      background: 'none',
+                      color: '#222',
+                      border: 'none',
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      letterSpacing: '1px',
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      textAlign: 'right',
+                      opacity: (formData.deadlineOption === 'specific' && !formData.specificDeadline) ? 0.5 : 1,
+                      transition: 'color 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!(formData.deadlineOption === 'specific' && !formData.specificDeadline)) {
+                        e.currentTarget.style.color = '#D43225';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = '#222';
+                    }}
+                  >
+                    Continue →
+                  </button>
+                )}
 
-              <div style={{ marginBottom: '20px' }}>
-                <textarea
-                  value={formData.challenge}
-                  onChange={(e) => {
-                    if (e.target.value.length <= 200) {
-                      setFormData({ ...formData, challenge: e.target.value });
-                    }
-                  }}
-                  placeholder="Our team sees AI potential everywhere but can't identify clear use cases that would actually generate ROI..."
-                  rows={5}
-                  style={{
-                    width: '100%',
-                    padding: '10px 12px',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                    fontSize: '14px',
-                    boxSizing: 'border-box',
-                    fontFamily: 'inherit',
-                    resize: 'none'
-                  }}
-                />
-                <p style={{ fontSize: '12px', color: '#666', marginTop: '4px', textAlign: 'right' }}>
-                  {formData.challenge.length}/200 characters
-                </p>
+                {currentStep === 2 && (
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <button
+                      onClick={() => setCurrentStep(1)}
+                      style={{
+                        padding: '8px 0',
+                        background: 'none',
+                        color: '#222',
+                        border: 'none',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        letterSpacing: '1px',
+                        textTransform: 'uppercase',
+                        cursor: 'pointer',
+                        transition: 'color 0.2s'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
+                      onMouseLeave={(e) => e.currentTarget.style.color = '#222'}
+                    >
+                      ← Back
+                    </button>
+                    <button
+                      onClick={() => setCurrentStep(3)}
+                      disabled={!formData.name || !formData.email}
+                      style={{
+                        padding: '8px 0',
+                        background: 'none',
+                        color: '#222',
+                        border: 'none',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        letterSpacing: '1px',
+                        textTransform: 'uppercase',
+                        cursor: 'pointer',
+                        opacity: (!formData.name || !formData.email) ? 0.5 : 1,
+                        transition: 'color 0.2s'
+                      }}
+                      onMouseEnter={(e) => {
+                        if (formData.name && formData.email) {
+                          e.currentTarget.style.color = '#D43225';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = '#222';
+                      }}
+                    >
+                      Continue →
+                    </button>
+                  </div>
+                )}
+
+                {currentStep === 3 && (
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <button
+                      onClick={() => setCurrentStep(2)}
+                      style={{
+                        padding: '8px 0',
+                        background: 'none',
+                        color: '#222',
+                        border: 'none',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        letterSpacing: '1px',
+                        textTransform: 'uppercase',
+                        cursor: 'pointer',
+                        transition: 'color 0.2s'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
+                      onMouseLeave={(e) => e.currentTarget.style.color = '#222'}
+                    >
+                      ← Back
+                    </button>
+                    <button
+                      onClick={handleSubmit}
+                      disabled={!formData.challenge.trim() || isSubmitting}
+                      style={{
+                        padding: '8px 0',
+                        background: 'none',
+                        color: '#222',
+                        border: 'none',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        letterSpacing: '1px',
+                        textTransform: 'uppercase',
+                        cursor: 'pointer',
+                        opacity: (!formData.challenge.trim() || isSubmitting) ? 0.5 : 1,
+                        transition: 'color 0.2s'
+                      }}
+                      onMouseEnter={(e) => {
+                        if (formData.challenge.trim() && !isSubmitting) {
+                          e.currentTarget.style.color = '#D43225';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = '#222';
+                      }}
+                    >
+                      {isSubmitting ? 'Sending...' : 'Send enquiry →'}
+                    </button>
+                  </div>
+                )}
+
+                {currentStep === 4 && (
+                  <button
+                    onClick={onClose}
+                    style={{
+                      width: '100%',
+                      padding: '8px 0',
+                      background: 'none',
+                      color: '#222',
+                      border: 'none',
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      letterSpacing: '1px',
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      textAlign: 'right',
+                      transition: 'color 0.2s'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#222'}
+                  >
+                    Close →
+                  </button>
+                )}
               </div>
-            </div>
-          )}
-
-          {/* Step 4: Confirmation */}
-          {currentStep === 4 && (
-            <div style={{ textAlign: 'center', padding: '20px 0' }}>
-              <div style={{ fontSize: '48px', marginBottom: '16px' }}>✓</div>
-              <p style={{ fontSize: '18px', fontWeight: 600, marginBottom: '12px' }}>
-                Got it
-              </p>
-              <p style={{ fontSize: '14px', color: '#666', marginBottom: 0 }}>
-                We'll respond within 24 hours
-              </p>
-            </div>
-          )}
+            </Dialog.Panel>
+          </Transition.Child>
         </div>
-
-        {/* Fixed footer for buttons */}
-        <div style={{
-          borderTop: '1px solid #e0e0e0',
-          paddingTop: '20px',
-          flexShrink: 0
-        }}>
-          {currentStep === 1 && (
-            <button
-              onClick={() => setCurrentStep(2)}
-              disabled={formData.deadlineOption === 'specific' && !formData.specificDeadline}
-              style={{
-                width: '100%',
-                padding: '12px',
-                background: '#222',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '6px',
-                fontSize: '14px',
-                fontWeight: 600,
-                cursor: 'pointer',
-                opacity: (formData.deadlineOption === 'specific' && !formData.specificDeadline) ? 0.5 : 1
-              }}
-            >
-              Continue →
-            </button>
-          )}
-
-          {currentStep === 2 && (
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button
-                onClick={() => setCurrentStep(1)}
-                style={{
-                  flex: 1,
-                  padding: '12px',
-                  background: '#fff',
-                  color: '#222',
-                  border: '1px solid #ddd',
-                  borderRadius: '6px',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  cursor: 'pointer'
-                }}
-              >
-                ← Back
-              </button>
-              <button
-                onClick={() => setCurrentStep(3)}
-                disabled={!formData.name || !formData.email}
-                style={{
-                  flex: 1,
-                  padding: '12px',
-                  background: '#222',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: '6px',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  opacity: (!formData.name || !formData.email) ? 0.5 : 1
-                }}
-              >
-                Continue →
-              </button>
-            </div>
-          )}
-
-          {currentStep === 3 && (
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button
-                onClick={() => setCurrentStep(2)}
-                style={{
-                  flex: 1,
-                  padding: '12px',
-                  background: '#fff',
-                  color: '#222',
-                  border: '1px solid #ddd',
-                  borderRadius: '6px',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  cursor: 'pointer'
-                }}
-              >
-                ← Back
-              </button>
-              <button
-                onClick={handleSubmit}
-                disabled={!formData.challenge.trim() || isSubmitting}
-                style={{
-                  flex: 1,
-                  padding: '12px',
-                  background: '#222',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: '6px',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  opacity: (!formData.challenge.trim() || isSubmitting) ? 0.5 : 1
-                }}
-              >
-                {isSubmitting ? 'Sending...' : 'Send enquiry →'}
-              </button>
-            </div>
-          )}
-
-          {currentStep === 4 && (
-            <button
-              onClick={onClose}
-              style={{
-                width: '100%',
-                padding: '12px',
-                background: '#222',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '6px',
-                fontSize: '14px',
-                fontWeight: 600,
-                cursor: 'pointer'
-              }}
-            >
-              Close
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
+      </Dialog>
+    </Transition>
   );
 }

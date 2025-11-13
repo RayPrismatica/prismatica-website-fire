@@ -46,7 +46,7 @@ export default function ArticlesPage() {
     return (
       <PageLayout>
         <section id="articles" className="section active">
-          <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>ARTICLES</h2>
+          <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}><span style={{ borderBottom: '4px solid #D43225' }}>ARTICLES</span></h2>
 
           <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
@@ -71,7 +71,7 @@ export default function ArticlesPage() {
                   onMouseLeave={(e) => e.currentTarget.style.borderLeftColor = 'transparent'}
                 >
                   {/* Article Metadata */}
-                  <div style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', color: '#999', textTransform: 'uppercase', letterSpacing: '0.5px', fontWeight: 600 }}>
+                  <div style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '12px', fontSize: '11px', color: '#999', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600, fontFamily: '"Noto Sans", sans-serif' }}>
                     <time>{new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
                     <span>•</span>
                     <span>{article.readTime}</span>
@@ -79,18 +79,20 @@ export default function ArticlesPage() {
 
                   {/* Title */}
                   <h3 style={{
-                    fontSize: '24px',
-                    fontWeight: 600,
+                    fontFamily: '"Noto Sans", sans-serif',
+                    fontSize: '22px',
+                    fontWeight: 700,
                     lineHeight: '1.3',
                     marginBottom: '12px',
-                    color: '#000'
+                    color: '#000',
+                    letterSpacing: '-0.3px'
                   }}>
                     {article.title}
                   </h3>
 
                   {/* Excerpt */}
                   <p style={{
-                    fontSize: '16px',
+                    fontSize: '15px',
                     lineHeight: '1.6',
                     color: '#666',
                     marginBottom: '0'
@@ -134,10 +136,10 @@ export default function ArticlesPage() {
         <div style={{ marginBottom: '48px', maxWidth: '680px' }}>
           <div style={{
             marginBottom: '16px',
-            fontSize: '13px',
+            fontSize: '11px',
             color: '#999',
             textTransform: 'uppercase',
-            letterSpacing: '0.5px',
+            letterSpacing: '1px',
             fontWeight: 600,
             fontFamily: '"Noto Sans", sans-serif'
           }}>

@@ -19,17 +19,13 @@ export default async function HomePage() {
 
         <p>{content.newsInsight}</p>
 
-        <p>We're Prismatica Labs. We solve problems with thinking, not themes.</p>
+        <p>We're Prismatica Labs. We solve problems with thinking, not themes. Then we turned that thinking into products so you don't need us twice.</p>
 
-        <p>The point is... are you solving for the right variable?</p>
-
-        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
-
-        <p>And, we want to work with adults who don't need to be entertained.</p>
-
-        <p>This is a website. It loads fast, tells you what we do. No cognitive candy. No design theatre. No emotional manipulation through carefully crafted user journeys.</p>
+        <p>But the real point is... are you solving for the right variable?</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
+
+        <p>This is a website. It loads fast, tells you what we do. Everything here serves that purpose.</p>
 
         <p>Focus is the only currency that matters. You get it when you remove noise.</p>
 

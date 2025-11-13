@@ -10,7 +10,7 @@ export default function ProductsPage() {
   return (
     <PageLayout>
       <section id="products" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>PRODUCT SUITE</h2>
+        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}><span style={{ borderBottom: '4px solid #D43225' }}>PRODUCT</span> SUITE</h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
@@ -155,10 +155,6 @@ export default function ProductsPage() {
         >
           Check Capacity
         </button>
-
-        <p style={{ fontSize: '14px', color: '#666', fontStyle: 'italic', marginTop: '16px', marginBottom: '32px' }}>
-          Noticed this is red? Same reason as the contact page button. <span style={{ color: '#D43225' }}>Red draws the eye.</span> We promised no tricks, so here's one we used twice: big red button right when you're deciding. If it made you want to click, good. You already decided. We just made it easier.
-        </p>
 
         {modalOpen && <ProductsEnquiryModal onClose={() => setModalOpen(false)} />}
       </section>

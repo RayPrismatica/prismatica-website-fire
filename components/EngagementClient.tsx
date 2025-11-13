@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
 import EnquiryModal from '@/components/EnquiryModal';
-import TrademarkModal from '@/components/TrademarkModal';
 import InlineObservation from '@/components/InlineObservation';
 import DynamicServiceDescription from '@/components/DynamicServiceDescription';
 import DynamicESIDescription from '@/components/DynamicESIDescription';
@@ -50,12 +49,11 @@ export default function EngagementClient({
 }: EngagementClientProps) {
   const [serviceFilter, setServiceFilter] = useState<string>('all');
   const [enquiryModalOpen, setEnquiryModalOpen] = useState<string | null>(null);
-  const [trademarkModalOpen, setTrademarkModalOpen] = useState(false);
 
   return (
     <PageLayout>
       <section id="consulting" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>DIRECT ENGAGEMENT</h2>
+        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}><span style={{ borderBottom: '4px solid #D43225' }}>DIRECT</span> ENGAGEMENT</h2>
 
         <p>We fix things. Then we leave.</p>
 
@@ -821,10 +819,6 @@ export default function EngagementClient({
           basePrice={serviceConfig[enquiryModalOpen].price}
           onClose={() => setEnquiryModalOpen(null)}
         />
-      )}
-
-      {trademarkModalOpen && (
-        <TrademarkModal onClose={() => setTrademarkModalOpen(false)} />
       )}
     </PageLayout>
   );

@@ -1,42 +1,29 @@
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
+import ModelNav from '@/components/ModelNav';
 
 export default function IncentivesPage() {
   return (
     <PageLayout>
       <section id="incentives" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>INCENTIVES</h2>
+        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>MENTAL <span style={{ borderBottom: '4px solid #D43225' }}>MODELS</span></h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
-        <p>We like mapping how humans actually behave, not how they should.</p>
+        <ModelNav currentModel="incentives" />
 
-        <p>Here's what most leaders refuse to see about human behavior.</p>
+        <p>People don't do what you want them to do. They do what they're incentivized to do.</p>
 
         <p>Water always finds its way. So do incentives.</p>
 
-        <h3>The Reality</h3>
-        <p>We see the world through incentive architecture, not wishful thinking.</p>
+        <p>Most organizations draft policies then wonder why nobody follows them. Create systems nobody uses. Launch products nobody wants.</p>
 
-        <p>Most organisations miss this completely. They draft policies then wonder why nobody follows them. Create systems nobody uses. Launch products nobody wants.</p>
+        <h3>The Reversal</h3>
+        <p>Companies try to control behavior with policies and procedures. Pointless.</p>
 
-        <p>They're fighting human nature instead of designing for it.</p>
+        <p>They're fighting human nature instead of designing for it. Building dams instead of channels.</p>
 
-        <h3>The Game Dynamic</h3>
-        <p>We keep watching companies play two different games without realizing it.</p>
-
-        <p>Finite games have winners, losers, endpoints. Quarterly battles. Market share wars. Traditional business thinking.</p>
-
-        <p>But markets run on infinite games. Ongoing. Evolving. Never ending.</p>
-
-        <p>Companies playing finite games against infinite players always lose. Eventually. Inevitably.</p>
-
-        <h3>The Perception Truth</h3>
-        <p>Value is never objective. The coffee tastes better in expensive mugs. The medicine works better with colorful pills.</p>
-
-        <p>This isn't manipulation. This is human reality.</p>
-
-        <p>We call this psycho-logic. The actual logic of how people operate, not how economists wish they operated.</p>
+        <p>Smart companies don't fight the current. They redirect it.</p>
 
         <h3>The Invisible Force</h3>
         <p>Smart leaders don't focus on what people say. They focus on what gets rewarded, what gets punished, what gets celebrated.</p>
@@ -45,34 +32,34 @@ export default function IncentivesPage() {
 
         <p>Not complicated. Completely predictable.</p>
 
-        <h3>The Tribal Need</h3>
+        <h3>Psycho-Logic</h3>
+        <p>Value is never objective. The coffee tastes better in expensive mugs. The medicine works better with colorful pills.</p>
+
+        <p>This isn't manipulation. This is human reality.</p>
+
+        <p>We call this psycho-logic. The actual logic of how people operate, not how economists wish they operated.</p>
+
+        <h3>The Tribal Force</h3>
         <p>The greatest incentive structures tap our primal need for belonging. They create tribes, not customers.</p>
 
         <p>Apple users. Harley riders. CrossFit devotees.</p>
 
         <p>Weak companies sell products. Strong companies create identities.</p>
 
-        <h3>The Water Force</h3>
-        <p>Water never argues with gravity. Never fights the landscape. It adapts. Flows. Finds a way.</p>
+        <h3>What Changes</h3>
+        <p>Align incentives properly and behavior shifts overnight.</p>
 
-        <p>Most businesses try to dam natural incentives with policies and procedures. Pointless.</p>
+        <p>Sales teams stop gaming metrics and start closing real deals. Support teams stop deflecting tickets and start solving problems. Marketing stops chasing vanity metrics and starts driving revenue.</p>
 
-        <p>Water understands what executives miss. The path will be found. The flow cannot be stopped.</p>
-
-        <h3>The Transformation</h3>
-        <p>When you view your business through incentive architecture, everything shifts.</p>
-
-        <p>Align incentives properly and friction vanishes. Resistance dissolves. Momentum builds.</p>
+        <p>Turnover drops. Performance climbs. The things you wanted all along start happening naturally.</p>
 
         <p>Not through control. Through alignment.</p>
 
-        <p>Because when incentives shift, everything shifts.</p>
-
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p>Ready to design systems that flow with human nature, not against it? Let's align the forces.</p>
+        <p>Ready to stop fighting human nature and start designing for it?</p>
 
-        <Link href="/contact" className="cta-button red">Reach Out</Link>
+        <Link href="/contact" className="cta-button red">Let's Talk</Link>
       </section>
     </PageLayout>
   );
