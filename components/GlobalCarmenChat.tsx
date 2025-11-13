@@ -39,6 +39,22 @@ export default function GlobalCarmenChat() {
     scrollToBottom();
   }, [messages]);
 
+  // Handle mobile keyboard visibility
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleResize = () => {
+      // Scroll to bottom when keyboard opens/closes
+      setTimeout(() => scrollToBottom(), 100);
+    };
+
+    // Detect visual viewport changes (keyboard opening/closing)
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleResize);
+      return () => window.visualViewport?.removeEventListener('resize', handleResize);
+    }
+  }, [isOpen]);
+
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
 
@@ -132,8 +148,8 @@ export default function GlobalCarmenChat() {
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto h-full w-full absolute inset-0" style={{ willChange: 'transform', backfaceVisibility: 'hidden' }}>
-                    <div className="flex h-full flex-col bg-white pt-[60px] md:pt-0" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}>
+                <Dialog.Panel className="pointer-events-auto w-full absolute inset-0" style={{ willChange: 'transform', backfaceVisibility: 'hidden', height: '100dvh' }}>
+                    <div className="flex flex-col bg-white pt-[60px] md:pt-0" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', height: '100dvh' }}>
                       {/* Header */}
                       <div className="flex flex-shrink-0 justify-center border-b border-gray-200 bg-gradient-to-b from-white to-gray-50/30 shadow-sm relative" style={{ paddingTop: '1.8rem', paddingBottom: '1.8rem', transform: 'translateZ(0)' }}>
                         {/* Desktop Header */}
@@ -182,7 +198,7 @@ export default function GlobalCarmenChat() {
                       </div>
 
                       {/* Messages Area - Enhanced chat layout */}
-                      <div ref={messagesContainerRef} className="flex flex-1 justify-center overflow-y-auto bg-gradient-to-b from-gray-50/30 to-white" style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
+                      <div ref={messagesContainerRef} className="flex flex-1 justify-center overflow-y-auto bg-gradient-to-b from-gray-50/30 to-white overscroll-contain" style={{ paddingTop: '2rem', paddingBottom: '2rem', WebkitOverflowScrolling: 'touch' }}>
                         <div className="w-full max-w-3xl px-4 md:px-12 lg:px-16" style={{ paddingLeft: 'clamp(1rem, 2vw, 3rem)', paddingRight: 'clamp(1rem, 2vw, 3rem)' }}>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
                             {messages.map((message, index) => (
@@ -283,7 +299,7 @@ export default function GlobalCarmenChat() {
                       </div>
 
                       {/* Input Area */}
-                      <div className="flex flex-shrink-0 justify-center border-t border-gray-200 bg-gradient-to-t from-gray-50/50 to-white" style={{ paddingTop: '2.5rem', paddingBottom: '2.5rem' }}>
+                      <div className="flex flex-shrink-0 justify-center border-t border-gray-200 bg-gradient-to-t from-gray-50/50 to-white" style={{ paddingTop: '1.5rem', paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}>
                         <div className="w-full max-w-3xl" style={{ paddingLeft: 'clamp(1rem, 2vw, 3rem)', paddingRight: 'clamp(1rem, 2vw, 3rem)' }}>
                           <div className="relative">
                             <div className="flex items-center gap-3 rounded-2xl border-2 border-gray-200 bg-white px-5 py-4 shadow-sm transition-all focus-within:border-[#D43225] focus-within:shadow-md">
@@ -294,7 +310,7 @@ export default function GlobalCarmenChat() {
                                     setInput(e.target.value);
                                     // Auto-resize
                                     e.target.style.height = 'auto';
-                                    e.target.style.height = Math.min(e.target.scrollHeight, 200) + 'px';
+                                    e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
                                   }}
                                   onKeyDown={(e) => {
                                     if (e.key === 'Enter' && !e.shiftKey) {
@@ -302,16 +318,25 @@ export default function GlobalCarmenChat() {
                                       sendMessage();
                                     }
                                   }}
+                                  onFocus={() => {
+                                    // Ensure input stays visible when keyboard opens
+                                    setTimeout(() => {
+                                      messagesContainerRef.current?.scrollTo({
+                                        top: messagesContainerRef.current.scrollHeight,
+                                        behavior: 'smooth'
+                                      });
+                                    }, 300);
+                                  }}
                                   placeholder="Your text here..."
                                   disabled={isLoading}
                                   rows={1}
                                   className="block w-full resize-none border-0 bg-transparent placeholder-gray-400 focus:outline-none focus:ring-0 disabled:text-gray-400"
                                   style={{
                                     fontFamily: '"Noto Sans", sans-serif',
-                                    fontSize: 'clamp(14px, 2.5vw, 15px)',
+                                    fontSize: '16px',
                                     fontWeight: 400,
-                                    maxHeight: '200px',
-                                    lineHeight: '1.6',
+                                    maxHeight: '120px',
+                                    lineHeight: '1.5',
                                     paddingLeft: '18px',
                                     paddingRight: '18px',
                                     paddingTop: '10px',
@@ -322,7 +347,8 @@ export default function GlobalCarmenChat() {
                               <button
                                 onClick={sendMessage}
                                 disabled={isLoading || !input.trim()}
-                                className="group relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#D43225] to-[#B82B1F] text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#D43225] focus:ring-offset-2 disabled:cursor-not-allowed disabled:from-gray-300 disabled:to-gray-400 disabled:opacity-50 disabled:hover:scale-100"
+                                className="group relative flex flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#D43225] to-[#B82B1F] text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#D43225] focus:ring-offset-2 disabled:cursor-not-allowed disabled:from-gray-300 disabled:to-gray-400 disabled:opacity-50 disabled:hover:scale-100"
+                                style={{ minWidth: '44px', minHeight: '44px' }}
                               >
                                 {isLoading ? (
                                   <svg className="h-5 w-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -339,17 +365,20 @@ export default function GlobalCarmenChat() {
                             </div>
 
                             {/* Mobile Close Button */}
-                            <div className="md:hidden flex items-center justify-center" style={{ marginTop: '24px' }}>
+                            <div className="md:hidden flex items-center justify-center" style={{ marginTop: '16px' }}>
                               <button
                                 type="button"
                                 onClick={closeChat}
-                                className="flex items-center gap-2 rounded-md px-4 py-2 text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#D43225]"
+                                className="flex items-center gap-2 rounded-md text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#D43225]"
                                 style={{
                                   fontFamily: '"Noto Sans", sans-serif',
                                   fontSize: 'clamp(13px, 2.5vw, 14px)',
                                   fontWeight: 600,
                                   textTransform: 'uppercase',
-                                  letterSpacing: '0.5px'
+                                  letterSpacing: '0.5px',
+                                  minWidth: '44px',
+                                  minHeight: '44px',
+                                  padding: '8px 16px'
                                 }}
                               >
                                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
