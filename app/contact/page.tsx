@@ -68,15 +68,13 @@ Best,
 
         <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>One more thing</h3>
 
-        <p>The opening paragraph on the landing page and on What We Do changes every 6 hours.</p>
-
         <UserContentReminder fallbackReminder={content.contentReminder || "Remember how the landing page showed today's news story, and the What We Do page wondered what question immediately came to mind?"} />
 
         <p style={{ marginTop: '16px' }}>Same story, different angles. But if you come back tomorrow it'll be another event.</p>
 
-        <p>It's a sweet piece of code. A GitHub Action runs on schedule. Reads the newsfeeds we read. Sends them to Claude with prompts that encode how we think. Claude picks the most significant story, writes two contextual takes (one for each page), commits the update to our repo. Vercel detects the change. Site rebuilds. New content live.</p>
+        <p>It's a sweet little piece of code. A GitHub Action runs on schedule. Reads the same papers and magazines we read every day. Sends them to Claude with prompts that encode how we think. Claude then picks the most significant story, writes contextual takes, commits the update to our repo. Vercel detects the change. Site rebuilds. New content live. Simple. Fun.</p>
 
-        <p>No database. No CMS. No manual work. Just code that thinks.</p>
+        <p>We called it Synapsed. No database. No CMS. No manual work. Just code that thinks.</p>
 
         <p>Want this on your site? <a href="https://github.com/RayPrismatica/synapsed-with-love" target="_blank" rel="noopener noreferrer" style={{ color: '#000', textDecoration: 'none', borderBottom: '1px solid #000' }}>Take it</a>. Full code on GitHub. There you have it. That's a tiny example of what we mean by "Thinking As A Service".</p>
 
