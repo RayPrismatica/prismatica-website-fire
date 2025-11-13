@@ -65,11 +65,20 @@ export default function GlobalCarmenChat() {
         }),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
+        // Handle rate limiting
+        if (response.status === 429) {
+          const retryAfter = data.retryAfter || 60;
+          setMessages(prev => [...prev, {
+            role: 'assistant',
+            content: `You're moving fast. Slow down for ${retryAfter} seconds.`
+          }]);
+          return;
+        }
         throw new Error('Failed to get response');
       }
-
-      const data = await response.json();
 
       const assistantMessage: Message = {
         role: 'assistant',
@@ -81,7 +90,7 @@ export default function GlobalCarmenChat() {
       console.error('Error sending message:', error);
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: "Sorry, I'm having trouble connecting right now. Please try again in a moment."
+        content: "Connection issue. Try again."
       }]);
     } finally {
       setIsLoading(false);

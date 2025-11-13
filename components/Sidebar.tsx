@@ -24,6 +24,11 @@ export default function Sidebar() {
     setIsMobileMenuOpen(false);
   };
 
+  const handleNavClick = () => {
+    closeMobileMenu();
+    closeChat(); // Close chat drawer when navigating
+  };
+
   return (
     <>
       {/* Mobile Header with Hamburger */}
@@ -82,7 +87,7 @@ export default function Sidebar() {
               textTransform: 'uppercase',
               transition: 'opacity 0.2s'
             }}
-            onClick={closeMobileMenu}
+            onClick={handleNavClick}
           >
             Focus
           </Link>
@@ -101,7 +106,7 @@ export default function Sidebar() {
               textTransform: 'uppercase',
               transition: 'opacity 0.2s'
             }}
-            onClick={closeMobileMenu}
+            onClick={handleNavClick}
           >
             What We Do
           </Link>
@@ -121,7 +126,7 @@ export default function Sidebar() {
               transition: 'opacity 0.2s',
               marginTop: '24px'
             }}
-            onClick={closeMobileMenu}
+            onClick={handleNavClick}
           >
             Direct Engagement
           </Link>
@@ -140,7 +145,7 @@ export default function Sidebar() {
               textTransform: 'uppercase',
               transition: 'opacity 0.2s'
             }}
-            onClick={closeMobileMenu}
+            onClick={handleNavClick}
           >
             Product Suite
           </Link>
@@ -160,7 +165,7 @@ export default function Sidebar() {
               transition: 'opacity 0.2s',
               marginTop: '24px'
             }}
-            onClick={closeMobileMenu}
+            onClick={handleNavClick}
           >
             Who We Are
           </Link>
@@ -179,7 +184,7 @@ export default function Sidebar() {
               textTransform: 'uppercase',
               transition: 'opacity 0.2s'
             }}
-            onClick={closeMobileMenu}
+            onClick={handleNavClick}
           >
             Mental Models
           </Link>
@@ -198,7 +203,7 @@ export default function Sidebar() {
               textTransform: 'uppercase',
               transition: 'opacity 0.2s'
             }}
-            onClick={closeMobileMenu}
+            onClick={handleNavClick}
           >
             Articles
           </Link>
@@ -217,7 +222,7 @@ export default function Sidebar() {
               textTransform: 'uppercase',
               transition: 'opacity 0.2s'
             }}
-            onClick={closeMobileMenu}
+            onClick={handleNavClick}
           >
             Contact
           </Link>
@@ -320,7 +325,7 @@ export default function Sidebar() {
           <div style={{ display: 'flex', gap: '8px', marginTop: '8px', marginBottom: '4px' }}>
             <Link
               href="/privacy"
-              onClick={closeMobileMenu}
+              onClick={handleNavClick}
               style={{
                 fontFamily: '"Noto Sans", sans-serif',
                 fontSize: '9px',
@@ -336,7 +341,7 @@ export default function Sidebar() {
             <span style={{ fontSize: '9px', color: '#e0e0e0' }}>•</span>
             <Link
               href="/terms"
-              onClick={closeMobileMenu}
+              onClick={handleNavClick}
               style={{
                 fontFamily: '"Noto Sans", sans-serif',
                 fontSize: '9px',

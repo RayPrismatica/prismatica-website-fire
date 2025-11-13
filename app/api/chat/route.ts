@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { chatRateLimiter, getClientIdentifier } from '@/lib/rateLimiter';
 
 const CARMEN_SYSTEM_PROMPT = `# Carmen - Prismatica Labs Website Advisor
 
@@ -437,6 +438,29 @@ You make physics tangible. You show people the forces they can't see but can fee
 Keep responses conversational and insightful. Don't just list components - show how they're interacting to create the problem they're experiencing.`;
 
 export async function POST(request: NextRequest) {
+  // Rate limiting check
+  const clientId = getClientIdentifier(request);
+  const rateLimitResult = chatRateLimiter.check(clientId);
+
+  if (!rateLimitResult.allowed) {
+    const retryAfter = Math.ceil((rateLimitResult.resetTime - Date.now()) / 1000);
+    return NextResponse.json(
+      {
+        error: 'Too many requests. Please slow down.',
+        retryAfter
+      },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': retryAfter.toString(),
+          'X-RateLimit-Limit': '10',
+          'X-RateLimit-Remaining': '0',
+          'X-RateLimit-Reset': new Date(rateLimitResult.resetTime).toISOString()
+        }
+      }
+    );
+  }
+
   try {
     const { messages } = await request.json();
 
@@ -456,7 +480,7 @@ export async function POST(request: NextRequest) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-opus-4-20250514',
+        model: 'claude-sonnet-4-5-20250929',
         max_tokens: 1024,
         system: CARMEN_SYSTEM_PROMPT,
         messages: messages,
@@ -469,9 +493,18 @@ export async function POST(request: NextRequest) {
 
     const data = await response.json();
 
-    return NextResponse.json({
-      message: data.content[0].text
-    });
+    return NextResponse.json(
+      {
+        message: data.content[0].text
+      },
+      {
+        headers: {
+          'X-RateLimit-Limit': '10',
+          'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+          'X-RateLimit-Reset': new Date(rateLimitResult.resetTime).toISOString()
+        }
+      }
+    );
   } catch (error) {
     console.error('Error in chat API:', error);
     return NextResponse.json(
