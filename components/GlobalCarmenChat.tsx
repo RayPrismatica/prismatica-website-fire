@@ -15,7 +15,7 @@ export default function GlobalCarmenChat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      content: "What's on your mind?"
+      content: "You start."
     }
   ]);
   const [input, setInput] = useState('');
