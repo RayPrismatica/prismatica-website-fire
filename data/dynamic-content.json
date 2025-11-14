@@ -1,20 +1,20 @@
 {
-  "generated": "2025-11-13T23:33:48.109Z",
-  "expires": "2025-11-14T00:33:48.109Z",
+  "generated": "2025-11-14T01:18:40.730Z",
+  "expires": "2025-11-14T02:18:40.730Z",
   "content": {
-    "newsInsight": "UK just banned no-fault evictions and everyone's debating tenant rights. Wrong lens. Watch property investment shift from passive income to active management. The landlords who survive will be the ones who already saw property as a service business, not a rent collection scheme.",
+    "newsInsight": "UK just banned no-fault evictions from May and everyone's debating tenant rights. Watch commercial landlords realise their entire business model assumed infinite leverage. Most property empires calculate yield but forget occupancy risk just became existential.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK eviction ban, for example. We read that and our mind goes to: which property tech startups are about to explode when landlords suddenly need operational excellence to retain tenants?",
-    "consultingInsight": "We were just reading how McKinsey's transformation practice helps Fortune 500s navigate regulatory disruption. Decades of pattern recognition, frameworks worth millions. But what if every ambitious leader could access that calibre of strategic thinking without the enterprise price tag?",
-    "contentReminder": "Remember how the landing page showed the UK eviction ban reshaping property investment, and the What We Do page wondered which proptech startups would explode?",
-    "marketObservation": "This week three property investors asked us the same question about operational efficiency. That's the market signalling what's coming before the mainstream catches on.",
-    "purposeContext": "Notice how the property firms thriving already knew their answer to 'why we exist' went beyond collecting rent?",
-    "serviceDescription": "Disney's TV business is collapsing while streaming soars because they never asked why people actually watch. Same content, different context, wildly different value. We excavate your actual reason to exist, then architect that purpose through every decision and customer touchpoint. Not the mission statement on your website, the operating truth that determines who stays and who leaves. Purpose as navigation system when markets shift beneath you.",
-    "esiDescription": "Verizon's cutting 15,000 jobs under new leadership because insights about market shifts never translated to organisational action. Classic explore-execute gap. Our ESI Framework closes it: Explore surfaces uncomfortable truths, Synthesise turns discovery into executable clarity, Ignite makes strategy actually happen. Three phases, one system. Because knowing what's wrong and fixing it are different competencies entirely.",
-    "agencyDescription": "Scott Galloway just warned about treating AI like your friend because high-performers confuse tools with solutions. Sound familiar? We work with executives who realised their 80-hour weeks are 60 hours of performance theatre and 20 hours of actual thinking. Secret Agency: where leaders learn to optimise for decision quality over decision quantity. Because at your level, busy stopped meaning productive years ago.",
-    "ksoDescription": "Adobe's reinventing design with AI while most brands still optimise for Google's dying algorithm. Traditional SEO assumes people search. KSO assumes AI answers. We map your intellectual territory into knowledge structures that AI systems understand and cite. Four weeks to shift from searchable to authoritative. Because when ChatGPT explains your industry, being findable isn't enough. You need to be inevitable.",
-    "transactionDescription": "Burberry claims 'brand desirability' drove their first growth in two years. Desirability without transaction architecture is just expensive hope. Transaction Architecture maps the actual value exchange across emotional resonance, cognitive shifts, and behavioural triggers. Then engineers every touchpoint to complete that exchange. Deep understanding meets surface appeal. Because people don't buy what they desire, they buy what completes a transaction they've already started in their mind.",
-    "triptychDescription": "Premier Foods is expanding into new categories while their core brand strategy remains unclear. Classic symptom of misalignment nobody can quite name. Strategic Triptych Assessment examines how you market, compete, and execute simultaneously. Problems hide where these three don't talk to each other. Like Premier knowing they need growth but not seeing their brand confusion blocks it. Most opportunities live in those gaps. Most failures too.\n"
+    "intelligenceExample": "The UK eviction ban, for example. We read that and our mind goes to: which REITs are about to discover their portfolio valuation models never priced in legislative risk?",
+    "consultingInsight": "We were just reading how McKinsey's latest framework helps boards navigate regulatory disruption with scenario planning worth millions. Exceptional rigour, battle-tested methodologies. But imagine if that calibre of strategic foresight wasn't locked behind seven-figure retainers?",
+    "contentReminder": "Remember how the landing page showed UK's eviction ban reshaping property markets, and the What We Do page wondered which REITs never modelled legislative risk?",
+    "marketObservation": "This week three property executives asked us about \"defensive positioning\" without mentioning the eviction ban once. The smart money's already moving.",
+    "purposeContext": "Notice how the landlords panicking loudest can't explain why they exist beyond collecting rent?",
+    "serviceDescription": "Burberry just returned to growth after admitting they'd forgotten who they make coats for. Happens everywhere: profitable confusion about purpose. We excavate your actual reason to exist, then engineer it into every decision filter and customer touchpoint. Not the mission statement collecting dust, but the operating system that makes hard choices obvious. Purpose as infrastructure, not inspiration.",
+    "esiDescription": "Premier Foods expanded into new categories and discovered their brand strategy lived in PowerPoints, not products. Classic insight-to-execution canyon. Explore, Synthesise, Ignite: our systematic bridge across that gap. Explore surfaces uncomfortable truths, Synthesise converts discovery into executable clarity, Ignite makes strategy actually happen. Not three separate engagements. One continuous system that turns knowing into doing.",
+    "agencyDescription": "Mark Cuban just shared where AI-skilled workers should job hunt, missing the real story: even billionaires are optimising for algorithms now. We work with executives drowning in productivity hacks while their strategic thinking atrophies. Secret Agency: where leaders relearn the difference between motion and progress. Because your Notion setup won't save you from making the wrong decisions perfectly.",
+    "ksoDescription": "Forbes reports DP World Tour extending partnerships through 2035 while traditional marketing dies in AI search results. Your SEO team's still playing yesterday's game. KSO Workshop: we architect your knowledge into citation-worthy territory AI systems actually reference. Four weeks from keyword chaser to category owner. Because when ChatGPT answers industry questions, page rankings become museum pieces.",
+    "transactionDescription": "Vitality smashed insurance sales targets by discovering people don't buy death coverage, they buy life confidence. Every insurer sells the same product. Vitality sold a different transaction. Transaction Architecture: we decode the actual value exchange beneath your visible offers. Map the emotional permissions, cognitive shifts, and behavioural triggers that turn browsers into believers. Because great products with misunderstood value exchanges just create beautiful graveyards.",
+    "triptychDescription": "Netflix showcases new gaming strategy while Disney+ still thinks they're in streaming wars. Classic blindness: competing in yesterday's game while tomorrow's already started. Strategic Triptych Assessment: we examine how you market, compete, and build simultaneously. The expensive mistakes hide where those perspectives don't talk. Like Netflix seeing gaming while others see channels. Problems live in the gaps. So do the breakthroughs.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -29,7 +29,7 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 43984,
+    "generationTimeMs": 44453,
     "promptFile": "prompts/dynamic-content.md"
   },
   "fallbackUsed": false
