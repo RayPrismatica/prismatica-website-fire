@@ -1,20 +1,20 @@
 {
-  "generated": "2025-11-14T12:36:12.297Z",
-  "expires": "2025-11-14T13:36:12.297Z",
+  "generated": "2025-11-14T18:25:05.403Z",
+  "expires": "2025-11-14T19:25:05.403Z",
   "content": {
-    "newsInsight": "UK Chancellor Reeves backs off income tax rises and suddenly everyone's celebrating. But here's the pattern. When governments abandon revenue plans without cutting spending, they're not being generous. They're shopping for a different wallet.",
+    "newsInsight": "UK just released unemployment data showing 5% jobless rate while job listings hit record highs. Everyone sees economic confusion. We see something else entirely. When people can't find work despite millions of openings, that's not recession. That's the skills gap eating the economy alive.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK tax reversal, for example. We read that and our mind goes to: which hidden revenue mechanism just became politically cheaper than visible tax rises?",
-    "consultingInsight": "We were just reading how McKinsey's transformation frameworks help Fortune 500s navigate change with surgical precision. Decades of refinement, battle-tested methodologies. But what if that calibre of strategic thinking wasn't locked behind seven-figure retainers? What if every ambitious leader could access it?",
-    "contentReminder": "Remember how the landing page showed the UK backing off tax rises, and the What We Do page wondered which hidden revenue source just became cheaper?",
-    "marketObservation": "This week we're watching governments globally discover that stealth taxes poll better than honest ones. The smartest money's already repositioning.",
-    "purposeContext": "Notice how organisations that survived recent inflation best already knew their answer to 'why do we exist beyond making money?'",
-    "serviceDescription": "Burberry just celebrated 'brand desirability' whilst revenue barely moved. Two years of luxury decline taught them what most brands learn too late: customers buy your why, not your what. We excavate your actual reason to exist, then engineer that truth into every decision criterion and customer touchpoint. Purpose as operating system, not museum piece.",
-    "esiDescription": "Fast Company reports fitness influencers losing followers for being \"too attractive.\" Everyone sees the irony, nobody built the solution framework. Explore, Synthesise, Ignite: our systematic approach to bridging insight and action. Explore surfaces uncomfortable truths, Synthesise transforms discovery into executable strategy, Ignite makes change stick. Because knowing the problem isn't fixing the problem.",
-    "agencyDescription": "Inc. says Gen-Z employees need the 'why' behind every task. Meanwhile, their managers are drowning in decisions they forgot why they're making. We work with executives who've optimised everything except what matters. Secret Agency: where high-performers learn the difference between motion and progress. Because working 70 hours to produce 40 hours of value isn't dedication, it's a system failure.",
-    "ksoDescription": "Alibaba launches ChatGPT-inspired apps whilst Western brands still chase Google rankings. The shift is here. Traditional SEO optimises for an algorithm that's losing relevance daily. KSO Workshop: four weeks to transform your knowledge into structures AI systems understand and cite. Because when ChatGPT answers your industry's questions, page one rankings become yesterday's vanity metric.",
-    "transactionDescription": "Premier Foods expands categories by understanding 'brand permission' - what customers actually let you sell them. Most businesses chase new markets without grasping their current value exchange. Transaction Architecture maps why people really buy across emotional resonance, cognitive shifts, and behavioural triggers. Then engineers every touchpoint to complete those exchanges. Deep psychology meets surface execution.",
-    "triptychDescription": "Forbes reports MLS owners approving schedule changes with three critical questions unanswered. Classic symptom of siloed decision-making. Strategic Triptych Assessment examines how you market, compete, and execute simultaneously. Because your biggest problems aren't in marketing, product, or operations. They're hiding in the gaps between them, invisible until you look through all three lenses at once.\n"
+    "intelligenceExample": "The UK unemployment paradox, for example. We read that and our mind goes to: if there are more jobs than workers but unemployment's rising, what happens when AI makes that skills gap permanent?",
+    "consultingInsight": "We were just reading how McKinsey's transformation frameworks help Fortune 500s navigate workforce disruption. Decades of refinement, world-class rigour. But imagine if that calibre of strategic insight wasn't locked behind seven-figure retainers. What if every ambitious leadership team could access it?",
+    "contentReminder": "Remember how the landing page showed UK's unemployment paradox, and the What We Do page wondered what happens when AI makes skills gaps permanent?",
+    "marketObservation": "This week alone, four CEOs asked us about the same pattern: record job openings, rising unemployment, and their best people solving yesterday's problems brilliantly.",
+    "purposeContext": "Notice how organisations struggling most can't explain why they exist without mentioning headcount or revenue targets?",
+    "serviceDescription": "Diageo just announced stellar growth while competitors slash budgets, and everyone's asking about their marketing spend. Wrong question. Watch how companies with clear purpose weather storms while others with bigger budgets drown. We excavate your actual reason to exist, then engineer that clarity into every decision criterion and customer touchpoint. Purpose as navigation system when the market gets choppy. Because knowing why you exist matters most when everything else is uncertain.",
+    "esiDescription": "Fast Company reports companies spending millions on AI transformation with zero ROI because insight and implementation live in different universes. Classic. Explore, Synthesise, Ignite: our operating system for making discovery actionable. Explore surfaces truth, Synthesise transforms findings into executable clarity, Ignite ensures strategy actually moves. Not three separate engagements. One continuous loop that closes the knowing-doing gap.",
+    "agencyDescription": "Inc reports 2025 graduates facing the toughest job market in decades while CEOs work 80-hour weeks. Same root cause. We work with executives who've optimised themselves into exhaustion, confusing motion with progress. Secret Agency: where high-performers learn the difference between busy and effective. Because if you're too swamped to think strategically, you're not leading. You're just reacting with a fancier title.",
+    "ksoDescription": "Forbes notes how AI search citations are becoming the new authority metric while most brands still chase backlinks. Traditional SEO optimises for yesterday's game. KSO Workshop: we map your intellectual territory into knowledge structures AI systems actually cite. Four weeks to transform from searchable to authoritative. Because when ChatGPT answers industry questions, page one of Google becomes irrelevant.",
+    "transactionDescription": "Marketing Week highlights John Lewis's Christmas ad success despite economic headwinds. Surface reading: great creative. Deeper truth: they understand the three-dimensional value exchange. Transaction Architecture maps how purchase decisions actually happen across emotional resonance, cognitive understanding, and action triggers. Then engineers every touchpoint to complete those transactions. Deep psychological alignment disguised as delightful advertising.",
+    "triptychDescription": "Burberry celebrates brand desirability returning after two years of decline. Brilliant turnaround, except they nearly died fixing symptoms in silos. Strategic Triptych Assessment examines how you market, compete, and execute simultaneously. Because most lethal problems hide where functions overlap. Most breakthrough opportunities too. See the whole system or optimise yourself to death.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -29,7 +29,7 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 41573,
+    "generationTimeMs": 45230,
     "promptFile": "prompts/dynamic-content.md"
   },
   "fallbackUsed": false
