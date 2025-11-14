@@ -1,20 +1,20 @@
 {
-  "generated": "2025-11-14T01:18:40.730Z",
-  "expires": "2025-11-14T02:18:40.730Z",
+  "generated": "2025-11-14T06:27:11.445Z",
+  "expires": "2025-11-14T07:27:11.445Z",
   "content": {
-    "newsInsight": "UK just banned no-fault evictions from May and everyone's debating tenant rights. Watch commercial landlords realise their entire business model assumed infinite leverage. Most property empires calculate yield but forget occupancy risk just became existential.",
+    "newsInsight": "UK just announced no-fault evictions banned from May. Everyone sees tenant protection. We see something else. When governments make firing harder, hiring gets pickier. Same pattern in housing. Watch landlords suddenly discover they love corporate tenants.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK eviction ban, for example. We read that and our mind goes to: which REITs are about to discover their portfolio valuation models never priced in legislative risk?",
-    "consultingInsight": "We were just reading how McKinsey's latest framework helps boards navigate regulatory disruption with scenario planning worth millions. Exceptional rigour, battle-tested methodologies. But imagine if that calibre of strategic foresight wasn't locked behind seven-figure retainers?",
-    "contentReminder": "Remember how the landing page showed UK's eviction ban reshaping property markets, and the What We Do page wondered which REITs never modelled legislative risk?",
-    "marketObservation": "This week three property executives asked us about \"defensive positioning\" without mentioning the eviction ban once. The smart money's already moving.",
-    "purposeContext": "Notice how the landlords panicking loudest can't explain why they exist beyond collecting rent?",
-    "serviceDescription": "Burberry just returned to growth after admitting they'd forgotten who they make coats for. Happens everywhere: profitable confusion about purpose. We excavate your actual reason to exist, then engineer it into every decision filter and customer touchpoint. Not the mission statement collecting dust, but the operating system that makes hard choices obvious. Purpose as infrastructure, not inspiration.",
-    "esiDescription": "Premier Foods expanded into new categories and discovered their brand strategy lived in PowerPoints, not products. Classic insight-to-execution canyon. Explore, Synthesise, Ignite: our systematic bridge across that gap. Explore surfaces uncomfortable truths, Synthesise converts discovery into executable clarity, Ignite makes strategy actually happen. Not three separate engagements. One continuous system that turns knowing into doing.",
-    "agencyDescription": "Mark Cuban just shared where AI-skilled workers should job hunt, missing the real story: even billionaires are optimising for algorithms now. We work with executives drowning in productivity hacks while their strategic thinking atrophies. Secret Agency: where leaders relearn the difference between motion and progress. Because your Notion setup won't save you from making the wrong decisions perfectly.",
-    "ksoDescription": "Forbes reports DP World Tour extending partnerships through 2035 while traditional marketing dies in AI search results. Your SEO team's still playing yesterday's game. KSO Workshop: we architect your knowledge into citation-worthy territory AI systems actually reference. Four weeks from keyword chaser to category owner. Because when ChatGPT answers industry questions, page rankings become museum pieces.",
-    "transactionDescription": "Vitality smashed insurance sales targets by discovering people don't buy death coverage, they buy life confidence. Every insurer sells the same product. Vitality sold a different transaction. Transaction Architecture: we decode the actual value exchange beneath your visible offers. Map the emotional permissions, cognitive shifts, and behavioural triggers that turn browsers into believers. Because great products with misunderstood value exchanges just create beautiful graveyards.",
-    "triptychDescription": "Netflix showcases new gaming strategy while Disney+ still thinks they're in streaming wars. Classic blindness: competing in yesterday's game while tomorrow's already started. Strategic Triptych Assessment: we examine how you market, compete, and build simultaneously. The expensive mistakes hide where those perspectives don't talk. Like Netflix seeing gaming while others see channels. Problems live in the gaps. So do the breakthroughs.\n"
+    "intelligenceExample": "The UK eviction ban, for example. We read that and our mind goes to: which asset class benefits when individual landlords exit and institutional investors enter?",
+    "consultingInsight": "We were just reading how McKinsey's latest framework maps digital transformation across 47 capability dimensions. Breathtaking rigour, the kind of analysis that reshapes industries. But what if that calibre of strategic thinking wasn't reserved for companies with eight-figure consulting budgets?",
+    "contentReminder": "Remember how the landing page showed UK's eviction ban reshaping rental markets, and the What We Do page wondered which asset class benefits when individual landlords exit?",
+    "marketObservation": "This week three private equity firms asked us the same question about residential property portfolios. The smart money sees regulation as opportunity while everyone else sees restriction.",
+    "purposeContext": "Notice how the companies thriving through regulatory shifts already knew their answer to 'why do we exist beyond making money?'",
+    "serviceDescription": "Burberry just reported first growth in two years by finally defining what \"British luxury\" actually means to them. Most brands confuse heritage with purpose, nostalgia with north star. We dissect your actual reason to exist beyond revenue, then engineer that clarity into every decision criterion and customer touchpoint. Purpose as operating system, not museum exhibit. Because knowing why you exist makes every other choice obvious.",
+    "esiDescription": "Premier Foods expanded into new categories after discovering their brand strength wasn't in food but in \"comfort.\" Brilliant insight, but most companies stop there. Explore, Synthesise, Ignite: our system for turning discovery into market dominance. Explore surfaces the truth, Synthesise transforms insights into executable strategy, Ignite makes change systematic. Not three separate engagements. One continuous engine.",
+    "agencyDescription": "Scott Galloway just nailed why treating AI like your friend is dangerous. Same reason CEOs treat their calendar like their friend. We work with executives who realise their 80-hour weeks are 20 hours of strategy and 60 hours of performance art. Secret Agency: where leaders learn to optimise for decisions that matter, not meetings that don't. Because effectiveness and exhaustion parted ways years ago.",
+    "ksoDescription": "Unilever discovered creators deliver 11x better ROI than traditional marketing because AI trusts authentic voices over brands. Traditional SEO optimises for algorithms that stopped mattering. KSO Workshop: we architect your knowledge territory so AI systems cite you as the authority. Four weeks to transform from searchable to essential. Because when ChatGPT answers industry questions, page rank means nothing.",
+    "transactionDescription": "Vitality smashed life insurance targets by discovering people don't buy death coverage, they buy proof they're taking care of their family. Surface tactics would have optimised the fear messaging. Transaction Architecture maps the actual value exchange across emotional, cognitive and tangible dimensions. Then engineers every touchpoint to complete those transactions. Deep psychological alignment, not shallow conversion tricks.",
+    "triptychDescription": "Verizon's cutting 15,000 jobs while restructuring under new leadership. Classic symptom of problems hiding between silos. Strategic Triptych Assessment: we examine how you market, compete and execute simultaneously. Most dysfunction lives in those gaps between functions. So do most breakthrough opportunities. The diagnosis that makes misalignment impossible to unsee."
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -29,7 +29,7 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 44453,
+    "generationTimeMs": 42993,
     "promptFile": "prompts/dynamic-content.md"
   },
   "fallbackUsed": false
