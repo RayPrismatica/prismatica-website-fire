@@ -1,20 +1,20 @@
 {
-  "generated": "2025-11-14T06:27:11.445Z",
-  "expires": "2025-11-14T07:27:11.445Z",
+  "generated": "2025-11-14T12:36:12.297Z",
+  "expires": "2025-11-14T13:36:12.297Z",
   "content": {
-    "newsInsight": "UK just announced no-fault evictions banned from May. Everyone sees tenant protection. We see something else. When governments make firing harder, hiring gets pickier. Same pattern in housing. Watch landlords suddenly discover they love corporate tenants.",
+    "newsInsight": "UK Chancellor Reeves backs off income tax rises and suddenly everyone's celebrating. But here's the pattern. When governments abandon revenue plans without cutting spending, they're not being generous. They're shopping for a different wallet.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK eviction ban, for example. We read that and our mind goes to: which asset class benefits when individual landlords exit and institutional investors enter?",
-    "consultingInsight": "We were just reading how McKinsey's latest framework maps digital transformation across 47 capability dimensions. Breathtaking rigour, the kind of analysis that reshapes industries. But what if that calibre of strategic thinking wasn't reserved for companies with eight-figure consulting budgets?",
-    "contentReminder": "Remember how the landing page showed UK's eviction ban reshaping rental markets, and the What We Do page wondered which asset class benefits when individual landlords exit?",
-    "marketObservation": "This week three private equity firms asked us the same question about residential property portfolios. The smart money sees regulation as opportunity while everyone else sees restriction.",
-    "purposeContext": "Notice how the companies thriving through regulatory shifts already knew their answer to 'why do we exist beyond making money?'",
-    "serviceDescription": "Burberry just reported first growth in two years by finally defining what \"British luxury\" actually means to them. Most brands confuse heritage with purpose, nostalgia with north star. We dissect your actual reason to exist beyond revenue, then engineer that clarity into every decision criterion and customer touchpoint. Purpose as operating system, not museum exhibit. Because knowing why you exist makes every other choice obvious.",
-    "esiDescription": "Premier Foods expanded into new categories after discovering their brand strength wasn't in food but in \"comfort.\" Brilliant insight, but most companies stop there. Explore, Synthesise, Ignite: our system for turning discovery into market dominance. Explore surfaces the truth, Synthesise transforms insights into executable strategy, Ignite makes change systematic. Not three separate engagements. One continuous engine.",
-    "agencyDescription": "Scott Galloway just nailed why treating AI like your friend is dangerous. Same reason CEOs treat their calendar like their friend. We work with executives who realise their 80-hour weeks are 20 hours of strategy and 60 hours of performance art. Secret Agency: where leaders learn to optimise for decisions that matter, not meetings that don't. Because effectiveness and exhaustion parted ways years ago.",
-    "ksoDescription": "Unilever discovered creators deliver 11x better ROI than traditional marketing because AI trusts authentic voices over brands. Traditional SEO optimises for algorithms that stopped mattering. KSO Workshop: we architect your knowledge territory so AI systems cite you as the authority. Four weeks to transform from searchable to essential. Because when ChatGPT answers industry questions, page rank means nothing.",
-    "transactionDescription": "Vitality smashed life insurance targets by discovering people don't buy death coverage, they buy proof they're taking care of their family. Surface tactics would have optimised the fear messaging. Transaction Architecture maps the actual value exchange across emotional, cognitive and tangible dimensions. Then engineers every touchpoint to complete those transactions. Deep psychological alignment, not shallow conversion tricks.",
-    "triptychDescription": "Verizon's cutting 15,000 jobs while restructuring under new leadership. Classic symptom of problems hiding between silos. Strategic Triptych Assessment: we examine how you market, compete and execute simultaneously. Most dysfunction lives in those gaps between functions. So do most breakthrough opportunities. The diagnosis that makes misalignment impossible to unsee."
+    "intelligenceExample": "The UK tax reversal, for example. We read that and our mind goes to: which hidden revenue mechanism just became politically cheaper than visible tax rises?",
+    "consultingInsight": "We were just reading how McKinsey's transformation frameworks help Fortune 500s navigate change with surgical precision. Decades of refinement, battle-tested methodologies. But what if that calibre of strategic thinking wasn't locked behind seven-figure retainers? What if every ambitious leader could access it?",
+    "contentReminder": "Remember how the landing page showed the UK backing off tax rises, and the What We Do page wondered which hidden revenue source just became cheaper?",
+    "marketObservation": "This week we're watching governments globally discover that stealth taxes poll better than honest ones. The smartest money's already repositioning.",
+    "purposeContext": "Notice how organisations that survived recent inflation best already knew their answer to 'why do we exist beyond making money?'",
+    "serviceDescription": "Burberry just celebrated 'brand desirability' whilst revenue barely moved. Two years of luxury decline taught them what most brands learn too late: customers buy your why, not your what. We excavate your actual reason to exist, then engineer that truth into every decision criterion and customer touchpoint. Purpose as operating system, not museum piece.",
+    "esiDescription": "Fast Company reports fitness influencers losing followers for being \"too attractive.\" Everyone sees the irony, nobody built the solution framework. Explore, Synthesise, Ignite: our systematic approach to bridging insight and action. Explore surfaces uncomfortable truths, Synthesise transforms discovery into executable strategy, Ignite makes change stick. Because knowing the problem isn't fixing the problem.",
+    "agencyDescription": "Inc. says Gen-Z employees need the 'why' behind every task. Meanwhile, their managers are drowning in decisions they forgot why they're making. We work with executives who've optimised everything except what matters. Secret Agency: where high-performers learn the difference between motion and progress. Because working 70 hours to produce 40 hours of value isn't dedication, it's a system failure.",
+    "ksoDescription": "Alibaba launches ChatGPT-inspired apps whilst Western brands still chase Google rankings. The shift is here. Traditional SEO optimises for an algorithm that's losing relevance daily. KSO Workshop: four weeks to transform your knowledge into structures AI systems understand and cite. Because when ChatGPT answers your industry's questions, page one rankings become yesterday's vanity metric.",
+    "transactionDescription": "Premier Foods expands categories by understanding 'brand permission' - what customers actually let you sell them. Most businesses chase new markets without grasping their current value exchange. Transaction Architecture maps why people really buy across emotional resonance, cognitive shifts, and behavioural triggers. Then engineers every touchpoint to complete those exchanges. Deep psychology meets surface execution.",
+    "triptychDescription": "Forbes reports MLS owners approving schedule changes with three critical questions unanswered. Classic symptom of siloed decision-making. Strategic Triptych Assessment examines how you market, compete, and execute simultaneously. Because your biggest problems aren't in marketing, product, or operations. They're hiding in the gaps between them, invisible until you look through all three lenses at once.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -29,7 +29,7 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 42993,
+    "generationTimeMs": 41573,
     "promptFile": "prompts/dynamic-content.md"
   },
   "fallbackUsed": false
