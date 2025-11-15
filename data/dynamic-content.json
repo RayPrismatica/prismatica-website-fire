@@ -1,20 +1,20 @@
 {
-  "generated": "2025-11-13T23:33:48.109Z",
-  "expires": "2025-11-14T00:33:48.109Z",
+  "generated": "2025-11-14T18:25:05.403Z",
+  "expires": "2025-11-14T19:25:05.403Z",
   "content": {
-    "newsInsight": "UK just banned no-fault evictions and everyone's debating tenant rights. Wrong lens. Watch property investment shift from passive income to active management. The landlords who survive will be the ones who already saw property as a service business, not a rent collection scheme.",
+    "newsInsight": "UK just released unemployment data showing 5% jobless rate while job listings hit record highs. Everyone sees economic confusion. We see something else entirely. When people can't find work despite millions of openings, that's not recession. That's the skills gap eating the economy alive.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK eviction ban, for example. We read that and our mind goes to: which property tech startups are about to explode when landlords suddenly need operational excellence to retain tenants?",
-    "consultingInsight": "We were just reading how McKinsey's transformation practice helps Fortune 500s navigate regulatory disruption. Decades of pattern recognition, frameworks worth millions. But what if every ambitious leader could access that calibre of strategic thinking without the enterprise price tag?",
-    "contentReminder": "Remember how the landing page showed the UK eviction ban reshaping property investment, and the What We Do page wondered which proptech startups would explode?",
-    "marketObservation": "",
-    "purposeContext": "Notice how the property firms thriving already knew their answer to 'why we exist' went beyond collecting rent?",
-    "serviceDescription": "Disney's TV business is collapsing while streaming soars because they never asked why people actually watch. Same content, different context, wildly different value. We excavate your actual reason to exist, then architect that purpose through every decision and customer touchpoint. Not the mission statement on your website, the operating truth that determines who stays and who leaves. Purpose as navigation system when markets shift beneath you.",
-    "esiDescription": "Verizon's cutting 15,000 jobs under new leadership because insights about market shifts never translated to organisational action. Classic explore-execute gap. Our ESI Framework closes it: Explore surfaces uncomfortable truths, Synthesise turns discovery into executable clarity, Ignite makes strategy actually happen. Three phases, one system. Because knowing what's wrong and fixing it are different competencies entirely.",
-    "agencyDescription": "Scott Galloway just warned about treating AI like your friend because high-performers confuse tools with solutions. Sound familiar? We work with executives who realised their 80-hour weeks are 60 hours of performance theatre and 20 hours of actual thinking. Secret Agency: where leaders learn to optimise for decision quality over decision quantity. Because at your level, busy stopped meaning productive years ago.",
-    "ksoDescription": "Adobe's reinventing design with AI while most brands still optimise for Google's dying algorithm. Traditional SEO assumes people search. KSO assumes AI answers. We map your intellectual territory into knowledge structures that AI systems understand and cite. Four weeks to shift from searchable to authoritative. Because when ChatGPT explains your industry, being findable isn't enough. You need to be inevitable.",
-    "transactionDescription": "Burberry claims 'brand desirability' drove their first growth in two years. Desirability without transaction architecture is just expensive hope. Transaction Architecture maps the actual value exchange across emotional resonance, cognitive shifts, and behavioural triggers. Then engineers every touchpoint to complete that exchange. Deep understanding meets surface appeal. Because people don't buy what they desire, they buy what completes a transaction they've already started in their mind.",
-    "triptychDescription": "Premier Foods is expanding into new categories while their core brand strategy remains unclear. Classic symptom of misalignment nobody can quite name. Strategic Triptych Assessment examines how you market, compete, and execute simultaneously. Problems hide where these three don't talk to each other. Like Premier knowing they need growth but not seeing their brand confusion blocks it. Most opportunities live in those gaps. Most failures too.\n"
+    "intelligenceExample": "The UK unemployment paradox, for example. We read that and our mind goes to: if there are more jobs than workers but unemployment's rising, what happens when AI makes that skills gap permanent?",
+    "consultingInsight": "We were just reading how McKinsey's transformation frameworks help Fortune 500s navigate workforce disruption. Decades of refinement, world-class rigour. But imagine if that calibre of strategic insight wasn't locked behind seven-figure retainers. What if every ambitious leadership team could access it?",
+    "contentReminder": "Remember how the landing page showed UK's unemployment paradox, and the What We Do page wondered what happens when AI makes skills gaps permanent?",
+    "marketObservation": "This week alone, four CEOs asked us about the same pattern: record job openings, rising unemployment, and their best people solving yesterday's problems brilliantly.",
+    "purposeContext": "Notice how organisations struggling most can't explain why they exist without mentioning headcount or revenue targets?",
+    "serviceDescription": "Diageo just announced stellar growth while competitors slash budgets, and everyone's asking about their marketing spend. Wrong question. Watch how companies with clear purpose weather storms while others with bigger budgets drown. We excavate your actual reason to exist, then engineer that clarity into every decision criterion and customer touchpoint. Purpose as navigation system when the market gets choppy. Because knowing why you exist matters most when everything else is uncertain.",
+    "esiDescription": "Fast Company reports companies spending millions on AI transformation with zero ROI because insight and implementation live in different universes. Classic. Explore, Synthesise, Ignite: our operating system for making discovery actionable. Explore surfaces truth, Synthesise transforms findings into executable clarity, Ignite ensures strategy actually moves. Not three separate engagements. One continuous loop that closes the knowing-doing gap.",
+    "agencyDescription": "Inc reports 2025 graduates facing the toughest job market in decades while CEOs work 80-hour weeks. Same root cause. We work with executives who've optimised themselves into exhaustion, confusing motion with progress. Secret Agency: where high-performers learn the difference between busy and effective. Because if you're too swamped to think strategically, you're not leading. You're just reacting with a fancier title.",
+    "ksoDescription": "Forbes notes how AI search citations are becoming the new authority metric while most brands still chase backlinks. Traditional SEO optimises for yesterday's game. KSO Workshop: we map your intellectual territory into knowledge structures AI systems actually cite. Four weeks to transform from searchable to authoritative. Because when ChatGPT answers industry questions, page one of Google becomes irrelevant.",
+    "transactionDescription": "Marketing Week highlights John Lewis's Christmas ad success despite economic headwinds. Surface reading: great creative. Deeper truth: they understand the three-dimensional value exchange. Transaction Architecture maps how purchase decisions actually happen across emotional resonance, cognitive understanding, and action triggers. Then engineers every touchpoint to complete those transactions. Deep psychological alignment disguised as delightful advertising.",
+    "triptychDescription": "Burberry celebrates brand desirability returning after two years of decline. Brilliant turnaround, except they nearly died fixing symptoms in silos. Strategic Triptych Assessment examines how you market, compete, and execute simultaneously. Because most lethal problems hide where functions overlap. Most breakthrough opportunities too. See the whole system or optimise yourself to death.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -29,7 +29,7 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 43984,
+    "generationTimeMs": 45230,
     "promptFile": "prompts/dynamic-content.md"
   },
   "fallbackUsed": false
