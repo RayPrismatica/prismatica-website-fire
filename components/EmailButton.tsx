@@ -26,7 +26,7 @@ export default function EmailButton({ mailtoLink }: EmailButtonProps) {
           color: '#fff',
           textDecoration: 'none',
           borderRadius: '4px',
-          fontSize: '15px',
+          fontSize: '17px',
           fontWeight: 600,
           transition: 'all 0.2s',
           border: 'none',

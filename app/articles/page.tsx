@@ -46,7 +46,7 @@ export default function ArticlesPage() {
     return (
       <PageLayout>
         <section id="articles" className="section active">
-          <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}><span style={{ borderBottom: '4px solid #D43225' }}>ARTICLES</span></h2>
+          <h2 style={{ fontFamily: 'var(--font-passion), sans-serif', fontSize: '56px', letterSpacing: '0.005em' }}><span style={{ borderBottom: '4px solid #D43225' }}>ARTICLES</span></h2>
 
           <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
@@ -57,6 +57,7 @@ export default function ArticlesPage() {
               {articles.map((article) => (
                 <article
                   key={article.id}
+                  className="article-item"
                   style={{
                     cursor: 'pointer',
                     borderLeft: '3px solid transparent',
@@ -67,8 +68,6 @@ export default function ArticlesPage() {
                     transition: 'border-left-color 0.2s ease',
                   }}
                   onClick={() => setSelectedArticle(article)}
-                  onMouseEnter={(e) => e.currentTarget.style.borderLeftColor = '#D43225'}
-                  onMouseLeave={(e) => e.currentTarget.style.borderLeftColor = 'transparent'}
                 >
                   {/* Article Metadata */}
                   <div style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '12px', fontSize: '11px', color: '#999', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600, fontFamily: '"Noto Sans", sans-serif' }}>
@@ -133,7 +132,7 @@ export default function ArticlesPage() {
         </button>
 
         {/* Article Header */}
-        <div style={{ marginBottom: '48px', maxWidth: '680px' }}>
+        <div style={{ marginBottom: '48px', maxWidth: '700px' }}>
           <div style={{
             marginBottom: '16px',
             fontSize: '11px',
@@ -176,7 +175,7 @@ export default function ArticlesPage() {
 
         {/* Article Content */}
         <article style={{
-          maxWidth: '680px',
+          maxWidth: '700px',
           fontFamily: 'Georgia, "Times New Roman", serif',
           fontSize: '20px',
           lineHeight: '1.7',
@@ -221,7 +220,7 @@ export default function ArticlesPage() {
         </article>
 
         {/* Author and Share Section */}
-        <div style={{ maxWidth: '680px', marginTop: '48px' }}>
+        <div style={{ maxWidth: '700px', marginTop: '48px' }}>
           {/* Author */}
           <div style={{
             display: 'flex',
@@ -243,14 +242,14 @@ export default function ArticlesPage() {
               href="https://www.linkedin.com/in/raytarantino/"
               target="_blank"
               rel="noopener noreferrer"
+              className="linkedin-link"
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 color: '#0077B5',
-                transition: 'opacity 0.2s'
+                transition: 'opacity 0.2s',
+                opacity: 1
               }}
-              onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
-              onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -277,6 +276,7 @@ export default function ArticlesPage() {
                 href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="share-link"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -288,15 +288,8 @@ export default function ArticlesPage() {
                   fontSize: '14px',
                   fontWeight: 500,
                   textDecoration: 'none',
-                  transition: 'all 0.2s'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#0077B5';
-                  e.currentTarget.style.backgroundColor = '#f8f8f8';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#ddd';
-                  e.currentTarget.style.backgroundColor = 'transparent';
+                  transition: 'all 0.2s',
+                  backgroundColor: 'transparent'
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -310,6 +303,7 @@ export default function ArticlesPage() {
                 href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&text=${encodeURIComponent(selectedArticle.title)}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="share-link-twitter"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -321,15 +315,8 @@ export default function ArticlesPage() {
                   fontSize: '14px',
                   fontWeight: 500,
                   textDecoration: 'none',
-                  transition: 'all 0.2s'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#000';
-                  e.currentTarget.style.backgroundColor = '#f8f8f8';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#ddd';
-                  e.currentTarget.style.backgroundColor = 'transparent';
+                  transition: 'all 0.2s',
+                  backgroundColor: 'transparent'
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -341,6 +328,7 @@ export default function ArticlesPage() {
               {/* Email */}
               <a
                 href={`mailto:?subject=${encodeURIComponent(selectedArticle.title)}&body=${encodeURIComponent(`Check out this article: ${typeof window !== 'undefined' ? window.location.href : ''}`)}`}
+                className="share-link-email"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -352,15 +340,8 @@ export default function ArticlesPage() {
                   fontSize: '14px',
                   fontWeight: 500,
                   textDecoration: 'none',
-                  transition: 'all 0.2s'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#666';
-                  e.currentTarget.style.backgroundColor = '#f8f8f8';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#ddd';
-                  e.currentTarget.style.backgroundColor = 'transparent';
+                  transition: 'all 0.2s',
+                  backgroundColor: 'transparent'
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -383,6 +364,7 @@ export default function ArticlesPage() {
                     }, 2000);
                   }
                 }}
+                className="copy-link-btn"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -397,14 +379,6 @@ export default function ArticlesPage() {
                   cursor: 'pointer',
                   transition: 'all 0.2s'
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = '#666';
-                  e.currentTarget.style.backgroundColor = '#f8f8f8';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = '#ddd';
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
@@ -418,7 +392,26 @@ export default function ArticlesPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '48px 0 32px 0' }} />
 
-        <Link href="/contact" className="cta-button red">Reach Out</Link>
+        <Link
+          href="/contact"
+          className="articles-cta-button"
+          style={{
+            display: 'inline-block',
+            padding: '14px 28px',
+            backgroundColor: '#D43225',
+            color: '#fff',
+            textDecoration: 'none',
+            borderRadius: '4px',
+            fontSize: '17px',
+            fontWeight: 600,
+            transition: 'all 0.2s',
+            border: 'none',
+            cursor: 'pointer',
+            marginTop: '8px'
+          }}
+        >
+          Reach Out
+        </Link>
       </section>
     </PageLayout>
   );

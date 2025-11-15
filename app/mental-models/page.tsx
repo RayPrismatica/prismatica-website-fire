@@ -74,52 +74,181 @@ export default function MentalModelsPage() {
   return (
     <PageLayout>
       <section id="how" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>MENTAL <span style={{ borderBottom: '4px solid #D43225' }}>MODELS</span></h2>
+        <div style={{ maxWidth: '700px' }}>
+        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif', fontSize: '56px', fontWeight: 600, lineHeight: 0.9, letterSpacing: '0.005em', marginBottom: '32px' }}>MENTAL <span style={{ borderBottom: '4px solid #D43225' }}>MODELS</span></h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
-        <p>Most consultancies explain their frameworks. We show you what happened when we used them.</p>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>Most consultancies explain their frameworks. We show you what happened when we used them.</p>
 
-        <p>Eight problems. Eight different industries. Same way of seeing.</p>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>Eight problems. Eight different industries. Same way of seeing.</p>
 
-        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Problems We've Thought About</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '28px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Problems We've Thought About</h3>
 
-        <p style={{ marginBottom: '24px' }}>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>
           Details are vague by design. Not just NDAs. We don't trade client specifics for marketing material.
         </p>
 
-        <p style={{ marginBottom: '24px' }}>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>
           What matters: the problem structure, how we saw it, what changed.
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '12px', marginBottom: '32px' }}>
-          <button onClick={() => openModal('brief-warehouse')} className="cta-button red" style={{ marginTop: 0 }}>The Warehouse That Wasn't</button>
-          <button onClick={() => openModal('brief-search')} className="cta-button red" style={{ marginTop: 0 }}>The Search Nobody Needed</button>
-          <button onClick={() => openModal('brief-push-pull')} className="cta-button red" style={{ marginTop: 0 }}>From Push to Pull</button>
-          <button onClick={() => openModal('brief-bottleneck')} className="cta-button red" style={{ marginTop: 0 }}>The Misdiagnosed Bottleneck</button>
-          <button onClick={() => openModal('brief-friction')} className="cta-button red" style={{ marginTop: 0 }}>The £15K Canyon</button>
-          <button onClick={() => openModal('brief-platform')} className="cta-button red" style={{ marginTop: 0 }}>From Retail to Platform</button>
-          <button onClick={() => openModal('brief-music')} className="cta-button red" style={{ marginTop: 0 }}>Classical Music for Running</button>
-          <button onClick={() => openModal('brief-coaching')} className="cta-button red" style={{ marginTop: 0 }}>The Coaching Wave</button>
+          <button
+            className="service-cta-btn"
+            onClick={() => openModal('brief-warehouse')}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              color: '#666',
+              fontSize: '17px',
+              fontWeight: 400,
+              transition: 'color 0.2s',
+              textAlign: 'left'
+            }}
+          >
+            The Warehouse That Wasn&apos;t &gt;
+          </button>
+          <button
+            className="service-cta-btn"
+            onClick={() => openModal('brief-search')}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              color: '#666',
+              fontSize: '17px',
+              fontWeight: 400,
+              transition: 'color 0.2s',
+              textAlign: 'left'
+            }}
+          >
+            The Search Nobody Needed &gt;
+          </button>
+          <button
+            className="service-cta-btn"
+            onClick={() => openModal('brief-push-pull')}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              color: '#666',
+              fontSize: '17px',
+              fontWeight: 400,
+              transition: 'color 0.2s',
+              textAlign: 'left'
+            }}
+          >
+            From Push to Pull &gt;
+          </button>
+          <button
+            className="service-cta-btn"
+            onClick={() => openModal('brief-bottleneck')}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              color: '#666',
+              fontSize: '17px',
+              fontWeight: 400,
+              transition: 'color 0.2s',
+              textAlign: 'left'
+            }}
+          >
+            The Misdiagnosed Bottleneck &gt;
+          </button>
+          <button
+            className="service-cta-btn"
+            onClick={() => openModal('brief-friction')}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              color: '#666',
+              fontSize: '17px',
+              fontWeight: 400,
+              transition: 'color 0.2s',
+              textAlign: 'left'
+            }}
+          >
+            The £15K Canyon &gt;
+          </button>
+          <button
+            className="service-cta-btn"
+            onClick={() => openModal('brief-platform')}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              color: '#666',
+              fontSize: '17px',
+              fontWeight: 400,
+              transition: 'color 0.2s',
+              textAlign: 'left'
+            }}
+          >
+            From Retail to Platform &gt;
+          </button>
+          <button
+            className="service-cta-btn"
+            onClick={() => openModal('brief-music')}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              color: '#666',
+              fontSize: '17px',
+              fontWeight: 400,
+              transition: 'color 0.2s',
+              textAlign: 'left'
+            }}
+          >
+            Classical Music for Running &gt;
+          </button>
+          <button
+            className="service-cta-btn"
+            onClick={() => openModal('brief-coaching')}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              color: '#666',
+              fontSize: '17px',
+              fontWeight: 400,
+              transition: 'color 0.2s',
+              textAlign: 'left'
+            }}
+          >
+            The Coaching Wave &gt;
+          </button>
         </div>
 
-        <p>See? Different industries. Different contexts. Different surface problems.</p>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>See? Different industries. Different contexts. Different surface problems.</p>
 
-        <p>But look closer. They're all the same underneath.</p>
-
-        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
-
-        <p>Every business problem is physics. Forces trying to move through constraints. Energy seeking equilibrium. Parts colliding until something breaks or something works.</p>
-
-        <p>The details change. The structure doesn't.</p>
-
-        <p>Physics governs reality. So it should govern how we think. Light through a prism reveals what was always there but invisible. That's what we are passionate about. The tangible invisible. That's why we're called Prismatica.</p>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>But look closer. They're all the same underneath.</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>First Principles</h3>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>Every business problem is physics. Forces trying to move through constraints. Energy seeking equilibrium. Parts colliding until something breaks or something works.</p>
 
-        <p>Strip away the details. Seven components remain:</p>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>The details change. The structure doesn't.</p>
+
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>Physics governs reality. So it should govern how we think. Light through a prism reveals what was always there but invisible. That's what we are passionate about. The tangible invisible. That's why we're called Prismatica.</p>
+
+        <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
+
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '28px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>First Principles</h3>
+
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>Strip away the details. Seven components remain:</p>
 
         <div style={{ marginTop: '24px', marginBottom: '24px' }}>
           <p style={{ marginBottom: '12px' }}><span style={{ fontWeight: 700, fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase' }}>Time</span><br/><span style={{ color: '#666' }}>The window narrows. Momentum builds or dies. Opportunity decays.</span></p>
@@ -133,9 +262,9 @@ export default function MentalModelsPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Emergent Patterns</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '28px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Emergent Patterns</h3>
 
-        <p>When parts collide, they form molecules. Structures with mass, direction, momentum. These patterns have velocity. They want to move:</p>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>When parts collide, they form molecules. Structures with mass, direction, momentum. These patterns have velocity. They want to move:</p>
 
         <div style={{ marginTop: '24px', marginBottom: '24px' }}>
           <p style={{ marginBottom: '16px' }}>
@@ -167,55 +296,170 @@ export default function MentalModelsPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The Models</h3>
+        <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '28px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The Models</h3>
 
-        <p>Five systems for seeing what's actually happening:</p>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>Five systems for seeing what's actually happening:</p>
 
         <div style={{ marginTop: '32px', marginBottom: '24px' }}>
           <div style={{ marginBottom: '32px' }}>
             <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>Demand</h4>
             <p style={{ marginBottom: '8px', color: '#444' }}>Rolex doesn't sell watches. Peloton doesn't sell bikes. Slack doesn't sell chat. They sell status, tribe membership, professional identity. Your product is the excuse. The demand is primal. Miss this and your marketing is just noise.</p>
-            <Link href="/demand" className="cta-button red" style={{ marginTop: 0 }}>Explore Demand</Link>
+            <Link
+              href="/demand"
+              className="mental-models-cta-button"
+              style={{
+                display: 'inline-block',
+                padding: '14px 28px',
+                backgroundColor: '#D43225',
+                color: '#fff',
+                textDecoration: 'none',
+                borderRadius: '4px',
+                fontSize: '17px',
+                fontWeight: 600,
+                transition: 'all 0.2s',
+                border: 'none',
+                cursor: 'pointer',
+                marginTop: '8px'
+              }}
+            >
+              Explore Demand
+            </Link>
           </div>
 
           <div style={{ marginBottom: '32px' }}>
             <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>Incentives</h4>
             <p style={{ marginBottom: '8px', color: '#444' }}>Sales says they want better leads. What they optimize for is easy closes. Product says they want user feedback. What they optimize for is no complaints. Executives say they want innovation. What they optimize for is no surprises. Watch what they do, not what they say.</p>
-            <Link href="/incentives" className="cta-button red" style={{ marginTop: 0 }}>Explore Incentives</Link>
+            <Link
+              href="/incentives"
+              className="mental-models-cta-button"
+              style={{
+                display: 'inline-block',
+                padding: '14px 28px',
+                backgroundColor: '#D43225',
+                color: '#fff',
+                textDecoration: 'none',
+                borderRadius: '4px',
+                fontSize: '17px',
+                fontWeight: 600,
+                transition: 'all 0.2s',
+                border: 'none',
+                cursor: 'pointer',
+                marginTop: '8px'
+              }}
+            >
+              Explore Incentives
+            </Link>
           </div>
 
           <div style={{ marginBottom: '32px' }}>
             <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>Agentic</h4>
             <p style={{ marginBottom: '8px', color: '#444' }}>Humans need meetings, check-ins, approvals, reassurance. AI doesn't. Give it clear objectives, hard constraints, quality thresholds, and kill switches. Then let it run while you sleep. The bottleneck isn't the AI. It's your need to feel in control.</p>
-            <Link href="/agentic" className="cta-button red" style={{ marginTop: 0 }}>Explore Agentic</Link>
+            <Link
+              href="/agentic"
+              className="mental-models-cta-button"
+              style={{
+                display: 'inline-block',
+                padding: '14px 28px',
+                backgroundColor: '#D43225',
+                color: '#fff',
+                textDecoration: 'none',
+                borderRadius: '4px',
+                fontSize: '17px',
+                fontWeight: 600,
+                transition: 'all 0.2s',
+                border: 'none',
+                cursor: 'pointer',
+                marginTop: '8px'
+              }}
+            >
+              Explore Agentic
+            </Link>
           </div>
 
           <div style={{ marginBottom: '32px' }}>
             <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>Prismatic</h4>
             <p style={{ marginBottom: '8px', color: '#444' }}>Every industry thinks it's special. None of them are. Nightclubs and enterprise sales are both gatekeeping. Museums and Netflix are both attention retention. Airports and emergency rooms are both triage under constraints. See structure, not surface, and solutions transfer instantly.</p>
-            <Link href="/prismatic" className="cta-button red" style={{ marginTop: 0 }}>Explore Prismatic</Link>
+            <Link
+              href="/prismatic"
+              className="mental-models-cta-button"
+              style={{
+                display: 'inline-block',
+                padding: '14px 28px',
+                backgroundColor: '#D43225',
+                color: '#fff',
+                textDecoration: 'none',
+                borderRadius: '4px',
+                fontSize: '17px',
+                fontWeight: 600,
+                transition: 'all 0.2s',
+                border: 'none',
+                cursor: 'pointer',
+                marginTop: '8px'
+              }}
+            >
+              Explore Prismatic
+            </Link>
           </div>
 
           <div style={{ marginBottom: '32px' }}>
             <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px' }}>Triptych</h4>
             <p style={{ marginBottom: '8px', color: '#444' }}>Most companies fight the wrong battle. They add supply when friction is the problem. Remove friction when demand doesn't exist. Build features when distribution is broken. Stop guessing. Map the forces. Fix what's actually stuck.</p>
-            <Link href="/triptych" className="cta-button red" style={{ marginTop: 0 }}>Explore Triptych</Link>
+            <Link
+              href="/triptych"
+              className="mental-models-cta-button"
+              style={{
+                display: 'inline-block',
+                padding: '14px 28px',
+                backgroundColor: '#D43225',
+                color: '#fff',
+                textDecoration: 'none',
+                borderRadius: '4px',
+                fontSize: '17px',
+                fontWeight: 600,
+                transition: 'all 0.2s',
+                border: 'none',
+                cursor: 'pointer',
+                marginTop: '8px'
+              }}
+            >
+              Explore Triptych
+            </Link>
           </div>
         </div>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p>These aren't solutions. They're the palette. Once you see the structure, the path becomes obvious.</p>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>These aren't solutions. They're the palette. Once you see the structure, the path becomes obvious.</p>
 
-        <p>Most objectives are identical across industries. Most friction is predictable. Most energy is wasted fighting the wrong constraint.</p>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>Most objectives are identical across industries. Most friction is predictable. Most energy is wasted fighting the wrong constraint.</p>
 
-        <p>We start with demand. Always. Because understanding what people actually want eliminates most strategy debates before they start.</p>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>We start with demand. Always. Because understanding what people actually want eliminates most strategy debates before they start.</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <p>Ready to see the structure in your problem?</p>
+        <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', marginBottom: '16px' }}>Ready to see the structure in your problem?</p>
 
-        <Link href="/contact" className="cta-button red">Reach Out</Link>
+        <Link
+          href="/contact"
+          className="mental-models-cta-button"
+          style={{
+            display: 'inline-block',
+            padding: '14px 28px',
+            backgroundColor: '#D43225',
+            color: '#fff',
+            textDecoration: 'none',
+            borderRadius: '4px',
+            fontSize: '17px',
+            fontWeight: 600,
+            transition: 'all 0.2s',
+            border: 'none',
+            cursor: 'pointer',
+            marginTop: '8px'
+          }}
+        >
+          Reach Out
+        </Link>
+        </div>
       </section>
 
       {/* Brief Modal */}
@@ -286,23 +530,23 @@ export default function MentalModelsPage() {
                       {briefs[activeModal].category}
                     </div>
 
-                    <Dialog.Title as="h3" style={{ marginTop: 0, marginBottom: '24px', fontSize: '24px' }}>
+                    <Dialog.Title as="h3" style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '28px', fontWeight: 700, lineHeight: '1.2', marginTop: 0, marginBottom: '24px', color: '#222' }}>
                       {briefs[activeModal].title}
                     </Dialog.Title>
 
                     <div style={{ marginBottom: '24px' }}>
                       <h4 style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: '#666', marginBottom: '8px' }}>The Problem</h4>
-                      <p style={{ whiteSpace: 'pre-line' }}>{briefs[activeModal].problem}</p>
+                      <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', whiteSpace: 'pre-line' }}>{briefs[activeModal].problem}</p>
                     </div>
 
                     <div style={{ marginBottom: '24px' }}>
                       <h4 style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: '#666', marginBottom: '8px' }}>How We Saw It</h4>
-                      <p style={{ whiteSpace: 'pre-line' }}>{briefs[activeModal].howWeSawIt}</p>
+                      <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', whiteSpace: 'pre-line' }}>{briefs[activeModal].howWeSawIt}</p>
                     </div>
 
                     <div>
                       <h4 style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '1px', textTransform: 'uppercase', color: '#666', marginBottom: '8px' }}>The Result</h4>
-                      <p style={{ whiteSpace: 'pre-line' }}>{briefs[activeModal].result}</p>
+                      <p style={{ fontSize: '17px', lineHeight: '1.6', color: '#444', whiteSpace: 'pre-line' }}>{briefs[activeModal].result}</p>
                     </div>
                   </>
                 )}

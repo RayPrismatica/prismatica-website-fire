@@ -10,6 +10,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Performance optimizations for smooth animations */
 img {
     image-rendering: -webkit-optimize-contrast;
@@ -27,12 +31,14 @@ img {
 
 body {
     font-family: "Noto Sans", sans-serif;
-    font-weight: 300;
-    background: #fafafa;
+    font-weight: 400;
+    background: rgb(245, 245, 247);
     color: #222;
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 17px;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -58,7 +64,7 @@ body {
     margin-left: 240px;
     flex: 1;
     padding: 48px;
-    max-width: 800px;
+    max-width: 1200px;
     width: 100%;
     box-sizing: border-box;
 }
@@ -79,7 +85,7 @@ body {
 
 h2 {
     font-family: "Passion One", sans-serif;
-    font-size: 48px;
+    font-size: 56px;
     font-weight: 600;
     line-height: 0.9;
     margin-bottom: 32px;
@@ -155,6 +161,111 @@ p {
 
 .cta-button.purple:hover {
     color: #6C5CE7;
+}
+
+/* Bento Box Hover Effect */
+.bento-link:hover {
+    transform: scale(1.02);
+}
+.bento-link:hover > div:last-child {
+    border-top-color: #D43225 !important;
+}
+.bento-link:hover .delivery-date {
+    color: #D43225 !important;
+}
+
+/* CTA Button Hovers */
+.home-cta-button:hover,
+.what-cta-button:hover,
+.who-cta-button:hover,
+.mental-models-cta-button:hover,
+.incentives-cta-button:hover,
+.demand-cta-button:hover,
+.agentic-cta-button:hover,
+.prismatic-cta-button:hover,
+.triptych-cta-button:hover,
+.privacy-cta-button:hover,
+.terms-cta-button:hover,
+.articles-cta-button:hover {
+    background-color: #b8281e !important;
+}
+
+/* Contact Page GitHub Link Hover */
+.contact-github-link:hover {
+    opacity: 0.7;
+}
+
+/* Contact Page Box Hover */
+.contact-box:hover {
+    transform: scale(1.02);
+}
+
+/* Service Bento Box Hover */
+.service-bento:hover {
+    transform: scale(1.02);
+}
+.service-bento:hover > div:last-child {
+    border-top-color: #D43225 !important;
+}
+.service-bento:hover .delivery-date {
+    color: #D43225 !important;
+}
+
+/* Service CTA Hover */
+.service-cta-link:hover,
+.service-cta-btn:hover {
+    text-decoration: underline !important;
+}
+
+/* Articles Page Hover Effects */
+.article-item:hover {
+    border-left-color: #D43225 !important;
+}
+
+.linkedin-link:hover {
+    opacity: 0.7 !important;
+}
+
+.share-link:hover {
+    border-color: #0077B5 !important;
+    background-color: #f8f8f8 !important;
+}
+
+.share-link-twitter:hover {
+    border-color: #000 !important;
+    background-color: #f8f8f8 !important;
+}
+
+.share-link-email:hover {
+    border-color: #666 !important;
+    background-color: #f8f8f8 !important;
+}
+
+.copy-link-btn:hover {
+    border-color: #666 !important;
+    background-color: #f8f8f8 !important;
+}
+
+/* Products Page Hover Effects */
+.product-bento:hover {
+    transform: translateY(-2px) !important;
+}
+
+.product-bento:hover .divider-line {
+    border-color: #D43225 !important;
+}
+
+.products-cta-button:hover {
+    background-color: #B82919 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(212, 50, 37, 0.3) !important;
+}
+
+/* Delivery Date Base Styles */
+.delivery-date {
+    font-weight: bold;
+    transition: color 0.2s ease;
+    cursor: help;
 }
 
 .text-link {
@@ -398,6 +509,15 @@ p {
         box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
     }
 
+    /* Better touch targets for nav */
+    .sidebar a,
+    .sidebar button {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 8px 0;
+    }
+
     .sidebar.mobile-open {
         transform: translateX(0);
     }
@@ -410,11 +530,21 @@ p {
     .main {
         margin-left: 0;
         margin-top: 60px;
-        padding: 24px 20px;
+        padding: 32px 24px;
     }
 
     .container {
         flex-direction: column;
+    }
+
+    /* Better vertical rhythm */
+    section {
+        padding-bottom: 24px;
+    }
+
+    /* Improve link spacing */
+    a {
+        -webkit-tap-highlight-color: rgba(212, 50, 37, 0.1);
     }
 }
 
@@ -425,20 +555,20 @@ p {
     }
 
     .main {
-        padding: 32px 20px;
+        padding: 40px 24px;
         max-width: 100%;
     }
 
     h2 {
         font-size: 36px;
         line-height: 1;
-        margin-bottom: 24px;
+        margin-bottom: 28px;
     }
 
     h3 {
         font-size: 20px;
-        margin-top: 32px;
-        margin-bottom: 8px;
+        margin-top: 40px;
+        margin-bottom: 12px;
     }
 
     p {
@@ -449,6 +579,27 @@ p {
 
     body {
         font-size: 16px;
+    }
+
+    /* Better touch targets for buttons */
+    .cta-button,
+    .home-cta-button,
+    .what-cta-button,
+    .who-cta-button {
+        min-height: 48px;
+        padding: 16px 32px !important;
+        font-size: 16px !important;
+    }
+
+    /* Bento boxes - better mobile padding */
+    .bento-link > div,
+    .service-bento > div {
+        padding: 24px !important;
+    }
+
+    /* Adjust left accent bars for mobile padding */
+    p[style*="position: relative"] span[style*="position: absolute"][style*="left: -20px"] {
+        left: -16px !important;
     }
 
     .case-studies-grid {
@@ -479,7 +630,7 @@ p {
 
 
 /* Athena Chat Styles */
-.carmen-chat-container {
+.athena-chat-container {
     margin-top: 24px;
     border-radius: 16px;
     overflow: hidden;
@@ -490,7 +641,7 @@ p {
     border: 1px solid #ddd;
 }
 
-.carmen-header {
+.athena-header {
     background: #222;
     padding: 16px 20px;
     color: white;
@@ -499,7 +650,7 @@ p {
     align-items: center;
 }
 
-.carmen-avatar {
+.athena-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -511,19 +662,19 @@ p {
     border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
-.carmen-avatar-image {
+.athena-avatar-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.carmen-name {
+.athena-name {
     font-weight: 600;
     font-size: 15px;
     line-height: 1.2;
 }
 
-.carmen-status {
+.athena-status {
     font-size: 12px;
     color: #999;
     display: flex;
@@ -531,7 +682,7 @@ p {
     gap: 4px;
 }
 
-.carmen-status::before {
+.athena-status::before {
     content: '';
     width: 6px;
     height: 6px;
@@ -540,7 +691,7 @@ p {
     display: inline-block;
 }
 
-.carmen-messages {
+.athena-messages {
     background: #fafafa;
     padding: 20px;
     min-height: 350px;
@@ -551,7 +702,7 @@ p {
     gap: 16px;
 }
 
-.carmen-message {
+.athena-message {
     display: flex;
     animation: messageSlideIn 0.3s ease;
 }
@@ -643,7 +794,7 @@ p {
     }
 }
 
-.carmen-input-area {
+.athena-input-area {
     background: white;
     border-top: 1px solid #ddd;
     padding: 16px;
@@ -652,7 +803,7 @@ p {
     align-items: center;
 }
 
-.carmen-input {
+.athena-input {
     flex: 1;
     border: 1px solid #ddd;
     border-radius: 24px;
@@ -663,17 +814,17 @@ p {
     background: #fafafa;
 }
 
-.carmen-input:focus {
+.athena-input:focus {
     border-color: #999;
     background: white;
 }
 
-.carmen-input:disabled {
+.athena-input:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
-.carmen-send-button {
+.athena-send-button {
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -688,18 +839,18 @@ p {
     flex-shrink: 0;
 }
 
-.carmen-send-button:hover:not(:disabled) {
+.athena-send-button:hover:not(:disabled) {
     transform: scale(1.05);
     background: #000;
 }
 
-.carmen-send-button:disabled {
+.athena-send-button:disabled {
     opacity: 0.4;
     cursor: not-allowed;
 }
 
-/* Carmen Close Button */
-.carmen-close-button {
+/* Athena Close Button */
+.athena-close-button {
     background: transparent;
     border: none;
     color: white;
@@ -712,14 +863,14 @@ p {
     border-radius: 50%;
 }
 
-.carmen-close-button:hover {
+.athena-close-button:hover {
     opacity: 0.7;
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Carmen Modal & Tablet Optimization (Mobile Only) */
+/* Athena Modal & Tablet Optimization (Mobile Only) */
 @media (max-width: 768px) {
-    .carmen-modal-overlay {
+    .athena-modal-overlay {
         position: fixed;
         top: 0;
         left: 0;
@@ -730,7 +881,7 @@ p {
         animation: fadeIn 0.2s ease;
     }
 
-    .carmen-modal-active {
+    .athena-modal-active {
         position: fixed !important;
         top: 0 !important;
         left: 0 !important;
@@ -746,68 +897,94 @@ p {
         flex-direction: column;
     }
 
-    .carmen-modal-active .carmen-messages {
+    .athena-modal-active .athena-messages {
         flex: 1;
         max-height: none !important;
         min-height: 0 !important;
     }
 
-    .carmen-chat-container:not(.carmen-modal-active) .carmen-messages {
+    .athena-chat-container:not(.athena-modal-active) .athena-messages {
         min-height: 250px;
         max-height: min(400px, 50vh);
     }
 }
 
-/* Medium Mobile Carmen Chat Optimization */
+/* Medium Mobile Athena Chat Optimization */
 @media (max-width: 640px) {
-    .carmen-chat-container:not(.carmen-modal-active) .carmen-messages {
+    .athena-chat-container:not(.athena-modal-active) .athena-messages {
         min-height: 220px;
         max-height: min(350px, 45vh);
     }
 
-    .carmen-chat-container:not(.carmen-modal-active) {
+    .athena-chat-container:not(.athena-modal-active) {
         margin-top: 16px;
     }
 }
 
 @media (max-width: 480px) {
     .main {
-        padding: 16px 12px;
+        padding: 32px 20px;
     }
 
     h2 {
         font-size: 28px;
         line-height: 1.1;
+        margin-bottom: 24px;
     }
 
     h3 {
-        font-size: 15px;
+        font-size: 16px;
+        margin-top: 36px;
+        margin-bottom: 12px;
     }
 
     p {
         font-size: 16px;
+        margin-bottom: 18px;
     }
 
-    /* Carmen Chat Mobile Styles */
-    .carmen-chat-container:not(.carmen-modal-active) {
+    /* Better spacing for dividers */
+    hr {
+        margin: 28px 0 !important;
+    }
+
+    /* Bento boxes - compact but not cramped */
+    .bento-link > div,
+    .service-bento > div {
+        padding: 20px !important;
+    }
+
+    /* Touch targets remain good size */
+    .cta-button,
+    .home-cta-button,
+    .what-cta-button,
+    .who-cta-button {
+        min-height: 48px;
+        padding: 14px 28px !important;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Athena Chat Mobile Styles */
+    .athena-chat-container:not(.athena-modal-active) {
         border-radius: 12px;
     }
 
-    .carmen-chat-container:not(.carmen-modal-active) .carmen-header {
+    .athena-chat-container:not(.athena-modal-active) .athena-header {
         padding: 12px 16px;
     }
 
-    .carmen-chat-container:not(.carmen-modal-active) .carmen-avatar {
+    .athena-chat-container:not(.athena-modal-active) .athena-avatar {
         width: 36px;
         height: 36px;
     }
 
-    .carmen-chat-container:not(.carmen-modal-active) .carmen-avatar-image {
+    .athena-chat-container:not(.athena-modal-active) .athena-avatar-image {
         width: 100%;
         height: 100%;
     }
 
-    .carmen-chat-container:not(.carmen-modal-active) .carmen-messages {
+    .athena-chat-container:not(.athena-modal-active) .athena-messages {
         padding: 16px;
         min-height: 200px;
         max-height: min(350px, 40vh);
@@ -822,22 +999,22 @@ p {
         font-size: 16px;
     }
 
-    .carmen-input-area {
+    .athena-input-area {
         padding: 12px;
         gap: 8px;
     }
 
-    .carmen-input {
+    .athena-input {
         padding: 10px 16px;
         font-size: 16px;
     }
 
-    .carmen-send-button {
+    .athena-send-button {
         width: 40px;
         height: 40px;
     }
 
-    .carmen-send-button svg {
+    .athena-send-button svg {
         width: 18px;
         height: 18px;
     }
@@ -1016,4 +1193,19 @@ p {
     textarea {
         font-size: 16px;
     }
+}
+
+/* Contact page - Speak soon hover effect */
+.speak-soon {
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.speak-soon:hover {
+    color: #D43225;
+}
+
+/* Who We Are page - CTA button hover effect */
+.who-cta-button:hover {
+    background-color: #b8281e !important;
 }

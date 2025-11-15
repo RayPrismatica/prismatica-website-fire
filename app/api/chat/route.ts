@@ -3,10 +3,23 @@ import { chatRateLimiter, getClientIdentifier } from '@/lib/rateLimiter';
 import fs from 'fs';
 import path from 'path';
 
-// Load Athena's system prompt from file
+// In production, load and cache the prompt once
 const promptPath = path.join(process.cwd(), 'scripts', 'prompts', 'athena-chat.md');
-const ATHENA_SYSTEM_PROMPT = fs.readFileSync(promptPath, 'utf8');
+let CACHED_ATHENA_PROMPT: string | null = null;
 
+// Only cache in production
+if (process.env.NODE_ENV === 'production') {
+  CACHED_ATHENA_PROMPT = fs.readFileSync(promptPath, 'utf8');
+}
+
+// Function to get the prompt - uses cache in production, reloads in development
+function getAthenaPrompt(): string {
+  if (process.env.NODE_ENV === 'production' && CACHED_ATHENA_PROMPT) {
+    return CACHED_ATHENA_PROMPT;
+  }
+  // In development, always read fresh from file
+  return fs.readFileSync(promptPath, 'utf8');
+}
 
 export async function POST(request: NextRequest) {
   // Rate limiting check
@@ -54,7 +67,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         model: 'claude-sonnet-4-5-20250929',
         max_tokens: 1024,
-        system: ATHENA_SYSTEM_PROMPT,
+        system: getAthenaPrompt(),
         messages: messages,
       }),
     });

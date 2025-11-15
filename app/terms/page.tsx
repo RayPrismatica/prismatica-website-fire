@@ -5,7 +5,8 @@ export default function TermsPage() {
   return (
     <PageLayout>
       <section id="terms" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>TERMS OF <span style={{ borderBottom: '4px solid #D43225' }}>SERVICE</span></h2>
+        <div style={{ maxWidth: '700px' }}>
+          <h2 style={{ fontFamily: 'var(--font-passion), sans-serif', fontSize: '56px', letterSpacing: '0.005em' }}>TERMS OF <span style={{ borderBottom: '4px solid #D43225' }}>SERVICE</span></h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
@@ -26,7 +27,7 @@ export default function TermsPage() {
         <p>Custom consulting work. Fixed-price projects. Starting at £5,000. Terms agreed case by case before we start.</p>
 
         <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '8px', marginTop: '24px' }}>Free stuff</h4>
-        <p>Carmen (the AI chat), the website, articles. These come with no guarantees. Use at your own risk.</p>
+        <p>Athena (the AI chat), the website, articles. These come with no guarantees. Use at your own risk.</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
@@ -133,7 +134,27 @@ export default function TermsPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <Link href="/" className="cta-button red">Back to Home</Link>
+        <Link
+          href="/"
+          className="terms-cta-button"
+          style={{
+            display: 'inline-block',
+            padding: '14px 28px',
+            backgroundColor: '#D43225',
+            color: '#fff',
+            textDecoration: 'none',
+            borderRadius: '4px',
+            fontSize: '17px',
+            fontWeight: 600,
+            transition: 'all 0.2s',
+            border: 'none',
+            cursor: 'pointer',
+            marginTop: '8px'
+          }}
+        >
+          Back to Home
+        </Link>
+        </div>
       </section>
     </PageLayout>
   );

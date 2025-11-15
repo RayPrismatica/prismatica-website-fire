@@ -6,7 +6,8 @@ export default function IncentivesPage() {
   return (
     <PageLayout>
       <section id="incentives" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>MENTAL <span style={{ borderBottom: '4px solid #D43225' }}>MODELS</span></h2>
+        <div style={{ maxWidth: '700px' }}>
+          <h2 style={{ fontFamily: 'var(--font-passion), sans-serif', fontSize: '56px', letterSpacing: '0.005em' }}>MENTAL <span style={{ borderBottom: '4px solid #D43225' }}>MODELS</span></h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
@@ -59,7 +60,27 @@ export default function IncentivesPage() {
 
         <p>Ready to stop fighting human nature and start designing for it?</p>
 
-        <Link href="/contact" className="cta-button red">Reach Out</Link>
+        <Link
+          href="/contact"
+          className="incentives-cta-button"
+          style={{
+            display: 'inline-block',
+            padding: '14px 28px',
+            backgroundColor: '#D43225',
+            color: '#fff',
+            textDecoration: 'none',
+            borderRadius: '4px',
+            fontSize: '17px',
+            fontWeight: 600,
+            transition: 'all 0.2s',
+            border: 'none',
+            cursor: 'pointer',
+            marginTop: '8px'
+          }}
+        >
+          Reach Out
+        </Link>
+        </div>
       </section>
     </PageLayout>
   );

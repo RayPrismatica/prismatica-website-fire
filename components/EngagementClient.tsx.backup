@@ -70,8 +70,6 @@ export default function EngagementClient({
 
         <p>Most consultants optimise for retention. We optimise for resolution.</p>
 
-        <p><strong>No retainers. No dependency. Every engagement has an end date.</strong></p>
-
         <div style={{ margin: '32px 0', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           <button
             onClick={() => setServiceFilter('all')}
@@ -236,7 +234,7 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'strategy') && (
           <>
-        {/* Pioneers of Purpose Assessment Bento Box - £50,000 */}
+        {/* Strategic Triptych Assessment Bento Box - £18,000 */}
         <div
           className="service-bento"
           style={{
@@ -271,7 +269,7 @@ export default function EngagementClient({
             </div>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
               <a
-                href={`mailto:?subject=${encodeURIComponent('Worth looking at: Pioneers of Purpose Assessment')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Pioneers of Purpose - they dissect your business from its core reason to exist and cascade that purpose through every system and customer touchpoint. Inside-out authenticity that actually strengthens both culture and message.\n\nEight weeks, starts at £50,000. They map purpose as operating system, not marketing tagline.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('pioneers-of-purpose')} or earlier.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#pioneers-of-purpose' : 'https://prismaticalabs.com/services#pioneers-of-purpose'}\n\nWorth a conversation?`)}`}
+                href={`mailto:?subject=${encodeURIComponent('Worth looking at: Pioneers of Purpose Assessment')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Pioneers of Purpose - they dissect your business from its core reason to exist and cascade that purpose through every system and customer touchpoint. Inside-out authenticity that actually strengthens both culture and message.\n\nFour to eight weeks, starts at £30,000. They map purpose as operating system, not marketing tagline.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('pioneers-of-purpose')} or earlier.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#pioneers-of-purpose' : 'https://prismaticalabs.com/services#pioneers-of-purpose'}\n\nWorth a conversation?`)}`}
                 title="Share with your team"
                 className="service-cta-link"
                 style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s' }}
@@ -294,7 +292,7 @@ export default function EngagementClient({
           </div>
         </div>
 
-        {/* ESI Framework Bento Box - £40,000 */}
+        {/* ESI Framework Bento Box */}
         <div
           className="service-bento"
           style={{
@@ -320,7 +318,7 @@ export default function EngagementClient({
           <p style={{ marginBottom: '16px', fontSize: '17px', lineHeight: '1.6', color: '#444' }}><DynamicESIDescription content={esiDescription} /></p>
 
           <p style={{ marginBottom: '20px', fontSize: '14px', color: '#666', fontStyle: 'italic' }}>
-            Six weeks. Roadmap delivered by <span className="delivery-date">{getDeliveryDate('esi-framework')}</span>.
+            Three to six weeks. Roadmap delivered by <span className="delivery-date">{getDeliveryDate('esi-framework')}</span>.
           </p>
 
           <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -329,7 +327,7 @@ export default function EngagementClient({
             </div>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
               <a
-                href={`mailto:?subject=${encodeURIComponent('Worth looking at: ESI Framework from Prismatica Labs')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the ESI Framework - basically a system that connects insights to actual implementation. Explore uncovers truth, Synthesize turns it into strategy, Ignite makes it executable.\n\nSix weeks, starts at £40,000. They map the whole thing from research through execution.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('esi-framework')} or earlier.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#esi-framework' : 'https://prismaticalabs.com/services#esi-framework'}\n\nWorth a conversation?`)}`}
+                href={`mailto:?subject=${encodeURIComponent('Worth looking at: ESI Framework from Prismatica Labs')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the ESI Framework - basically a system that connects insights to actual implementation. Explore uncovers truth, Synthesize turns it into strategy, Ignite makes it executable.\n\nThree to six weeks, starts at £25,000. They map the whole thing from research through execution.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('esi-framework')} or earlier.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#esi-framework' : 'https://prismaticalabs.com/services#esi-framework'}\n\nWorth a conversation?`)}`}
                 title="Share with your team"
                 className="service-cta-link"
                 style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
@@ -356,7 +354,7 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'technology') && (
           <>
-        {/* The Secret Agency Bento Box - £40,000 */}
+        {/* The Secret Agency Bento Box */}
         <div
           className="service-bento"
           style={{
@@ -382,7 +380,7 @@ export default function EngagementClient({
           <p style={{ marginBottom: '16px', fontSize: '17px', lineHeight: '1.6', color: '#444' }}><DynamicAgencyDescription content={agencyDescription} /></p>
 
           <p style={{ marginBottom: '20px', fontSize: '14px', color: '#666', fontStyle: 'italic' }}>
-            Twelve weeks. Build it once. Build it right. Delivered by <span className="delivery-date">{getDeliveryDate('the-secret-agency')}</span>. Then it's yours to run.
+            Invitation only. Deep discovery, custom architecture, ongoing refinement.
           </p>
 
           <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -391,7 +389,7 @@ export default function EngagementClient({
             </div>
             <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
               <a
-                href={`mailto:?subject=${encodeURIComponent('Worth looking at: The Secret Agency')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called The Secret Agency - custom AI infrastructure built exactly around how your brain works. Not productivity apps you adapt to, but systems that adapt to you. They engineer your perfect workflow from scratch. Bespoke intelligence layers that multiply capacity.\n\nInvitation only, starting at £40,000.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#secret-agency' : 'https://prismaticalabs.com/services#secret-agency'}\n\nWorth a conversation?`)}`}
+                href={`mailto:?subject=${encodeURIComponent('Worth looking at: The Secret Agency')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called The Secret Agency - custom AI infrastructure built exactly around how your brain works. Not productivity apps you adapt to, but systems that adapt to you. They engineer your perfect workflow from scratch. Bespoke intelligence layers that multiply capacity.\n\nInvitation only, starting at £25,000.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#secret-agency' : 'https://prismaticalabs.com/services#secret-agency'}\n\nWorth a conversation?`)}`}
                 title="Share with your team"
                 className="service-cta-link"
                 style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
@@ -416,69 +414,9 @@ export default function EngagementClient({
           </>
         )}
 
-        {(serviceFilter === 'all' || serviceFilter === 'strategy') && (
-          <>
-        {/* Transaction Architecture Bento Box - £25,000 */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
-          <div
-            className="bento-link"
-            style={{
-              backgroundColor: '#fff',
-              padding: '32px',
-              borderRadius: '12px',
-              transition: 'transform 0.3s ease'
-            }}>
-
-            <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
-              <span style={{ position: 'absolute', left: '-20px', top: '0', bottom: '0', width: '3px', backgroundColor: '#D43225' }}></span>
-              If engagement is high but conversions don't match...
-            </p>
-
-            <h3 id="transaction-architecture" style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '20px', color: '#222', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-              <span>The Transaction Architecture</span>
-              <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
-            </h3>
-
-            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}><DynamicTransactionDescription content={transactionDescription} /></p>
-
-            <p style={{ fontSize: '13px', color: '#666', marginBottom: '20px', fontStyle: 'italic' }}>
-              Five weeks. By <span className="delivery-date">{getDeliveryDate('transaction-architecture')}</span> you'll know exactly how value flows through your business and where to increase conversion velocity.
-            </p>
-
-            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £25,000</p>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
-                <a
-                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Transaction Architecture')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Transaction Architecture - they map how value actually flows through your business across three dimensions: emotional, cognitive, and tangible. Then they design every touchpoint to trigger those transactions. Conversion through understanding, not manipulation.\n\nFive weeks, starts at £25,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('transaction-architecture')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#transaction-architecture' : 'https://prismaticalabs.com/services#transaction-architecture'}\n\nWorth a conversation?`)}`}
-                  title="Share with your team"
-                  className="service-cta-link"
-                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
-                >
-                  Share &gt;
-                </a>
-                <button
-                  title="Enquire about this service"
-                  className="service-cta-btn"
-                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setEnquiryModalOpen('transaction-architecture');
-                  }}
-                >
-                  Enquire &gt;
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-          </>
-        )}
-
         {(serviceFilter === 'all' || serviceFilter === 'marketing') && (
           <>
-        {/* KSO Workshop Bento Box - £25,000 */}
+        {/* KSO Workshop Bento Box */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
             className="bento-link"
@@ -511,7 +449,7 @@ export default function EngagementClient({
               </div>
               <div style={{ display: 'flex', gap: '16px' }}>
                 <a
-                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: KSO Workshop from Prismatica Labs')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the KSO Workshop - Knowledge Search Optimisation. The future of discoverability isn't about links, it's about ideas. They map your business DNA into a knowledge graph that AI systems recognise and cite.\n\nFour weeks, £25,000. They position you as a recognised source in your space, not just another site.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('kso-workshop')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#kso-workshop' : 'https://prismaticalabs.com/services#kso-workshop'}\n\nWorth a conversation?`)}`}
+                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: KSO Workshop from Prismatica Labs')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the KSO Workshop - Knowledge Search Optimisation. The future of discoverability isn't about links, it's about ideas. They map your business DNA into a knowledge graph that AI systems recognise and cite.\n\nFour weeks, £18,500. They position you as a recognised source in your space, not just another site.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('kso-workshop')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#kso-workshop' : 'https://prismaticalabs.com/services#kso-workshop'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
                   style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
@@ -533,8 +471,68 @@ export default function EngagementClient({
             </div>
           </div>
         </div>
+          </>
+        )}
 
-        {/* Strategic Triptych Assessment Bento Box - £18,000 */}
+        {(serviceFilter === 'all' || serviceFilter === 'strategy') && (
+          <>
+        {/* Transaction Architecture Bento Box */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
+          <div
+            className="bento-link"
+            style={{
+              backgroundColor: '#fff',
+              padding: '32px',
+              borderRadius: '12px',
+              transition: 'transform 0.3s ease'
+            }}>
+
+            <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
+              <span style={{ position: 'absolute', left: '-20px', top: '0', bottom: '0', width: '3px', backgroundColor: '#D43225' }}></span>
+              If engagement is high but conversions don't match...
+            </p>
+
+            <h3 id="transaction-architecture" style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '20px', color: '#222', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+              <span>The Transaction Architecture</span>
+              <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Strategy</span>
+            </h3>
+
+            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}><DynamicTransactionDescription content={transactionDescription} /></p>
+
+            <p style={{ fontSize: '13px', color: '#666', marginBottom: '20px', fontStyle: 'italic' }}>
+              Give us three to five weeks and by <span className="delivery-date">{getDeliveryDate('transaction-architecture')}</span> you'll know exactly how value flows through your business and where to increase conversion velocity.
+            </p>
+
+            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £25,000</p>
+              </div>
+              <div style={{ display: 'flex', gap: '16px' }}>
+                <a
+                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Transaction Architecture')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Transaction Architecture - they map how value actually flows through your business across three dimensions: emotional, cognitive, and tangible. Then they design every touchpoint to trigger those transactions. Conversion through understanding, not manipulation.\n\nThree to five weeks, starts at £15,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('transaction-architecture')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#transaction-architecture' : 'https://prismaticalabs.com/services#transaction-architecture'}\n\nWorth a conversation?`)}`}
+                  title="Share with your team"
+                  className="service-cta-link"
+                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
+                >
+                  Share &gt;
+                </a>
+                <button
+                  title="Enquire about this service"
+                  className="service-cta-btn"
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setEnquiryModalOpen('transaction-architecture');
+                  }}
+                >
+                  Enquire &gt;
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Strategic Triptych Assessment Bento Box */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
             className="bento-link"
@@ -558,7 +556,7 @@ export default function EngagementClient({
             <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}><DynamicTriptychDescription content={triptychDescription} /></p>
 
             <p style={{ fontSize: '13px', color: '#666', marginBottom: '20px', fontStyle: 'italic' }}>
-              Four weeks. By <span className="delivery-date">{getDeliveryDate('strategic-triptych')}</span> you'll know exactly where you're leaving money on the table and what to do about it.
+              Two to four weeks. By <span className="delivery-date">{getDeliveryDate('strategic-triptych')}</span> you'll know exactly where you're leaving money on the table and what to do about it.
             </p>
 
             <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -567,7 +565,7 @@ export default function EngagementClient({
               </div>
               <div style={{ display: 'flex', gap: '16px' }}>
                 <a
-                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Strategic Triptych Assessment')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Strategic Triptych - they examine your business through three lenses at once: how you market, compete, and build. Most problems live in the gaps between these. Most opportunities too.\n\nFour weeks, starts at £18,000. They show you exactly where you're leaving money on the table.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('strategic-triptych')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#strategic-triptych' : 'https://prismaticalabs.com/services#strategic-triptych'}\n\nWorth a conversation?`)}`}
+                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Strategic Triptych Assessment')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Strategic Triptych - they examine your business through three lenses at once: how you market, compete, and build. Most problems live in the gaps between these. Most opportunities too.\n\nTwo to four weeks, starts at £12,000. They show you exactly where you're leaving money on the table.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('strategic-triptych')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#strategic-triptych' : 'https://prismaticalabs.com/services#strategic-triptych'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
                   style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
@@ -596,7 +594,7 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'marketing') && (
           <>
-        {/* Go-to-Market Bento Box - £15,000 */}
+        {/* Go-to-Market Bento Box */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
             className="bento-link"
@@ -620,7 +618,7 @@ export default function EngagementClient({
             <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Launch right the first time. We build your complete go-to-market strategy from positioning to channels to messaging to timeline. Who you're targeting, what you're saying, where you're saying it, and in what sequence. Everything mapped before you spend a pound on execution.</p>
 
             <p style={{ fontSize: '13px', color: '#666', marginBottom: '20px', fontStyle: 'italic' }}>
-              Six weeks beats six months of "let's try this and see." Launch strategy ready by <span className="delivery-date">{getDeliveryDate('go-to-market')}</span>, budget intact.
+              Four to six weeks now beats six months of "let's try this and see." Launch strategy ready by <span className="delivery-date">{getDeliveryDate('go-to-market')}</span>, budget intact.
             </p>
 
             <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -629,7 +627,7 @@ export default function EngagementClient({
               </div>
               <div style={{ display: 'flex', gap: '16px' }}>
                 <a
-                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Go-to-Market Strategy')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a complete go-to-market strategy service. They map everything from positioning to channels to messaging to timeline. Who you're targeting, what you're saying, where, and when. Everything mapped before you spend a pound on execution.\n\nSix weeks, starts at £15,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('go-to-market')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#go-to-market' : 'https://prismaticalabs.com/services#go-to-market'}\n\nWorth a conversation?`)}`}
+                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Go-to-Market Strategy')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a complete go-to-market strategy service. They map everything from positioning to channels to messaging to timeline. Who you're targeting, what you're saying, where, and when. Everything mapped before you spend a pound on execution.\n\nFour to six weeks, starts at £8,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('go-to-market')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#go-to-market' : 'https://prismaticalabs.com/services#go-to-market'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
                   style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
@@ -651,68 +649,12 @@ export default function EngagementClient({
             </div>
           </div>
         </div>
-
-        {/* Creative That Converts Bento Box - £12,000 */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
-          <div
-            className="bento-link"
-            style={{
-              backgroundColor: '#fff',
-              padding: '32px',
-              borderRadius: '12px',
-              transition: 'transform 0.3s ease'
-            }}>
-
-            <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
-              <span style={{ position: 'absolute', left: '-20px', top: '0', bottom: '0', width: '3px', backgroundColor: '#D43225' }}></span>
-              If your brand looks professional but doesn't drive sales or premium pricing...
-            </p>
-
-            <h3 id="creative-converts" style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '20px', color: '#222', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-              <span>Creative That Converts</span>
-              <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Marketing</span>
-            </h3>
-
-            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Brand work measured in revenue, not awards. We rebuild your positioning from the ground up based on what actually shifts customer perception and pricing power. Every design decision, every message, every touchpoint gets tested against one question: does this make people willing to pay more or buy faster?</p>
-
-            <p style={{ fontSize: '13px', color: '#666', marginBottom: '20px', fontStyle: 'italic' }}>
-              Six weeks. By <span className="delivery-date">{getDeliveryDate('creative-converts')}</span>, your brand actually drives revenue instead of just looking pretty.
-            </p>
-
-            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £12,000</p>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
-                <a
-                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Creative That Converts')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Creative That Converts. They rebuild brand positioning based on what actually shifts customer perception and pricing power. Every design decision gets tested: does this make people pay more or buy faster?\n\nSix weeks, starts at £12,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('creative-converts')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#creative-converts' : 'https://prismaticalabs.com/services#creative-converts'}\n\nWorth a conversation?`)}`}
-                  title="Share with your team"
-                  className="service-cta-link"
-                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
-                >
-                  Share &gt;
-                </a>
-                <button
-                  title="Enquire about this service"
-                  className="service-cta-btn"
-                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setEnquiryModalOpen('creative-converts');
-                  }}
-                >
-                  Enquire &gt;
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
           </>
         )}
 
         {(serviceFilter === 'all' || serviceFilter === 'process') && (
           <>
-        {/* Design Thinking Bento Box - £10,000 */}
+        {/* Design Thinking Bento Box */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
             className="bento-link"
@@ -745,7 +687,7 @@ export default function EngagementClient({
               </div>
               <div style={{ display: 'flex', gap: '16px' }}>
                 <a
-                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Design Thinking')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a design thinking approach for problems that traditional solutions can't fix. They reframe the problem, rapid prototype, and test with real users. Fast iteration before you commit to expensive solutions.\n\nStarts at £10,000, first sprint done in 3 weeks.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('design-thinking')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#design-thinking' : 'https://prismaticalabs.com/services#design-thinking'}\n\nWorth a conversation?`)}`}
+                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Design Thinking')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a design thinking approach for problems that traditional solutions can't fix. They reframe the problem, rapid prototype, and test with real users. Fast iteration before you commit to expensive solutions.\n\nStarts at £6,000, first sprint done in 3 weeks.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('design-thinking')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#design-thinking' : 'https://prismaticalabs.com/services#design-thinking'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
                   style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
@@ -772,7 +714,7 @@ export default function EngagementClient({
 
         {(serviceFilter === 'all' || serviceFilter === 'technology') && (
           <>
-        {/* AI Without the Hallucination Bento Box - £10,000 */}
+        {/* AI Without the Hallucination Bento Box */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
             className="bento-link"
@@ -796,7 +738,7 @@ export default function EngagementClient({
             <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Cut through the hype and find the boring, profitable AI applications that actually matter. We map your workflows, identify where AI adds real value, and prioritize implementations by ROI. Not the flashy demos everyone's chasing. The practical automations that save hours and generate revenue.</p>
 
             <p style={{ fontSize: '13px', color: '#666', marginBottom: '20px', fontStyle: 'italic' }}>
-              Four weeks. By <span className="delivery-date">{getDeliveryDate('ai-without-hallucination')}</span> you'll have AI use cases with actual ROI, not just ChatGPT screenshots in your deck.
+              We'll cut through the hype in two to four weeks. By <span className="delivery-date">{getDeliveryDate('ai-without-hallucination')}</span> you'll have AI use cases with actual ROI, not just ChatGPT screenshots in your deck.
             </p>
 
             <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -805,7 +747,7 @@ export default function EngagementClient({
               </div>
               <div style={{ display: 'flex', gap: '16px' }}>
                 <a
-                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: AI Without the Hallucination')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called AI Without the Hallucination. They cut through the hype to find the boring, profitable AI applications. They map your workflows, identify real value, and prioritize by ROI. Practical automations, not flashy demos.\n\nFour weeks, starts at £10,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('ai-without-hallucination')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#ai-without-hallucination' : 'https://prismaticalabs.com/services#ai-without-hallucination'}\n\nWorth a conversation?`)}`}
+                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: AI Without the Hallucination')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called AI Without the Hallucination. They cut through the hype to find the boring, profitable AI applications. They map your workflows, identify real value, and prioritize by ROI. Practical automations, not flashy demos.\n\nTwo to four weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('ai-without-hallucination')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#ai-without-hallucination' : 'https://prismaticalabs.com/services#ai-without-hallucination'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
                   style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
@@ -830,9 +772,9 @@ export default function EngagementClient({
           </>
         )}
 
-        {(serviceFilter === 'all' || serviceFilter === 'process') && (
+        {(serviceFilter === 'all' || serviceFilter === 'marketing') && (
           <>
-        {/* Process Surgery Bento Box - £10,000 */}
+        {/* Creative That Converts Bento Box */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
             className="bento-link"
@@ -845,27 +787,27 @@ export default function EngagementClient({
 
             <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
               <span style={{ position: 'absolute', left: '-20px', top: '0', bottom: '0', width: '3px', backgroundColor: '#D43225' }}></span>
-              If you're hiring faster than you're fixing processes...
+              If your brand looks professional but doesn't drive sales or premium pricing...
             </p>
 
-            <h3 id="process-surgery" style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '20px', color: '#222', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
-              <span>Process Surgery</span>
-              <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Process</span>
+            <h3 id="creative-converts" style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '20px', color: '#222', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+              <span>Creative That Converts</span>
+              <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Marketing</span>
             </h3>
 
-            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Cut what's broken. Fix what matters. Leave the rest alone. We find the 20% of processes causing 80% of your pain, eliminate unnecessary steps, and rebuild the critical paths. Not process for process sake. Process that actually makes work easier.</p>
+            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Brand work measured in revenue, not awards. We rebuild your positioning from the ground up based on what actually shifts customer perception and pricing power. Every design decision, every message, every touchpoint gets tested against one question: does this make people willing to pay more or buy faster?</p>
 
             <p style={{ fontSize: '13px', color: '#666', marginBottom: '20px', fontStyle: 'italic' }}>
-              Four weeks. By <span className="delivery-date">{getDeliveryDate('process-surgery')}</span> your team will spend less time managing workflows and more time doing actual work.
+              Three to six weeks from now, call it <span className="delivery-date">{getDeliveryDate('creative-converts')}</span>, your brand actually drives revenue instead of just looking pretty.
             </p>
 
             <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £10,000</p>
+                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £12,000</p>
               </div>
               <div style={{ display: 'flex', gap: '16px' }}>
                 <a
-                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Process Surgery')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Process Surgery. They find the 20% of processes causing 80% of pain, eliminate unnecessary steps, and rebuild critical paths. Process that makes work easier, not just documented.\n\nFour weeks, starts at £10,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('process-surgery')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#process-surgery' : 'https://prismaticalabs.com/services#process-surgery'}\n\nWorth a conversation?`)}`}
+                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Creative That Converts')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Creative That Converts. They rebuild brand positioning based on what actually shifts customer perception and pricing power. Every design decision gets tested: does this make people pay more or buy faster?\n\nThree to six weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('creative-converts')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#creative-converts' : 'https://prismaticalabs.com/services#creative-converts'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
                   style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
@@ -878,7 +820,7 @@ export default function EngagementClient({
                   style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
                   onClick={(e) => {
                     e.stopPropagation();
-                    setEnquiryModalOpen('process-surgery');
+                    setEnquiryModalOpen('creative-converts');
                   }}
                 >
                   Enquire &gt;
@@ -887,12 +829,8 @@ export default function EngagementClient({
             </div>
           </div>
         </div>
-          </>
-        )}
 
-        {(serviceFilter === 'all' || serviceFilter === 'marketing') && (
-          <>
-        {/* Marketing Reality Check Bento Box - £8,000 */}
+        {/* Marketing Reality Check Bento Box */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
             className="bento-link"
@@ -916,7 +854,7 @@ export default function EngagementClient({
             <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>We watch how customers actually behave, not how your research says they behave. Shopping at 2am looks different from focus groups at 2pm. We track real patterns, identify what's working despite your strategy (not because of it), and show you where budget should actually go.</p>
 
             <p style={{ fontSize: '13px', color: '#666', marginBottom: '20px', fontStyle: 'italic' }}>
-              Three weeks. By <span className="delivery-date">{getDeliveryDate('marketing-reality-check')}</span> you'll know what's actually moving the needle and what's just moving budget around.
+              Two to three weeks. By <span className="delivery-date">{getDeliveryDate('marketing-reality-check')}</span> you'll know what's actually moving the needle and what's just moving budget around.
             </p>
 
             <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -925,7 +863,7 @@ export default function EngagementClient({
               </div>
               <div style={{ display: 'flex', gap: '16px' }}>
                 <a
-                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Marketing Reality Check')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a marketing reality check based on actual customer behavior, not research reports. They track real patterns and show you what's working despite your strategy, not because of it.\n\nThree weeks, starts at £8,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('marketing-reality-check')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#marketing-reality-check' : 'https://prismaticalabs.com/services#marketing-reality-check'}\n\nWorth a conversation?`)}`}
+                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Marketing Reality Check')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a marketing reality check based on actual customer behavior, not research reports. They track real patterns and show you what's working despite your strategy, not because of it.\n\nTwo to three weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('marketing-reality-check')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#marketing-reality-check' : 'https://prismaticalabs.com/services#marketing-reality-check'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
                   style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
@@ -939,6 +877,66 @@ export default function EngagementClient({
                   onClick={(e) => {
                     e.stopPropagation();
                     setEnquiryModalOpen('marketing-reality-check');
+                  }}
+                >
+                  Enquire &gt;
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+          </>
+        )}
+
+        {(serviceFilter === 'all' || serviceFilter === 'process') && (
+          <>
+        {/* Process Surgery Bento Box */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
+          <div
+            className="bento-link"
+            style={{
+              backgroundColor: '#fff',
+              padding: '32px',
+              borderRadius: '12px',
+              transition: 'transform 0.3s ease'
+            }}>
+
+            <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
+              <span style={{ position: 'absolute', left: '-20px', top: '0', bottom: '0', width: '3px', backgroundColor: '#D43225' }}></span>
+              If you're hiring faster than you're fixing processes...
+            </p>
+
+            <h3 id="process-surgery" style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '20px', color: '#222', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+              <span>Process Surgery</span>
+              <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '1px', padding: '4px 8px', background: '#f5f5f5', color: '#666', borderRadius: '4px', textTransform: 'uppercase' }}>Process</span>
+            </h3>
+
+            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Cut what's broken. Fix what matters. Leave the rest alone. We find the 20% of processes causing 80% of your pain, eliminate unnecessary steps, and rebuild the critical paths. Not process for process sake. Process that actually makes work easier.</p>
+
+            <p style={{ fontSize: '13px', color: '#666', marginBottom: '20px', fontStyle: 'italic' }}>
+              Two to four weeks. By <span className="delivery-date">{getDeliveryDate('process-surgery')}</span> your team will spend less time managing workflows and more time doing actual work.
+            </p>
+
+            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £10,000</p>
+              </div>
+              <div style={{ display: 'flex', gap: '16px' }}>
+                <a
+                  href={`mailto:?subject=${encodeURIComponent('Worth looking at: Process Surgery')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Process Surgery. They find the 20% of processes causing 80% of pain, eliminate unnecessary steps, and rebuild critical paths. Process that makes work easier, not just documented.\n\nTwo to four weeks, starts at £5,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('process-surgery')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#process-surgery' : 'https://prismaticalabs.com/services#process-surgery'}\n\nWorth a conversation?`)}`}
+                  title="Share with your team"
+                  className="service-cta-link"
+                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
+                >
+                  Share &gt;
+                </a>
+                <button
+                  title="Enquire about this service"
+                  className="service-cta-btn"
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setEnquiryModalOpen('process-surgery');
                   }}
                 >
                   Enquire &gt;
@@ -970,27 +968,7 @@ export default function EngagementClient({
 
         <p>If you want a study, hire someone else. If you want a solution...</p>
 
-        <Link
-          href="/contact"
-          style={{
-            display: 'inline-block',
-            padding: '14px 28px',
-            backgroundColor: '#D43225',
-            color: '#fff',
-            textDecoration: 'none',
-            borderRadius: '4px',
-            fontSize: '17px',
-            fontWeight: 600,
-            transition: 'all 0.2s',
-            border: 'none',
-            cursor: 'pointer',
-            marginTop: '8px'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#b8281e'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#D43225'}
-        >
-          Reach Out
-        </Link>
+        <Link href="/contact" className="cta-button red">Reach Out</Link>
         </div>
       </section>
 

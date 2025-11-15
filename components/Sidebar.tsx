@@ -112,11 +112,11 @@ export default function Sidebar() {
           </Link>
 
           <Link
-            href="/engagement"
-            className={`nav-item block w-full text-left ${isActive('/engagement') ? 'active' : ''}`}
+            href="/consulting"
+            className={`nav-item block w-full text-left ${isActive('/consulting') ? 'active' : ''}`}
             style={{
               padding: '8px 0',
-              color: isActive('/engagement') ? '#D43225' : '#222',
+              color: isActive('/consulting') ? '#D43225' : '#222',
               textDecoration: 'none',
               fontSize: '11px',
               fontFamily: '"Noto Sans", sans-serif',
@@ -128,7 +128,7 @@ export default function Sidebar() {
             }}
             onClick={handleNavClick}
           >
-            Direct Engagement
+            Consulting Services
           </Link>
 
           <Link

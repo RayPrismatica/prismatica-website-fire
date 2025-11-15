@@ -5,7 +5,8 @@ export default function PrivacyPage() {
   return (
     <PageLayout>
       <section id="privacy" className="section active">
-        <h2 style={{ fontFamily: 'var(--font-passion), sans-serif' }}>PRIVACY <span style={{ borderBottom: '4px solid #D43225' }}>POLICY</span></h2>
+        <div style={{ maxWidth: '700px' }}>
+          <h2 style={{ fontFamily: 'var(--font-passion), sans-serif', fontSize: '56px', letterSpacing: '0.005em' }}>PRIVACY <span style={{ borderBottom: '4px solid #D43225' }}>POLICY</span></h2>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0 0 32px 0' }} />
 
@@ -19,7 +20,7 @@ export default function PrivacyPage() {
 
         <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>What we collect</h3>
 
-        <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '8px' }}>When you use Carmen (our AI chat)</h4>
+        <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '8px' }}>When you use Athena (our AI chat)</h4>
         <p>Everything you type goes to Anthropic's Claude API. That's how AI works. Your questions, our responses, the full conversation. Anthropic processes it according to their terms. We don't store chat logs on our servers. When you close the chat, it's gone from our side.</p>
 
         <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '8px', marginTop: '24px' }}>When you contact us</h4>
@@ -61,7 +62,7 @@ export default function PrivacyPage() {
         <p>The people who need to see it to help you. Support requests, account issues, product feedback.</p>
 
         <h4 style={{ fontSize: '14px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginTop: '24px', marginBottom: '8px' }}>Service providers</h4>
-        <p>• Anthropic (Claude API for Carmen and product tools)<br/>
+        <p>• Anthropic (Claude API for Athena and product tools)<br/>
         • Google (email hosting)<br/>
         • Stripe (payment processing)<br/>
         • Vercel (hosting infrastructure)</p>
@@ -78,7 +79,7 @@ export default function PrivacyPage() {
         <p>• Contact enquiries: Until we respond, then archived. Deleted after 2 years unless you become a client.<br/>
         • Active client data: As long as you're a client, plus 7 years for accounting/legal requirements.<br/>
         • Usage logs: 90 days for debugging, then deleted.<br/>
-        • Chat with Carmen: Not stored on our servers. Anthropic's retention policies apply.</p>
+        • Chat with Athena: Not stored on our servers. Anthropic's retention policies apply.</p>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
@@ -127,7 +128,27 @@ export default function PrivacyPage() {
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />
 
-        <Link href="/" className="cta-button red">Back to Home</Link>
+        <Link
+          href="/"
+          className="privacy-cta-button"
+          style={{
+            display: 'inline-block',
+            padding: '14px 28px',
+            backgroundColor: '#D43225',
+            color: '#fff',
+            textDecoration: 'none',
+            borderRadius: '4px',
+            fontSize: '17px',
+            fontWeight: 600,
+            transition: 'all 0.2s',
+            border: 'none',
+            cursor: 'pointer',
+            marginTop: '8px'
+          }}
+        >
+          Back to Home
+        </Link>
+        </div>
       </section>
     </PageLayout>
   );
