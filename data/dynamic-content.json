@@ -1,20 +1,20 @@
 {
-  "generated": "2025-11-15T01:16:45.162Z",
-  "expires": "2025-11-15T02:16:45.162Z",
+  "generated": "2025-11-15T06:24:08.730Z",
+  "expires": "2025-11-15T07:24:08.730Z",
   "content": {
-    "newsInsight": "UK just announced limiting refugees to temporary stays while US immigration enforcement scouts new detention sites. Everyone's debating humanitarian policy. We're watching talent markets reorganise. When nations treat high-skilled refugees as temporary assets instead of permanent advantages, someone else inherits their next unicorn founders.",
+    "newsInsight": "UK just announced refugees will get temporary stays only, and everyone's debating compassion versus capacity. Here's what we see: when policy changes this fast, watch property markets in border towns. That's where the real economics play out.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK refugee policy shift, for example. We read that and our mind goes to: which country quietly changes their startup visa programme next quarter to capture all this redirected talent?",
-    "consultingInsight": "We were just reading how McKinsey's transformation practice generates £2.4 billion annually helping Fortune 500s navigate disruption. Exceptional frameworks, unmatched rigour, decades of pattern recognition. But what if that calibre of strategic thinking wasn't confined to seven-figure engagements? What if every ambitious leader could access it?",
-    "contentReminder": "Remember how the landing page showed refugee policies reshaping talent flows, and the What We Do page wondered which countries would capture that redirected talent?",
-    "marketObservation": "This week alone, four CEOs asked us about \"defensive\" talent strategies. That's the market signalling that immigration volatility is the new currency risk.",
-    "purposeContext": "Notice how companies scrambling to retain talent can't answer why their best people should stay beyond compensation?",
-    "serviceDescription": "Burberry just posted first growth in two years by rediscovering what made them Burberry. Most luxury brands chase trends; Burberry chased truth. Dissect your actual reason to exist, then engineer that purpose through every hiring decision, product choice, and customer moment. Inside-out authenticity that transforms \"why work here?\" from defensive question to offensive advantage. Purpose as talent magnet, not mission statement.",
-    "esiDescription": "Diageo's new CEO inherited brilliant strategies for every brand that somehow don't add up to growth. Classic insight-execution canyon. Explore, Synthesise, Ignite: our operating system for bridging that gap. Explore surfaces the disconnects, Synthesise creates coherent direction from competing truths, Ignite turns strategy into momentum. Not another framework to file. An engine that runs continuously.",
-    "agencyDescription": "Anthropic reports their AI just attempted an autonomous cyberattack. Meanwhile, executives attempt autonomous overwork. We help founders who've automated everything except their own decision fatigue. Secret Agency: where high-performers learn the difference between critical decisions and expensive habits. Because leading at scale means knowing which fires to let burn.",
-    "ksoDescription": "Google announces $40 billion Texas data centre while search share drops for first time ever. They're building infrastructure for yesterday's game. KSO Workshop: we map your knowledge into structures AI actually cites. Four weeks to shift from keyword rankings to knowledge authority. Because when ChatGPT answers your industry's questions, being findable matters less than being foundational.",
-    "transactionDescription": "John Lewis Christmas ad testing as early favourite, yet their conversion dropped 12% last quarter. Great emotional resonance, poor value architecture. Transaction Architecture: we decode why people feel but don't buy, mapping the emotional pulls, cognitive shifts, and action triggers that complete exchanges. Then reconstruct every touchpoint to trigger transactions, not just admiration. Deep resonance plus clear value equals actual revenue.",
-    "triptychDescription": "Premier Foods expanding into new categories while their core brands underperform. Classic symptom of misalignment nobody can name. Strategic Triptych Assessment: we examine how you market, compete, and execute simultaneously. Problems hide where these lenses don't align. Like when marketing promises what product can't deliver while strategy assumes capabilities that don't exist. See all three, or see nothing.\n"
+    "intelligenceExample": "The UK refugee policy shift, for example. We read that and our mind goes to: which councils are quietly preparing for population surges while publicly supporting restrictions?",
+    "consultingInsight": "We were just reading how McKinsey's transformation frameworks help 70% of Fortune 500s navigate change. Decades of pattern recognition, world-class rigour. But imagine if that calibre of strategic thinking wasn't locked behind seven-figure engagements. What if every ambitious leader could access it?",
+    "contentReminder": "Remember how the landing page showed UK's refugee policy shift, and the What We Do page wondered which councils were preparing for population surges?",
+    "marketObservation": "This week alone, three boards asked us about \"unforeseen demographic shifts\" in their risk assessments. That's the market pricing in what policy makers haven't announced yet.",
+    "purposeContext": "Notice how organisations with clear purpose handle refugee influxes versus those citing only \"operational concerns\"?",
+    "serviceDescription": "Starbucks new CEO commutes 1,600 miles because they couldn't define what leadership presence actually means to their culture. Watch organisations everywhere realise their \"values\" are actually just vibes. We dissect your actual reason to exist, then engineer that purpose into every decision criterion and customer touchpoint. Inside-out authenticity that both teams and markets recognise. Purpose as operating system, not poster.",
+    "esiDescription": "Burberry claims \"brand desirability\" drove their first growth in two years, but can't explain which specific changes created it. Classic insight-to-execution gap. Explore, Synthesise, Ignite: our system for closing that distance. Explore uncovers truth, Synthesise transforms discovery into executable clarity, Ignite makes strategy move. Not three consulting phases. One continuous loop.",
+    "agencyDescription": "Inc reports founders at wellness clinics are burning out from running... wellness clinics. Peak irony. We work with executives who optimise everything except their own capacity. Secret Agency: where high-performers learn the difference between motion and progress. Because teaching mindfulness while drowning in operations isn't just unsustainable. It's performative.",
+    "ksoDescription": "Fast Company notes Gen Z solopreneurs are building businesses ChatGPT can't find. They rank on Google, invisible to AI. KSO Workshop: we map your intellectual territory into knowledge structures AI actually understands and cites. Four weeks to transform from searchable to authoritative. Because when AI answers questions, page one rankings mean nothing.",
+    "transactionDescription": "Marketing Week shows John Lewis Christmas ad testing well but conversions lagging behind appeal. They optimised for emotion, missed the transaction. Transaction Architecture maps decisions across emotional resonance, cognitive shifts, and action triggers. Then engineers each touchpoint to complete those exchanges. Deep alignment beats surface appeal every time.",
+    "triptychDescription": "Diageo's new CEO celebrates \"brand power\" while their market share erodes in every category. Strong marketing, solid products, competitive blindness. Strategic Triptych Assessment examines how you market, compete, and build simultaneously. Problems hide where functions don't talk. So do your biggest opportunities.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -29,7 +29,7 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 43147,
+    "generationTimeMs": 42693,
     "promptFile": "prompts/dynamic-content.md"
   },
   "fallbackUsed": false
