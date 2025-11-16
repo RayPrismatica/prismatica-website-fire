@@ -3,7 +3,6 @@ import { chatRateLimiter, getClientIdentifier } from '@/lib/rateLimiter';
 import Anthropic from '@anthropic-ai/sdk';
 import fs from 'fs';
 import path from 'path';
-import { JSDOM } from 'jsdom';
 
 // In production, load and cache the core prompt once
 const corePromptPath = path.join(process.cwd(), 'athena', 'prompts', 'core.md');
@@ -79,6 +78,9 @@ async function fetchWebPage(url: string): Promise<string> {
     }
 
     const html = await response.text();
+
+    // Dynamic import of jsdom (ES Module)
+    const { JSDOM } = await import('jsdom');
     const dom = new JSDOM(html);
     const document = dom.window.document;
 
@@ -202,6 +204,9 @@ async function searchWeb(query: string): Promise<string> {
     }
 
     const html = await response.text();
+
+    // Dynamic import of jsdom (ES Module)
+    const { JSDOM } = await import('jsdom');
     const dom = new JSDOM(html);
     const document = dom.window.document;
 
