@@ -41,12 +41,65 @@ function getPageContent(pathname: string): string {
   }
 }
 
+// Load user session notes if username is provided
+function getSessionContext(username?: string): string {
+  if (!username) return '';
+
+  try {
+    // Try current month first
+    const now = new Date();
+    const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+    const sanitizedUsername = username.toLowerCase().replace(/[^a-z0-9-]/g, '-');
+
+    let sessionFile = path.join(process.cwd(), 'athena', 'sessions', currentMonth, `${sanitizedUsername}.md`);
+
+    // If not found, try previous month
+    if (!fs.existsSync(sessionFile)) {
+      const prevMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+      const prevMonthFolder = `${prevMonth.getFullYear()}-${String(prevMonth.getMonth() + 1).padStart(2, '0')}`;
+      sessionFile = path.join(process.cwd(), 'athena', 'sessions', prevMonthFolder, `${sanitizedUsername}.md`);
+    }
+
+    if (fs.existsSync(sessionFile)) {
+      const sessionNotes = fs.readFileSync(sessionFile, 'utf8');
+      return `\n\n---\n\n## RETURNING USER SESSION CONTEXT\n\nThis user has an existing session. Here are their notes:\n\n${sessionNotes}\n\n---\n\nWelcome them back naturally and reference what you worked on together last time.`;
+    }
+
+    return '';
+  } catch (error) {
+    console.error('Error loading session context:', error);
+    return '';
+  }
+}
+
+// Load dynamic content for Athena's awareness
+function getDynamicContent(): string {
+  try {
+    const dynamicContentPath = path.join(process.cwd(), 'athena', 'knowledge', 'pages', 'dynamic-content.md');
+    if (fs.existsSync(dynamicContentPath)) {
+      return fs.readFileSync(dynamicContentPath, 'utf8');
+    }
+    return '';
+  } catch (error) {
+    console.error('Error loading dynamic content:', error);
+    return '';
+  }
+}
+
 // Build the complete system prompt with page context
-function buildSystemPrompt(pathname: string): string {
+function buildSystemPrompt(pathname: string, username?: string): string {
   const corePrompt = getCorePrompt();
   const pageContent = getPageContent(pathname);
+  const dynamicContent = getDynamicContent();
+  const sessionContext = getSessionContext(username);
 
   return `${corePrompt}
+
+---
+
+## CURRENT DYNAMIC CONTENT
+
+${dynamicContent}
 
 ---
 
@@ -60,7 +113,7 @@ ${pageContent}
 
 ---
 
-Use the page content above to provide contextual, relevant responses. The user can see this page, so reference specific sections, prices, or details from it naturally.`;
+Use the page content above to provide contextual, relevant responses. The user can see this page, so reference specific sections, prices, or details from it naturally.${sessionContext}`;
 }
 
 // Simple web page fetcher
@@ -287,7 +340,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { messages, pathname, conversationId: existingConversationId } = await request.json();
+    const { messages, pathname, conversationId: existingConversationId, username } = await request.json();
 
     // Use separate API key for chat (fallback to main key for backward compatibility)
     const apiKey = process.env.ANTHROPIC_API_KEY_CHAT || process.env.ANTHROPIC_API_KEY;
@@ -340,7 +393,7 @@ export async function POST(request: NextRequest) {
     let response = await anthropic.messages.create({
       model: 'claude-sonnet-4-5-20250929',
       max_tokens: 1024,
-      system: buildSystemPrompt(pathname || '/'),
+      system: buildSystemPrompt(pathname || '/', username),
       messages: messages,
       tools: tools
     });
@@ -386,7 +439,7 @@ export async function POST(request: NextRequest) {
       response = await anthropic.messages.create({
         model: 'claude-sonnet-4-5-20250929',
         max_tokens: 1024,
-        system: buildSystemPrompt(pathname || '/'),
+        system: buildSystemPrompt(pathname || '/', username),
         messages: messages,
         tools: tools
       });
