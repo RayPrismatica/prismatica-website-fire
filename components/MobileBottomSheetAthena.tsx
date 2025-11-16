@@ -867,7 +867,7 @@ export default function MobileBottomSheetAthena() {
           height: '100dvh',
           display: 'flex',
           flexDirection: 'column',
-          paddingTop: '60px',
+          paddingTop: '0', // No padding needed - drawer covers entire screen with z-index 1001
           background: 'rgba(255, 255, 255, 1)'
         }}>
             {/* Messages Area */}
