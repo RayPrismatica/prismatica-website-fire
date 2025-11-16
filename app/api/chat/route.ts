@@ -113,7 +113,7 @@ function saveConversationTranscript(messages: any[], pathname: string, existingC
     }
 
     // Try to find existing conversation file if we don't have an ID
-    let conversationId: string;
+    let conversationId: string = '';
     if (existingConversationId) {
       conversationId = existingConversationId;
     } else {

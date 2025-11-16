@@ -88,10 +88,11 @@ export default function BentoBoxFromContent({
   // Convert metadata to JSX if it contains {result} replacement (dynamic dates)
   let metadata: React.ReactNode = metadataText;
 
-  if (metadataText && content.content.metadata?.type === 'function' && content.content.metadata.template) {
+  if (metadataText && content.content.metadata?.type === 'function' && content.content.metadata.template && content.content.metadata.function) {
     // Get the raw date value
-    const dateValue = functionRegistry[content.content.metadata.function]
-      ? functionRegistry[content.content.metadata.function](...(content.content.metadata.args || []))
+    const functionName = content.content.metadata.function;
+    const dateValue = functionRegistry && functionRegistry[functionName]
+      ? functionRegistry[functionName](...(content.content.metadata.args || []))
       : '';
 
     // Split template by {result} to wrap date in span
