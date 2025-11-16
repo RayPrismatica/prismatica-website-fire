@@ -1,20 +1,20 @@
 {
-  "generated": "2025-11-15T18:22:04.094Z",
-  "expires": "2025-11-15T19:22:04.094Z",
+  "generated": "2025-11-16T01:23:37.531Z",
+  "expires": "2025-11-16T02:23:37.531Z",
   "content": {
-    "newsInsight": "UK just announced 5% unemployment while job listings hit record highs. Everyone sees recession signals. We see something more interesting. When available talent spikes alongside unfilled positions, that's not economic weakness. That's the market telling us companies forgot how to recognise capability.",
+    "newsInsight": "Trump Organisation just announced a Saudi real estate deal whilst their ethics watchdogs are still writing last term's report. Everyone sees conflict. We see pattern recognition at scale. What private equity learns through a thousand deals, politics teaches you by Tuesday morning.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK unemployment paradox, for example. We read that and our mind goes to: if companies can't fill roles when talent's everywhere, are they screening for credentials or capability?",
-    "consultingInsight": "We were just reading how McKinsey's transformation frameworks achieve 70% success rates through methodical stakeholder mapping and change architectures. Decades of refinement, absolutely world class. But imagine if that calibre of strategic thinking wasn't reserved for enterprises with seven-figure budgets?",
-    "contentReminder": "Remember how the landing page showed UK's unemployment paradox, and the What We Do page wondered if companies screen for credentials or capability?",
-    "marketObservation": "This week three different CEOs asked us why their \"talent shortage\" exists while laying off brilliant people. The pattern's obvious once you see it.",
-    "purposeContext": "Notice how companies struggling to hire are the same ones whose employees can't explain why the company exists?",
-    "serviceDescription": "John Lewis just posted record Christmas ad engagement but declining sales because brand love doesn't automatically create transactions. Most businesses chase surface appeal while their actual reason to exist stays buried in founder's notes. We excavate that core purpose and engineer it into every hire, decision, and customer interaction. Transform fuzzy values into operational filters. Because when your team can't explain why you exist beyond revenue, neither can your customers.",
-    "esiDescription": "Burberry celebrated \"brand desirability\" returning after two years of strategic confusion because insight lived in boardrooms while execution happened in stores. Classic exploration-execution canyon. Explore, Synthesise, Ignite: our system for closing that gap. Explore surfaces truth, Synthesise transforms discovery into clarity, Ignite makes clarity move through the organisation. Not three consultants with three timelines. One integrated loop.",
-    "agencyDescription": "The Atlantic profiles how \"ground keeps shifting\" for leaders navigating constant change while their own patterns stay frozen. Sounds familiar? We work with executives who realised their 70-hour weeks involve 40 hours of meetings about meetings. Secret Agency: where high-performers learn to optimise for outcomes, not activity. Because somewhere you stopped managing energy and started performing busyness.",
-    "ksoDescription": "Forbes reports prompt engineering now includes \"collaborative prompting\" while most brands still optimise for keywords Google barely uses. The game changed, the players didn't. KSO Workshop maps your knowledge into structures AI systems actually reference and cite. Four weeks to shift from searchable to citable. Because when ChatGPT answers industry questions, your page-one Google ranking becomes yesterday's victory.",
-    "transactionDescription": "Fast Company profiles Yeti finally hiring an ad agency after years of organic growth stalling. Classic case: incredible product, loyal base, but can't expand beyond core tribe. They built tangible excellence but missed the emotional and cognitive bridges to new audiences. Transaction Architecture maps all three dimensions of value exchange, then engineers touchpoints that complete transactions. Deep substance finally meeting surface appeal.",
-    "triptychDescription": "Diageo's new CEO inherited strong brands, solid operations, and clear strategy. Still needs turnaround because nobody connected how portfolio decisions affect retail relationships affect consumer perception. Strategic Triptych Assessment examines how you market, compete, and build simultaneously. Problems hide where functions intersect. So do breakthrough opportunities. Most leaders examine trees. We show you the forest."
+    "intelligenceExample": "The Trump Saudi deal, for example. We read that and our mind goes to: when did \"conflict of interest\" become just another asset class, and what does that tell us about risk pricing in 2025?",
+    "consultingInsight": "We were just reading how McKinsey's new transformation framework helps Fortune 500s navigate stakeholder complexity. Decades of refinement, world-class rigour. But what if that calibre of strategic insight wasn't reserved for seven-figure engagements? What if every ambitious leader could access thinking that sharp?",
+    "contentReminder": "Remember how the landing page showed Trump's Saudi deal pattern, and the What We Do page wondered when conflicts became asset classes?",
+    "marketObservation": "This week alone, three boards asked us about \"reputational arbitrage\" without using those words. That's not random enquiries. That's the market discovering ethics and economics aren't opposites anymore.",
+    "purposeContext": "Notice how the organisations navigating controversy best already filter every decision through 'why we exist beyond returns'?",
+    "serviceDescription": "Burberry just reported first growth in two years by remembering what made them Burberry. Meanwhile half the luxury sector chases trends they don't even believe in. We excavate your actual reason to exist, then engineer that truth into every decision filter and customer touchpoint. Not brand therapy. Brand architecture. Purpose as infrastructure, not Instagram caption.",
+    "esiDescription": "Premier Foods expanded into new categories because they finally connected consumer insights to operational capabilities. Most companies have brilliant insights gathering dust. Explore, Synthesise, Ignite: our system for closing that gap. Explore surfaces truth, Synthesise makes it actionable, Ignite ensures execution. Research and strategy and implementation as one continuous loop, not three separate consultancies hoping someone connects the dots.",
+    "agencyDescription": "The Atlantic explores how ground-shifting chaos paralyses even great leaders. Familiar? We work with executives who realise their 80-hour weeks contain maybe 20 hours of actual leadership. Secret Agency: where high-performers unlearn the patterns that got them here but won't get them there. Strategic clarity over inbox management. Because effectiveness and exhaustion stopped being synonymous years ago.",
+    "ksoDescription": "Fast Company reports Yeti just hired their first ad agency ever. Why? Because being findable on Google means nothing when AI answers don't mention you. KSO Workshop: we map your intellectual territory into knowledge structures AI actually comprehends and cites. Four weeks to transform from searchable to authoritative. Traditional SEO optimises for yesterday's game.",
+    "transactionDescription": "Diageo credits \"brand desirability\" for growth but can't explain why desire translates to purchase for them, not competitors. Most businesses confuse wanting with buying. Transaction Architecture maps the actual value exchange across emotional resonance, cognitive shifts, and behavioural triggers. Then engineers every touchpoint to complete those transactions. Deep structure meets surface appeal.",
+    "triptychDescription": "John Lewis's Christmas ad testing well whilst their retail struggles continue. Strong creative, weak commercial reality. Strategic Triptych Assessment: we examine how you market, compete, and execute simultaneously. Problems hide where those perspectives don't align. Like finding the bug in code by running three debuggers at once.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -29,7 +29,7 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 44743,
+    "generationTimeMs": 42221,
     "promptFile": "prompts/dynamic-content.md"
   },
   "fallbackUsed": false
