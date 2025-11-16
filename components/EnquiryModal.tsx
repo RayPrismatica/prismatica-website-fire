@@ -25,6 +25,7 @@ interface FormData {
 }
 
 export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePrice, onClose }: EnquiryModalProps) {
+  const [isMobile, setIsMobile] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     deadlineOption: 'asap',
@@ -40,6 +41,16 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
   const [calculatedStartDate, setCalculatedStartDate] = useState<Date | null>(null);
   const [isFeasible, setIsFeasible] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(isMobile);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     calculateStartDate();
@@ -177,7 +188,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
         </Transition.Child>
 
         {/* Modal Container */}
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center">
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center md:p-4">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -190,16 +201,19 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
             <Dialog.Panel
               className="modal-content"
               style={{
-                backgroundColor: '#fafafa',
-                padding: '48px',
-                borderRadius: '8px',
-                maxWidth: '600px',
+                backgroundColor: '#fff',
+                padding: isMobile ? '20px 20px 24px' : '40px',
+                paddingTop: isMobile ? '56px' : '40px', // Extra space for close button on mobile
+                borderRadius: isMobile ? '0' : '16px',
+                maxWidth: isMobile ? '100%' : '540px',
                 width: '100%',
-                height: '750px',
-                maxHeight: '90vh',
+                height: isMobile ? '100vh' : 'auto',
+                maxHeight: isMobile ? '100vh' : 'calc(100vh - 80px)',
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'relative',
+                boxShadow: isMobile ? 'none' : '0 20px 60px rgba(0, 0, 0, 0.3)',
+                overflow: 'hidden',
               }}
             >
               <button
@@ -207,21 +221,28 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                 className="modal-close"
                 style={{
                   position: 'absolute',
-                  top: '24px',
-                  right: '24px',
+                  top: isMobile ? '16px' : '20px',
+                  right: isMobile ? '16px' : '20px',
                   fontSize: '32px',
                   fontWeight: 300,
-                  color: '#666',
+                  color: '#999',
                   cursor: 'pointer',
                   lineHeight: 1,
                   transition: 'color 0.2s',
                   background: 'none',
                   border: 'none',
                   padding: 0,
+                  zIndex: 10,
                 }}
                 onClick={onClose}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#D43225';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '#999';
+                }}
               >
-                &times;
+                ×
               </button>
 
               <div style={{ marginBottom: '24px' }}>
@@ -305,14 +326,18 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                         onChange={(e) => setFormData({ ...formData, specificDeadline: e.target.value })}
                         placeholder="Select a date"
                         style={{
-                          padding: '8px 12px',
-                          border: '1px solid #ddd',
-                          borderRadius: '4px',
-                          fontSize: '14px',
+                          padding: '12px 16px',
+                          border: '2px solid #e0e0e0',
+                          borderRadius: '8px',
+                          fontSize: '15px',
                           width: '100%',
                           marginBottom: '16px',
-                          boxSizing: 'border-box'
+                          boxSizing: 'border-box',
+                          transition: 'border-color 0.2s',
+                          outline: 'none'
                         }}
+                        onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                        onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                       />
                     ) : (
                       <div style={{
@@ -340,15 +365,15 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
 
                     {calculatedStartDate && (
                       <div style={{
-                        padding: '12px 16px',
-                        background: isFeasible ? '#f0fdf4' : '#fef2f2',
-                        border: `1px solid ${isFeasible ? '#86efac' : '#fca5a5'}`,
-                        borderRadius: '6px',
+                        padding: '16px',
+                        background: '#f8f8f8',
+                        border: `2px solid ${isFeasible ? '#D43225' : '#999'}`,
+                        borderRadius: '8px',
                         minHeight: '68px',
                         display: 'flex',
                         alignItems: 'center'
                       }}>
-                        <p style={{ fontSize: '13px', lineHeight: '1.6', margin: 0 }}>
+                        <p style={{ fontSize: '14px', lineHeight: '1.6', margin: 0, color: '#222' }}>
                           {getTimelineMessage()}
                         </p>
                       </div>
@@ -377,12 +402,16 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                           placeholder="John Smith"
                           style={{
                             width: '100%',
-                            padding: '10px 12px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            fontSize: '14px',
-                            boxSizing: 'border-box'
+                            padding: '12px 16px',
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            fontSize: '15px',
+                            boxSizing: 'border-box',
+                            transition: 'border-color 0.2s',
+                            outline: 'none'
                           }}
+                          onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                          onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                         />
                       </div>
 
@@ -399,12 +428,16 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                           placeholder="john@company.com"
                           style={{
                             width: '100%',
-                            padding: '10px 12px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            fontSize: '14px',
-                            boxSizing: 'border-box'
+                            padding: '12px 16px',
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            fontSize: '15px',
+                            boxSizing: 'border-box',
+                            transition: 'border-color 0.2s',
+                            outline: 'none'
                           }}
+                          onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                          onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                         />
                       </div>
 
@@ -421,12 +454,16 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                           placeholder="Acme Inc"
                           style={{
                             width: '100%',
-                            padding: '10px 12px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            fontSize: '14px',
-                            boxSizing: 'border-box'
+                            padding: '12px 16px',
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            fontSize: '15px',
+                            boxSizing: 'border-box',
+                            transition: 'border-color 0.2s',
+                            outline: 'none'
                           }}
+                          onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                          onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                         />
                       </div>
 
@@ -487,17 +524,22 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                           }
                         }}
                         placeholder="Our team sees AI potential everywhere but can't identify clear use cases that would actually generate ROI..."
-                        rows={5}
+                        rows={6}
                         style={{
                           width: '100%',
-                          padding: '10px 12px',
-                          border: '1px solid #ddd',
-                          borderRadius: '4px',
-                          fontSize: '14px',
+                          padding: '12px 16px',
+                          border: '2px solid #e0e0e0',
+                          borderRadius: '8px',
+                          fontSize: '15px',
                           boxSizing: 'border-box',
                           fontFamily: 'inherit',
-                          resize: 'none'
+                          resize: 'none',
+                          transition: 'border-color 0.2s',
+                          outline: 'none',
+                          lineHeight: '1.6'
                         }}
+                        onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                        onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                       />
                       <p style={{ fontSize: '12px', color: '#666', marginTop: '4px', textAlign: 'right' }}>
                         {formData.challenge.length}/200 characters

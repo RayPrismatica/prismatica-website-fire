@@ -113,10 +113,13 @@ export default function GlobalAthenaChat() {
     }
   };
 
+  // Don't render anything if chat is not open
+  if (!isOpen) return null;
+
   return (
     <>
       {/* Drawer Dialog */}
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition show={isOpen} as={Fragment}>
         <Dialog onClose={closeChat} className="relative z-30">
           {/* Backdrop */}
           <Transition.Child
@@ -136,20 +139,42 @@ export default function GlobalAthenaChat() {
             />
           </Transition.Child>
 
-          <div className="fixed inset-y-0 right-0 overflow-hidden" style={{ left: 'var(--sidebar-width, 0px)' }}>
+          <div className="fixed inset-0 md:inset-y-0 md:right-0 overflow-hidden" style={{ left: 'var(--sidebar-width, 0px)' }}>
             <div className="absolute inset-0 overflow-hidden">
-              {/* Full-width drawer starting from sidebar edge */}
+              {/* Full-width drawer - slides from bottom on mobile, left on desktop */}
               <Transition.Child
                 as={Fragment}
                 enter="transform transition ease-out duration-500"
-                enterFrom="-translate-x-full"
-                enterTo="translate-x-0"
+                enterFrom="translate-y-full md:-translate-x-full md:translate-y-0"
+                enterTo="translate-y-0 md:translate-x-0"
                 leave="transform transition ease-in duration-300"
-                leaveFrom="translate-x-0"
-                leaveTo="-translate-x-full"
+                leaveFrom="translate-y-0 md:translate-x-0"
+                leaveTo="translate-y-full md:-translate-x-full md:translate-y-0"
               >
                 <Dialog.Panel className="pointer-events-auto w-full absolute inset-0" style={{ willChange: 'transform', backfaceVisibility: 'hidden', height: '100dvh' }}>
                     <div className="flex flex-col bg-white pt-[60px] md:pt-0" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', height: '100dvh' }}>
+                      {/* Close button - top right */}
+                      <button
+                        type="button"
+                        onClick={closeChat}
+                        className="absolute top-4 right-4 z-10 md:hidden"
+                        style={{
+                          fontSize: '32px',
+                          fontWeight: 300,
+                          color: '#999',
+                          cursor: 'pointer',
+                          lineHeight: 1,
+                          transition: 'color 0.2s',
+                          background: 'none',
+                          border: 'none',
+                          padding: 0,
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
+                        onMouseLeave={(e) => e.currentTarget.style.color = '#999'}
+                      >
+                        ×
+                      </button>
+
                       {/* Header */}
                       <div className="flex flex-shrink-0 justify-center border-b border-gray-200 bg-gradient-to-b from-white to-gray-50/30 shadow-sm relative" style={{ paddingTop: '1.8rem', paddingBottom: '1.8rem', transform: 'translateZ(0)' }}>
                         {/* Desktop Header */}

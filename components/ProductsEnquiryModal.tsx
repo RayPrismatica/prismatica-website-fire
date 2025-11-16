@@ -41,6 +41,7 @@ const marketsByRegion: Record<string, string[]> = {
 };
 
 export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalProps) {
+  const [isMobile, setIsMobile] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     industry: '',
@@ -58,6 +59,16 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
 
   const availableMarkets = formData.region ? marketsByRegion[formData.region] || [] : [];
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(isMobile);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleSubmit = async () => {
     setIsSubmitting(true);
@@ -104,7 +115,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
         </Transition.Child>
 
         {/* Modal Container */}
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center">
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center md:p-4">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -117,16 +128,19 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
             <Dialog.Panel
               className="modal-content"
               style={{
-                backgroundColor: '#fafafa',
-                padding: '48px',
-                borderRadius: '8px',
-                maxWidth: '600px',
+                backgroundColor: '#fff',
+                padding: isMobile ? '20px 20px 24px' : '40px',
+                paddingTop: isMobile ? '56px' : '40px', // Extra space for close button on mobile
+                borderRadius: isMobile ? '0' : '16px',
+                maxWidth: isMobile ? '100%' : '540px',
                 width: '100%',
-                height: '750px',
-                maxHeight: '90vh',
+                height: isMobile ? '100vh' : 'auto',
+                maxHeight: isMobile ? '100vh' : 'calc(100vh - 80px)',
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'relative',
+                boxShadow: isMobile ? 'none' : '0 20px 60px rgba(0, 0, 0, 0.3)',
+                overflow: 'hidden',
               }}
             >
               <button
@@ -134,21 +148,28 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                 className="modal-close"
                 style={{
                   position: 'absolute',
-                  top: '24px',
-                  right: '24px',
+                  top: isMobile ? '16px' : '20px',
+                  right: isMobile ? '16px' : '20px',
                   fontSize: '32px',
                   fontWeight: 300,
-                  color: '#666',
+                  color: '#999',
                   cursor: 'pointer',
                   lineHeight: 1,
                   transition: 'color 0.2s',
                   background: 'none',
                   border: 'none',
                   padding: 0,
+                  zIndex: 10,
                 }}
                 onClick={onClose}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#D43225';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '#999';
+                }}
               >
-                &times;
+                ×
               </button>
 
               <div style={{ marginBottom: '24px' }}>
@@ -187,13 +208,17 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, industry: e.target.value })}
                           style={{
                             width: '100%',
-                            padding: '10px 12px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            fontSize: '14px',
+                            padding: '12px 16px',
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            fontSize: '15px',
                             boxSizing: 'border-box',
-                            backgroundColor: 'white'
+                            backgroundColor: 'white',
+                            transition: 'border-color 0.2s',
+                            outline: 'none'
                           }}
+                          onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                          onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                         >
                           <option value="">Select industry...</option>
                           <option value="hospitality-food">Hospitality & Food Service</option>
@@ -267,13 +292,17 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           }}
                           style={{
                             width: '100%',
-                            padding: '10px 12px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            fontSize: '14px',
+                            padding: '12px 16px',
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            fontSize: '15px',
                             boxSizing: 'border-box',
-                            backgroundColor: 'white'
+                            backgroundColor: 'white',
+                            transition: 'border-color 0.2s',
+                            outline: 'none'
                           }}
+                          onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                          onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                         >
                           <option value="">Select region...</option>
                           <option value="uk">UK</option>
@@ -441,12 +470,12 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                     {formData.motivation === 'compete-with-prismatica' && (
                       <div style={{
                         padding: '16px',
-                        background: '#f0fdf4',
-                        border: '1px solid #86efac',
-                        borderRadius: '6px',
+                        background: '#f8f8f8',
+                        border: '2px solid #D43225',
+                        borderRadius: '8px',
                         marginTop: '16px'
                       }}>
-                        <p style={{ fontSize: '14px', lineHeight: '1.6', margin: 0, color: '#166534', fontWeight: 500 }}>
+                        <p style={{ fontSize: '14px', lineHeight: '1.6', margin: 0, color: '#222', fontWeight: 500 }}>
                           Challenge accepted. We'll give you everything we've got. May the best thinking win. Let's do this!
                         </p>
                       </div>
@@ -474,13 +503,17 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, entityType: e.target.value })}
                           style={{
                             width: '100%',
-                            padding: '10px 12px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            fontSize: '14px',
+                            padding: '12px 16px',
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            fontSize: '15px',
                             boxSizing: 'border-box',
-                            backgroundColor: 'white'
+                            backgroundColor: 'white',
+                            transition: 'border-color 0.2s',
+                            outline: 'none'
                           }}
+                          onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                          onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                         >
                           <option value="">Select type...</option>
                           <option value="startup">Startup</option>
@@ -502,13 +535,17 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, companySize: e.target.value })}
                           style={{
                             width: '100%',
-                            padding: '10px 12px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            fontSize: '14px',
+                            padding: '12px 16px',
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            fontSize: '15px',
                             boxSizing: 'border-box',
-                            backgroundColor: 'white'
+                            backgroundColor: 'white',
+                            transition: 'border-color 0.2s',
+                            outline: 'none'
                           }}
+                          onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                          onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                         >
                           <option value="">Select size...</option>
                           <option value="1-10">1-10 people</option>
@@ -543,12 +580,16 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           placeholder="John Smith"
                           style={{
                             width: '100%',
-                            padding: '10px 12px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            fontSize: '14px',
-                            boxSizing: 'border-box'
+                            padding: '12px 16px',
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            fontSize: '15px',
+                            boxSizing: 'border-box',
+                            transition: 'border-color 0.2s',
+                            outline: 'none'
                           }}
+                          onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                          onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                         />
                       </div>
 
@@ -565,12 +606,16 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           placeholder="john@company.com"
                           style={{
                             width: '100%',
-                            padding: '10px 12px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            fontSize: '14px',
-                            boxSizing: 'border-box'
+                            padding: '12px 16px',
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            fontSize: '15px',
+                            boxSizing: 'border-box',
+                            transition: 'border-color 0.2s',
+                            outline: 'none'
                           }}
+                          onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                          onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                         />
                       </div>
 
@@ -587,12 +632,16 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           placeholder="Acme Inc"
                           style={{
                             width: '100%',
-                            padding: '10px 12px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            fontSize: '14px',
-                            boxSizing: 'border-box'
+                            padding: '12px 16px',
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            fontSize: '15px',
+                            boxSizing: 'border-box',
+                            transition: 'border-color 0.2s',
+                            outline: 'none'
                           }}
+                          onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                          onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                         />
                       </div>
                     </div>
@@ -618,17 +667,22 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           }
                         }}
                         placeholder="We need to diversify revenue but struggle to identify product opportunities that align with our core capabilities..."
-                        rows={5}
+                        rows={6}
                         style={{
                           width: '100%',
-                          padding: '10px 12px',
-                          border: '1px solid #ddd',
-                          borderRadius: '4px',
-                          fontSize: '14px',
+                          padding: '12px 16px',
+                          border: '2px solid #e0e0e0',
+                          borderRadius: '8px',
+                          fontSize: '15px',
                           boxSizing: 'border-box',
                           fontFamily: 'inherit',
-                          resize: 'none'
+                          resize: 'none',
+                          transition: 'border-color 0.2s',
+                          outline: 'none',
+                          lineHeight: '1.6'
                         }}
+                        onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
+                        onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                       />
                       <p style={{ fontSize: '12px', color: '#666', marginTop: '4px', textAlign: 'right' }}>
                         {formData.challenge.length}/200 characters

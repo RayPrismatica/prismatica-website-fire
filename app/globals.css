@@ -83,6 +83,19 @@ body {
     to { opacity: 1; }
 }
 
+@keyframes gentlePulse {
+    0%, 100% {
+        border-top-color: rgba(212, 50, 37, 0);
+        border-left-color: rgba(212, 50, 37, 0);
+        border-right-color: rgba(212, 50, 37, 0);
+    }
+    50% {
+        border-top-color: rgba(212, 50, 37, 0.8);
+        border-left-color: rgba(212, 50, 37, 0.8);
+        border-right-color: rgba(212, 50, 37, 0.8);
+    }
+}
+
 h2 {
     font-family: "Passion One", sans-serif;
     font-size: 56px;
@@ -507,6 +520,11 @@ p {
         z-index: 999;
         padding: 80px 24px 24px 24px;
         box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Disable transition on initial page load to prevent flash */
+    .sidebar.no-transition {
+        transition: none !important;
     }
 
     /* Better touch targets for nav */
@@ -1208,4 +1226,308 @@ p {
 /* Who We Are page - CTA button hover effect */
 .who-cta-button:hover {
     background-color: #b8281e !important;
+}
+
+/* ========================================
+   MOBILE IVE ENHANCEMENTS
+   Premium mobile experience - always active
+   ======================================== */
+
+/* Typography Improvements */
+@media (max-width: 768px) {
+  h2 {
+    font-size: clamp(28px, 8vw, 42px) !important;
+    line-height: 1.1 !important;
+  }
+
+  h3 {
+    font-size: clamp(20px, 5vw, 28px) !important;
+  }
+
+  p {
+    line-height: 1.75 !important;
+  }
+
+  /* Tighter letter spacing on mobile for ALL CAPS */
+  h3[style*="uppercase"],
+  h3[style*="UPPERCASE"] {
+    letter-spacing: 0.5px !important;
+  }
+
+  /* Thinner red underlines on mobile */
+  span[style*="border-bottom"] {
+    border-bottom-width: 2px !important;
+  }
+}
+
+/* Bento Box Reveal Animations */
+/* Fade-in animations - mobile only */
+@media (max-width: 768px) {
+  .bento-box,
+  .product-bento,
+  .service-bento,
+  .contact-box,
+  .bento-link {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .bento-box.revealed,
+  .product-bento.revealed,
+  .service-bento.revealed,
+  .contact-box.revealed,
+  .bento-link.revealed {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Red accent bar draw-in animation */
+@media (max-width: 768px) {
+  [style*="position: absolute"][style*="backgroundColor: #D43225"],
+  [style*="position: absolute"][style*="background-color: #D43225"] {
+    animation: none;
+  }
+
+  body.animations-ready [style*="position: absolute"][style*="backgroundColor: #D43225"],
+  body.animations-ready [style*="position: absolute"][style*="background-color: #D43225"] {
+    animation: drawAccent 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transform-origin: top;
+  }
+}
+
+@keyframes drawAccent {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Pulse effect on dynamic content */
+@media (max-width: 768px) {
+  [class*="Dynamic"],
+  .fade-in {
+    position: relative;
+  }
+
+  [class*="Dynamic"]::before,
+  .fade-in::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: #D43225;
+    border-radius: 50%;
+    opacity: 0;
+    animation: pulseIndicator 2s ease-in-out infinite;
+  }
+}
+
+@keyframes pulseIndicator {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+@keyframes chatDotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.15);
+  }
+}
+
+/* Subtle parallax on section headers */
+@media (max-width: 768px) {
+  h3 {
+    transition: transform 0.1s ease-out;
+  }
+}
+
+/* Hide Next.js development error overlay on mobile for cleaner prototype testing */
+@media (max-width: 768px) {
+  nextjs-portal {
+    display: none !important;
+  }
+  
+  /* Hide error overlay specifically */
+  body > div[style*="position: fixed"][style*="z-index"] > div[style*="color: rgb(255, 255, 255)"] {
+    display: none !important;
+  }
+}
+
+/* Hide Next.js error indicator badge */
+@media (max-width: 768px) {
+  #webpack-dev-server-client-overlay,
+  #webpack-dev-server-client-overlay-div,
+  [data-nextjs-dialog-overlay],
+  [data-nextjs-toast] {
+    display: none !important;
+  }
+}
+
+/* Smooth bottom-sheet behavior when browser chrome shows/hides */
+@media (max-width: 768px) {
+  body {
+    /* Use dynamic viewport height to account for browser chrome */
+    min-height: 100dvh;
+    /* Ensure scroll goes all the way down */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Force GPU acceleration and smooth transitions for bottom sheet */
+  [style*="position: fixed"][style*="bottom: 0"] {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+
+  /* Add bottom padding to page content to account for bottom sheet */
+  .section,
+  main,
+  .container {
+    padding-bottom: 100px !important;
+  }
+}
+
+/* Auto-trigger hover states when bento boxes are in viewport on mobile */
+@media (max-width: 768px) {
+  .in-viewport .divider-line {
+    border-color: #D43225 !important;
+  }
+
+  /* Service bento boxes - trigger hover state */
+  .service-bento.in-viewport .divider-line,
+  .product-bento.in-viewport .divider-line {
+    border-top-color: #D43225 !important;
+  }
+
+  /* Default state - no top border, no lift */
+  .bento-box,
+  .product-bento,
+  .service-bento,
+  .bento-link {
+    border-top: 3px solid transparent;
+    transform: translateY(0);
+    transition: border-color 0.3s ease,
+                border-top 0.3s ease,
+                border-top-color 0.3s ease,
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Bento box lift effect when in viewport */
+  .bento-box.in-viewport,
+  .product-bento.in-viewport,
+  .service-bento.in-viewport,
+  .bento-link.in-viewport {
+    border-top: 3px solid #D43225;
+    transform: translateY(-2px);
+  }
+
+  /* Smooth transitions for divider lines */
+  .divider-line {
+    transition: border-color 0.3s ease,
+                border-top-color 0.3s ease;
+  }
+}
+
+/* More specific viewport-based hover effects for consulting/engagement boxes */
+@media (max-width: 768px) {
+  /* Default gray state for all interactive elements */
+  .service-bento .delivery-date,
+  .bento-link .delivery-date {
+    color: #666 !important;
+    font-weight: 400;
+    transition: color 0.3s ease;
+  }
+
+  .service-bento .cta-divider,
+  .bento-link .cta-divider {
+    border-top: 1px solid #e0e0e0 !important;
+    transition: border-top 0.3s ease !important;
+  }
+
+  .service-bento .service-cta-link,
+  .service-bento .service-cta-btn,
+  .bento-link .service-cta-link,
+  .bento-link .service-cta-btn {
+    color: #666 !important;
+    transition: color 0.3s ease;
+  }
+
+  /* Turn red when box in viewport */
+  .service-bento.in-viewport .delivery-date,
+  .bento-link.in-viewport .delivery-date {
+    color: #D43225 !important;
+  }
+
+  .service-bento.in-viewport .cta-divider,
+  .bento-link.in-viewport .cta-divider {
+    border-top: 1px solid #D43225 !important;
+  }
+
+  .service-bento.in-viewport .service-cta-link,
+  .service-bento.in-viewport .service-cta-btn,
+  .bento-link.in-viewport .service-cta-link,
+  .bento-link.in-viewport .service-cta-btn {
+    color: #D43225 !important;
+  }
+}
+
+/* Left accent bars turn red when box in viewport */
+@media (max-width: 768px) {
+  /* Initially gray accent bars */
+  .bento-box span[style*="position: absolute"][style*="width: 3px"],
+  .product-bento span[style*="position: absolute"][style*="width: 3px"],
+  .service-bento span[style*="position: absolute"][style*="width: 3px"],
+  .bento-link span[style*="position: absolute"][style*="width: 3px"],
+  p[style*="position: relative"] span[style*="position: absolute"][style*="width: 3px"] {
+    background-color: #e0e0e0 !important;
+    transition: background-color 0.4s ease;
+  }
+
+  /* Turn red when box in viewport */
+  .bento-box.in-viewport span[style*="position: absolute"][style*="width: 3px"],
+  .product-bento.in-viewport span[style*="position: absolute"][style*="width: 3px"],
+  .service-bento.in-viewport span[style*="position: absolute"][style*="width: 3px"],
+  .bento-link.in-viewport span[style*="position: absolute"][style*="width: 3px"],
+  .in-viewport p[style*="position: relative"] span[style*="position: absolute"][style*="width: 3px"] {
+    background-color: #D43225 !important;
+  }
+}
+
+/* Sync all viewport-triggered animations to same timing */
+@media (max-width: 768px) {
+  .bento-box,
+  .product-bento,
+  .service-bento,
+  .bento-link {
+    transition: border-color 0.3s ease,
+                border-top 0.3s ease,
+                border-top-color 0.3s ease,
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  /* Accent bars same timing as everything else */
+  .bento-box span[style*="position: absolute"][style*="width: 3px"],
+  .product-bento span[style*="position: absolute"][style*="width: 3px"],
+  .service-bento span[style*="position: absolute"][style*="width: 3px"],
+  .bento-link span[style*="position: absolute"][style*="width: 3px"],
+  p[style*="position: relative"] span[style*="position: absolute"][style*="width: 3px"] {
+    transition: background-color 0.3s ease !important;
+  }
 }

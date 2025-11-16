@@ -3,6 +3,8 @@ import { Noto_Sans, Passion_One } from "next/font/google";
 import "./globals.css";
 import GlobalAthenaChat from "@/components/GlobalAthenaChat";
 import { AthenaChatProvider } from "@/contexts/AthenaChatContext";
+import MobileAnimations from "@/components/MobileAnimations";
+import MobileBottomSheetAthena from "@/components/MobileBottomSheetAthena";
 
 const notoSans = Noto_Sans({
   variable: "--font-noto-sans",
@@ -43,6 +45,8 @@ export default function RootLayout({
         <AthenaChatProvider>
           {children}
           <GlobalAthenaChat />
+          <MobileAnimations />
+          <MobileBottomSheetAthena />
         </AthenaChatProvider>
       </body>
     </html>
