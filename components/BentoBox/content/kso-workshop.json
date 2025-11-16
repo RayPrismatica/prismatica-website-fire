@@ -1,0 +1,51 @@
+{
+  "id": "kso-workshop",
+  "variant": "link",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "KSO Workshop - £25,000 consulting service"
+  },
+  "service": {
+    "durationWeeks": 4,
+    "bufferWeeks": 2,
+    "basePrice": 25000
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If AI systems are mediating how customers discover you..."
+    },
+    "title": "Knowledge Search Optimisation (KSO) Workshop",
+    "badge": "Marketing",
+    "body": [
+      {
+        "type": "dynamic",
+        "field": "ksoDescription",
+        "fallback": "The future of discoverability isn't about links. It's about ideas. We map your business DNA into a knowledge graph that AI systems recognize and cite. Position yourself as a recognized source in your space, not just another site."
+      }
+    ],
+    "metadata": {
+      "type": "function",
+      "function": "getDeliveryDate",
+      "args": ["kso-workshop"],
+      "template": "Four weeks. Workshop next week and by {result} you'll have a KSO blueprint showing what intellectual space you own and how to operationalise it. SEO makes you searchable. KSO makes you unforgettable."
+    }
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "£25,000"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: KSO Workshop from Prismatica Labs",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the KSO Workshop - Knowledge Search Optimisation. The future of discoverability isn't about links, it's about ideas. They map your business DNA into a knowledge graph that AI systems recognise and cite.\n\nFour weeks, £25,000. They position you as a recognised source in your space, not just another site.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+    },
+    "enquire": {
+      "enabled": true,
+      "modalId": "kso-workshop"
+    }
+  }
+}

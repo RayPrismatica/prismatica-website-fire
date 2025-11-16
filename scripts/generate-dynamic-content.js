@@ -292,6 +292,110 @@ async function generateContent() {
     const filePath = join(dataDir, 'dynamic-content.json');
     fs.writeFileSync(filePath, JSON.stringify(content, null, 2));
 
+    // Also write a markdown file for Athena's knowledge base
+    const knowledgeDir = join(__dirname, '..', 'athena', 'knowledge', 'pages');
+    if (!fs.existsSync(knowledgeDir)) {
+      fs.mkdirSync(knowledgeDir, { recursive: true });
+    }
+
+    // Find the primary news story that was used (first headline from the selected source)
+    const primaryNewsStory = [...globalNewsHeadlines, ...businessHeadlines, ...leadershipHeadlines][0];
+
+    const markdownContent = `# Current Dynamic Content
+
+**Last Updated:** ${new Date(content.generated).toLocaleString()}
+**Expires:** ${new Date(content.expires).toLocaleString()}
+
+This content is currently live on the Prismatica website. Reference this when users ask about what they're reading or when providing context about current market insights.
+
+---
+
+## Primary News Story
+
+**Source:** ${primaryNewsStory.source}
+**Headline:** ${primaryNewsStory.title}
+**Link:** ${primaryNewsStory.link}
+
+This is the main news story that informed today's content generation. If users ask where the news came from or want to read more, you can share this link.
+
+---
+
+## Landing Page
+
+### News Insight
+${content.content.newsInsight}
+
+### Pattern Insight
+${content.content.patternInsight}
+
+---
+
+## What We Do Page
+
+### Intelligence Example
+${content.content.intelligenceExample}
+
+---
+
+## Consulting Page
+
+### Consulting Insight
+${content.content.consultingInsight}
+
+---
+
+## Cross-Page Continuity
+
+### Content Reminder
+${content.content.contentReminder}
+
+---
+
+## Market Observations
+
+### Current Market Observation
+${content.content.marketObservation}
+
+### Purpose Context
+${content.content.purposeContext}
+
+---
+
+## Service Descriptions (Currently Live)
+
+### Purpose Assessment
+${content.content.serviceDescription}
+
+### ESI Framework
+${content.content.esiDescription}
+
+### Secret Agency
+${content.content.agencyDescription}
+
+### KSO Workshop
+${content.content.ksoDescription}
+
+### Transaction Architecture
+${content.content.transactionDescription}
+
+### Strategic Triptych
+${content.content.triptychDescription}
+
+---
+
+## Generation Metadata
+
+- **Headlines Analyzed:** ${content.metadata.headlinesAnalyzed}
+- **Sources:** BBC (${content.metadata.sources.bbc}), NYT (${content.metadata.sources.nyt}), Fast Company (${content.metadata.sources.fastCompany}), Forbes (${content.metadata.sources.forbes}), Marketing Week (${content.metadata.sources.marketingWeek}), HBR (${content.metadata.sources.hbr})
+- **Model:** ${content.metadata.model}
+- **Generation Time:** ${content.metadata.generationTimeMs}ms
+
+**IMPORTANT:** This content changes every 6 hours based on current news. When users reference what they're seeing on the site, they're referring to this content.
+`;
+
+    const mdFilePath = join(knowledgeDir, 'dynamic-content.md');
+    fs.writeFileSync(mdFilePath, markdownContent);
+
     console.log('\n✅ CONTENT GENERATED SUCCESSFULLY');
     console.log('═══════════════════════════════════════');
     console.log(`📅 Generated: ${new Date().toISOString()}`);

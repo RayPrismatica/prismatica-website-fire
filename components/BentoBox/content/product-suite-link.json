@@ -1,0 +1,41 @@
+{
+  "id": "product-suite-link",
+  "variant": "link",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Product Suite navigation link on What We Do page - SECONDARY variant with gray border"
+  },
+  "content": {
+    "title": "Product Suite",
+    "body": [
+      {
+        "type": "text",
+        "text": "Everyone knows thinking doesn't scale. Most companies accept it. We solved it. Turned our methodology into infrastructure so your team can use it without us."
+      },
+      {
+        "type": "text",
+        "text": "Strategic frameworks for market decisions. Question patterns for product challenges. Mental models for operational problems. Code that works with you."
+      },
+      {
+        "type": "text",
+        "text": "Access to 25+ live products. More launching monthly. 30-day trial."
+      }
+    ]
+  },
+  "footer": {
+    "type": "custom",
+    "primaryText": "£299/month",
+    "secondaryText": "per seat + API credits*",
+    "linkButton": {
+      "text": "Explore Products",
+      "href": "/products",
+      "style": "secondary"
+    },
+    "note": "*API costs separate. Most users: £50-200/month."
+  },
+  "style": {
+    "border": "1px solid #e0e0e0"
+  }
+}

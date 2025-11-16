@@ -1,0 +1,36 @@
+{
+  "id": "focus-matrix",
+  "variant": "product",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Focus Matrix product - time/priority management tool"
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If you're saying yes to everything and achieving nothing..."
+    },
+    "title": "The Focus Matrix",
+    "body": [
+      {
+        "type": "text",
+        "text": "Poker players calculate expected value on every bet. You should too. But for your hours, not your chips."
+      },
+      {
+        "type": "text",
+        "text": "This runs game theory on your entire calendar. EV vs. CV for every commitment. Accounts for global shifts that kill projects or create asymmetric opportunities. Shows you where to go all-in and what to fold."
+      },
+      {
+        "type": "text",
+        "text": "Your time is finite. Most people spend it on what screams loudest. This shows you where it compounds. Pushes to calendar. Shares the math with others so they understand your no's."
+      }
+    ]
+  },
+  "footer": {
+    "type": "custom",
+    "primaryText": "Turns \"busy\" into \"lethal\".",
+    "secondaryText": "Stop drowning. Start compounding."
+  }
+}

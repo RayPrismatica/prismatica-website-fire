@@ -1,0 +1,36 @@
+{
+  "id": "consulting-services-link",
+  "variant": "link",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Consulting Services navigation link on What We Do page - PRIMARY variant with red border"
+  },
+  "content": {
+    "title": "Consulting Services",
+    "body": [
+      {
+        "type": "text",
+        "text": "Some problems need custom work. Every consultancy, SaaS pitch deck, and agency website uses the same words. 'Transformation over transaction.' 'Strategic partnerships.' 'Solutions.' We won't."
+      },
+      {
+        "type": "text",
+        "text": "We work directly with you and adapt as the problem reveals itself. First call is diagnostic. If we're not finding new angles within 30 minutes, walk away."
+      }
+    ]
+  },
+  "footer": {
+    "type": "custom",
+    "primaryText": "We fix things. Then we leave.",
+    "secondaryText": "No retainers. No dependency.",
+    "linkButton": {
+      "text": "Explore Services",
+      "href": "/consulting",
+      "style": "primary"
+    }
+  },
+  "style": {
+    "border": "1px solid #D43225"
+  }
+}

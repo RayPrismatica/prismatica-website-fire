@@ -1,0 +1,170 @@
+{
+  "_instructions": {
+    "_comment": "This is a template for creating new BentoBox content files.",
+    "_steps": [
+      "1. Copy this file and rename it to your bento ID (e.g., 'my-product.json')",
+      "2. Fill in all required fields (marked with *)",
+      "3. Remove optional fields you don't need",
+      "4. Remove this _instructions object",
+      "5. Save the file in this directory (components/BentoBox/content/)",
+      "6. Import and use with BentoBoxFromContent component"
+    ],
+    "_variants": {
+      "service": "For high-tier consulting services with price + CTAs",
+      "link": "For navigation cards linking to other pages",
+      "product": "For product showcase cards with custom footers"
+    },
+    "_seeDocs": "components/BentoBox/CONTENT_SCHEMA.md"
+  },
+
+  "id": "unique-bento-id",
+  "_id_notes": "* REQUIRED. Kebab-case, unique across all bentos. Used for linking and identification.",
+
+  "variant": "service",
+  "_variant_notes": "* REQUIRED. Options: 'service' | 'link' | 'product'",
+
+  "enabled": true,
+  "_enabled_notes": "Set to false to temporarily hide this bento without deleting the file.",
+
+  "metadata": {
+    "created": "2025-11-16",
+    "lastUpdated": "2025-11-16",
+    "author": "Your Name",
+    "notes": "Internal notes about this bento (not shown to users)"
+  },
+
+  "content": {
+    "prompt": {
+      "type": "static",
+      "_type_notes": "Options: 'static' (hardcoded text) | 'dynamic' (from getDynamicContent())",
+      "text": "If [problem statement]...",
+      "_text_notes": "The problem/hook that appears at the top with red accent bar. Max 200 chars.",
+      "dynamicKey": "optionalDynamicContentKey",
+      "_dynamicKey_notes": "Only needed if type='dynamic'. Key from data/dynamic-content.json"
+    },
+
+    "title": "Your Bento Title",
+    "_title_notes": "* REQUIRED. Shown in uppercase. Max 100 chars.",
+
+    "badge": "Category",
+    "_badge_notes": "Optional small label next to title (e.g., 'Strategy', 'Technology').",
+
+    "body": [
+      {
+        "type": "text",
+        "_type_notes": "Options: 'text' (static) | 'dynamic' (from cache)",
+        "text": "First paragraph of your description...",
+        "_text_notes": "Main body content. Aim for 2-4 sentences per paragraph."
+      },
+      {
+        "type": "text",
+        "text": "Second paragraph expanding on the value proposition..."
+      },
+      {
+        "type": "text",
+        "text": "Third paragraph with specific outcomes or benefits..."
+      }
+    ],
+    "_body_notes": "Array of paragraphs. Max 5 paragraphs recommended for readability.",
+
+    "metadata": {
+      "type": "static",
+      "text": "Eight weeks. Delivered by {deliveryDate}.",
+      "_text_notes": "Timeline/duration info. Appears in italics above footer. Use {variables} for dynamic content.",
+      "variables": {
+        "deliveryDate": {
+          "type": "dynamic",
+          "function": "getDeliveryDate",
+          "args": ["your-service-id"],
+          "_notes": "Calls getDeliveryDate('your-service-id') to calculate date"
+        }
+      },
+      "_variables_notes": "Optional. Replace {placeholder} in text with dynamic values."
+    },
+    "_metadata_notes": "Optional timeline/delivery information shown above the footer."
+  },
+
+  "footer": {
+    "_comment": "Choose ONE footer type based on your variant:",
+
+    "_option_A": "For service/link bentos with price + CTAs:",
+    "type": "price-cta",
+    "price": "From £50,000",
+    "_price_notes": "Pricing information. Be specific (e.g., 'From £X', 'Starting at £X').",
+
+    "_option_B": "For product bentos with custom messaging:",
+    "_type_B": "custom",
+    "primaryText": "Bold tagline here.",
+    "_primaryText_notes": "Main footer message. Bold, 18px. Max 60 chars.",
+    "secondaryText": "Supporting subtitle here.",
+    "_secondaryText_notes": "Optional subtitle. Gray, 14px. Max 80 chars."
+  },
+
+  "actions": {
+    "_notes": "Define what happens when users interact with CTAs. All optional.",
+
+    "share": {
+      "enabled": true,
+      "_enabled_notes": "Set to true to show 'Share' link that opens email client.",
+      "subject": "Worth looking at: {title}",
+      "_subject_notes": "Email subject line. {title} auto-replaced with bento title.",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\n{description}\n\n{price}. {timeline}.\n\nHere's the link: {url}\n\nWorth a conversation?",
+      "_body_notes": "Email body. Variables: {title}, {description}, {price}, {timeline}, {url}"
+    },
+
+    "enquire": {
+      "enabled": true,
+      "_enabled_notes": "Set to true to show 'Enquire' button that opens modal.",
+      "modalId": "your-service-id",
+      "_modalId_notes": "ID passed to enquiry modal. Used for form pre-fill.",
+      "buttonText": "Enquire",
+      "_buttonText_notes": "Optional. Defaults to 'Enquire'. Can customize (e.g., 'Get Started')."
+    },
+
+    "link": {
+      "enabled": false,
+      "_enabled_notes": "Set to true for navigation cards (variant='link').",
+      "href": "/consulting#service-name",
+      "_href_notes": "URL to navigate to. Can be internal (/page) or external (https://...).",
+      "text": "Learn More",
+      "_text_notes": "Link text shown on button/link.",
+      "target": "_self",
+      "_target_notes": "Options: '_self' (same tab) | '_blank' (new tab)"
+    },
+
+    "custom": {
+      "enabled": false,
+      "_enabled_notes": "For custom JavaScript actions (advanced usage).",
+      "type": "function",
+      "handler": "handleCustomAction",
+      "_handler_notes": "Function name to call. Must be defined in page context.",
+      "label": "Custom Action"
+    }
+  },
+
+  "style": {
+    "_notes": "Optional style overrides. Use sparingly - defaults are designed for consistency.",
+    "border": "1px solid #D43225",
+    "_border_example": "Only for special emphasis (e.g., featured navigation cards).",
+    "padding": "40px 32px",
+    "_padding_example": "Override default 32px padding if needed.",
+    "backgroundColor": "#fff",
+    "_backgroundColor_notes": "Default is white. Rarely needs changing."
+  },
+
+  "_finalNotes": {
+    "_beforeSaving": [
+      "1. Remove all _notes, _comment, _instructions fields",
+      "2. Remove unused optional fields (e.g., if no badge, delete 'badge' key)",
+      "3. Ensure JSON is valid (no trailing commas, proper quotes)",
+      "4. Test in BentoBoxFromContent component",
+      "5. Verify mobile + desktop behavior"
+    ],
+    "_validation": [
+      "Required: id, variant, content.title",
+      "id: kebab-case, max 50 chars",
+      "title: max 100 chars",
+      "body: max 5 paragraphs recommended"
+    ]
+  }
+}

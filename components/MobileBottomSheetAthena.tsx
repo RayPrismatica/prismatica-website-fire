@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
 
 // Contextual prompts based on current page
 const PAGE_PROMPTS: Record<string, { question: string; context: string }> = {
@@ -155,6 +156,7 @@ export default function MobileBottomSheetAthena() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isMobile, setIsMobile] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -169,6 +171,11 @@ export default function MobileBottomSheetAthena() {
   useEffect(() => {
     setPreviousState(drawerState);
   }, [drawerState]);
+
+  // Debug: Log when isChatActivated changes
+  useEffect(() => {
+    console.log('🔵 isChatActivated changed to:', isChatActivated);
+  }, [isChatActivated]);
 
   // Reset close button fade only when explicitly going to expanded (not collapsed)
   useEffect(() => {
@@ -219,6 +226,13 @@ export default function MobileBottomSheetAthena() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Reset textarea height when input is cleared
+  useEffect(() => {
+    if (input === '' && textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+    }
+  }, [input]);
 
   // Disable body scroll when drawer is expanded or in chat state
   useEffect(() => {
@@ -459,12 +473,6 @@ export default function MobileBottomSheetAthena() {
     }
 
     setDrawerState('chat');
-
-    // Mark chat as activated after state change to preserve animation
-    // Delay ensures expanded content stays visible during transition
-    setTimeout(() => {
-      setIsChatActivated(true);
-    }, 100);
   };
 
   const sendContextMessage = async (contextMessage: Message) => {
@@ -477,6 +485,7 @@ export default function MobileBottomSheetAthena() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          pathname,
           messages: [contextMessage].map(m => ({
             role: m.role,
             content: m.content
@@ -506,6 +515,10 @@ export default function MobileBottomSheetAthena() {
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
 
+    // Mark chat as activated when user sends their first message
+    console.log('🟢 User sent a message - activating chat');
+    setIsChatActivated(true);
+
     const userMessage: Message = {
       role: 'user',
       content: input
@@ -522,6 +535,7 @@ export default function MobileBottomSheetAthena() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          pathname,
           messages: [...messages, userMessage].map(m => ({
             role: m.role,
             content: m.content
@@ -600,14 +614,21 @@ export default function MobileBottomSheetAthena() {
         bottom: 0,
         left: 0,
         right: 0,
-        height: getDrawerHeight(),
+        height: '100dvh', // Always full height
         zIndex: 1000,
         display: 'flex',
         flexDirection: 'column',
-        transition: `height 1.5s ${getTimingCurve()}`,
-        willChange: 'height',
         overflow: 'visible',
-        maxHeight: '100dvh'
+        pointerEvents: drawerState === 'collapsed' ? 'auto' : 'auto',
+        transform: drawerState === 'collapsed'
+          ? 'translate3d(0, calc(100dvh - 80px), 0)'
+          : 'translate3d(0, 0, 0)',
+        transition: drawerState === 'collapsed'
+          ? 'transform 0.25s cubic-bezier(0.4, 0, 1, 1)' // Fast collapse
+          : 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)', // Slow, elegant expand
+        willChange: 'transform',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden'
       }}
     >
       {/* Content container that slides up */}
@@ -618,8 +639,15 @@ export default function MobileBottomSheetAthena() {
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
-          transform: drawerState === 'chat' ? 'translateY(-100dvh)' : 'translateY(0)',
-          transition: `transform 1.5s ${getTimingCurve()}`
+          transform: drawerState === 'chat' ? 'translate3d(0, -100dvh, 0)' : 'translate3d(0, 0, 0)',
+          transition: drawerState === 'chat'
+            ? 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)' // Slow, elegant slide to chat
+            : 'transform 0.25s cubic-bezier(0.4, 0, 1, 1)', // Fast return
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          willChange: 'transform',
+          overflow: drawerState === 'expanded' ? 'hidden' : 'visible', // Prevent scroll in expanded state
+          touchAction: drawerState === 'expanded' ? 'none' : 'auto' // Disable touch scrolling in expanded
         }}
       >
         {/* Prompt banner and expanded content */}
@@ -644,8 +672,11 @@ export default function MobileBottomSheetAthena() {
           <div
             onClick={() => {
               if (drawerState === 'collapsed') {
+                console.log('🔴 Banner clicked. isChatActivated:', isChatActivated);
                 // If chat has been activated, skip expanded view and go directly to chat
-                setDrawerState(isChatActivated ? 'chat' : 'expanded');
+                const nextState = isChatActivated ? 'chat' : 'expanded';
+                console.log('🔴 Going to state:', nextState);
+                setDrawerState(nextState);
               }
             }}
             style={{
@@ -694,20 +725,36 @@ export default function MobileBottomSheetAthena() {
                   backdropFilter: 'blur(10px) saturate(150%)',
                   WebkitBackdropFilter: 'blur(10px) saturate(150%)',
                   borderRadius: '12px',
-                  padding: '16px',
+                  padding: '20px',
                   borderLeft: '3px solid #D43225'
                 }}
               >
                 <p style={{
-                  fontSize: '14px',
+                  fontSize: '15px',
                   fontWeight: 700,
-                  margin: '0 0 8px',
-                  color: '#222'
+                  margin: '0 0 16px',
+                  color: '#222',
+                  lineHeight: 1.3
                 }}>
-                  Athena is our strategic AI advisor
+                  Athena knows Prismatica.
                 </p>
-                <p style={{ fontSize: '13px', color: '#666', margin: 0, lineHeight: 1.5 }}>
-                  She can help you understand how this applies to your specific situation, industry, or challenge.
+                <p style={{
+                  fontSize: '14px',
+                  color: '#444',
+                  margin: 0,
+                  lineHeight: 1.6,
+                  fontWeight: 400
+                }}>
+                  She's studied everything we do, how we think, and what we've built. Ask her anything about our work, your situation, or whether this matches how you see problems.
+                </p>
+                <p style={{
+                  fontSize: '14px',
+                  color: '#444',
+                  margin: '12px 0 0 0',
+                  lineHeight: 1.6,
+                  fontWeight: 400
+                }}>
+                  Once you start, she stays with you. Collapse this, explore the site, come back—she'll know where you've been and what you're considering.
                 </p>
               </div>
 
@@ -757,7 +804,7 @@ export default function MobileBottomSheetAthena() {
                     color: '#666',
                     fontFamily: '"Noto Sans", sans-serif'
                   }}>
-                    Strategic AI Advisor
+                    Strategic Advisor
                   </div>
                 </div>
               </div>
@@ -788,11 +835,6 @@ export default function MobileBottomSheetAthena() {
                   Start Conversation
                 </button>
 
-                <div style={{ paddingTop: '8px', borderTop: '1px solid #e0e0e0', marginTop: '12px' }}>
-                  <p style={{ fontSize: '12px', color: '#999', textAlign: 'center', margin: 0 }}>
-                    Powered by Claude • Contextual intelligence
-                  </p>
-                </div>
 
                 <button
                   onClick={() => setDrawerState('collapsed')}
@@ -865,17 +907,45 @@ export default function MobileBottomSheetAthena() {
                         }}>
                           Athena
                         </p>
-                        <p style={{
+                        <div style={{
                           fontSize: '15px',
                           lineHeight: '1.6',
                           margin: 0,
                           color: '#333'
                         }}>
-                          {renderMessageWithLinks(message.content, () => {
-                            // Collapse drawer when user clicks a link
-                            setDrawerState('collapsed');
-                          })}
-                        </p>
+                          <ReactMarkdown
+                            components={{
+                              // Style links (already in markdown format from AI)
+                              a: ({ node, ...props }) => (
+                                <Link
+                                  href={props.href || '#'}
+                                  onClick={() => setDrawerState('collapsed')}
+                                  style={{
+                                    color: '#D43225',
+                                    textDecoration: 'underline',
+                                    fontWeight: 600
+                                  }}
+                                >
+                                  {props.children}
+                                </Link>
+                              ),
+                              // Style strong/bold text
+                              strong: ({ node, ...props }) => (
+                                <strong style={{ fontWeight: 700 }}>
+                                  {props.children}
+                                </strong>
+                              ),
+                              // Style paragraphs
+                              p: ({ node, ...props }) => (
+                                <p style={{ margin: '0 0 12px 0' }}>
+                                  {props.children}
+                                </p>
+                              )
+                            }}
+                          >
+                            {message.content}
+                          </ReactMarkdown>
+                        </div>
                       </div>
                     </div>
                   ) : (
@@ -982,11 +1052,12 @@ export default function MobileBottomSheetAthena() {
                 alignItems: 'flex-end'
               }}>
                 <textarea
+                  ref={textareaRef}
                   value={input}
                   onChange={(e) => {
                     setInput(e.target.value);
                     e.target.style.height = 'auto';
-                    e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
+                    e.target.style.height = e.target.scrollHeight + 'px';
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
@@ -995,18 +1066,21 @@ export default function MobileBottomSheetAthena() {
                     }
                   }}
                   placeholder="Your text here..."
-                  disabled={isLoading}
                   rows={1}
                   style={{
                     flex: 1,
                     padding: '12px 16px',
-                    border: '2px solid #e0e0e0',
+                    border: 'none',
                     borderRadius: '12px',
                     fontSize: '16px',
                     resize: 'none',
-                    maxHeight: '120px',
+                    minHeight: '44px',
+                    maxHeight: '200px',
                     outline: 'none',
-                    fontFamily: '"Noto Sans", sans-serif'
+                    fontFamily: '"Noto Sans", sans-serif',
+                    lineHeight: '1.5',
+                    overflow: 'auto',
+                    backgroundColor: '#f5f5f5'
                   }}
                 />
                 <button

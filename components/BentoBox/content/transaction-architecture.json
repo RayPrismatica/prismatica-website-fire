@@ -1,0 +1,51 @@
+{
+  "id": "transaction-architecture",
+  "variant": "link",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Transaction Architecture - £25,000 consulting service"
+  },
+  "service": {
+    "durationWeeks": 5,
+    "bufferWeeks": 2,
+    "basePrice": 25000
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If engagement is high but conversions don't match..."
+    },
+    "title": "The Transaction Architecture",
+    "badge": "Strategy",
+    "body": [
+      {
+        "type": "dynamic",
+        "field": "transactionDescription",
+        "fallback": "We map how value actually flows through your business across three dimensions: emotional, cognitive, and tangible. Then we design every touchpoint to trigger those transactions. Conversion through understanding, not manipulation."
+      }
+    ],
+    "metadata": {
+      "type": "function",
+      "function": "getDeliveryDate",
+      "args": ["transaction-architecture"],
+      "template": "Five weeks. By {result} you'll know exactly how value flows through your business and where to increase conversion velocity."
+    }
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "From £25,000"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: Transaction Architecture",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Transaction Architecture - they map how value actually flows through your business across three dimensions: emotional, cognitive, and tangible. Then they design every touchpoint to trigger those transactions. Conversion through understanding, not manipulation.\n\nFive weeks, starts at £25,000.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+    },
+    "enquire": {
+      "enabled": true,
+      "modalId": "transaction-architecture"
+    }
+  }
+}

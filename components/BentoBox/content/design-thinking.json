@@ -1,0 +1,52 @@
+{
+  "id": "design-thinking",
+  "variant": "link",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Design Thinking - \u00a310,000 consulting service"
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If traditional solutions keep failing on the same recurring problem..."
+    },
+    "title": "Design Thinking",
+    "badge": "Process",
+    "body": [
+      {
+        "type": "text",
+        "text": "New answers to old problems. When traditional approaches keep failing, we reframe the problem entirely. Rapid prototyping, user testing, iteration. We work in sprints to test assumptions quickly and cheaply before you commit to expensive solutions. Fail fast, learn faster."
+      }
+    ],
+    "metadata": {
+      "type": "function",
+      "function": "getDeliveryDate",
+      "args": [
+        "design-thinking"
+      ],
+      "template": "First sprint done by {result}. Real users, real prototypes, real learning. Then we iterate or pivot. No six-month waterfall nonsense."
+    }
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "From \u00a310,000"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: Design Thinking",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a design thinking approach for problems that traditional solutions can't fix. They reframe the problem, rapid prototype, and test with real users. Fast iteration before you commit to expensive solutions.\n\nStarts at \u00a310,000, first sprint done in 3 weeks.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+    },
+    "enquire": {
+      "enabled": true,
+      "modalId": "design-thinking"
+    }
+  },
+  "service": {
+    "durationWeeks": 3,
+    "bufferWeeks": 2,
+    "basePrice": 10000
+  }
+}

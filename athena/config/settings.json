@@ -1,0 +1,12 @@
+{
+  "model": "claude-sonnet-4-5-20250929",
+  "temperature": 0.7,
+  "maxTokens": 1024,
+  "description": "Athena AI Strategic Advisor - Chat configuration",
+  "prompts": {
+    "core": "prompts/core.md"
+  },
+  "knowledge": {
+    "pages": "knowledge/pages"
+  }
+}

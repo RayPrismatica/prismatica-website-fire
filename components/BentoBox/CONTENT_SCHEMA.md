@@ -1,0 +1,503 @@
+# BentoBox Content Schema
+
+This document defines the content structure for BentoBox instances. Each bento is defined by a JSON file that contains all content, styling, and behavior.
+
+---
+
+## Philosophy
+
+**Code defines structure. Data defines content.**
+
+- BentoBox component = reusable UI structure
+- JSON files = individual bento instances
+- No hardcoded content in pages
+- Easy to add/edit/remove bentos without touching code
+
+---
+
+## File Location
+
+```
+components/BentoBox/content/
+├── template.json              # Template with instructions
+├── sir-alfie.json            # Product bento example
+├── go-to-market.json         # Service bento example
+├── consulting-link.json      # Link bento example
+└── [bento-name].json         # Your custom bentos
+```
+
+---
+
+## JSON Schema
+
+### Root Structure
+
+```json
+{
+  "id": "unique-bento-id",
+  "variant": "service | link | product",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "lastUpdated": "2025-11-16",
+    "author": "Your Name",
+    "notes": "Internal notes about this bento"
+  },
+  "service": {
+    "durationWeeks": 8,
+    "bufferWeeks": 2,
+    "basePrice": 50000
+  },
+  "content": { /* Content fields */ },
+  "actions": { /* CTA configuration */ },
+  "style": { /* Optional style overrides */ }
+}
+```
+
+### Service Configuration (Optional - For Consulting Services)
+
+**Used for:** Consulting services that need delivery date calculations and enquiry modals.
+
+```json
+"service": {
+  "durationWeeks": 8,        // Service duration in weeks
+  "bufferWeeks": 2,          // Time to get started (optional, defaults to 0)
+  "basePrice": 50000         // Price in smallest unit (e.g., 50000 = £50,000)
+}
+```
+
+**Key feature:** All service configuration lives in the JSON. No hardcoded configs in code.
+
+**How it works:**
+- Delivery date automatically calculated: `today + (durationWeeks + bufferWeeks) weeks`
+- Enquiry modal reads `durationWeeks` and `basePrice` directly from JSON
+- Change pricing/timeline? Edit the JSON file. Done.
+
+---
+
+## Content Fields
+
+### 1. Basic Content
+
+```json
+"content": {
+  "prompt": {
+    "type": "static | dynamic",
+    "text": "If you're saying yes to everything and achieving nothing...",
+    "dynamicKey": "focusMatrixPrompt" // Optional: key from getDynamicContent()
+  },
+  "title": "The Focus Matrix",
+  "badge": "Strategy", // Optional
+  "body": [
+    {
+      "type": "text",
+      "text": "Poker players calculate expected value on every bet..."
+    },
+    {
+      "type": "text",
+      "text": "This runs game theory on your entire calendar..."
+    },
+    {
+      "type": "dynamic",
+      "dynamicKey": "focusMatrixDescription"
+    }
+  ],
+  "metadata": {
+    "type": "static | dynamic",
+    "text": "Eight weeks. Delivered by {deliveryDate}.",
+    "variables": {
+      "deliveryDate": {
+        "type": "dynamic",
+        "function": "getDeliveryDate",
+        "args": ["focus-matrix"]
+      }
+    }
+  }
+}
+```
+
+### 2. Footer Content
+
+#### Option A: Price + CTAs (Service/Link Bentos)
+
+```json
+"footer": {
+  "type": "price-cta",
+  "price": "From £50,000",
+  "primaryText": "Tagline here",
+  "secondaryText": "Subtitle here"
+}
+```
+
+#### Option B: Custom Footer (Product Bentos)
+
+```json
+"footer": {
+  "type": "custom",
+  "primaryText": "Turns 'busy' into 'lethal'.",
+  "secondaryText": "Stop drowning. Start compounding."
+}
+```
+
+---
+
+## Actions Configuration
+
+### CTA Types
+
+#### 1. Share Email
+
+```json
+"actions": {
+  "share": {
+    "enabled": true,
+    "subject": "Worth looking at: {title}",
+    "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\n{description}\n\n{price}. {timeline}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+  }
+}
+```
+
+**Variables available:**
+- `{title}` - Bento title
+- `{description}` - First body paragraph
+- `{price}` - Price from footer
+- `{timeline}` - Metadata text
+- `{url}` - Current page URL + anchor
+
+#### 2. Enquire Modal
+
+```json
+"actions": {
+  "enquire": {
+    "enabled": true,
+    "modalId": "go-to-market", // Opens ProductsEnquiryModal or custom modal
+    "buttonText": "Enquire" // Optional, default: "Enquire"
+  }
+}
+```
+
+#### 3. External Link
+
+```json
+"actions": {
+  "link": {
+    "enabled": true,
+    "href": "/consulting#go-to-market",
+    "text": "Learn More",
+    "target": "_self | _blank"
+  }
+}
+```
+
+#### 4. Custom Action
+
+```json
+"actions": {
+  "custom": {
+    "enabled": true,
+    "type": "function",
+    "handler": "handleCustomAction",
+    "label": "Get Started"
+  }
+}
+```
+
+---
+
+## Complete Examples
+
+### Example 1: Product Bento (Sir Alfie)
+
+```json
+{
+  "id": "sir-alfie",
+  "variant": "product",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Product showcase for Sir Alfie CRM"
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If your CRM is a graveyard and your pipeline is a prayer..."
+    },
+    "title": "Sir Alfie",
+    "body": [
+      {
+        "type": "text",
+        "text": "Most CRMs are graveyards. Data sitting still. Sir Alfie is hunting."
+      },
+      {
+        "type": "text",
+        "text": "Agents browse the internet for real opportunities. Build GTM strategy based on your objectives and constraints. Dashboard shows value drops at every conversion step."
+      },
+      {
+        "type": "text",
+        "text": "Maximum human in the loop. Maximum heavy lifting. You make the calls. It gives you superhuman pattern recognition."
+      }
+    ]
+  },
+  "footer": {
+    "type": "custom",
+    "primaryText": "Your CRM with a pulse.",
+    "secondaryText": "While you sleep, it hunts."
+  },
+  "actions": {
+    "enquire": {
+      "enabled": false
+    }
+  }
+}
+```
+
+### Example 2: Service Bento (Go-to-Market)
+
+```json
+{
+  "id": "go-to-market",
+  "variant": "service",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs"
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If you've built something people need but they're not buying..."
+    },
+    "title": "Go-to-Market Intelligence",
+    "badge": "Strategy",
+    "body": [
+      {
+        "type": "dynamic",
+        "dynamicKey": "gtmDescription"
+      }
+    ],
+    "metadata": {
+      "type": "static",
+      "text": "Eight weeks. Delivered by {deliveryDate}.",
+      "variables": {
+        "deliveryDate": {
+          "type": "dynamic",
+          "function": "getDeliveryDate",
+          "args": ["go-to-market"]
+        }
+      }
+    }
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "From £50,000"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: Go-to-Market Intelligence",
+      "body": "Hey,\n\nI came across this and thought it might help with your GTM challenges.\n\nIt's called Go-to-Market Intelligence - strategic consulting that maps your entire market position and creates a plan that actually works.\n\nEight weeks, starts at £50,000. They've helped companies go from stuck to scale.\n\nHere's the link: {url}\n\nWorth a conversation?"
+    },
+    "enquire": {
+      "enabled": true,
+      "modalId": "go-to-market"
+    }
+  }
+}
+```
+
+### Example 3: Link Bento (Navigation Card)
+
+```json
+{
+  "id": "consulting-services",
+  "variant": "link",
+  "enabled": true,
+  "content": {
+    "title": "Consulting Services",
+    "body": [
+      {
+        "type": "text",
+        "text": "We fix things. Then we leave. High-stakes problems. Measurable outcomes. No retainers."
+      }
+    ]
+  },
+  "footer": {
+    "type": "custom",
+    "primaryText": "We fix things. Then we leave.",
+    "secondaryText": ""
+  },
+  "actions": {
+    "link": {
+      "enabled": true,
+      "href": "/consulting",
+      "text": "Explore Services",
+      "target": "_self"
+    }
+  },
+  "style": {
+    "border": "1px solid #D43225",
+    "padding": "40px 32px"
+  }
+}
+```
+
+---
+
+## Content Types Reference
+
+### Static Text
+Simple hardcoded string.
+```json
+{
+  "type": "text",
+  "text": "Your content here..."
+}
+```
+
+### Dynamic Content
+From `getDynamicContent()` cache.
+```json
+{
+  "type": "dynamic",
+  "dynamicKey": "keyFromDynamicContentJSON"
+}
+```
+
+### Variable Substitution
+Replace placeholders with dynamic values.
+```json
+{
+  "type": "static",
+  "text": "Delivered by {deliveryDate}.",
+  "variables": {
+    "deliveryDate": {
+      "type": "dynamic",
+      "function": "getDeliveryDate",
+      "args": ["service-id"]
+    }
+  }
+}
+```
+
+### HTML/Markdown (Future)
+```json
+{
+  "type": "markdown",
+  "text": "This is **bold** and *italic*."
+}
+```
+
+---
+
+## Style Overrides (Optional)
+
+Override component defaults:
+
+```json
+"style": {
+  "border": "1px solid #D43225",
+  "padding": "40px 32px",
+  "backgroundColor": "#fff"
+}
+```
+
+---
+
+## Validation Rules
+
+1. **Required Fields:**
+   - `id` (unique)
+   - `variant` (service | link | product)
+   - `content.title`
+
+2. **Field Limits:**
+   - `id`: kebab-case, max 50 chars
+   - `title`: max 100 chars
+   - `body`: max 5 paragraphs
+   - `prompt`: max 200 chars
+
+3. **Variant-Specific:**
+   - `service` bentos SHOULD have price + CTAs
+   - `product` bentos SHOULD have custom footer
+   - `link` bentos MUST have navigation action
+
+---
+
+## Usage in Code
+
+### 1. Load Content
+
+```tsx
+import bentoContent from '@/components/BentoBox/content/sir-alfie.json';
+import { BentoBoxFromContent } from '@/components/BentoBox';
+
+<BentoBoxFromContent content={bentoContent} />
+```
+
+### 2. Load Multiple Bentos
+
+```tsx
+import { loadBentosByPage } from '@/lib/bentoLoader';
+
+const bentos = await loadBentosByPage('products');
+
+{bentos.map(bento => (
+  <BentoBoxFromContent key={bento.id} content={bento} />
+))}
+```
+
+### 3. Dynamic Content Integration
+
+```tsx
+import { getDynamicContent } from '@/lib/getDynamicContent';
+import bentoContent from '@/components/BentoBox/content/sir-alfie.json';
+
+const dynamicData = await getDynamicContent();
+
+<BentoBoxFromContent
+  content={bentoContent}
+  dynamicData={dynamicData}
+/>
+```
+
+---
+
+## Migration Path
+
+### Phase 1: Add Content Files
+1. Create JSON files for existing bentos
+2. Keep hardcoded versions working
+3. Test content-driven rendering
+
+### Phase 2: Parallel Systems
+1. Add `BentoBoxFromContent` component
+2. Migrate one page at a time
+3. Compare rendered output
+
+### Phase 3: Full Migration
+1. Replace all hardcoded bentos
+2. Remove old JSX code
+3. Update documentation
+
+---
+
+## Benefits
+
+✅ **Separation of Concerns** - Content editors don't touch code
+✅ **Easy to Add Bentos** - Copy template, fill in content, done
+✅ **Version Control** - Track content changes separately
+✅ **Reusability** - Same bento on multiple pages
+✅ **A/B Testing** - Easy to swap content files
+✅ **Type Safety** - JSON schema validation
+✅ **Dynamic + Static** - Mix both content types seamlessly
+
+---
+
+## Next Steps
+
+1. **Create template.json** with inline instructions
+2. **Build BentoBoxFromContent** component
+3. **Create bentoLoader utility** for loading/filtering
+4. **Migrate products page** as proof of concept
+5. **Add JSON schema validation**

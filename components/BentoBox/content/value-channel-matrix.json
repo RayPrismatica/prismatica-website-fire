@@ -1,0 +1,36 @@
+{
+  "id": "value-channel-matrix",
+  "variant": "product",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Value Channel Matrix product - value engineering tool"
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If they're comparing you on price, you've already lost..."
+    },
+    "title": "Value Channel Matrix",
+    "body": [
+      {
+        "type": "text",
+        "text": "Value is the cast iron that forms between what's given and what's received. That's what makes deals strong. That's what scales."
+      },
+      {
+        "type": "text",
+        "text": "This maps every channel in the exchange. Tangible and intangible forces. Customer psychology from Maslow to Jung. What particles actually move people. Makes sure whoever takes the hardest step forward gets more than they put in. 10% more? Good. 30% more? They'll never leave you."
+      },
+      {
+        "type": "text",
+        "text": "Offering architecture they can't refuse. Overdelivery by design. This isn't marketing tactics. This is value engineering."
+      }
+    ]
+  },
+  "footer": {
+    "type": "custom",
+    "primaryText": "Make them need you, not want you.",
+    "secondaryText": "Price becomes irrelevant."
+  }
+}

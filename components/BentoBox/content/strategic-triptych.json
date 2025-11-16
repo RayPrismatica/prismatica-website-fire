@@ -1,0 +1,51 @@
+{
+  "id": "strategic-triptych",
+  "variant": "link",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Strategic Triptych Assessment - £18,000 consulting service"
+  },
+  "service": {
+    "durationWeeks": 4,
+    "bufferWeeks": 2,
+    "basePrice": 18000
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If you know something's off but can't pinpoint where..."
+    },
+    "title": "The Strategic Triptych Assessment",
+    "badge": "Strategy",
+    "body": [
+      {
+        "type": "dynamic",
+        "field": "triptychDescription",
+        "fallback": "We examine your business through three lenses simultaneously: how you market, how you compete, how you build. Most problems live in the gaps between these. Most opportunities too."
+      }
+    ],
+    "metadata": {
+      "type": "function",
+      "function": "getDeliveryDate",
+      "args": ["strategic-triptych"],
+      "template": "Four weeks. By {result} you'll know exactly where you're leaving money on the table and what to do about it."
+    }
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "From £18,000"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: Strategic Triptych Assessment",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Strategic Triptych - they examine your business through three lenses at once: how you market, compete, and build. Most problems live in the gaps between these. Most opportunities too.\n\nFour weeks, starts at £18,000. They show you exactly where you're leaving money on the table.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+    },
+    "enquire": {
+      "enabled": true,
+      "modalId": "strategic-triptych"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "sir-alfie",
+  "variant": "product",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "lastUpdated": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Sir Alfie product showcase - CRM with AI agents"
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If your CRM is a graveyard and your pipeline is a prayer..."
+    },
+    "title": "Sir Alfie",
+    "body": [
+      {
+        "type": "text",
+        "text": "Most CRMs are graveyards. Data sitting still. Sir Alfie is hunting."
+      },
+      {
+        "type": "text",
+        "text": "Agents browse the internet for real opportunities. Build GTM strategy based on your objectives and constraints. Dashboard shows value drops at every conversion step. Dynamic tactic shifts when the numbers move. Strategy reassessment based on what's actually working."
+      },
+      {
+        "type": "text",
+        "text": "Maximum human in the loop. Maximum heavy lifting. You make the calls. It gives you superhuman pattern recognition and does the impossible parts. Being the human inside this thing feels like having an unfair advantage."
+      }
+    ]
+  },
+  "footer": {
+    "type": "custom",
+    "primaryText": "Your CRM with a pulse.",
+    "secondaryText": "While you sleep, it hunts."
+  },
+  "actions": {
+    "share": {
+      "enabled": false
+    },
+    "enquire": {
+      "enabled": false
+    }
+  }
+}

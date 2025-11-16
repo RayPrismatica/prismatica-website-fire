@@ -1,0 +1,52 @@
+{
+  "id": "process-surgery",
+  "variant": "link",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Process Surgery - \u00a310,000 consulting service"
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If you're hiring faster than you're fixing processes..."
+    },
+    "title": "Process Surgery",
+    "badge": "Process",
+    "body": [
+      {
+        "type": "text",
+        "text": "Cut what's broken. Fix what matters. Leave the rest alone. We find the 20% of processes causing 80% of your pain, eliminate unnecessary steps, and rebuild the critical paths. Not process for process sake. Process that actually makes work easier."
+      }
+    ],
+    "metadata": {
+      "type": "function",
+      "function": "getDeliveryDate",
+      "args": [
+        "process-surgery"
+      ],
+      "template": "Four weeks. By {result} your team will spend less time managing workflows and more time doing actual work."
+    }
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "From \u00a310,000"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: Process Surgery",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Process Surgery. They find the 20% of processes causing 80% of pain, eliminate unnecessary steps, and rebuild critical paths. Process that makes work easier, not just documented.\n\nFour weeks, starts at \u00a310,000.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+    },
+    "enquire": {
+      "enabled": true,
+      "modalId": "process-surgery"
+    }
+  },
+  "service": {
+    "durationWeeks": 5,
+    "bufferWeeks": 2,
+    "basePrice": 10000
+  }
+}

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, Fragment } from 'react';
 import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react';
 import { useAthenaChat } from '@/contexts/AthenaChatContext';
+import { usePathname } from 'next/navigation';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -12,6 +13,7 @@ interface Message {
 
 export default function GlobalAthenaChat() {
   const { isOpen, closeChat } = useAthenaChat();
+  const pathname = usePathname();
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
@@ -20,6 +22,7 @@ export default function GlobalAthenaChat() {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
@@ -77,7 +80,9 @@ export default function GlobalAthenaChat() {
           messages: [...messages, userMessage].map(m => ({
             role: m.role,
             content: m.content
-          }))
+          })),
+          pathname,
+          conversationId: currentConversationId // Send existing ID if we have one
         }),
       });
 
@@ -102,6 +107,11 @@ export default function GlobalAthenaChat() {
       };
 
       setMessages(prev => [...prev, assistantMessage]);
+
+      // Store conversation ID for post-chat analysis
+      if (data.conversationId) {
+        setCurrentConversationId(data.conversationId);
+      }
     } catch (error) {
       console.error('Error sending message:', error);
       setMessages(prev => [...prev, {
@@ -113,6 +123,39 @@ export default function GlobalAthenaChat() {
     }
   };
 
+  // Trigger conversation analysis when chat closes
+  const handleCloseChat = async () => {
+    // Trigger analysis if there's a conversation to analyze
+    if (currentConversationId && messages.length >= 6) {
+      try {
+        // Non-blocking analysis trigger
+        fetch('/api/chat/end', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            conversationId: currentConversationId
+          })
+        }).catch(err => console.error('Analysis trigger failed:', err));
+      } catch (error) {
+        console.error('Error triggering analysis:', error);
+      }
+    }
+
+    // Close the chat
+    closeChat();
+
+    // Reset conversation state after a delay
+    setTimeout(() => {
+      setMessages([{
+        role: 'assistant',
+        content: "You start."
+      }]);
+      setCurrentConversationId(null);
+    }, 300);
+  };
+
   // Don't render anything if chat is not open
   if (!isOpen) return null;
 
@@ -120,7 +163,7 @@ export default function GlobalAthenaChat() {
     <>
       {/* Drawer Dialog */}
       <Transition show={isOpen} as={Fragment}>
-        <Dialog onClose={closeChat} className="relative z-30">
+        <Dialog onClose={handleCloseChat} className="relative z-30">
           {/* Backdrop */}
           <Transition.Child
             as={Fragment}
@@ -134,7 +177,7 @@ export default function GlobalAthenaChat() {
             <div
               className="fixed inset-0 bg-black/30 transition-opacity"
               style={{ left: 'var(--sidebar-width, 0px)', transform: 'translateZ(0)' }}
-              onClick={closeChat}
+              onClick={handleCloseChat}
               aria-hidden="true"
             />
           </Transition.Child>
@@ -156,7 +199,7 @@ export default function GlobalAthenaChat() {
                       {/* Close button - top right */}
                       <button
                         type="button"
-                        onClick={closeChat}
+                        onClick={handleCloseChat}
                         className="absolute top-4 right-4 z-10 md:hidden"
                         style={{
                           fontSize: '32px',
@@ -393,7 +436,7 @@ export default function GlobalAthenaChat() {
                             <div className="md:hidden flex items-center justify-center" style={{ marginTop: '16px' }}>
                               <button
                                 type="button"
-                                onClick={closeChat}
+                                onClick={handleCloseChat}
                                 className="flex items-center gap-2 rounded-md text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#D43225]"
                                 style={{
                                   fontFamily: '"Noto Sans", sans-serif',

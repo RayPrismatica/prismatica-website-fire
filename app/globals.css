@@ -186,6 +186,10 @@ p {
 .bento-link:hover .delivery-date {
     color: #D43225 !important;
 }
+.bento-link:hover .service-cta-link,
+.bento-link:hover .service-cta-btn {
+    color: #D43225 !important;
+}
 
 /* CTA Button Hovers */
 .home-cta-button:hover,
@@ -223,10 +227,15 @@ p {
 .service-bento:hover .delivery-date {
     color: #D43225 !important;
 }
+.service-bento:hover .service-cta-link,
+.service-bento:hover .service-cta-btn {
+    color: #D43225 !important;
+}
 
-/* Service CTA Hover */
+/* Service CTA Hover - Turn red on desktop */
 .service-cta-link:hover,
 .service-cta-btn:hover {
+    color: #D43225 !important;
     text-decoration: underline !important;
 }
 
@@ -264,8 +273,20 @@ p {
     transform: translateY(-2px) !important;
 }
 
+/* Red accent bar on hover - same as consulting page */
 .product-bento:hover .divider-line {
     border-color: #D43225 !important;
+}
+
+/* Red accent on prompt line accent bar (if present) */
+.product-bento:hover p[style*="position: relative"] span[style*="position: absolute"][style*="backgroundColor: #D43225"],
+.product-bento:hover p[style*="position: relative"] span[class*="accentBar"] {
+    background-color: #D43225 !important; /* Already red, but ensure it stays */
+}
+
+/* Any delivery date or dynamic date elements turn red */
+.product-bento:hover .delivery-date {
+    color: #D43225 !important;
 }
 
 .products-cta-button:hover {
@@ -1490,7 +1511,7 @@ p {
 
 /* Left accent bars turn red when box in viewport */
 @media (max-width: 768px) {
-  /* Initially gray accent bars */
+  /* Initially gray accent bars - inline styles */
   .bento-box span[style*="position: absolute"][style*="width: 3px"],
   .product-bento span[style*="position: absolute"][style*="width: 3px"],
   .service-bento span[style*="position: absolute"][style*="width: 3px"],
@@ -1500,12 +1521,29 @@ p {
     transition: background-color 0.4s ease;
   }
 
-  /* Turn red when box in viewport */
+  /* Initially gray accent bars - CSS module class */
+  .bento-box span[class*="accentBar"],
+  .product-bento span[class*="accentBar"],
+  .service-bento span[class*="accentBar"],
+  .bento-link span[class*="accentBar"] {
+    background-color: #e0e0e0 !important;
+    transition: background-color 0.4s ease;
+  }
+
+  /* Turn red when box in viewport - inline styles */
   .bento-box.in-viewport span[style*="position: absolute"][style*="width: 3px"],
   .product-bento.in-viewport span[style*="position: absolute"][style*="width: 3px"],
   .service-bento.in-viewport span[style*="position: absolute"][style*="width: 3px"],
   .bento-link.in-viewport span[style*="position: absolute"][style*="width: 3px"],
   .in-viewport p[style*="position: relative"] span[style*="position: absolute"][style*="width: 3px"] {
+    background-color: #D43225 !important;
+  }
+
+  /* Turn red when box in viewport - CSS module class */
+  .bento-box.in-viewport span[class*="accentBar"],
+  .product-bento.in-viewport span[class*="accentBar"],
+  .service-bento.in-viewport span[class*="accentBar"],
+  .bento-link.in-viewport span[class*="accentBar"] {
     background-color: #D43225 !important;
   }
 }

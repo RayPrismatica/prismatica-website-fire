@@ -1,0 +1,50 @@
+{
+  "id": "go-to-market",
+  "variant": "link",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Go-to-Market - £15,000 consulting service"
+  },
+  "service": {
+    "durationWeeks": 7,
+    "bufferWeeks": 2,
+    "basePrice": 15000
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If you're launching something new and can't afford to get it wrong..."
+    },
+    "title": "Go-to-Market",
+    "badge": "Marketing",
+    "body": [
+      {
+        "type": "text",
+        "text": "Launch right the first time. We build your complete go-to-market strategy from positioning to channels to messaging to timeline. Who you're targeting, what you're saying, where you're saying it, and in what sequence. Everything mapped before you spend a pound on execution."
+      }
+    ],
+    "metadata": {
+      "type": "function",
+      "function": "getDeliveryDate",
+      "args": ["go-to-market"],
+      "template": "Six weeks beats six months of \"let's try this and see.\" Launch strategy ready by {result}, budget intact."
+    }
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "From £15,000"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: Go-to-Market Strategy",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a complete go-to-market strategy service. They map everything from positioning to channels to messaging to timeline. Who you're targeting, what you're saying, where, and when. Everything mapped before you spend a pound on execution.\n\nSix weeks, starts at £15,000.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+    },
+    "enquire": {
+      "enabled": true,
+      "modalId": "go-to-market"
+    }
+  }
+}

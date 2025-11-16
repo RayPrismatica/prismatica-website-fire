@@ -1,0 +1,52 @@
+{
+  "id": "ai-without-hallucination",
+  "variant": "link",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "AI Without the Hallucination - \u00a310,000 consulting service"
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If your team sees AI potential everywhere but can't identify clear use cases..."
+    },
+    "title": "AI Without the Hallucination",
+    "badge": "Technology",
+    "body": [
+      {
+        "type": "text",
+        "text": "Cut through the hype and find the boring, profitable AI applications that actually matter. We map your workflows, identify where AI adds real value, and prioritize implementations by ROI. Not the flashy demos everyone's chasing. The practical automations that save hours and generate revenue."
+      }
+    ],
+    "metadata": {
+      "type": "function",
+      "function": "getDeliveryDate",
+      "args": [
+        "ai-without-hallucination"
+      ],
+      "template": "Four weeks. By {result} you'll have AI use cases with actual ROI, not just ChatGPT screenshots in your deck."
+    }
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "From \u00a310,000"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: AI Without the Hallucination",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called AI Without the Hallucination. They cut through the hype to find the boring, profitable AI applications. They map your workflows, identify real value, and prioritize by ROI. Practical automations, not flashy demos.\n\nFour weeks, starts at \u00a310,000.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+    },
+    "enquire": {
+      "enabled": true,
+      "modalId": "ai-without-hallucination"
+    }
+  },
+  "service": {
+    "durationWeeks": 5,
+    "bufferWeeks": 2,
+    "basePrice": 10000
+  }
+}

@@ -1,0 +1,98 @@
+/* ============================================================================
+   BentoBox Component - Responsive Styles
+   ============================================================================
+
+   These styles handle responsive behavior for the BentoBox component.
+   Desktop styles are inline in BentoBox.tsx.
+   Mobile styles are defined here.
+*/
+
+/* Base container - desktop styles applied via inline styles in component */
+.bentoContainer {
+  /* Inherits from inline styles */
+}
+
+/* Responsive accent bar positioning */
+/* Desktop: red by default, stays red on hover */
+/* Mobile: gray by default, red when in-viewport class is added */
+.accentBar {
+  position: absolute;
+  left: -20px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: #D43225; /* Desktop default - always red */
+}
+
+/* Mobile: start gray, turn red when parent has in-viewport class */
+@media (max-width: 768px) {
+  .accentBar {
+    background-color: #e0e0e0 !important;
+    transition: background-color 0.4s ease;
+  }
+
+  /* Fully global selector - when any ancestor with in-viewport class contains this accentBar */
+  :global(.product-bento.in-viewport) .accentBar,
+  :global(.service-bento.in-viewport) .accentBar,
+  :global(.bento-link.in-viewport) .accentBar {
+    background-color: #D43225 !important;
+  }
+}
+
+/* ============================================================================
+   Tablet Breakpoint (max-width: 1024px)
+   ============================================================================ */
+@media (max-width: 1024px) {
+  .bentoContainer {
+    padding: 24px !important;
+  }
+
+  /* Accent bar adjustment for tablet */
+  .accentBar {
+    left: -16px !important;
+  }
+}
+
+/* ============================================================================
+   Mobile Breakpoint (max-width: 768px)
+   ============================================================================ */
+@media (max-width: 768px) {
+  .bentoContainer {
+    padding: 24px !important;
+  }
+
+  /* Accent bar stays at -16px for mobile */
+  .accentBar {
+    left: -16px !important;
+  }
+}
+
+/* ============================================================================
+   Small Mobile Breakpoint (max-width: 480px)
+   ============================================================================ */
+@media (max-width: 480px) {
+  .bentoContainer {
+    padding: 20px !important;
+  }
+
+  /* Accent bar adjustment for small mobile */
+  .accentBar {
+    left: -12px !important;
+  }
+
+  /* Tighter spacing for footer on mobile */
+  .ctaDivider {
+    padding-top: 16px !important;
+  }
+
+  /* Better touch targets for mobile CTAs */
+  .ctaActions {
+    gap: 12px !important;
+  }
+
+  .ctaLink,
+  .ctaButton {
+    min-height: 44px !important;
+    padding: 10px 16px !important;
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "",
+  "variant": "",
+  "enabled": true,
+  "metadata": {
+    "created": "",
+    "author": "Prismatica Labs",
+    "notes": ""
+  },
+  "service": {
+    "durationWeeks": 0,
+    "bufferWeeks": 0,
+    "basePrice": 0
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": ""
+    },
+    "title": "",
+    "badge": "",
+    "body": [
+      {
+        "type": "text",
+        "text": ""
+      }
+    ],
+    "metadata": {
+      "type": "function",
+      "function": "getDeliveryDate",
+      "args": [""],
+      "template": ""
+    }
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": ""
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "",
+      "body": ""
+    },
+    "enquire": {
+      "enabled": true,
+      "modalId": ""
+    }
+  }
+}

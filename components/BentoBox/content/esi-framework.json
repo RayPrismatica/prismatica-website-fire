@@ -1,0 +1,51 @@
+{
+  "id": "esi-framework",
+  "variant": "service",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "ESI Framework - £40,000 consulting service"
+  },
+  "service": {
+    "durationWeeks": 6,
+    "bufferWeeks": 2,
+    "basePrice": 40000
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If you have insights but struggle to execute them systematically..."
+    },
+    "title": "The ESI Framework",
+    "badge": "Strategy",
+    "body": [
+      {
+        "type": "dynamic",
+        "field": "esiDescription",
+        "fallback": "Explore-Synthesize-Ignite. Three phases that turn scattered insights into systematic action. Most companies stop at exploration. Some get to synthesis. We build until ignition. The framework connects research to strategy to execution in one continuous flow."
+      }
+    ],
+    "metadata": {
+      "type": "function",
+      "function": "getDeliveryDate",
+      "args": ["esi-framework"],
+      "template": "Six weeks. Roadmap delivered by {result}."
+    }
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "From £40,000"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: ESI Framework from Prismatica Labs",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the ESI Framework - basically a system that connects insights to actual implementation. Explore uncovers truth, Synthesize turns it into strategy, Ignite makes it executable.\n\nSix weeks, starts at £40,000. They map the whole thing from research through execution.\n\nIf we talk to them next week, we could have results by {deliveryDate} or earlier.\n\nHere's the link: {url}\n\nWorth a conversation?"
+    },
+    "enquire": {
+      "enabled": true,
+      "modalId": "esi-framework"
+    }
+  }
+}

@@ -104,6 +104,7 @@ Pages use a consistent two-column layout:
 - `components/PageLayout.tsx` wraps content with `Sidebar` navigation
 - Main content area uses responsive grid
 - Global Athena chat overlay available on all pages via `components/GlobalAthenaChat.tsx`
+- Mobile users see `MobileBottomSheetAthena.tsx` - a bottom sheet with contextual page-specific prompts
 - Context managed by `contexts/AthenaChatContext.tsx`
 
 ### Styling
@@ -149,9 +150,10 @@ Complete visual identity and styling guidelines are documented in `PrismaticaSou
 
 **AI Assistant Name**: The chat assistant is called **Athena** (not Carmen). All references must use "Athena":
 - CSS classes: `.athena-*` (not `.carmen-*`)
-- Component names: `GlobalAthenaChat`, `AthenaChatContext`
+- Component names: `GlobalAthenaChat`, `MobileBottomSheetAthena`, `AthenaChatContext`
 - User-facing text: "Athena (our AI chat)"
 - Image files: `/images/athena-advisor.jpg`
+- Internal name in prompts: "Athero" (system prompt persona)
 
 ## Important File Locations
 
@@ -176,8 +178,58 @@ Complete visual identity and styling guidelines are documented in `PrismaticaSou
 - `lib/getDynamicContent.ts` - Dynamic content cache reader with fallback system
 - `lib/rateLimiter.ts` - Rate limiting implementation for API routes
 - `contexts/AthenaChatContext.tsx` - Global state management for Athena chat
+- `contexts/MobilePrototypeContext.tsx` - Mobile prototype feature flags
+
+**Mobile Components:**
+- `components/MobileBottomSheetAthena.tsx` - Mobile-specific Athena chat interface
+- `components/MobileAnimations.tsx` - Viewport-triggered animations
+- `components/MobilePrototypeAnimations.tsx` - Experimental mobile interactions
+- `components/MobilePrototypeToggle.tsx` - UI control for mobile prototype mode
+
+**UI Components:**
+- `components/BentoBox.tsx` - Universal bento box component for services, products, and navigation cards
+  - Documentation: `components/BentoBox.README.md`
+  - Examples: `components/BentoBox.examples.tsx`
+  - Specification: `BENTO_BOX_SPEC.md`
+  - Roadmap: `BENTO_BOX_ROADMAP.md`
 
 ## Development Guidelines
+
+### Working with Bento Boxes
+
+**BentoBox Component** - Universal card component for consistent design across the site.
+
+When creating new service cards, product cards, or navigation cards, **always use the BentoBox component** instead of inline styles:
+
+```tsx
+import BentoBox from '@/components/BentoBox';
+
+<BentoBox
+  variant="service"  // 'service' | 'link' | 'product'
+  prompt="If your problem statement..."
+  title="Service Name"
+  badge="Strategy"
+  price="From £50,000"
+  shareEmail={{ subject: '...', body: '...' }}
+  onEnquire={() => openModal('service-id')}
+>
+  <p style={{ marginBottom: '16px', fontSize: '17px', lineHeight: '1.6', color: '#444' }}>
+    Service description...
+  </p>
+</BentoBox>
+```
+
+**Key Rules:**
+- Use `variant="service"` or `variant="link"` for consulting services
+- Use `variant="product"` for product showcase cards
+- Body text must be 17px (not 16px!)
+- CTA links are 15px, 500 weight, 0.3px letter-spacing
+- Red accent bar is always 3px width, left: -20px, #D43225
+
+**Documentation:**
+- Full API: `components/BentoBox.README.md`
+- Examples: `components/BentoBox.examples.tsx`
+- Specifications: `BENTO_BOX_SPEC.md`
 
 ### Working with Dynamic Content
 
@@ -233,6 +285,21 @@ Complete visual identity and styling guidelines are documented in `PrismaticaSou
 - Dynamic content components are async Server Components
 - Client-side interactivity isolated to specific components
 - Image optimization via Next.js Image component with preloading for critical assets
+
+### Mobile Experience
+
+**Athena Chat Interface:**
+- Desktop: `GlobalAthenaChat` - Modal overlay using Headless UI Dialog
+- Mobile: `MobileBottomSheetAthena` - Bottom sheet with:
+  - Contextual page-specific prompts (defined in `PAGE_PROMPTS` constant)
+  - Persistent conversation state (survives navigation)
+  - User-facing introduction: "Athena knows Prismatica."
+  - Emphasizes continuity: "Once you start, she stays with you"
+
+**Animation System:**
+- `MobileAnimations.tsx` - Viewport-triggered entrance animations
+- `MobilePrototypeAnimations.tsx` - Experimental mobile interactions
+- `MobilePrototypeContext.tsx` - Feature flag system for mobile prototypes (localStorage-based)
 
 ## Testing Dynamic Content
 

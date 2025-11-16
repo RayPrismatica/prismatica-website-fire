@@ -70,3 +70,8 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Athena Intelligence (privacy - never commit conversations)
+athena/intel/layer1/raw-conversations/
+athena/intel/layer1/summaries/
+athena/intel/layer2/sessions/

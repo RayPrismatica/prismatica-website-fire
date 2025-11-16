@@ -3,6 +3,17 @@
 import { useState } from 'react';
 import PageLayout from '@/components/PageLayout';
 import ProductsEnquiryModal from '@/components/ProductsEnquiryModal';
+import { BentoBoxFromContent } from '@/components/BentoBox';
+
+// Import JSON content files
+import focusMatrixContent from '@/components/BentoBox/content/focus-matrix.json';
+import sirAlfieContent from '@/components/BentoBox/content/sir-alfie.json';
+import valueChannelContent from '@/components/BentoBox/content/value-channel-matrix.json';
+
+// Import as any to avoid TypeScript issues with JSON imports
+const focusMatrix = focusMatrixContent as any;
+const sirAlfie = sirAlfieContent as any;
+const valueChannel = valueChannelContent as any;
 
 export default function ProductsPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -46,101 +57,12 @@ export default function ProductsPage() {
         <p>Three examples:</p>
 
         <div style={{ marginTop: '32px', marginBottom: '32px' }}>
-          <div
-            className="product-bento"
-            style={{
-            backgroundColor: '#fff',
-            padding: '32px',
-            borderRadius: '12px',
-            marginBottom: '24px',
-            transition: 'transform 0.3s ease',
-            cursor: 'pointer',
-            transform: 'translateY(0)'
-          }}>
-            <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
-              <span style={{ position: 'absolute', left: '-20px', top: '0', bottom: '0', width: '3px', backgroundColor: '#D43225' }}></span>
-              If you're saying yes to everything and achieving nothing...
-            </p>
 
-            <h3 style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '20px', color: '#222' }}>
-              The Focus Matrix
-            </h3>
+          {/* Products - Content-Driven BentoBox (from JSON files) */}
+          <BentoBoxFromContent content={focusMatrix} />
+          <BentoBoxFromContent content={sirAlfie} />
+          <BentoBoxFromContent content={valueChannel} />
 
-            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Poker players calculate expected value on every bet. You should too. But for your hours, not your chips.</p>
-            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>This runs game theory on your entire calendar. EV vs. CV for every commitment. Accounts for global shifts that kill projects or create asymmetric opportunities. Shows you where to go all-in and what to fold.</p>
-            <p style={{ marginBottom: '20px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Your time is finite. Most people spend it on what screams loudest. This shows you where it compounds. Pushes to calendar. Shares the math with others so they understand your no's.</p>
-
-            <div className="divider-line" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderColor: '#e0e0e0' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>Turns "busy" into "lethal".</p>
-                <p style={{ fontSize: '14px', color: '#666', marginTop: '4px' }}>Stop drowning. Start compounding.</p>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="product-bento"
-            style={{
-            backgroundColor: '#fff',
-            padding: '32px',
-            borderRadius: '12px',
-            marginBottom: '24px',
-            transition: 'transform 0.3s ease',
-            cursor: 'pointer',
-            transform: 'translateY(0)'
-          }}>
-            <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
-              <span style={{ position: 'absolute', left: '-20px', top: '0', bottom: '0', width: '3px', backgroundColor: '#D43225' }}></span>
-              If your CRM is a graveyard and your pipeline is a prayer...
-            </p>
-
-            <h3 style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '20px', color: '#222' }}>
-              Sir Alfie
-            </h3>
-
-            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Most CRMs are graveyards. Data sitting still. Sir Alfie is hunting.</p>
-            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Agents browse the internet for real opportunities. Build GTM strategy based on your objectives and constraints. Dashboard shows value drops at every conversion step. Dynamic tactic shifts when the numbers move. Strategy reassessment based on what's actually working.</p>
-            <p style={{ marginBottom: '20px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Maximum human in the loop. Maximum heavy lifting. You make the calls. It gives you superhuman pattern recognition and does the impossible parts. Being the human inside this thing feels like having an unfair advantage.</p>
-
-            <div className="divider-line" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderColor: '#e0e0e0' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>Your CRM with a pulse.</p>
-                <p style={{ fontSize: '14px', color: '#666', marginTop: '4px' }}>While you sleep, it hunts.</p>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="product-bento"
-            style={{
-            backgroundColor: '#fff',
-            padding: '32px',
-            borderRadius: '12px',
-            marginBottom: '24px',
-            transition: 'transform 0.3s ease',
-            cursor: 'pointer',
-            transform: 'translateY(0)'
-          }}>
-            <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
-              <span style={{ position: 'absolute', left: '-20px', top: '0', bottom: '0', width: '3px', backgroundColor: '#D43225' }}></span>
-              If they're comparing you on price, you've already lost...
-            </p>
-
-            <h3 style={{ fontSize: '17px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '20px', color: '#222' }}>
-              Value Channel Matrix
-            </h3>
-
-            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Value is the cast iron that forms between what's given and what's received. That's what makes deals strong. That's what scales.</p>
-            <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>This maps every channel in the exchange. Tangible and intangible forces. Customer psychology from Maslow to Jung. What particles actually move people. Makes sure whoever takes the hardest step forward gets more than they put in. 10% more? Good. 30% more? They'll never leave you.</p>
-            <p style={{ marginBottom: '20px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>Offering architecture they can't refuse. Overdelivery by design. This isn't marketing tactics. This is value engineering.</p>
-
-            <div className="divider-line" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderColor: '#e0e0e0' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>Make them need you, not want you.</p>
-                <p style={{ fontSize: '14px', color: '#666', marginTop: '4px' }}>Price becomes irrelevant.</p>
-              </div>
-            </div>
-          </div>
         </div>
 
         <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '32px 0' }} />

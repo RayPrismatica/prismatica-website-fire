@@ -1,0 +1,50 @@
+{
+  "id": "creative-converts",
+  "variant": "link",
+  "enabled": true,
+  "metadata": {
+    "created": "2025-11-16",
+    "author": "Prismatica Labs",
+    "notes": "Creative That Converts - £12,000 consulting service"
+  },
+  "service": {
+    "durationWeeks": 7,
+    "bufferWeeks": 2,
+    "basePrice": 12000
+  },
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If your brand looks professional but doesn't drive sales or premium pricing..."
+    },
+    "title": "Creative That Converts",
+    "badge": "Marketing",
+    "body": [
+      {
+        "type": "text",
+        "text": "Brand work measured in revenue, not awards. We rebuild your positioning from the ground up based on what actually shifts customer perception and pricing power. Every design decision, every message, every touchpoint gets tested against one question: does this make people willing to pay more or buy faster?"
+      }
+    ],
+    "metadata": {
+      "type": "function",
+      "function": "getDeliveryDate",
+      "args": ["creative-converts"],
+      "template": "Six weeks. By {result}, your brand actually drives revenue instead of just looking pretty."
+    }
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "From £12,000"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: Creative That Converts",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Creative That Converts. They rebuild brand positioning based on what actually shifts customer perception and pricing power. Every design decision gets tested: does this make people pay more or buy faster?\n\nSix weeks, starts at £12,000.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+    },
+    "enquire": {
+      "enabled": true,
+      "modalId": "creative-converts"
+    }
+  }
+}
