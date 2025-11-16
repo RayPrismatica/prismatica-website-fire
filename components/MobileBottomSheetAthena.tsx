@@ -615,7 +615,7 @@ export default function MobileBottomSheetAthena() {
         left: 0,
         right: 0,
         height: '100dvh', // Always full height
-        zIndex: 1000,
+        zIndex: 1001, // Higher than mobile-header (1000) to cover it
         display: 'flex',
         flexDirection: 'column',
         overflow: 'visible',
