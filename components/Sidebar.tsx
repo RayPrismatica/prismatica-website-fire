@@ -4,13 +4,11 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useAthenaChat } from '@/contexts/AthenaChatContext';
 
 export default function Sidebar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const { isOpen, openChat, closeChat } = useAthenaChat();
 
   // Disable sidebar transition on initial load to prevent flash
   useEffect(() => {
@@ -32,7 +30,6 @@ export default function Sidebar() {
 
   const handleNavClick = () => {
     closeMobileMenu();
-    closeChat(); // Close chat drawer when navigating
   };
 
   return (
@@ -232,91 +229,6 @@ export default function Sidebar() {
           >
             Contact
           </Link>
-
-          {/* Athena Chat Button */}
-          <button
-            onClick={() => {
-              if (isOpen) {
-                closeChat();
-              } else {
-                openChat();
-              }
-              closeMobileMenu();
-            }}
-            className="block w-full text-left transition-all"
-            style={{
-              marginTop: '32px',
-              background: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '0'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <div style={{ position: 'relative', flexShrink: 0 }}>
-                <Image
-                  src="/images/athena-advisor.jpg"
-                  alt="Athena"
-                  width={40}
-                  height={40}
-                  style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    objectFit: 'cover'
-                  }}
-                />
-                <span style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  right: 0,
-                  display: 'block',
-                  height: '10px',
-                  width: '10px',
-                  borderRadius: '50%',
-                  backgroundColor: '#10b981',
-                  border: '2px solid white'
-                }}></span>
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{
-                  fontSize: '13px',
-                  fontWeight: 700,
-                  color: '#222',
-                  fontFamily: '"Noto Sans", sans-serif',
-                  letterSpacing: '0.5px',
-                  textTransform: 'uppercase',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px'
-                }}>
-                  {isOpen ? (
-                    <>
-                      <svg style={{ width: '14px', height: '14px' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                      </svg>
-                      Close
-                    </>
-                  ) : (
-                    <>
-                      Open
-                      <svg style={{ width: '14px', height: '14px' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </>
-                  )}
-                </div>
-                <div style={{
-                  fontSize: '10px',
-                  color: '#666',
-                  fontFamily: '"Noto Sans", sans-serif',
-                  marginTop: '4px'
-                }}>
-                  Strategic AI Advisor
-                </div>
-              </div>
-            </div>
-          </button>
         </div>
         <div style={{ flexGrow: 1, minHeight: '24px' }} />
         <div className="sidebar-logo" style={{ flexShrink: 0, paddingBottom: 0 }}>
