@@ -89,7 +89,7 @@ const SERVICE_PROMPTS: Record<string, string> = {
 function renderMessageWithLinks(text: string, onLinkClick: () => void) {
   // Regex to match markdown links: [text](url)
   const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-  const parts: (string | JSX.Element)[] = [];
+  const parts: (string | React.ReactElement)[] = [];
   let lastIndex = 0;
   let match;
   let key = 0;
