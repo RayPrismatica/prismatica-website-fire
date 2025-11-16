@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-
 interface DynamicContent {
   newsInsight: string;
   patternInsight: string;
@@ -36,21 +33,31 @@ const fallbackContent: DynamicContent = {
 
 export async function getDynamicContent(): Promise<DynamicContent> {
   try {
-    const dataPath = path.join(process.cwd(), 'data', 'dynamic-content.json');
+    const blobUrl = process.env.BLOB_URL || 'https://your-blob-store.public.blob.vercel-storage.com/dynamic-content.json';
 
-    if (!fs.existsSync(dataPath)) {
+    // Fetch from Vercel Blob
+    const response = await fetch(blobUrl, {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache'
+      }
+    });
+
+    if (!response.ok) {
+      console.error('Failed to fetch from Blob:', response.status);
       return fallbackContent;
     }
 
-    const cache = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+    const cache = await response.json();
 
-    // Check if cache is still valid (48 hours = 2880 minutes)
+    // Check if cache is still valid (24 hours = 1440 minutes)
     // This is a safety fallback in case GitHub Actions/Vercel systems fail
     const generated = new Date(cache.generated);
     const now = new Date();
     const ageInMinutes = (now.getTime() - generated.getTime()) / 60000;
 
-    if (ageInMinutes > 2880) { // 48 hours
+    if (ageInMinutes > 1440) { // 24 hours
+      console.log(`Content is ${ageInMinutes} minutes old, serving fallback`);
       return fallbackContent;
     }
 

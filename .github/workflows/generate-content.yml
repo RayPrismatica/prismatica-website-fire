@@ -34,29 +34,8 @@ jobs:
       - name: Generate dynamic content
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: npm run generate-content
-      
-      - name: Check if cache updated
-        id: check-changes
-        run: |
-          if git diff --quiet data/dynamic-content.json; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
-      
-      - name: Configure git
-        if: steps.check-changes.outputs.changed == 'true'
-        run: |
-          git config --local user.email "bot@prismatica.ai"
-          git config --local user.name "Content Generator Bot"
-      
-      - name: Commit and push cache update
-        if: steps.check-changes.outputs.changed == 'true'
-        run: |
-          git add data/dynamic-content.json
-          git commit -m "chore: update dynamic content [skip ci]"
-          git push origin main
 
       - name: Report success
         if: success()

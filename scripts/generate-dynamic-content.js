@@ -4,6 +4,7 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import dotenv from 'dotenv';
+import { put } from '@vercel/blob';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -248,7 +249,7 @@ async function generateContent() {
     // 3. Save to cache with metadata
     const content = {
       generated: new Date().toISOString(),
-      expires: new Date(Date.now() + 3600000).toISOString(), // 1 hour
+      expires: new Date(Date.now() + 86400000).toISOString(), // 24 hours
       content: {
         newsInsight: newsInsight,
         patternInsight: "You're still reading. That already puts you ahead.",
@@ -283,14 +284,15 @@ async function generateContent() {
       fallbackUsed: false
     };
 
-    // Create directory if doesn't exist
-    const dataDir = join(__dirname, '..', 'data');
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
-    }
-
-    const filePath = join(dataDir, 'dynamic-content.json');
-    fs.writeFileSync(filePath, JSON.stringify(content, null, 2));
+    // Upload to Vercel Blob
+    console.log('☁️  Uploading to Vercel Blob...');
+    const blob = await put('dynamic-content.json', JSON.stringify(content, null, 2), {
+      access: 'public',
+      addRandomSuffix: false,
+      cacheControlMaxAge: 21600, // 6 hours
+      contentType: 'application/json'
+    });
+    console.log(`✓ Uploaded to Vercel Blob: ${blob.url}`);
 
     // Also write a markdown file for Athena's knowledge base
     const knowledgeDir = join(__dirname, '..', 'athena', 'knowledge', 'pages');

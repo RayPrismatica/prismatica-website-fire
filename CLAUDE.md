@@ -48,12 +48,12 @@ The application's unique feature is AI-generated content that stays contextually
    - Temperature: 1.0
    - Max tokens: 2200
    - System prompt: `scripts/prompts/dynamic-content.md`
-4. Content saved to **two files simultaneously**:
-   - `data/dynamic-content.json` - JSON cache for website components
-   - `athena/knowledge/pages/dynamic-content.md` - Markdown for Athena's knowledge base
-5. Components read from JSON via `lib/getDynamicContent.ts`
+4. Content uploaded to **Vercel Blob Storage** and saved to markdown file:
+   - **Vercel Blob**: `dynamic-content.json` (24-hour validity, instant updates, no rebuilds)
+   - **Local file**: `athena/knowledge/pages/dynamic-content.md` - Markdown for Athena's knowledge base
+5. Components fetch from Blob via `lib/getDynamicContent.ts` and `/api/dynamic-content`
 6. Athena reads from markdown via `getPageContent()` in chat API
-7. Fallback content ensures site never breaks if generation fails
+7. Fallback content ensures site never breaks if Blob fetch fails or content expires
 
 **Athena Awareness:** Athena is always aware of current dynamic content because the generation script updates her knowledge base file in sync with the website content. This ensures she can reference what users are actually seeing on each page.
 
@@ -88,11 +88,15 @@ Required in `.env.local`:
 
 ```bash
 # Separate API keys for different services (can fallback to single ANTHROPIC_API_KEY)
-ANTHROPIC_API_KEY_CONTENT=  # For content generation (uses Opus 4.1)
+ANTHROPIC_API_KEY_CONTENT=  # For content generation (uses Opus 4)
 ANTHROPIC_API_KEY_CHAT=     # For Athena chat (uses Sonnet 4.5)
 ANTHROPIC_API_KEY=          # Fallback for both
 
 RESEND_API_KEY=             # Email notifications
+
+# Vercel Blob Storage (for dynamic content)
+BLOB_READ_WRITE_TOKEN=      # Token from Vercel dashboard (for writing content)
+BLOB_URL=                   # Public URL of your blob (set by Vercel)
 ```
 
 ### Rate Limiting
