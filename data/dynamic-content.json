@@ -1,20 +1,20 @@
 {
-  "generated": "2025-11-16T18:00:38.643Z",
-  "expires": "2025-11-16T19:00:38.643Z",
+  "generated": "2025-11-16T18:22:39.353Z",
+  "expires": "2025-11-16T19:22:39.353Z",
   "content": {
-    "newsInsight": "UK just released unemployment data showing 5% jobless rate while job listings hit record highs. Everyone sees recession. We see something else. When unemployment spikes alongside record vacancies, that's not economic decline. That's a matching crisis disguised as a labour crisis.",
+    "newsInsight": "UK just announced five young people dead in a two-car crash. Everyone sees tragedy. We see something else. When accidents spike precisely as companies mandate return-to-office, that's not coincidence. That's exhausted workers making deadly commutes they haven't done in years.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK unemployment paradox, for example. We read that and our mind goes to: if millions can't find work while millions of jobs go unfilled, who profits from this matching failure?",
-    "consultingInsight": "We were just reading how McKinsey's latest workforce transformation framework helps companies navigate talent shortages. Brilliant analysis, decades of pattern recognition. But what if that calibre of strategic insight wasn't reserved for Fortune 500 budgets? What if every ambitious leader could access it?",
-    "contentReminder": "Remember how the landing page showed UK's unemployment paradox, and the What We Do page wondered who profits from matching failures?",
-    "marketObservation": "This week alone, three CEOs asked us why they can't hire despite record applicants. That's the market revealing its broken plumbing before economists admit the pipes burst.",
-    "purposeContext": "Notice how companies crying \"talent shortage\" can't articulate what talent they actually need or why it matters?",
-    "serviceDescription": "Yeti just hired their first ad agency after 20 years of word-of-mouth growth. Watch every premium brand realise their \"organic authenticity\" was actually unexamined luck. We dissect why your business exists beyond profit margins, then engineer that purpose into every hiring decision, product choice, and customer interaction. Inside-out authenticity that scales. Purpose as operating system, not tagline in reception.",
-    "esiDescription": "Ford just unveiled a massive new HQ for their \"ambitious new era\" while their actual transformation stays stuck in PowerPoint. Classic insight-to-execution gap. Explore, Synthesise, Ignite: our operating system for making discovery actionable. Explore surfaces truth, Synthesise transforms findings into executable clarity, Ignite makes strategy actually happen. One continuous loop, not three separate engagements that never connect.",
-    "agencyDescription": "Inc reports 9 behaviours of bad bosses, but missed the 10th: good bosses drowning in decisions they created systems to avoid. We work with executives who realise their 70-hour weeks include 30 hours of problems they taught their teams not to solve. Secret Agency: where high-performers untangle patterns that got them here but won't get them there. Because optimising yesterday's game won't win tomorrow's.",
-    "ksoDescription": "AI anxiety just hit Saturday Night Live. Even comedians see what marketers keep missing: Google rankings mean nothing when ChatGPT never mentions you. KSO Workshop: we transform your expertise into knowledge graphs AI systems actually understand and cite. Four weeks to shift from searchable to citable. Because when AI answers questions, page one of Google becomes page zero of relevance.",
-    "transactionDescription": "Premier Foods expands into new categories by \"underlining importance of brand.\" Translation: they have no idea why people actually buy their products. Transaction Architecture: we decode the emotional, cognitive, and tangible triggers that turn interest into action. Then engineer every touchpoint to complete those value exchanges. Deep resonance meets surface appeal. Because great products with misunderstood value architecture just become expensive inventory.",
-    "triptychDescription": "Burberry claims \"brand desirability\" drove their return to growth after two years of decline. But desirability was never the problem. Strategic Triptych Assessment: we examine how you market, compete, and execute simultaneously. Most companies fix symptoms in marketing while root causes hide in product roadmaps. Most opportunities live in those gaps between functions. Sometimes the diagnosis surprises even us.\n"
+    "intelligenceExample": "The UK crash story, for example. We read that and our mind goes to: how many \"accidents\" are really just the physics of forcing night owls into morning commutes?",
+    "consultingInsight": "We were just reading how McKinsey's new hybrid work framework helps Fortune 500s navigate office policies. Brilliant analysis, decades of organisational psychology. But imagine if that calibre of insight helped companies see the human cost of their decisions before the headlines hit?",
+    "contentReminder": "Remember how the landing page showed those UK crash deaths linking to return-to-office mandates, and the What We Do page wondered about night owls forced into morning commutes?",
+    "marketObservation": "This week three CEOs asked us about \"productivity\" while their best people quit over commute requirements. The pattern isn't subtle anymore.",
+    "purposeContext": "Right now companies losing talent can't explain why flexibility matters beyond \"people want it.\"",
+    "serviceDescription": "Yeti just hired their first ad agency after decades of word-of-mouth growth. Watch brands everywhere panic about losing organic momentum. We excavate why your business actually exists, then engineer that truth into every decision and customer touchpoint. No more choosing between authenticity and growth. Purpose as navigation system, not nostalgia.",
+    "esiDescription": "Ford's massive new HQ shows they're betting big on \"collaborative innovation\" without defining what that means. Classic insight-to-execution canyon. Explore, Synthesise, Ignite: our framework for crossing it. Explore reveals the real opportunity, Synthesise transforms discovery into executable clarity, Ignite makes strategy actually happen. Not three engagements. One system.",
+    "agencyDescription": "Inc reports 9 behaviours of bad bosses, but missed the tenth: good bosses acting like bad ones because they're drowning. We work with executives who've optimised everything except their own effectiveness. Secret Agency: where leaders learn the difference between performing leadership and actually leading. Because your 70-hour weeks are producing 30 hours of value.",
+    "ksoDescription": "Fast Company notes résumé metrics predict interviews, but AI's changing what \"findable\" means. Google ranks pages, AI cites knowledge. KSO Workshop: we map your intellectual territory into structures AI systems actually reference. Four weeks to transform from searchable to citeable. Because when ChatGPT answers questions, your SEO strategy is worthless.",
+    "transactionDescription": "Marketing Week celebrates John Lewis's Christmas ad testing well, but early favourites rarely drive late December sales. They optimised for hearts, not wallets. Transaction Architecture: we decode the emotional, cognitive and behavioral triggers that turn appeal into action. Map the value exchange, not just the value prop. Because delight without transaction design is just expensive entertainment.",
+    "triptychDescription": "Premier Foods expanded categories while Burberry struggled despite \"brand desirability.\" One saw system opportunities, one optimised in isolation. Strategic Triptych Assessment: we examine how you market, compete, and build simultaneously. Problems hide between functions. So do your biggest opportunities. Most companies never look there.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -29,7 +29,7 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 44770,
+    "generationTimeMs": 39532,
     "promptFile": "prompts/dynamic-content.md"
   },
   "fallbackUsed": false
