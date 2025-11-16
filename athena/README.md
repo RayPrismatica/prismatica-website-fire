@@ -43,14 +43,32 @@ Located in `knowledge/pages/`, these markdown files contain detailed information
 - `dynamic-content.md` - Current AI-generated content displayed on the site
 - More files as needed
 
-### Dynamic Content
-The `dynamic-content.md` file is automatically regenerated every 6 hours by `scripts/generate-dynamic-content.js`. It contains:
-- News insights
-- Service descriptions
-- Market observations
-- Cross-page continuity content
+### Dynamic Content Synchronization
 
-This ensures Athena knows what users are actually seeing on the site.
+The `dynamic-content.md` file is **automatically synced** with website content every 6 hours:
+
+**How it works:**
+1. GitHub Actions triggers `scripts/generate-dynamic-content.js`
+2. Script fetches RSS feeds from 9 news sources (BBC, NYT, Fast Company, Forbes, Marketing Week, HBR, Wired, Inc, The Atlantic)
+3. Claude Opus 4 (`claude-opus-4-20250514`) analyzes headlines and generates 12 content pieces
+4. Script writes **two files simultaneously**:
+   - `data/dynamic-content.json` → Website components read from this
+   - `athena/knowledge/pages/dynamic-content.md` → Athena reads from this
+5. Both files stay perfectly in sync
+
+**Content includes:**
+- Landing page news insight and pattern insight
+- "What We Do" intelligence examples
+- Consulting page insights
+- Service descriptions (Purpose Assessment, ESI, KSO, Transaction, Triptych, Secret Agency)
+- Market observations and purpose context
+- Cross-page continuity reminders
+
+**Why this matters:**
+When a user sees "Arctic blast hits UK" on the homepage and asks Athena about it, she knows exactly what they're referring to because her knowledge file was updated at the same moment the website content changed.
+
+**Primary news source:**
+The markdown file also includes the source headline that informed the content generation, so Athena can share links if users want to read more.
 
 ## How It Works
 

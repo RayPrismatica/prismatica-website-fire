@@ -48,9 +48,14 @@ The application's unique feature is AI-generated content that stays contextually
    - Temperature: 1.0
    - Max tokens: 2200
    - System prompt: `scripts/prompts/dynamic-content.md`
-4. Content saved to `data/dynamic-content.json` with 48-hour cache validity
-5. Components read from cache via `lib/getDynamicContent.ts`
-6. Fallback content ensures site never breaks if generation fails
+4. Content saved to **two files simultaneously**:
+   - `data/dynamic-content.json` - JSON cache for website components
+   - `athena/knowledge/pages/dynamic-content.md` - Markdown for Athena's knowledge base
+5. Components read from JSON via `lib/getDynamicContent.ts`
+6. Athena reads from markdown via `getPageContent()` in chat API
+7. Fallback content ensures site never breaks if generation fails
+
+**Athena Awareness:** Athena is always aware of current dynamic content because the generation script updates her knowledge base file in sync with the website content. This ensures she can reference what users are actually seeing on each page.
 
 **Dynamic Components:**
 - `DynamicNewsInsight` - Landing page insight
