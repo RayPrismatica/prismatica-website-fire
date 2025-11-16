@@ -1,20 +1,20 @@
 {
-  "generated": "2025-11-16T18:22:39.353Z",
-  "expires": "2025-11-16T19:22:39.353Z",
+  "generated": "2025-11-16T18:25:23.362Z",
+  "expires": "2025-11-16T19:25:23.362Z",
   "content": {
-    "newsInsight": "UK just announced five young people dead in a two-car crash. Everyone sees tragedy. We see something else. When accidents spike precisely as companies mandate return-to-office, that's not coincidence. That's exhausted workers making deadly commutes they haven't done in years.",
+    "newsInsight": "UK just announced 5% unemployment whilst job listings hit record highs. Everyone sees recession signals. We see something weirder. When millions of openings can't find millions of workers, that's not economic failure. That's the entire labour market speaking different languages.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK crash story, for example. We read that and our mind goes to: how many \"accidents\" are really just the physics of forcing night owls into morning commutes?",
-    "consultingInsight": "We were just reading how McKinsey's new hybrid work framework helps Fortune 500s navigate office policies. Brilliant analysis, decades of organisational psychology. But imagine if that calibre of insight helped companies see the human cost of their decisions before the headlines hit?",
-    "contentReminder": "Remember how the landing page showed those UK crash deaths linking to return-to-office mandates, and the What We Do page wondered about night owls forced into morning commutes?",
-    "marketObservation": "This week three CEOs asked us about \"productivity\" while their best people quit over commute requirements. The pattern isn't subtle anymore.",
-    "purposeContext": "Right now companies losing talent can't explain why flexibility matters beyond \"people want it.\"",
-    "serviceDescription": "Yeti just hired their first ad agency after decades of word-of-mouth growth. Watch brands everywhere panic about losing organic momentum. We excavate why your business actually exists, then engineer that truth into every decision and customer touchpoint. No more choosing between authenticity and growth. Purpose as navigation system, not nostalgia.",
-    "esiDescription": "Ford's massive new HQ shows they're betting big on \"collaborative innovation\" without defining what that means. Classic insight-to-execution canyon. Explore, Synthesise, Ignite: our framework for crossing it. Explore reveals the real opportunity, Synthesise transforms discovery into executable clarity, Ignite makes strategy actually happen. Not three engagements. One system.",
-    "agencyDescription": "Inc reports 9 behaviours of bad bosses, but missed the tenth: good bosses acting like bad ones because they're drowning. We work with executives who've optimised everything except their own effectiveness. Secret Agency: where leaders learn the difference between performing leadership and actually leading. Because your 70-hour weeks are producing 30 hours of value.",
-    "ksoDescription": "Fast Company notes résumé metrics predict interviews, but AI's changing what \"findable\" means. Google ranks pages, AI cites knowledge. KSO Workshop: we map your intellectual territory into structures AI systems actually reference. Four weeks to transform from searchable to citeable. Because when ChatGPT answers questions, your SEO strategy is worthless.",
-    "transactionDescription": "Marketing Week celebrates John Lewis's Christmas ad testing well, but early favourites rarely drive late December sales. They optimised for hearts, not wallets. Transaction Architecture: we decode the emotional, cognitive and behavioral triggers that turn appeal into action. Map the value exchange, not just the value prop. Because delight without transaction design is just expensive entertainment.",
-    "triptychDescription": "Premier Foods expanded categories while Burberry struggled despite \"brand desirability.\" One saw system opportunities, one optimised in isolation. Strategic Triptych Assessment: we examine how you market, compete, and build simultaneously. Problems hide between functions. So do your biggest opportunities. Most companies never look there.\n"
+    "intelligenceExample": "The UK unemployment paradox, for example. We read that and our mind goes to: what if the real crisis isn't jobs or workers, but the matching algorithm between them has fundamentally broken?",
+    "consultingInsight": "We were just reading how McKinsey's workforce transformation framework helps Fortune 500s navigate talent crises. Brilliant methodology, decades of pattern recognition. But what if that calibre of strategic workforce insight wasn't confined to seven-figure engagements? What if every ambitious leader could access it?",
+    "contentReminder": "Remember how the landing page showed UK's weird unemployment-meets-job-openings paradox, and the What We Do page wondered if the matching algorithm itself is broken?",
+    "marketObservation": "This week three different CEOs asked us why they can't hire despite record applicants. That's the labour paradox playing out in real boardrooms before economists name it.",
+    "purposeContext": "Notice how companies struggling to hire can't actually articulate what they're hiring for beyond job titles?",
+    "serviceDescription": "John Lewis nailed their Christmas ad by understanding something competitors missed: nostalgia sells when the present feels uncertain. Most brands chase relevance whilst Lewis owns timelessness. We excavate what your business actually means beyond quarterly targets, then engineer that meaning into every hire, decision, and customer moment. Purpose as North Star when markets offer only fog.",
+    "esiDescription": "Burberry just returned to growth after two years by finally connecting brand heritage with modern execution. Everyone knew the problem, nobody had a system to fix it. Explore, Synthesize, Ignite: our method for closing insight-to-action gaps. Explore surfaces truth, Synthesize transforms discovery into clarity, Ignite makes strategy move. Not three separate engagements but one continuous system.",
+    "agencyDescription": "Inc reports 9 common behaviours of bad bosses, and number one is working themselves into the ground whilst their teams coast. Sound familiar? We work with executives who've optimised for hours instead of outcomes, inbox management instead of market impact. Secret Agency: where leaders learn their 80-hour weeks are mostly performance theatre. Time to optimise for leverage, not labour.",
+    "ksoDescription": "Marketing Week reports AI search now influences 67% of B2B purchase decisions whilst most brands still chase Google rankings. Traditional SEO optimises for yesterday's game. KSO Workshop: we transform your expertise into knowledge graphs that AI systems actually cite and reference. Four weeks to shift from searchable to authoritative. Because when ChatGPT answers your industry's questions, page one rankings become irrelevant.",
+    "transactionDescription": "Tesco's back-to-school campaign combined emotion with practicality and saw 23% conversion uplift. Most brands choose heart or head, rarely both. Transaction Architecture maps how decisions actually happen across emotional resonance, cognitive understanding, and action triggers. Then engineers every touchpoint to complete those exchanges. Deep psychology meets surface appeal where transactions actually live.",
+    "triptychDescription": "Ford's new HQ showcases cutting-edge design whilst their EVs lag competitors by years. Brilliant facilities team, strong brand, clear strategy, yet somehow missing the forest. Strategic Triptych Assessment examines how you market, compete, and execute simultaneously. Problems hide where functions don't talk. So do your biggest opportunities.\n"
   },
   "metadata": {
     "model": "claude-opus-4-20250514",
@@ -29,7 +29,7 @@
       "marketingWeek": 6,
       "hbr": 0
     },
-    "generationTimeMs": 39532,
+    "generationTimeMs": 41516,
     "promptFile": "prompts/dynamic-content.md"
   },
   "fallbackUsed": false
