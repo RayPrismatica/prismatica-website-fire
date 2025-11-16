@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -9,7 +9,13 @@ import { useAthenaChat } from '@/contexts/AthenaChatContext';
 export default function Sidebar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const { isOpen, openChat, closeChat } = useAthenaChat();
+
+  // Disable sidebar transition on initial load to prevent flash
+  useEffect(() => {
+    setIsInitialLoad(false);
+  }, []);
 
   const isActive = (path: string) => pathname === path;
 
@@ -71,7 +77,7 @@ export default function Sidebar() {
       )}
 
       {/* Sidebar Navigation */}
-      <nav className={`sidebar ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+      <nav className={`sidebar ${isMobileMenuOpen ? 'mobile-open' : ''} ${isInitialLoad ? 'no-transition' : ''}`}>
         <div className="sidebar-content">
           <Link
             href="/"

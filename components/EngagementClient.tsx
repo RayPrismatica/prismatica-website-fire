@@ -47,7 +47,6 @@ export default function EngagementClient({
   triptychDescription,
   marketObservation,
 }: EngagementClientProps) {
-  const [serviceFilter, setServiceFilter] = useState<string>('all');
   const [enquiryModalOpen, setEnquiryModalOpen] = useState<string | null>(null);
 
   // Helper function to calculate delivery date: duration + 2 weeks to get started
@@ -72,170 +71,9 @@ export default function EngagementClient({
 
         <p><strong>No retainers. No dependency. Every engagement has an end date.</strong></p>
 
-        <div style={{ margin: '32px 0', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-          <button
-            onClick={() => setServiceFilter('all')}
-            style={{
-              padding: '8px 16px',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              border: serviceFilter === 'all' ? '2px solid #D43225' : '2px solid #e0e0e0',
-              background: serviceFilter === 'all' ? '#D43225' : 'white',
-              color: serviceFilter === 'all' ? 'white' : '#666',
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              borderRadius: '4px'
-            }}
-            onMouseEnter={(e) => {
-              if (serviceFilter !== 'all') {
-                e.currentTarget.style.borderColor = '#D43225';
-                e.currentTarget.style.color = '#D43225';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (serviceFilter !== 'all') {
-                e.currentTarget.style.borderColor = '#e0e0e0';
-                e.currentTarget.style.color = '#666';
-              }
-            }}
-          >
-            All
-          </button>
-          <button
-            onClick={() => setServiceFilter('strategy')}
-            style={{
-              padding: '8px 16px',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              border: serviceFilter === 'strategy' ? '2px solid #D43225' : '2px solid #e0e0e0',
-              background: serviceFilter === 'strategy' ? '#D43225' : 'white',
-              color: serviceFilter === 'strategy' ? 'white' : '#666',
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              borderRadius: '4px'
-            }}
-            onMouseEnter={(e) => {
-              if (serviceFilter !== 'strategy') {
-                e.currentTarget.style.borderColor = '#D43225';
-                e.currentTarget.style.color = '#D43225';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (serviceFilter !== 'strategy') {
-                e.currentTarget.style.borderColor = '#e0e0e0';
-                e.currentTarget.style.color = '#666';
-              }
-            }}
-          >
-            Strategy
-          </button>
-          <button
-            onClick={() => setServiceFilter('marketing')}
-            style={{
-              padding: '8px 16px',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              border: serviceFilter === 'marketing' ? '2px solid #D43225' : '2px solid #e0e0e0',
-              background: serviceFilter === 'marketing' ? '#D43225' : 'white',
-              color: serviceFilter === 'marketing' ? 'white' : '#666',
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              borderRadius: '4px'
-            }}
-            onMouseEnter={(e) => {
-              if (serviceFilter !== 'marketing') {
-                e.currentTarget.style.borderColor = '#D43225';
-                e.currentTarget.style.color = '#D43225';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (serviceFilter !== 'marketing') {
-                e.currentTarget.style.borderColor = '#e0e0e0';
-                e.currentTarget.style.color = '#666';
-              }
-            }}
-          >
-            Marketing
-          </button>
-          <button
-            onClick={() => setServiceFilter('technology')}
-            style={{
-              padding: '8px 16px',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              border: serviceFilter === 'technology' ? '2px solid #D43225' : '2px solid #e0e0e0',
-              background: serviceFilter === 'technology' ? '#D43225' : 'white',
-              color: serviceFilter === 'technology' ? 'white' : '#666',
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              borderRadius: '4px'
-            }}
-            onMouseEnter={(e) => {
-              if (serviceFilter !== 'technology') {
-                e.currentTarget.style.borderColor = '#D43225';
-                e.currentTarget.style.color = '#D43225';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (serviceFilter !== 'technology') {
-                e.currentTarget.style.borderColor = '#e0e0e0';
-                e.currentTarget.style.color = '#666';
-              }
-            }}
-          >
-            Technology
-          </button>
-          <button
-            onClick={() => setServiceFilter('process')}
-            style={{
-              padding: '8px 16px',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              border: serviceFilter === 'process' ? '2px solid #D43225' : '2px solid #e0e0e0',
-              background: serviceFilter === 'process' ? '#D43225' : 'white',
-              color: serviceFilter === 'process' ? 'white' : '#666',
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              borderRadius: '4px'
-            }}
-            onMouseEnter={(e) => {
-              if (serviceFilter !== 'process') {
-                e.currentTarget.style.borderColor = '#D43225';
-                e.currentTarget.style.color = '#D43225';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (serviceFilter !== 'process') {
-                e.currentTarget.style.borderColor = '#e0e0e0';
-                e.currentTarget.style.color = '#666';
-              }
-            }}
-          >
-            Process
-          </button>
-        </div>
-
         <div style={{ margin: '48px 0', borderTop: '1px solid #ccc', borderBottom: '1px solid #ccc', height: '3px' }}></div>
 
         <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '28px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>The Big Picture</h3>
-
-        {(serviceFilter === 'all' || serviceFilter === 'strategy') && (
-          <>
         {/* Pioneers of Purpose Assessment Bento Box - £50,000 */}
         <div
           className="service-bento"
@@ -244,10 +82,8 @@ export default function EngagementClient({
             padding: '32px',
             borderRadius: '12px',
             marginBottom: '24px',
-            cursor: 'pointer',
             transition: 'transform 0.3s ease'
           }}
-          onClick={() => setEnquiryModalOpen('pioneers-of-purpose')}
         >
           <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
             <span style={{ position: 'absolute', left: '-20px', top: '0', bottom: '0', width: '3px', backgroundColor: '#D43225' }}></span>
@@ -265,30 +101,25 @@ export default function EngagementClient({
             Eight weeks. Purpose architecture mapped across every system and touchpoint by <span className="delivery-date">{getDeliveryDate('pioneers-of-purpose')}</span>.
           </p>
 
-          <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £50,000</p>
-            </div>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+            <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>From £50,000</p>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
               <a
                 href={`mailto:?subject=${encodeURIComponent('Worth looking at: Pioneers of Purpose Assessment')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Pioneers of Purpose - they dissect your business from its core reason to exist and cascade that purpose through every system and customer touchpoint. Inside-out authenticity that actually strengthens both culture and message.\n\nEight weeks, starts at £50,000. They map purpose as operating system, not marketing tagline.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('pioneers-of-purpose')} or earlier.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#pioneers-of-purpose' : 'https://prismaticalabs.com/services#pioneers-of-purpose'}\n\nWorth a conversation?`)}`}
                 title="Share with your team"
                 className="service-cta-link"
-                style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s' }}
-                onClick={(e) => e.stopPropagation()}
+                style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
               >
-                Share &gt;
+                Share
               </a>
+              <span style={{ color: '#e0e0e0' }}>·</span>
               <button
                 title="Enquire about this service"
                 className="service-cta-btn"
-                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s' }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setEnquiryModalOpen('pioneers-of-purpose');
-                }}
+                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
+                onClick={() => setEnquiryModalOpen('pioneers-of-purpose')}
               >
-                Enquire &gt;
+                Enquire
               </button>
             </div>
           </div>
@@ -302,10 +133,8 @@ export default function EngagementClient({
             padding: '32px',
             borderRadius: '12px',
             marginBottom: '24px',
-            cursor: 'pointer',
             transition: 'transform 0.3s ease'
           }}
-          onClick={() => setEnquiryModalOpen('esi-framework')}
         >
           <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
             <span style={{ position: 'absolute', left: '-20px', top: '0', bottom: '0', width: '3px', backgroundColor: '#D43225' }}></span>
@@ -323,39 +152,30 @@ export default function EngagementClient({
             Six weeks. Roadmap delivered by <span className="delivery-date">{getDeliveryDate('esi-framework')}</span>.
           </p>
 
-          <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £40,000</p>
-            </div>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+            <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>From £40,000</p>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
               <a
                 href={`mailto:?subject=${encodeURIComponent('Worth looking at: ESI Framework from Prismatica Labs')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the ESI Framework - basically a system that connects insights to actual implementation. Explore uncovers truth, Synthesize turns it into strategy, Ignite makes it executable.\n\nSix weeks, starts at £40,000. They map the whole thing from research through execution.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('esi-framework')} or earlier.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#esi-framework' : 'https://prismaticalabs.com/services#esi-framework'}\n\nWorth a conversation?`)}`}
                 title="Share with your team"
                 className="service-cta-link"
-                style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
-                onClick={(e) => e.stopPropagation()}
+                style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
               >
-                Share &gt;
+                Share
               </a>
+              <span style={{ color: '#e0e0e0' }}>·</span>
               <button
                 title="Enquire about this service"
                 className="service-cta-btn"
-                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setEnquiryModalOpen('esi-framework');
-                }}
+                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
+                onClick={() => setEnquiryModalOpen('esi-framework')}
               >
-                Enquire &gt;
+                Enquire
               </button>
             </div>
           </div>
         </div>
-          </>
-        )}
 
-        {(serviceFilter === 'all' || serviceFilter === 'technology') && (
-          <>
         {/* The Secret Agency Bento Box - £40,000 */}
         <div
           className="service-bento"
@@ -364,10 +184,8 @@ export default function EngagementClient({
             padding: '32px',
             borderRadius: '12px',
             marginBottom: '24px',
-            cursor: 'pointer',
             transition: 'transform 0.3s ease'
           }}
-          onClick={() => setEnquiryModalOpen('the-secret-agency')}
         >
           <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
             <span style={{ position: 'absolute', left: '-20px', top: '0', bottom: '0', width: '3px', backgroundColor: '#D43225' }}></span>
@@ -385,39 +203,30 @@ export default function EngagementClient({
             Twelve weeks. Build it once. Build it right. Delivered by <span className="delivery-date">{getDeliveryDate('the-secret-agency')}</span>. Then it's yours to run.
           </p>
 
-          <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
-              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £40,000</p>
-            </div>
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+            <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>From £40,000</p>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
               <a
                 href={`mailto:?subject=${encodeURIComponent('Worth looking at: The Secret Agency')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called The Secret Agency - custom AI infrastructure built exactly around how your brain works. Not productivity apps you adapt to, but systems that adapt to you. They engineer your perfect workflow from scratch. Bespoke intelligence layers that multiply capacity.\n\nInvitation only, starting at £40,000.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#secret-agency' : 'https://prismaticalabs.com/services#secret-agency'}\n\nWorth a conversation?`)}`}
                 title="Share with your team"
                 className="service-cta-link"
-                style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
-                onClick={(e) => e.stopPropagation()}
+                style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
               >
-                Share &gt;
+                Share
               </a>
+              <span style={{ color: '#e0e0e0' }}>·</span>
               <button
                 title="Enquire about this service"
                 className="service-cta-btn"
-                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setEnquiryModalOpen('the-secret-agency');
-                }}
+                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
+                onClick={() => setEnquiryModalOpen('the-secret-agency')}
               >
-                Enquire &gt;
+                Enquire
               </button>
             </div>
           </div>
         </div>
-          </>
-        )}
 
-        {(serviceFilter === 'all' || serviceFilter === 'strategy') && (
-          <>
         {/* Transaction Architecture Bento Box - £25,000 */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
@@ -445,39 +254,34 @@ export default function EngagementClient({
               Five weeks. By <span className="delivery-date">{getDeliveryDate('transaction-architecture')}</span> you'll know exactly how value flows through your business and where to increase conversion velocity.
             </p>
 
-            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £25,000</p>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
+            <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>From £25,000</p>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <a
                   href={`mailto:?subject=${encodeURIComponent('Worth looking at: Transaction Architecture')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Transaction Architecture - they map how value actually flows through your business across three dimensions: emotional, cognitive, and tangible. Then they design every touchpoint to trigger those transactions. Conversion through understanding, not manipulation.\n\nFive weeks, starts at £25,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('transaction-architecture')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#transaction-architecture' : 'https://prismaticalabs.com/services#transaction-architecture'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
-                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
                 >
-                  Share &gt;
+                  Share
                 </a>
+                <span style={{ color: '#e0e0e0' }}>·</span>
                 <button
                   title="Enquire about this service"
                   className="service-cta-btn"
-                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
                   onClick={(e) => {
                     e.stopPropagation();
                     setEnquiryModalOpen('transaction-architecture');
                   }}
                 >
-                  Enquire &gt;
+                  Enquire
                 </button>
               </div>
             </div>
           </div>
         </div>
-          </>
-        )}
 
-        {(serviceFilter === 'all' || serviceFilter === 'marketing') && (
-          <>
         {/* KSO Workshop Bento Box - £25,000 */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
@@ -505,29 +309,28 @@ export default function EngagementClient({
               Four weeks. Workshop next week and by <span className="delivery-date">{getDeliveryDate('kso-workshop')}</span> you'll have a KSO blueprint showing what intellectual space you own and how to operationalise it. SEO makes you searchable. KSO makes you unforgettable.
             </p>
 
-            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>£25,000</p>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
+            <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>£25,000</p>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <a
                   href={`mailto:?subject=${encodeURIComponent('Worth looking at: KSO Workshop from Prismatica Labs')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called the KSO Workshop - Knowledge Search Optimisation. The future of discoverability isn't about links, it's about ideas. They map your business DNA into a knowledge graph that AI systems recognise and cite.\n\nFour weeks, £25,000. They position you as a recognised source in your space, not just another site.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('kso-workshop')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#kso-workshop' : 'https://prismaticalabs.com/services#kso-workshop'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
-                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
                 >
-                  Share &gt;
+                  Share
                 </a>
+                <span style={{ color: '#e0e0e0' }}>·</span>
                 <button
                   title="Enquire about this service"
                   className="service-cta-btn"
-                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
                   onClick={(e) => {
                     e.stopPropagation();
                     setEnquiryModalOpen('kso-workshop');
                   }}
                 >
-                  Enquire &gt;
+                  Enquire
                 </button>
               </div>
             </div>
@@ -561,41 +364,36 @@ export default function EngagementClient({
               Four weeks. By <span className="delivery-date">{getDeliveryDate('strategic-triptych')}</span> you'll know exactly where you're leaving money on the table and what to do about it.
             </p>
 
-            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £18,000</p>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
+            <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>From £18,000</p>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <a
                   href={`mailto:?subject=${encodeURIComponent('Worth looking at: Strategic Triptych Assessment')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Strategic Triptych - they examine your business through three lenses at once: how you market, compete, and build. Most problems live in the gaps between these. Most opportunities too.\n\nFour weeks, starts at £18,000. They show you exactly where you're leaving money on the table.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('strategic-triptych')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#strategic-triptych' : 'https://prismaticalabs.com/services#strategic-triptych'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
-                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
                 >
-                  Share &gt;
+                  Share
                 </a>
+                <span style={{ color: '#e0e0e0' }}>·</span>
                 <button
                   title="Enquire about this service"
                   className="service-cta-btn"
-                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
                   onClick={(e) => {
                     e.stopPropagation();
                     setEnquiryModalOpen('strategic-triptych');
                   }}
                 >
-                  Enquire &gt;
+                  Enquire
                 </button>
               </div>
             </div>
           </div>
         </div>
-          </>
-        )}
 
         <h3 style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '28px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginTop: '48px', marginBottom: '24px' }}>Tactical Steps Forward</h3>
 
-        {(serviceFilter === 'all' || serviceFilter === 'marketing') && (
-          <>
         {/* Go-to-Market Bento Box - £15,000 */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
@@ -623,29 +421,28 @@ export default function EngagementClient({
               Six weeks beats six months of "let's try this and see." Launch strategy ready by <span className="delivery-date">{getDeliveryDate('go-to-market')}</span>, budget intact.
             </p>
 
-            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £15,000</p>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
+            <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>From £15,000</p>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <a
                   href={`mailto:?subject=${encodeURIComponent('Worth looking at: Go-to-Market Strategy')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a complete go-to-market strategy service. They map everything from positioning to channels to messaging to timeline. Who you're targeting, what you're saying, where, and when. Everything mapped before you spend a pound on execution.\n\nSix weeks, starts at £15,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('go-to-market')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#go-to-market' : 'https://prismaticalabs.com/services#go-to-market'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
-                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
                 >
-                  Share &gt;
+                  Share
                 </a>
+                <span style={{ color: '#e0e0e0' }}>·</span>
                 <button
                   title="Enquire about this service"
                   className="service-cta-btn"
-                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
                   onClick={(e) => {
                     e.stopPropagation();
                     setEnquiryModalOpen('go-to-market');
                   }}
                 >
-                  Enquire &gt;
+                  Enquire
                 </button>
               </div>
             </div>
@@ -679,39 +476,34 @@ export default function EngagementClient({
               Six weeks. By <span className="delivery-date">{getDeliveryDate('creative-converts')}</span>, your brand actually drives revenue instead of just looking pretty.
             </p>
 
-            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £12,000</p>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
+            <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>From £12,000</p>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <a
                   href={`mailto:?subject=${encodeURIComponent('Worth looking at: Creative That Converts')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Creative That Converts. They rebuild brand positioning based on what actually shifts customer perception and pricing power. Every design decision gets tested: does this make people pay more or buy faster?\n\nSix weeks, starts at £12,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('creative-converts')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#creative-converts' : 'https://prismaticalabs.com/services#creative-converts'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
-                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
                 >
-                  Share &gt;
+                  Share
                 </a>
+                <span style={{ color: '#e0e0e0' }}>·</span>
                 <button
                   title="Enquire about this service"
                   className="service-cta-btn"
-                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
                   onClick={(e) => {
                     e.stopPropagation();
                     setEnquiryModalOpen('creative-converts');
                   }}
                 >
-                  Enquire &gt;
+                  Enquire
                 </button>
               </div>
             </div>
           </div>
         </div>
-          </>
-        )}
 
-        {(serviceFilter === 'all' || serviceFilter === 'process') && (
-          <>
         {/* Design Thinking Bento Box - £10,000 */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
@@ -739,39 +531,34 @@ export default function EngagementClient({
               First sprint done by <span className="delivery-date">{getDeliveryDate('design-thinking')}</span>. Real users, real prototypes, real learning. Then we iterate or pivot. No six-month waterfall nonsense.
             </p>
 
-            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £10,000</p>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
+            <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>From £10,000</p>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <a
                   href={`mailto:?subject=${encodeURIComponent('Worth looking at: Design Thinking')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a design thinking approach for problems that traditional solutions can't fix. They reframe the problem, rapid prototype, and test with real users. Fast iteration before you commit to expensive solutions.\n\nStarts at £10,000, first sprint done in 3 weeks.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('design-thinking')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#design-thinking' : 'https://prismaticalabs.com/services#design-thinking'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
-                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
                 >
-                  Share &gt;
+                  Share
                 </a>
+                <span style={{ color: '#e0e0e0' }}>·</span>
                 <button
                   title="Enquire about this service"
                   className="service-cta-btn"
-                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
                   onClick={(e) => {
                     e.stopPropagation();
                     setEnquiryModalOpen('design-thinking');
                   }}
                 >
-                  Enquire &gt;
+                  Enquire
                 </button>
               </div>
             </div>
           </div>
         </div>
-          </>
-        )}
 
-        {(serviceFilter === 'all' || serviceFilter === 'technology') && (
-          <>
         {/* AI Without the Hallucination Bento Box - £10,000 */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
@@ -799,39 +586,34 @@ export default function EngagementClient({
               Four weeks. By <span className="delivery-date">{getDeliveryDate('ai-without-hallucination')}</span> you'll have AI use cases with actual ROI, not just ChatGPT screenshots in your deck.
             </p>
 
-            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £10,000</p>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
+            <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>From £10,000</p>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <a
                   href={`mailto:?subject=${encodeURIComponent('Worth looking at: AI Without the Hallucination')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called AI Without the Hallucination. They cut through the hype to find the boring, profitable AI applications. They map your workflows, identify real value, and prioritize by ROI. Practical automations, not flashy demos.\n\nFour weeks, starts at £10,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('ai-without-hallucination')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#ai-without-hallucination' : 'https://prismaticalabs.com/services#ai-without-hallucination'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
-                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
                 >
-                  Share &gt;
+                  Share
                 </a>
+                <span style={{ color: '#e0e0e0' }}>·</span>
                 <button
                   title="Enquire about this service"
                   className="service-cta-btn"
-                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
                   onClick={(e) => {
                     e.stopPropagation();
                     setEnquiryModalOpen('ai-without-hallucination');
                   }}
                 >
-                  Enquire &gt;
+                  Enquire
                 </button>
               </div>
             </div>
           </div>
         </div>
-          </>
-        )}
 
-        {(serviceFilter === 'all' || serviceFilter === 'process') && (
-          <>
         {/* Process Surgery Bento Box - £10,000 */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
@@ -859,39 +641,34 @@ export default function EngagementClient({
               Four weeks. By <span className="delivery-date">{getDeliveryDate('process-surgery')}</span> your team will spend less time managing workflows and more time doing actual work.
             </p>
 
-            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £10,000</p>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
+            <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>From £10,000</p>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <a
                   href={`mailto:?subject=${encodeURIComponent('Worth looking at: Process Surgery')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Process Surgery. They find the 20% of processes causing 80% of pain, eliminate unnecessary steps, and rebuild critical paths. Process that makes work easier, not just documented.\n\nFour weeks, starts at £10,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('process-surgery')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#process-surgery' : 'https://prismaticalabs.com/services#process-surgery'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
-                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
                 >
-                  Share &gt;
+                  Share
                 </a>
+                <span style={{ color: '#e0e0e0' }}>·</span>
                 <button
                   title="Enquire about this service"
                   className="service-cta-btn"
-                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
                   onClick={(e) => {
                     e.stopPropagation();
                     setEnquiryModalOpen('process-surgery');
                   }}
                 >
-                  Enquire &gt;
+                  Enquire
                 </button>
               </div>
             </div>
           </div>
         </div>
-          </>
-        )}
 
-        {(serviceFilter === 'all' || serviceFilter === 'marketing') && (
-          <>
         {/* Marketing Reality Check Bento Box - £8,000 */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: '32px' }}>
           <div
@@ -919,36 +696,33 @@ export default function EngagementClient({
               Three weeks. By <span className="delivery-date">{getDeliveryDate('marketing-reality-check')}</span> you'll know what's actually moving the needle and what's just moving budget around.
             </p>
 
-            <div style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>From £8,000</p>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
+            <div className="cta-divider" style={{ marginTop: 'auto', paddingTop: '20px', borderTop: '1px solid #e0e0e0', transition: 'border-color 0.3s ease' }}>
+              <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '12px', color: '#222' }}>From £8,000</p>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <a
                   href={`mailto:?subject=${encodeURIComponent('Worth looking at: Marketing Reality Check')}&body=${encodeURIComponent(`Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a marketing reality check based on actual customer behavior, not research reports. They track real patterns and show you what's working despite your strategy, not because of it.\n\nThree weeks, starts at £8,000.\n\nIf we talk to them next week, we could have results by ${getDeliveryDate('marketing-reality-check')}.\n\nHere's the link: ${typeof window !== 'undefined' ? window.location.origin + window.location.pathname + '#marketing-reality-check' : 'https://prismaticalabs.com/services#marketing-reality-check'}\n\nWorth a conversation?`)}`}
                   title="Share with your team"
                   className="service-cta-link"
-                  style={{ color: '#666', fontSize: '17px', fontWeight: 400, textDecoration: 'none', transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ color: '#666', fontSize: '15px', fontWeight: 500, textDecoration: 'none', transition: 'color 0.2s', letterSpacing: '0.3px' }}
                 >
-                  Share &gt;
+                  Share
                 </a>
+                <span style={{ color: '#e0e0e0' }}>·</span>
                 <button
                   title="Enquire about this service"
                   className="service-cta-btn"
-                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '17px', fontWeight: 400, transition: 'color 0.2s, text-decoration 0.2s' }}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: '#666', fontSize: '15px', fontWeight: 500, transition: 'color 0.2s', letterSpacing: '0.3px' }}
                   onClick={(e) => {
                     e.stopPropagation();
                     setEnquiryModalOpen('marketing-reality-check');
                   }}
                 >
-                  Enquire &gt;
+                  Enquire
                 </button>
               </div>
             </div>
           </div>
         </div>
-          </>
-        )}
 
         <div style={{ margin: '48px 0', borderTop: '1px solid #ccc', borderBottom: '1px solid #ccc', height: '3px' }}></div>
 
@@ -972,6 +746,7 @@ export default function EngagementClient({
 
         <Link
           href="/contact"
+          className="what-cta-button"
           style={{
             display: 'inline-block',
             padding: '14px 28px',
@@ -984,10 +759,8 @@ export default function EngagementClient({
             transition: 'all 0.2s',
             border: 'none',
             cursor: 'pointer',
-            marginTop: '8px'
+            marginTop: '48px'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#b8281e'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#D43225'}
         >
           Reach Out
         </Link>
