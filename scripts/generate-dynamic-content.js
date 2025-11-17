@@ -289,6 +289,7 @@ async function generateContent() {
     const blob = await put('dynamic-content.json', JSON.stringify(content, null, 2), {
       access: 'public',
       addRandomSuffix: false,
+      allowOverwrite: true, // Allow overwriting existing blob
       cacheControlMaxAge: 21600, // 6 hours
       contentType: 'application/json'
     });
