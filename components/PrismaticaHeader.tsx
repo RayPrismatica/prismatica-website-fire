@@ -1,12 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './PrismaticaHeader.module.css';
 
 export default function PrismaticaHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomepage = pathname === '/';
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -46,8 +49,8 @@ export default function PrismaticaHeader() {
         />
       )}
 
-      {/* Slide-out Menu */}
-      <nav className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ''}`}>
+      {/* Menu - slides from side on homepage, drops from top on other pages */}
+      <nav className={`${styles.menu} ${isHomepage ? styles.menuSlide : styles.menuDrop} ${isMenuOpen ? styles.menuOpen : ''}`}>
         <div className={styles.menuContent}>
           <Link href="/" className={styles.menuItem} onClick={closeMenu}>
             Home

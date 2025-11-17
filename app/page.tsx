@@ -46,8 +46,10 @@ export default async function HomePage() {
             </div>
 
             <div className={styles.payoffStatement}>
-              <p>See what happens? Split reality into new questions. New colours emerge. Like light through a prism.</p>
+              <p>The point is... are you asking the right questions?</p>
             </div>
+
+            <p className={styles.silentThought}>Split reality into new variables. New colours emerge. Like light through a prism.</p>
           </div>
 
           {/* SECTION 4: NAVIGATION */}

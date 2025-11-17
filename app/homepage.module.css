@@ -73,10 +73,9 @@
 
 .dynamicProofCard {
   background: #fafafa;
-  border-left: 4px solid #D43225;
   padding: 20px;
   margin: 24px 0;
-  border-radius: 0 8px 8px 0;
+  border-radius: 8px;
 }
 
 .proofLabel {
@@ -108,6 +107,14 @@
   line-height: 1.6;
   margin: 0;
   color: #222;
+}
+
+.silentThought {
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 24px 0 0 0;
+  color: #666;
+  font-weight: 400;
 }
 
 /* SECTION 4: NAVIGATION */
@@ -291,6 +298,11 @@
     font-size: 18px;
   }
 
+  .silentThought {
+    font-size: 16px;
+    margin-top: 28px;
+  }
+
   .navCards {
     gap: 20px;
     margin-top: 56px;
@@ -366,7 +378,6 @@
   .dynamicProofCard {
     padding: 32px;
     margin: 40px 0;
-    border-left-width: 5px;
   }
 
   .proofLabel {
@@ -387,6 +398,11 @@
 
   .payoffStatement p {
     font-size: 19px;
+  }
+
+  .silentThought {
+    font-size: 17px;
+    margin-top: 32px;
   }
 
   /* Desktop: Cards in a grid */

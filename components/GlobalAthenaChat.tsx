@@ -211,13 +211,27 @@ export default function GlobalAthenaChat() {
       }
     };
 
-    // Enable bento tracking on first scroll
+    // Enable bento tracking on first scroll OR after short delay (for desktop)
     const handleFirstScroll = () => {
       isInitialPageLoadRef.current = false;
       window.removeEventListener('scroll', handleFirstScroll);
     };
 
-    window.addEventListener('scroll', handleFirstScroll, { passive: true, once: true });
+    // Desktop: Enable tracking immediately after 1 second if no scroll happens
+    // Mobile: Wait for first scroll (prevents issues with mobile chrome hiding)
+    const isDesktop = window.innerWidth > 768;
+    let desktopEnableTimer: NodeJS.Timeout | null = null;
+
+    if (isDesktop) {
+      // On desktop, auto-enable tracking after 1 second
+      desktopEnableTimer = setTimeout(() => {
+        isInitialPageLoadRef.current = false;
+        checkActiveSection(); // Immediately check after enabling
+      }, 1000);
+    } else {
+      // On mobile, wait for first scroll
+      window.addEventListener('scroll', handleFirstScroll, { passive: true, once: true });
+    }
 
     // Check on mount and scroll
     checkActiveSection();
@@ -228,6 +242,9 @@ export default function GlobalAthenaChat() {
     observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
 
     return () => {
+      if (desktopEnableTimer) {
+        clearTimeout(desktopEnableTimer);
+      }
       window.removeEventListener('scroll', handleFirstScroll);
       window.removeEventListener('scroll', checkActiveSection);
       observer.disconnect();

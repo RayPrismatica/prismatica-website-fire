@@ -32,6 +32,25 @@ export default function Sidebar() {
     closeMobileMenu();
   };
 
+  // Inline hover handler for menu items
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+
+  const getMenuItemStyle = (path: string, isActiveItem: boolean, hasTopMargin = false) => ({
+    padding: '16px 0',
+    paddingLeft: hoveredItem === path ? '8px' : '0',
+    color: isActiveItem ? '#D43225' : '#222',
+    textDecoration: 'none',
+    fontSize: '15px',
+    fontFamily: '"Noto Sans", sans-serif',
+    fontWeight: isActiveItem ? 700 : 600,
+    letterSpacing: '0.5px',
+    textTransform: 'uppercase' as const,
+    transition: 'color 0.2s, padding-left 0.2s',
+    position: 'relative' as const,
+    borderBottom: isActiveItem ? '2px solid #D43225' : '1px solid #f0f0f0',
+    marginTop: hasTopMargin ? '12px' : '0'
+  });
+
   return (
     <>
       {/* Mobile Header - Entire bar is tappable */}
@@ -77,154 +96,182 @@ export default function Sidebar() {
           <Link
             href="/"
             className={`nav-item block w-full text-left ${isActive('/') ? 'active' : ''}`}
-            style={{
-              padding: '8px 0',
-              color: isActive('/') ? '#D43225' : '#222',
-              textDecoration: 'none',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              transition: 'opacity 0.2s'
-            }}
+            style={getMenuItemStyle('/', isActive('/'))}
             onClick={handleNavClick}
+            onMouseEnter={() => setHoveredItem('/')}
+            onMouseLeave={() => setHoveredItem(null)}
           >
-            Focus
+            {hoveredItem === '/' && !isActive('/') && (
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '3px',
+                height: '20px',
+                background: '#D43225'
+              }} />
+            )}
+            Home
           </Link>
 
           <Link
             href="/what"
             className={`nav-item block w-full text-left ${isActive('/what') ? 'active' : ''}`}
-            style={{
-              padding: '8px 0',
-              color: isActive('/what') ? '#D43225' : '#222',
-              textDecoration: 'none',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              transition: 'opacity 0.2s'
-            }}
+            style={getMenuItemStyle('/what', isActive('/what'))}
             onClick={handleNavClick}
+            onMouseEnter={() => setHoveredItem('/what')}
+            onMouseLeave={() => setHoveredItem(null)}
           >
-            What We Do
+            {hoveredItem === '/what' && !isActive('/what') && (
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '3px',
+                height: '20px',
+                background: '#D43225'
+              }} />
+            )}
+            About
           </Link>
+
+          <Link
+            href="/articles"
+            className={`nav-item block w-full text-left ${isActive('/articles') ? 'active' : ''}`}
+            style={getMenuItemStyle('/articles', isActive('/articles'))}
+            onClick={handleNavClick}
+            onMouseEnter={() => setHoveredItem('/articles')}
+            onMouseLeave={() => setHoveredItem(null)}
+          >
+            {hoveredItem === '/articles' && !isActive('/articles') && (
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '3px',
+                height: '20px',
+                background: '#D43225'
+              }} />
+            )}
+            Articles
+          </Link>
+
+          {/* Divider */}
+          <div style={{ height: '1px', background: '#e0e0e0', margin: '12px 0' }} />
 
           <Link
             href="/consulting"
             className={`nav-item block w-full text-left ${isActive('/consulting') ? 'active' : ''}`}
-            style={{
-              padding: '8px 0',
-              color: isActive('/consulting') ? '#D43225' : '#222',
-              textDecoration: 'none',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              transition: 'opacity 0.2s',
-              marginTop: '24px'
-            }}
+            style={getMenuItemStyle('/consulting', isActive('/consulting'))}
             onClick={handleNavClick}
+            onMouseEnter={() => setHoveredItem('/consulting')}
+            onMouseLeave={() => setHoveredItem(null)}
           >
-            Consulting Services
+            {hoveredItem === '/consulting' && !isActive('/consulting') && (
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '3px',
+                height: '20px',
+                background: '#D43225'
+              }} />
+            )}
+            Solutions
           </Link>
 
           <Link
             href="/products"
             className={`nav-item block w-full text-left ${isActive('/products') ? 'active' : ''}`}
-            style={{
-              padding: '8px 0',
-              color: isActive('/products') ? '#D43225' : '#222',
-              textDecoration: 'none',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              transition: 'opacity 0.2s'
-            }}
+            style={getMenuItemStyle('/products', isActive('/products'))}
             onClick={handleNavClick}
+            onMouseEnter={() => setHoveredItem('/products')}
+            onMouseLeave={() => setHoveredItem(null)}
           >
-            Product Suite
+            {hoveredItem === '/products' && !isActive('/products') && (
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '3px',
+                height: '20px',
+                background: '#D43225'
+              }} />
+            )}
+            Products
           </Link>
 
           <Link
             href="/who-we-are"
             className={`nav-item block w-full text-left ${isActive('/who-we-are') ? 'active' : ''}`}
-            style={{
-              padding: '8px 0',
-              color: isActive('/who-we-are') ? '#D43225' : '#222',
-              textDecoration: 'none',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              transition: 'opacity 0.2s',
-              marginTop: '24px'
-            }}
+            style={getMenuItemStyle('/who-we-are', isActive('/who-we-are'))}
             onClick={handleNavClick}
+            onMouseEnter={() => setHoveredItem('/who-we-are')}
+            onMouseLeave={() => setHoveredItem(null)}
           >
+            {hoveredItem === '/who-we-are' && !isActive('/who-we-are') && (
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '3px',
+                height: '20px',
+                background: '#D43225'
+              }} />
+            )}
             Who We Are
           </Link>
 
           <Link
             href="/mental-models"
             className={`nav-item block w-full text-left ${isMentalModelsActive ? 'active' : ''}`}
-            style={{
-              padding: '8px 0',
-              color: isMentalModelsActive ? '#D43225' : '#222',
-              textDecoration: 'none',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              transition: 'opacity 0.2s'
-            }}
+            style={getMenuItemStyle('/mental-models', isMentalModelsActive)}
             onClick={handleNavClick}
+            onMouseEnter={() => setHoveredItem('/mental-models')}
+            onMouseLeave={() => setHoveredItem(null)}
           >
+            {hoveredItem === '/mental-models' && !isMentalModelsActive && (
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '3px',
+                height: '20px',
+                background: '#D43225'
+              }} />
+            )}
             Mental Models
           </Link>
 
-          <Link
-            href="/articles"
-            className={`nav-item block w-full text-left ${isActive('/articles') ? 'active' : ''}`}
-            style={{
-              padding: '8px 0',
-              color: isActive('/articles') ? '#D43225' : '#222',
-              textDecoration: 'none',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              transition: 'opacity 0.2s'
-            }}
-            onClick={handleNavClick}
-          >
-            Articles
-          </Link>
+          {/* Divider */}
+          <div style={{ height: '1px', background: '#e0e0e0', margin: '12px 0' }} />
 
           <Link
             href="/contact"
             className={`nav-item block w-full text-left ${isActive('/contact') ? 'active' : ''}`}
-            style={{
-              padding: '8px 0',
-              color: isActive('/contact') ? '#D43225' : '#222',
-              textDecoration: 'none',
-              fontSize: '11px',
-              fontFamily: '"Noto Sans", sans-serif',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              transition: 'opacity 0.2s'
-            }}
+            style={getMenuItemStyle('/contact', isActive('/contact'))}
             onClick={handleNavClick}
+            onMouseEnter={() => setHoveredItem('/contact')}
+            onMouseLeave={() => setHoveredItem(null)}
           >
+            {hoveredItem === '/contact' && !isActive('/contact') && (
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                width: '3px',
+                height: '20px',
+                background: '#D43225'
+              }} />
+            )}
             Contact
           </Link>
         </div>

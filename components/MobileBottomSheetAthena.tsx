@@ -772,6 +772,7 @@ export default function MobileBottomSheetAthena() {
               cursor: drawerState === 'collapsed' ? 'pointer' : 'default',
               flexShrink: 0,
               padding: '0 40px',
+              backgroundColor: '#ffffff',
               borderTop: isChatActivated ? '1px solid #10b981' : '1px solid #D43225',
               borderTopLeftRadius: '20px',
               borderTopRightRadius: '20px',
