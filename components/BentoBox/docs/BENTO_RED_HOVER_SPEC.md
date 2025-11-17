@@ -6,14 +6,217 @@ This document specifies the exact "red on hover" behavior for all BentoBox varia
 
 ---
 
+## Table of Contents
+
+1. [Philosophy](#philosophy)
+2. [The Two Activation Systems](#the-two-activation-systems)
+3. [MobileAnimations Architecture](#mobileanimations-architecture)
+4. [Desktop Hover Behavior](#service-bento--bento-link-consulting-page)
+5. [Mobile Scroll Behavior](#mobile-scroll-based---when-in-viewport)
+6. [Implementation Details](#complete-hover-state-specification)
+
+---
+
 ## Philosophy
 
-**Red (#D43225) reveals on hover to create visual feedback and emphasis.**
+**Red (#D43225) reveals to create visual feedback and emphasis.**
 
-On hover, these elements turn or stay red:
+On hover (desktop) or in viewport (scroll), these elements turn or stay red:
 1. **Divider line** (bottom border) - turns red
 2. **Delivery dates** - turn red
 3. **Accent bar** (left border on prompt) - stays red (already red)
+
+---
+
+## The Two Activation Systems
+
+Prismatica uses **two different interaction models** depending on device capability:
+
+### Desktop: Hover-Based Activation
+- **Trigger**: Mouse hover over bento box
+- **CSS**: `:hover` pseudo-class
+- **Behavior**: Red accent appears on hover, disappears on hover out
+- **Limitation**: Doesn't work on touch devices (no mouse)
+
+### All Devices: Scroll-Based Activation
+- **Trigger**: Element scrolls into viewport "focus zone" (~60% from top)
+- **System**: `MobileAnimations` component using IntersectionObserver
+- **Behavior**: Red accent appears when in focus, disappears when scrolled past
+- **Advantage**: Works on ALL devices (desktop + mobile + tablet)
+
+**Why both?** Desktop gets immediate hover feedback, while scroll-based activation provides a "spotlight" effect as users scroll through content on any device.
+
+---
+
+## MobileAnimations Architecture
+
+**Location:** `/components/MobileAnimations.tsx`
+**Mounted in:** Global layout (runs on every page)
+**Purpose:** Replace hover-based interactions with scroll-based interactions that work universally
+
+### The Problem It Solves
+
+Without MobileAnimations:
+- **Desktop**: Bentos activate on hover ✅
+- **Mobile**: Bentos never activate (no hover capability) ❌
+
+With MobileAnimations:
+- **Desktop**: Bentos activate on hover AND scroll ✅✅
+- **Mobile**: Bentos activate on scroll ✅
+
+### How It Works
+
+```tsx
+// /components/MobileAnimations.tsx
+export default function MobileAnimations() {
+  const pathname = usePathname(); // Detect route changes
+
+  useEffect(() => {
+    // Two IntersectionObservers:
+
+    // 1. Reveal Observer - fade in when 10% visible
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    // 2. Focus Observer - activate when in "spotlight zone"
+    const focusObserver = new IntersectionObserver(
+      (entries) => {
+        // Only ONE element should have .in-viewport at a time
+        const intersecting = entries.filter(e => e.isIntersecting);
+
+        if (intersecting.length > 0) {
+          // Find element closest to viewport center
+          const viewportCenter = window.innerHeight * 0.5;
+          let closest = intersecting[0];
+          let minDistance = Math.abs(
+            intersecting[0].boundingClientRect.top - viewportCenter
+          );
+
+          for (const entry of intersecting) {
+            const distance = Math.abs(
+              entry.boundingClientRect.top - viewportCenter
+            );
+            if (distance < minDistance) {
+              minDistance = distance;
+              closest = entry;
+            }
+          }
+
+          // Remove .in-viewport from ALL elements
+          document.querySelectorAll('.in-viewport').forEach((el) => {
+            el.classList.remove('in-viewport');
+          });
+
+          // Add to the closest one
+          closest.target.classList.add('in-viewport');
+        }
+      },
+      {
+        threshold: 0,
+        rootMargin: '-60% 0px -40% 0px' // Activation zone: 60% from top
+      }
+    );
+
+    // Observe all bento boxes
+    const elements = document.querySelectorAll(
+      '.bento-box, .product-bento, .service-bento, .bento-link'
+    );
+
+    elements.forEach((el) => {
+      revealObserver.observe(el);
+      focusObserver.observe(el);
+    });
+
+    // Cleanup on unmount
+    return () => {
+      revealObserver.disconnect();
+      focusObserver.disconnect();
+    };
+  }, [pathname]); // Re-run when route changes!
+
+  return null;
+}
+```
+
+### Key Concepts
+
+#### 1. IntersectionObserver
+Browser API that efficiently detects when elements enter/exit the viewport. Far more performant than scroll event listeners.
+
+#### 2. Two-Stage Activation
+- **Stage 1 (revealed)**: Fade in when 10% visible (early)
+- **Stage 2 (in-viewport)**: Red accent when in focus zone (60% from top)
+
+#### 3. The "Spotlight" Rule
+**Only ONE element should have `.in-viewport` class at a time.** This creates a focused, intentional activation pattern as users scroll.
+
+#### 4. Route-Aware Re-observation
+The `[pathname]` dependency ensures the observers re-run when navigating between pages. Without this, bentos on new pages wouldn't activate until a page refresh.
+
+### Why The Name "MobileAnimations"?
+
+Historical naming. It was originally built for mobile viewport activation, but now runs on **ALL devices** (desktop + mobile). Despite the name, it's a **universal viewport activation system**.
+
+### CSS Integration
+
+MobileAnimations adds classes; CSS handles the visuals:
+
+```css
+/* globals.css */
+
+/* Gray by default */
+.bento-box span[style*="width: 3px"] {
+  background-color: #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+/* Red when .in-viewport class is added */
+.bento-box.in-viewport span[style*="width: 3px"] {
+  background-color: #D43225 !important;
+}
+
+/* Top border + lift on activation */
+.bento-box.in-viewport {
+  border-top-color: #D43225;
+  transform: translateY(-2px);
+}
+```
+
+### Timing & Delays
+
+Multiple observation attempts with delays to handle async rendering:
+
+```tsx
+observeElements();                  // Immediate
+setTimeout(observeElements, 100);   // After first render
+setTimeout(observeElements, 500);   // After animations
+setTimeout(observeElements, 1000);  // After slow content
+setTimeout(observeElements, 1500);  // Final check
+```
+
+This ensures bentos rendered via client-side JSON imports (like on `/consulting`) get observed even though they render slightly delayed.
+
+### Common Issues & Solutions
+
+#### Issue: Bentos don't activate without page refresh
+**Cause**: `useEffect` dependency array missing `pathname`
+**Fix**: Add `[pathname]` dependency to re-run observers on navigation
+
+#### Issue: Multiple bentos are red at once
+**Cause**: Multiple elements in activation zone
+**Fix**: Implemented closest-to-center logic to ensure only ONE active
+
+#### Issue: Bentos never turn red
+**Cause**: CSS selectors don't match elements
+**Fix**: Verify `.bento-box`, `.service-bento`, etc. classes are present
 
 ---
 

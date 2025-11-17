@@ -8,6 +8,7 @@
     "author": "Prismatica Labs",
     "notes": "Sir Alfie product showcase - CRM with AI agents"
   },
+  "athenaPrompt": "What if your CRM hunted opportunities while you slept? Ask more.",
   "content": {
     "prompt": {
       "type": "static",

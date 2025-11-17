@@ -7,10 +7,11 @@
     "author": "Prismatica Labs",
     "notes": "Creative That Converts - £12,000 consulting service"
   },
+  "athenaPrompt": "Picture your brand driving pricing power, not just presence. Chat?",
   "service": {
     "durationWeeks": 7,
     "bufferWeeks": 2,
-    "basePrice": 12000
+    "basePrice": 12.000
   },
   "content": {
     "prompt": {
@@ -34,7 +35,7 @@
   },
   "footer": {
     "type": "price-cta",
-    "price": "From £12,000"
+    "price": "Based On Project"
   },
   "actions": {
     "share": {

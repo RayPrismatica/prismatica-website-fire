@@ -13,30 +13,23 @@
 }
 
 /* Responsive accent bar positioning */
-/* Desktop: red by default, stays red on hover */
-/* Mobile: gray by default, red when in-viewport class is added */
+/* ALL DEVICES: gray by default, red when in-viewport (unified behavior) */
 .accentBar {
   position: absolute;
   left: -20px;
   top: 0;
   bottom: 0;
   width: 3px;
-  background-color: #D43225; /* Desktop default - always red */
+  background-color: #e0e0e0; /* Start gray on all devices */
+  transition: background-color 0.3s ease;
 }
 
-/* Mobile: start gray, turn red when parent has in-viewport class */
-@media (max-width: 768px) {
-  .accentBar {
-    background-color: #e0e0e0 !important;
-    transition: background-color 0.4s ease;
-  }
-
-  /* Fully global selector - when any ancestor with in-viewport class contains this accentBar */
-  :global(.product-bento.in-viewport) .accentBar,
-  :global(.service-bento.in-viewport) .accentBar,
-  :global(.bento-link.in-viewport) .accentBar {
-    background-color: #D43225 !important;
-  }
+/* Turn red when parent bento has .in-viewport class - ALL DEVICES */
+:global(.product-bento.in-viewport) .accentBar,
+:global(.service-bento.in-viewport) .accentBar,
+:global(.bento-link.in-viewport) .accentBar,
+:global(.bento-box.in-viewport) .accentBar {
+  background-color: #D43225 !important;
 }
 
 /* ============================================================================

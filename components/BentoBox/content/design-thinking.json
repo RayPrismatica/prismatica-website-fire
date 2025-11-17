@@ -5,8 +5,9 @@
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
-    "notes": "Design Thinking - \u00a310,000 consulting service"
+    "notes": "Design Thinking - \u00a36,000 consulting service"
   },
+  "athenaPrompt": "Reframe the problem and watch solutions appear. Want to know how?",
   "content": {
     "prompt": {
       "type": "static",
@@ -31,7 +32,7 @@
   },
   "footer": {
     "type": "price-cta",
-    "price": "From \u00a310,000"
+    "price": "6,000 Per Sprint (1 week)"
   },
   "actions": {
     "share": {
@@ -47,6 +48,6 @@
   "service": {
     "durationWeeks": 3,
     "bufferWeeks": 2,
-    "basePrice": 10000
+    "basePrice": 6000
   }
 }

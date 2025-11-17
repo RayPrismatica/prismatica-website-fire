@@ -1,0 +1,34 @@
+/* Mobile: Show new header and mobile content layout */
+.mobileOnly {
+  display: block;
+}
+
+.desktopLayout {
+  display: none;
+}
+
+.mobileContent {
+  display: block;
+  min-height: 100vh;
+  padding-top: 60px; /* Account for fixed header */
+}
+
+.mobileMain {
+  padding: 40px 20px;
+}
+
+/* Desktop: Hide mobile elements, show sidebar layout */
+@media (min-width: 768px) {
+  .mobileOnly {
+    display: none;
+  }
+
+  .mobileContent {
+    display: none;
+  }
+
+  .desktopLayout {
+    display: flex;
+    min-height: 100vh;
+  }
+}

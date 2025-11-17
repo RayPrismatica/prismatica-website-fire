@@ -42,6 +42,9 @@ export interface BentoBoxProps {
   // Variant
   variant?: 'service' | 'link' | 'product';
 
+  // Athena prompt (for contextual chat)
+  'data-athena-prompt'?: string;
+
   // Styling overrides
   className?: string;
   style?: React.CSSProperties;
@@ -62,6 +65,7 @@ export default function BentoBox({
   onEnquire,
   customFooter,
   variant = 'service',
+  'data-athena-prompt': athenaPrompt,
   className = '',
   style = {},
 }: BentoBoxProps) {
@@ -84,6 +88,7 @@ export default function BentoBox({
     <div
       className={`${variantClass} ${styles.bentoContainer} ${className}`}
       style={containerStyle}
+      data-athena-prompt={athenaPrompt}
     >
       {/* Prompt with red accent bar (optional) */}
       {prompt && (

@@ -7,6 +7,7 @@
     "author": "Prismatica Labs",
     "notes": "Pioneers of Purpose Assessment - £50,000 consulting service"
   },
+  "athenaPrompt": "Imagine culture and message perfectly aligned. Chat?",
   "service": {
     "durationWeeks": 8,
     "bufferWeeks": 2,

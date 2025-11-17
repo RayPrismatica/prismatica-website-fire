@@ -7,6 +7,7 @@
     "author": "Prismatica Labs",
     "notes": "Strategic Triptych Assessment - £18,000 consulting service"
   },
+  "athenaPrompt": "What if you could see exactly where value leaks? Ask now.",
   "service": {
     "durationWeeks": 4,
     "bufferWeeks": 2,

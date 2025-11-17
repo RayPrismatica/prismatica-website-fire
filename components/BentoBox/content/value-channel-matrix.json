@@ -7,6 +7,7 @@
     "author": "Prismatica Labs",
     "notes": "Value Channel Matrix product - value engineering tool"
   },
+  "athenaPrompt": "What if you could engineer value so strong they never leave?",
   "content": {
     "prompt": {
       "type": "static",

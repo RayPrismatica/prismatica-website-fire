@@ -75,3 +75,4 @@ Thumbs.db
 athena/intel/layer1/raw-conversations/
 athena/intel/layer1/summaries/
 athena/intel/layer2/sessions/
+.env*.local

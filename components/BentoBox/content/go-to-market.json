@@ -7,6 +7,7 @@
     "author": "Prismatica Labs",
     "notes": "Go-to-Market - £15,000 consulting service"
   },
+  "athenaPrompt": "Launch once, launch right, no budget burned. Questions?",
   "service": {
     "durationWeeks": 7,
     "bufferWeeks": 2,

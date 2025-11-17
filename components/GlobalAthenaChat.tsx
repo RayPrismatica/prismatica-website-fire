@@ -11,25 +11,230 @@ interface Message {
   content: string;
 }
 
+type DrawerState = 'collapsed' | 'expanded' | 'chat';
+
+interface ContextualPrompt {
+  question: string;
+  context: string;
+}
+
+// Desktop contextual prompts (matches mobile exactly)
+const PAGE_PROMPTS: Record<string, ContextualPrompt> = {
+  '/': {
+    question: 'Are you solving for the right variable?',
+    context: 'landing page'
+  },
+  '/what': {
+    question: 'Want to see new questions at work?',
+    context: 'services overview'
+  },
+  '/products': {
+    question: 'Which intelligence gap are you solving for?',
+    context: 'product suite page'
+  },
+  '/who-we-are': {
+    question: 'Think this matches how you see the world?',
+    context: 'about page'
+  },
+  '/consulting': {
+    question: 'Which one solves your actual problem?',
+    context: 'consulting services'
+  },
+  '/contact': {
+    question: 'What variable are you trying to solve for?',
+    context: 'contact page'
+  },
+  '/mental-models': {
+    question: 'Where does your market thinking break down?',
+    context: 'mental models service'
+  },
+  '/triptych': {
+    question: 'Which channel are you ignoring?',
+    context: 'strategic triptych'
+  },
+  '/prismatic': {
+    question: 'Where is value hiding in your system?',
+    context: 'prismatic value'
+  },
+  '/agentic': {
+    question: 'Ready to make intelligence compound?',
+    context: 'agentic intelligence'
+  },
+  '/demand': {
+    question: 'What creates pull in your market?',
+    context: 'demand generation'
+  },
+  '/incentives': {
+    question: 'What behavior are you actually rewarding?',
+    context: 'incentive design'
+  },
+  '/articles': {
+    question: 'Want the thinking behind the thinking?',
+    context: 'articles page'
+  },
+  '/terms': {
+    question: 'Questions about how we work together?',
+    context: 'terms page'
+  },
+  '/privacy': {
+    question: 'Questions about how we handle your data?',
+    context: 'privacy page'
+  }
+};
+
+const DEFAULT_PROMPT: ContextualPrompt = {
+  question: 'Have a question about what you just read?',
+  context: 'General inquiry'
+};
+
 export default function GlobalAthenaChat() {
   const { isOpen, closeChat } = useAthenaChat();
   const pathname = usePathname();
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: "You start."
-    }
-  ]);
+  const [drawerState, setDrawerState] = useState<DrawerState>('collapsed');
+  const [isChatActivated, setIsChatActivated] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const [showExpandedContent, setShowExpandedContent] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const lastBoxPromptRef = useRef<string | null>(null);
+  const lastScrollTimeRef = useRef<number>(Date.now());
+  const lastScrollYRef = useRef<number>(0);
+  const scrollVelocityRef = useRef<number>(0);
+  const resetPromptTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isInitialPageLoadRef = useRef<boolean>(true);
+
+  // Get contextual prompt based on current page or active section
+  const currentPrompt = {
+    question: activeSection || PAGE_PROMPTS[pathname]?.question || DEFAULT_PROMPT.question,
+    context: PAGE_PROMPTS[pathname]?.context || DEFAULT_PROMPT.context
+  };
 
   // Preload Athena's avatar image for instant display
   useEffect(() => {
     const img = new window.Image();
     img.src = '/images/athena-advisor.jpg';
+  }, []);
+
+  // Reset to page prompt on pathname change
+  useEffect(() => {
+    isInitialPageLoadRef.current = true;
+    setActiveSection(null);
+    lastBoxPromptRef.current = null;
+  }, [pathname]);
+
+  // Manage expanded content visibility
+  useEffect(() => {
+    if (drawerState === 'expanded') {
+      const timer = setTimeout(() => setShowExpandedContent(true), 50);
+      return () => clearTimeout(timer);
+    } else {
+      setShowExpandedContent(false);
+    }
+  }, [drawerState]);
+
+  // Watch for elements with .in-viewport class to update prompt based on scroll position
+  useEffect(() => {
+    const checkActiveSection = () => {
+      // On initial page load, always use page prompt (ignore bentos)
+      if (isInitialPageLoadRef.current) {
+        return;
+      }
+
+      // Track scroll position for fast scroll detection
+      const now = Date.now();
+      const currentScrollY = window.scrollY;
+      const timeDelta = now - lastScrollTimeRef.current;
+      const scrollDelta = Math.abs(currentScrollY - lastScrollYRef.current);
+
+      if (timeDelta > 0) {
+        scrollVelocityRef.current = scrollDelta / timeDelta; // pixels per millisecond
+      }
+
+      lastScrollTimeRef.current = now;
+      lastScrollYRef.current = currentScrollY;
+
+      // Only ONE element should have .in-viewport at a time (enforced by MobileAnimations)
+      const inViewportElement = document.querySelector('.in-viewport');
+
+      if (inViewportElement) {
+        // Clear any pending reset
+        if (resetPromptTimeoutRef.current) {
+          clearTimeout(resetPromptTimeoutRef.current);
+          resetPromptTimeoutRef.current = null;
+        }
+
+        // Check for explicit data-athena-prompt attribute
+        const prompt = inViewportElement.getAttribute('data-athena-prompt');
+
+        if (prompt) {
+          // Only update if it's different from current
+          if (lastBoxPromptRef.current !== prompt) {
+            lastBoxPromptRef.current = prompt;
+            setActiveSection(prompt);
+          }
+        } else {
+          // Element has no prompt - reset to page prompt
+          if (lastBoxPromptRef.current !== null) {
+            lastBoxPromptRef.current = null;
+            setActiveSection(null);
+          }
+        }
+      } else {
+        // No box in viewport
+        // If scrolling fast (> 1 pixel per millisecond), keep the last prompt
+        // If scrolling slow or stopped, reset to page prompt after a delay
+        const isFastScrolling = scrollVelocityRef.current > 1;
+
+        if (isFastScrolling && lastBoxPromptRef.current !== null) {
+          // Fast scrolling - keep the last bento prompt
+          // Clear any pending reset
+          if (resetPromptTimeoutRef.current) {
+            clearTimeout(resetPromptTimeoutRef.current);
+            resetPromptTimeoutRef.current = null;
+          }
+        } else {
+          // Slow or stopped - schedule reset to page prompt
+          if (!resetPromptTimeoutRef.current) {
+            resetPromptTimeoutRef.current = setTimeout(() => {
+              if (lastBoxPromptRef.current !== null) {
+                lastBoxPromptRef.current = null;
+                setActiveSection(null);
+              }
+              resetPromptTimeoutRef.current = null;
+            }, 500); // Wait 500ms before resetting to page prompt
+          }
+        }
+      }
+    };
+
+    // Enable bento tracking on first scroll
+    const handleFirstScroll = () => {
+      isInitialPageLoadRef.current = false;
+      window.removeEventListener('scroll', handleFirstScroll);
+    };
+
+    window.addEventListener('scroll', handleFirstScroll, { passive: true, once: true });
+
+    // Check on mount and scroll
+    checkActiveSection();
+    window.addEventListener('scroll', checkActiveSection, { passive: true });
+
+    // Also check on resize and dom changes
+    const observer = new MutationObserver(checkActiveSection);
+    observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+
+    return () => {
+      window.removeEventListener('scroll', handleFirstScroll);
+      window.removeEventListener('scroll', checkActiveSection);
+      observer.disconnect();
+      if (resetPromptTimeoutRef.current) {
+        clearTimeout(resetPromptTimeoutRef.current);
+      }
+    };
   }, []);
 
   const scrollToBottom = () => {
@@ -42,24 +247,79 @@ export default function GlobalAthenaChat() {
     scrollToBottom();
   }, [messages]);
 
-  // Handle mobile keyboard visibility
+  // Handle Esc key to collapse (not close completely)
   useEffect(() => {
-    if (!isOpen) return;
-
-    const handleResize = () => {
-      // Scroll to bottom when keyboard opens/closes
-      setTimeout(() => scrollToBottom(), 100);
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && drawerState !== 'collapsed') {
+        setDrawerState('collapsed');
+      }
     };
 
-    // Detect visual viewport changes (keyboard opening/closing)
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', handleResize);
-      return () => window.visualViewport?.removeEventListener('resize', handleResize);
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [drawerState]);
+
+  const handleBannerClick = () => {
+    // If chat has been activated, skip expanded and go directly to chat
+    const nextState = isChatActivated ? 'chat' : 'expanded';
+    setDrawerState(nextState);
+  };
+
+  const handleStartConversation = () => {
+    // Initialize conversation with just Athena's greeting (like mobile)
+    if (messages.length === 0) {
+      const initialMessage: Message = {
+        role: 'assistant',
+        content: 'You start.'
+      };
+      setMessages([initialMessage]);
     }
-  }, [isOpen]);
+
+    setDrawerState('chat');
+  };
+
+  const sendContextMessage = async (contextMessage: Message) => {
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          pathname,
+          messages: [contextMessage].map(m => ({
+            role: m.role,
+            content: m.content
+          }))
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error('Failed to get response');
+      }
+
+      const assistantMessage: Message = {
+        role: 'assistant',
+        content: data.message
+      };
+
+      setMessages(prev => [...prev, assistantMessage]);
+    } catch (error) {
+      console.error('Error sending context:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
+
+    // Mark chat as activated when user sends their first message
+    setIsChatActivated(true);
 
     const userMessage: Message = {
       role: 'user',
@@ -82,14 +342,13 @@ export default function GlobalAthenaChat() {
             content: m.content
           })),
           pathname,
-          conversationId: currentConversationId // Send existing ID if we have one
+          conversationId: currentConversationId
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        // Handle rate limiting
         if (response.status === 429) {
           const retryAfter = data.retryAfter || 60;
           setMessages(prev => [...prev, {
@@ -108,7 +367,6 @@ export default function GlobalAthenaChat() {
 
       setMessages(prev => [...prev, assistantMessage]);
 
-      // Store conversation ID for post-chat analysis
       if (data.conversationId) {
         setCurrentConversationId(data.conversationId);
       }
@@ -123,354 +381,561 @@ export default function GlobalAthenaChat() {
     }
   };
 
-  // Trigger conversation analysis when chat closes
-  const handleCloseChat = async () => {
-    // Trigger analysis if there's a conversation to analyze
-    if (currentConversationId && messages.length >= 6) {
-      try {
-        // Non-blocking analysis trigger
-        fetch('/api/chat/end', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            conversationId: currentConversationId
-          })
-        }).catch(err => console.error('Analysis trigger failed:', err));
-      } catch (error) {
-        console.error('Error triggering analysis:', error);
-      }
-    }
-
-    // Close the chat
-    closeChat();
-
-    // Reset conversation state after a delay
-    setTimeout(() => {
-      setMessages([{
-        role: 'assistant',
-        content: "You start."
-      }]);
-      setCurrentConversationId(null);
-    }, 300);
+  // Collapse to banner (don't reset state - preserve conversation)
+  const handleCollapse = () => {
+    setDrawerState('collapsed');
   };
 
-  // Don't render anything if chat is not open
-  if (!isOpen) return null;
+  // Trigger post-conversation analysis when chat is truly closed (not just minimized)
+  const handleClose = () => {
+    // Only trigger analysis if conversation has substance (6+ messages = 3+ real exchanges)
+    if (messages.length >= 6 && currentConversationId) {
+      // Non-blocking call to analysis endpoint
+      fetch('/api/chat/end', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ conversationId: currentConversationId })
+      }).catch(err => console.error('Analysis failed:', err));
+    }
+
+    // Close chat immediately (don't wait for analysis)
+    closeChat();
+    setDrawerState('collapsed');
+    // Optionally reset conversation state
+    // setMessages([]);
+    // setCurrentConversationId(null);
+  };
 
   return (
     <>
-      {/* Drawer Dialog */}
-      <Transition show={isOpen} as={Fragment}>
-        <Dialog onClose={handleCloseChat} className="relative z-30">
-          {/* Backdrop */}
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-500"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div
-              className="fixed inset-0 bg-black/30 transition-opacity"
-              style={{ left: 'var(--sidebar-width, 0px)', transform: 'translateZ(0)' }}
-              onClick={handleCloseChat}
-              aria-hidden="true"
-            />
-          </Transition.Child>
+      {/* Desktop: 3-state banner system (collapsed → expanded → chat) */}
 
-          <div className="fixed inset-0 md:inset-y-0 md:right-0 overflow-hidden" style={{ left: 'var(--sidebar-width, 0px)' }}>
-            <div className="absolute inset-0 overflow-hidden">
-              {/* Full-width drawer - slides from bottom on mobile, left on desktop */}
+      {/* Collapsed Banner - Always visible bottom-right (desktop only) */}
+      {drawerState === 'collapsed' && (
+        <div className="hidden md:block">
+          <div
+            onClick={handleBannerClick}
+            style={{
+              position: 'fixed',
+              bottom: '32px',
+              right: '32px',
+              width: '360px',
+              backgroundColor: '#fff',
+              borderRadius: '12px',
+              border: '1px solid #e0e0e0',
+              borderTop: isChatActivated ? '3px solid #10b981' : '3px solid #D43225',
+              padding: '16px 20px',
+              cursor: 'pointer',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+              zIndex: 50,
+              transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+              transform: 'translateZ(0)',
+              overflow: 'hidden'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.12)';
+              e.currentTarget.style.transform = 'translateY(-2px) translateZ(0)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.08)';
+              e.currentTarget.style.transform = 'translateY(0) translateZ(0)';
+            }}
+          >
+            <p style={{
+              fontSize: '14px',
+              fontWeight: 600,
+              margin: 0,
+              padding: 0,
+              color: '#222',
+              lineHeight: 1.4,
+              fontFamily: '"Noto Sans", sans-serif'
+            }}>
+              {currentPrompt.question}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Expanded State - Explanation card (desktop only) */}
+      {drawerState === 'expanded' && (
+        <div className="hidden md:block">
+          <div
+            style={{
+              position: 'fixed',
+              bottom: '32px',
+              right: '32px',
+              width: '420px',
+              maxHeight: 'calc(100vh - 120px)',
+              backgroundColor: '#fff',
+              borderRadius: '12px',
+              border: '1px solid #e0e0e0',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
+              zIndex: 50,
+              display: 'flex',
+              flexDirection: 'column',
+              transform: 'translateZ(0)',
+              animation: 'expandUp 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)'
+            }}
+          >
+            <style jsx>{`
+              @keyframes expandUp {
+                from {
+                  opacity: 0;
+                  transform: translateY(20px) translateZ(0);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0) translateZ(0);
+                }
+              }
+            `}</style>
+
+            {/* Prompt banner */}
+            <div style={{
+              borderTop: '3px solid #D43225',
+              borderTopLeftRadius: '12px',
+              borderTopRightRadius: '12px',
+              padding: '16px 20px',
+              borderBottom: '1px solid #f0f0f0'
+            }}>
+              <p style={{
+                fontSize: '14px',
+                fontWeight: 600,
+                margin: 0,
+                padding: 0,
+                color: '#222',
+                lineHeight: 1.4,
+                fontFamily: '"Noto Sans", sans-serif'
+              }}>
+                {currentPrompt.question}
+              </p>
+            </div>
+
+            {/* Expanded content */}
+            {showExpandedContent && (
+              <div style={{
+                padding: '24px 20px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                flex: 1,
+                overflow: 'auto'
+              }}>
+                {/* Explanation card */}
+                <div style={{
+                  backgroundColor: 'rgba(245, 245, 245, 0.7)',
+                  borderRadius: '8px',
+                  padding: '20px',
+                  borderLeft: '3px solid #D43225'
+                }}>
+                  <p style={{
+                    fontSize: '15px',
+                    fontWeight: 700,
+                    margin: '0 0 12px',
+                    color: '#222',
+                    lineHeight: 1.3,
+                    fontFamily: '"Noto Sans", sans-serif'
+                  }}>
+                    Athena knows Prismatica.
+                  </p>
+                  <p style={{
+                    fontSize: '14px',
+                    color: '#444',
+                    margin: '0 0 12px 0',
+                    lineHeight: 1.6,
+                    fontFamily: '"Noto Sans", sans-serif'
+                  }}>
+                    She's studied everything we do, how we think, and what we've built. Ask her anything about our work, your situation, or whether this matches how you see problems.
+                  </p>
+                  <p style={{
+                    fontSize: '14px',
+                    color: '#444',
+                    margin: 0,
+                    lineHeight: 1.6,
+                    fontFamily: '"Noto Sans", sans-serif'
+                  }}>
+                    Once you start, she stays with you. Collapse this, explore the site, come back—she'll know where you've been and what you're considering.
+                  </p>
+                </div>
+
+                {/* Athena profile */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px'
+                }}>
+                  <div style={{ position: 'relative', flexShrink: 0 }}>
+                    <Image
+                      src="/images/athena-advisor.jpg"
+                      alt="Athena"
+                      width={48}
+                      height={48}
+                      style={{
+                        width: '48px',
+                        height: '48px',
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                      }}
+                    />
+                    <span style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      right: 0,
+                      display: 'block',
+                      height: '12px',
+                      width: '12px',
+                      borderRadius: '50%',
+                      backgroundColor: '#10b981',
+                      border: '2px solid white'
+                    }}></span>
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{
+                      fontSize: '14px',
+                      fontWeight: 700,
+                      color: '#222',
+                      fontFamily: '"Noto Sans", sans-serif'
+                    }}>
+                      Athena
+                    </div>
+                    <div style={{
+                      fontSize: '12px',
+                      color: '#666',
+                      fontFamily: '"Noto Sans", sans-serif'
+                    }}>
+                      Strategic Advisor
+                    </div>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div style={{ marginTop: 'auto' }}>
+                  <button
+                    onClick={handleStartConversation}
+                    style={{
+                      backgroundColor: '#D43225',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '8px',
+                      padding: '14px 24px',
+                      fontSize: '15px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      width: '100%',
+                      transition: 'background-color 0.2s',
+                      fontFamily: '"Noto Sans", sans-serif'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#B82919';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#D43225';
+                    }}
+                  >
+                    Start Conversation
+                  </button>
+
+                  <button
+                    onClick={() => setDrawerState('collapsed')}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#999',
+                      fontSize: '24px',
+                      cursor: 'pointer',
+                      padding: '8px 0',
+                      display: 'block',
+                      lineHeight: 1,
+                      fontWeight: 300,
+                      marginTop: '12px',
+                      transition: 'color 0.2s'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = '#D43225';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = '#999';
+                    }}
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Chat State - Full drawer (all desktop sizes) */}
+      {drawerState === 'chat' && (
+        <Transition show={true} as={Fragment}>
+            <Dialog onClose={handleCollapse} className="relative z-30">
+              {/* Backdrop */}
               <Transition.Child
                 as={Fragment}
-                enter="transform transition ease-out duration-500"
-                enterFrom="translate-y-full md:-translate-x-full md:translate-y-0"
-                enterTo="translate-y-0 md:translate-x-0"
-                leave="transform transition ease-in duration-300"
-                leaveFrom="translate-y-0 md:translate-x-0"
-                leaveTo="translate-y-full md:-translate-x-full md:translate-y-0"
+                enter="ease-out duration-500"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-300"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
               >
-                <Dialog.Panel className="pointer-events-auto w-full absolute inset-0" style={{ willChange: 'transform', backfaceVisibility: 'hidden', height: '100dvh' }}>
-                    <div className="flex flex-col bg-white pt-[60px] md:pt-0" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', height: '100dvh' }}>
-                      {/* Close button - top right */}
-                      <button
-                        type="button"
-                        onClick={handleCloseChat}
-                        className="absolute top-4 right-4 z-10 md:hidden"
-                        style={{
-                          fontSize: '32px',
-                          fontWeight: 300,
-                          color: '#999',
-                          cursor: 'pointer',
-                          lineHeight: 1,
-                          transition: 'color 0.2s',
-                          background: 'none',
-                          border: 'none',
-                          padding: 0,
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
-                        onMouseLeave={(e) => e.currentTarget.style.color = '#999'}
-                      >
-                        ×
-                      </button>
+                <div
+                  className="fixed inset-0 bg-black/30 transition-opacity"
+                  style={{ left: 'var(--sidebar-width, 0px)', transform: 'translateZ(0)' }}
+                  onClick={handleCollapse}
+                  aria-hidden="true"
+                />
+              </Transition.Child>
 
-                      {/* Header */}
-                      <div className="flex flex-shrink-0 justify-center border-b border-gray-200 bg-gradient-to-b from-white to-gray-50/30 shadow-sm relative" style={{ paddingTop: '1.8rem', paddingBottom: '1.8rem', transform: 'translateZ(0)' }}>
-                        {/* Desktop Header */}
-                        <div className="hidden md:block w-full max-w-3xl" style={{ paddingLeft: '3rem', paddingRight: '3rem', paddingTop: '1.8rem', paddingBottom: '1.8rem' }}>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-4">
-                              <div className="relative">
-                                <Image
-                                  src="/images/athena-advisor.jpg"
-                                  alt="Athena"
-                                  width={48}
-                                  height={48}
-                                  className="ring-2 ring-gray-100 shadow-md"
-                                  priority
-                                  loading="eager"
-                                  quality={95}
-                                  style={{ transform: 'translateZ(0)' }}
-                                />
-                                <span className="absolute bottom-0 right-0 block h-3 w-3 rounded-full bg-green-500 ring-2 ring-white animate-pulse"></span>
-                              </div>
-                              <div className="flex flex-col justify-center">
-                                <Dialog.Title
-                                  className="text-[#222]"
-                                  style={{
-                                    fontFamily: '"Noto Sans", sans-serif',
-                                    fontSize: '20px',
-                                    fontWeight: 700,
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.5px',
-                                    marginBottom: '0.25rem'
-                                  }}
-                                >
-                                  Athena
-                                </Dialog.Title>
-                                <div className="flex items-center gap-2">
-                                  <p className="text-xs text-gray-600" style={{ fontFamily: '"Noto Sans", sans-serif', fontWeight: 400 }}>Strategic AI Advisor</p>
-                                  <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700">
-                                    Online
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
+              <div className="fixed inset-y-0 right-0 overflow-hidden" style={{ left: 'var(--sidebar-width, 0px)', zIndex: 9999 }}>
+                <div className="absolute inset-0 overflow-hidden">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="transform transition ease-out duration-500"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="transform transition ease-in duration-300"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Dialog.Panel className="pointer-events-auto w-full absolute inset-0" style={{ willChange: 'transform', backfaceVisibility: 'hidden', height: '100vh', backgroundColor: '#fff' }}>
+                      <div className="flex flex-col bg-white h-full" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}>
+                        {/* Header */}
+                        <div className="flex flex-shrink-0 justify-center border-b border-gray-200 bg-white">
+                          <div className="flex w-full items-center justify-between" style={{ padding: '24px 32px' }}>
+                            <Dialog.Title
+                              style={{
+                                fontFamily: '"Noto Sans", sans-serif',
+                                fontSize: '20px',
+                                fontWeight: 700,
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.5px',
+                                color: '#222',
+                                margin: 0
+                              }}
+                            >
+                              Athena
+                            </Dialog.Title>
+                            <button
+                              type="button"
+                              onClick={handleCollapse}
+                              aria-label="Collapse chat"
+                              style={{
+                                background: 'none',
+                                border: 'none',
+                                cursor: 'pointer',
+                                padding: '8px',
+                                fontSize: '24px',
+                                fontWeight: 300,
+                                color: '#999',
+                                lineHeight: 1,
+                                transition: 'color 0.2s'
+                              }}
+                              onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
+                              onMouseLeave={(e) => e.currentTarget.style.color = '#999'}
+                            >
+                              ×
+                            </button>
                           </div>
                         </div>
 
-                      </div>
-
-                      {/* Messages Area - Enhanced chat layout */}
-                      <div ref={messagesContainerRef} className="flex flex-1 justify-center overflow-y-auto bg-gradient-to-b from-gray-50/30 to-white overscroll-contain" style={{ paddingTop: '2rem', paddingBottom: '2rem', WebkitOverflowScrolling: 'touch' }}>
-                        <div className="w-full max-w-3xl px-4 md:px-12 lg:px-16" style={{ paddingLeft: 'clamp(1rem, 2vw, 3rem)', paddingRight: 'clamp(1rem, 2vw, 3rem)' }}>
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-                            {messages.map((message, index) => (
-                              <div key={index} className="group">
-                                {message.role === 'assistant' ? (
-                                  <div className="flex gap-3 md:gap-4">
-                                    <div className="flex-shrink-0">
-                                      <div className="relative flex items-center justify-center" style={{ width: 'clamp(28px, 5vw, 36px)', height: 'clamp(28px, 5vw, 36px)', transform: 'translateZ(0)' }}>
-                                        <Image
-                                          src="/images/athena-advisor.jpg"
-                                          alt="Athena"
-                                          width={36}
-                                          height={36}
-                                          className="rounded-full ring-2 ring-gray-100 shadow-sm"
-                                          style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(0)' }}
-                                          priority
-                                          loading="eager"
-                                          quality={95}
-                                        />
+                        {/* Messages Area */}
+                        <div ref={messagesContainerRef} className="flex flex-1 justify-center overflow-y-auto bg-[#fafafa] overscroll-contain" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+                          <div className="w-full max-w-3xl px-4 md:px-12 lg:px-16" style={{ paddingLeft: 'clamp(1rem, 2vw, 3rem)', paddingRight: 'clamp(1rem, 2vw, 3rem)' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+                              {messages.map((message, index) => (
+                                <div key={index} className="group">
+                                  {message.role === 'assistant' ? (
+                                    <div className="flex gap-4">
+                                      <div className="flex-shrink-0">
+                                        <div className="relative flex items-center justify-center" style={{ width: '36px', height: '36px', transform: 'translateZ(0)' }}>
+                                          <Image
+                                            src="/images/athena-advisor.jpg"
+                                            alt="Athena"
+                                            width={36}
+                                            height={36}
+                                            className="rounded-full ring-2 ring-gray-100 shadow-sm"
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(0)' }}
+                                            priority
+                                            loading="eager"
+                                            quality={95}
+                                          />
+                                        </div>
+                                      </div>
+                                      <div className="flex-1" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                        <div className="flex items-baseline gap-3">
+                                          <span
+                                            className="font-semibold text-gray-900"
+                                            style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '14px' }}
+                                          >
+                                            Athena
+                                          </span>
+                                          <span className="text-gray-400" style={{ fontSize: '12px' }}>Strategic AI Advisor</span>
+                                        </div>
+                                        <div
+                                          className="prose prose-sm max-w-none text-gray-800"
+                                          style={{
+                                            fontFamily: '"Noto Sans", sans-serif',
+                                            fontSize: '15px',
+                                            lineHeight: '1.7',
+                                            fontWeight: 400
+                                          }}
+                                        >
+                                          {message.content}
+                                        </div>
                                       </div>
                                     </div>
-                                    <div className="flex-1" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                      <div className="flex items-baseline gap-2 md:gap-3">
-                                        <span
-                                          className="font-semibold text-gray-900"
-                                          style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: 'clamp(12px, 2vw, 14px)' }}
-                                        >
-                                          Athena
-                                        </span>
-                                        <span className="text-gray-400" style={{ fontSize: 'clamp(10px, 1.5vw, 12px)' }}>Strategic AI Advisor</span>
-                                      </div>
+                                  ) : (
+                                    <div className="flex justify-end">
                                       <div
-                                        className="prose prose-sm max-w-none text-gray-800"
                                         style={{
                                           fontFamily: '"Noto Sans", sans-serif',
-                                          fontSize: 'clamp(14px, 2.5vw, 15px)',
-                                          lineHeight: '1.7',
-                                          fontWeight: 400
+                                          fontSize: '15px',
+                                          lineHeight: '1.6',
+                                          fontWeight: 400,
+                                          color: '#D43225',
+                                          textAlign: 'right',
+                                          maxWidth: '85%'
                                         }}
                                       >
                                         {message.content}
                                       </div>
                                     </div>
-                                  </div>
-                                ) : (
-                                  <div className="flex justify-end">
-                                    <div
-                                      style={{
-                                        fontFamily: '"Noto Sans", sans-serif',
-                                        fontSize: 'clamp(14px, 2.5vw, 15px)',
-                                        lineHeight: '1.6',
-                                        fontWeight: 400,
-                                        color: '#D43225',
-                                        textAlign: 'right',
-                                        maxWidth: '85%'
-                                      }}
-                                    >
-                                      {message.content}
+                                  )}
+                                </div>
+                              ))}
+
+                              {isLoading && (
+                                <div className="flex gap-4">
+                                  <div className="flex-shrink-0">
+                                    <div className="relative flex items-center justify-center" style={{ width: '36px', height: '36px', transform: 'translateZ(0)' }}>
+                                      <Image
+                                        src="/images/athena-advisor.jpg"
+                                        alt="Athena"
+                                        width={36}
+                                        height={36}
+                                        className="rounded-full ring-2 ring-gray-100 shadow-sm"
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(0)' }}
+                                        priority
+                                        loading="eager"
+                                        quality={95}
+                                      />
                                     </div>
                                   </div>
-                                )}
-                              </div>
-                            ))}
-
-                            {isLoading && (
-                              <div className="flex gap-3 md:gap-4">
-                                <div className="flex-shrink-0">
-                                  <div className="relative flex items-center justify-center" style={{ width: 'clamp(28px, 5vw, 36px)', height: 'clamp(28px, 5vw, 36px)', transform: 'translateZ(0)' }}>
-                                    <Image
-                                      src="/images/athena-advisor.jpg"
-                                      alt="Athena"
-                                      width={36}
-                                      height={36}
-                                      className="rounded-full ring-2 ring-gray-100 shadow-sm"
-                                      style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(0)' }}
-                                      priority
-                                      loading="eager"
-                                      quality={95}
-                                    />
-                                  </div>
-                                </div>
-                                <div className="flex-1 pt-2">
-                                  <div className="flex items-center gap-2">
-                                    <div className="flex space-x-1.5">
-                                      <div className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#D43225] [animation-delay:-0.3s]"></div>
-                                      <div className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#D43225] [animation-delay:-0.15s]"></div>
-                                      <div className="h-2.5 w-2.5 animate-bounce rounded-full bg-[#D43225]"></div>
+                                  <div className="flex-1" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                    <div className="flex items-baseline gap-3">
+                                      <span
+                                        className="font-semibold text-gray-900"
+                                        style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '14px' }}
+                                      >
+                                        Athena
+                                      </span>
+                                      <span className="text-gray-400" style={{ fontSize: '12px' }}>Strategic AI Advisor</span>
+                                      <div
+                                        className="animate-pulse"
+                                        style={{
+                                          width: '8px',
+                                          height: '8px',
+                                          borderRadius: '50%',
+                                          backgroundColor: '#D43225',
+                                          marginLeft: '4px'
+                                        }}
+                                      />
                                     </div>
-                                    <span className="text-gray-400 italic" style={{ fontSize: 'clamp(11px, 2vw, 12px)' }}>Athena is thinking...</span>
                                   </div>
                                 </div>
-                              </div>
-                            )}
+                              )}
 
-                            <div ref={messagesEndRef} />
+                              <div ref={messagesEndRef} />
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Input Area */}
-                      <div className="flex flex-shrink-0 justify-center border-t border-gray-200 bg-gradient-to-t from-gray-50/50 to-white" style={{ paddingTop: '1.5rem', paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}>
-                        <div className="w-full max-w-3xl" style={{ paddingLeft: 'clamp(1rem, 2vw, 3rem)', paddingRight: 'clamp(1rem, 2vw, 3rem)' }}>
-                          <div className="relative">
-                            <div className="flex items-center gap-3 rounded-2xl border-2 border-gray-200 bg-white px-5 py-4 shadow-sm transition-all focus-within:border-[#D43225] focus-within:shadow-md">
-                              <div className="flex-1 flex items-center">
-                                <textarea
-                                  value={input}
-                                  onChange={(e) => {
-                                    setInput(e.target.value);
-                                    // Auto-resize
-                                    e.target.style.height = 'auto';
-                                    e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
+                        {/* Input Area */}
+                        <div className="flex flex-shrink-0 justify-center border-t border-gray-200 bg-white" style={{ paddingTop: '1.5rem', paddingBottom: '1.5rem' }}>
+                          <div className="w-full max-w-3xl" style={{ paddingLeft: 'clamp(1rem, 2vw, 3rem)', paddingRight: 'clamp(1rem, 2vw, 3rem)' }}>
+                            <div className="relative">
+                              <div className="flex items-center gap-3 rounded-2xl border-2 border-gray-200 bg-white px-5 py-4 shadow-sm transition-all focus-within:border-[#D43225] focus-within:shadow-md">
+                                <div className="flex-1 flex items-center">
+                                  <textarea
+                                    value={input}
+                                    onChange={(e) => {
+                                      setInput(e.target.value);
+                                      e.target.style.height = 'auto';
+                                      e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
+                                    }}
+                                    onKeyDown={(e) => {
+                                      if (e.key === 'Enter' && !e.shiftKey) {
+                                        e.preventDefault();
+                                        sendMessage();
+                                      }
+                                    }}
+                                    placeholder="Your text here..."
+                                    disabled={isLoading}
+                                    rows={1}
+                                    className="block w-full resize-none border-0 bg-transparent placeholder-gray-400 focus:outline-none focus:ring-0 disabled:text-gray-400"
+                                    style={{
+                                      fontFamily: '"Noto Sans", sans-serif',
+                                      fontSize: '16px',
+                                      fontWeight: 400,
+                                      maxHeight: '120px',
+                                      lineHeight: '1.5',
+                                      paddingLeft: '18px',
+                                      paddingRight: '18px',
+                                      paddingTop: '10px',
+                                      paddingBottom: '10px'
+                                    }}
+                                  />
+                                </div>
+                                <button
+                                  onClick={sendMessage}
+                                  disabled={isLoading || !input.trim()}
+                                  className="group relative flex flex-shrink-0 items-center justify-center rounded-xl text-white transition-all focus:outline-none focus:ring-2 focus:ring-[#D43225] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40"
+                                  style={{
+                                    minWidth: '44px',
+                                    minHeight: '44px',
+                                    backgroundColor: isLoading || !input.trim() ? '#e0e0e0' : '#D43225',
+                                    transform: 'translateZ(0)',
+                                    boxShadow: '0 2px 8px rgba(212, 50, 37, 0.2)'
                                   }}
-                                  onKeyDown={(e) => {
-                                    if (e.key === 'Enter' && !e.shiftKey) {
-                                      e.preventDefault();
-                                      sendMessage();
+                                  onMouseEnter={(e) => {
+                                    if (!isLoading && input.trim()) {
+                                      e.currentTarget.style.backgroundColor = '#B82919';
+                                      e.currentTarget.style.transform = 'scale(1.05) translateZ(0)';
+                                      e.currentTarget.style.boxShadow = '0 4px 12px rgba(212, 50, 37, 0.3)';
                                     }
                                   }}
-                                  onFocus={() => {
-                                    // Ensure input stays visible when keyboard opens
-                                    setTimeout(() => {
-                                      messagesContainerRef.current?.scrollTo({
-                                        top: messagesContainerRef.current.scrollHeight,
-                                        behavior: 'smooth'
-                                      });
-                                    }, 300);
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor = isLoading || !input.trim() ? '#e0e0e0' : '#D43225';
+                                    e.currentTarget.style.transform = 'scale(1) translateZ(0)';
+                                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(212, 50, 37, 0.2)';
                                   }}
-                                  placeholder="Your text here..."
-                                  disabled={isLoading}
-                                  rows={1}
-                                  className="block w-full resize-none border-0 bg-transparent placeholder-gray-400 focus:outline-none focus:ring-0 disabled:text-gray-400"
-                                  style={{
-                                    fontFamily: '"Noto Sans", sans-serif',
-                                    fontSize: '16px',
-                                    fontWeight: 400,
-                                    maxHeight: '120px',
-                                    lineHeight: '1.5',
-                                    paddingLeft: '18px',
-                                    paddingRight: '18px',
-                                    paddingTop: '10px',
-                                    paddingBottom: '10px'
-                                  }}
-                                />
+                                >
+                                  {isLoading ? (
+                                    <svg className="h-5 w-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                  ) : (
+                                    <svg className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                      <path d="M2 10L18 2L10 18L8 11L2 10Z" />
+                                    </svg>
+                                  )}
+                                  <span className="sr-only">Send</span>
+                                </button>
                               </div>
-                              <button
-                                onClick={sendMessage}
-                                disabled={isLoading || !input.trim()}
-                                className="group relative flex flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#D43225] to-[#B82B1F] text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#D43225] focus:ring-offset-2 disabled:cursor-not-allowed disabled:from-gray-300 disabled:to-gray-400 disabled:opacity-50 disabled:hover:scale-100"
-                                style={{ minWidth: '44px', minHeight: '44px' }}
-                              >
-                                {isLoading ? (
-                                  <svg className="h-5 w-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                  </svg>
-                                ) : (
-                                  <svg className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M2 10L18 2L10 18L8 11L2 10Z" />
-                                  </svg>
-                                )}
-                                <span className="sr-only">Send</span>
-                              </button>
-                            </div>
-
-                            {/* Mobile Close Button */}
-                            <div className="md:hidden flex items-center justify-center" style={{ marginTop: '16px' }}>
-                              <button
-                                type="button"
-                                onClick={handleCloseChat}
-                                className="flex items-center gap-2 rounded-md text-gray-700 transition-all hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#D43225]"
-                                style={{
-                                  fontFamily: '"Noto Sans", sans-serif',
-                                  fontSize: 'clamp(13px, 2.5vw, 14px)',
-                                  fontWeight: 600,
-                                  textTransform: 'uppercase',
-                                  letterSpacing: '0.5px',
-                                  minWidth: '44px',
-                                  minHeight: '44px',
-                                  padding: '8px 16px'
-                                }}
-                              >
-                                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                                </svg>
-                                Close
-                              </button>
-                            </div>
-
-                            <div className="hidden md:flex items-center justify-center px-2" style={{ marginTop: '42px' }}>
-                              <p style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: 'clamp(10px, 1.5vw, 12px)', fontWeight: 300, letterSpacing: '0.3px', color: '#6b7280' }}>
-                                Press <kbd className="rounded bg-gray-50 px-2 py-1 font-normal border border-gray-200" style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: 'clamp(10px, 1.5vw, 12px)' }}>Enter</kbd> to send, <kbd className="rounded bg-gray-50 px-2 py-1 font-normal border border-gray-200" style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: 'clamp(10px, 1.5vw, 12px)' }}>Shift + Enter</kbd> for new line
-                              </p>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Dialog.Panel>
-                </Transition.Child>
-            </div>
-          </div>
-        </Dialog>
-      </Transition>
+                    </Dialog.Panel>
+                  </Transition.Child>
+                </div>
+              </div>
+            </Dialog>
+        </Transition>
+      )}
     </>
   );
 }

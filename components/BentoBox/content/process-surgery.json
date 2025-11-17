@@ -7,6 +7,7 @@
     "author": "Prismatica Labs",
     "notes": "Process Surgery - \u00a310,000 consulting service"
   },
+  "athenaPrompt": "Imagine work getting easier, not just documented. Ask Athena now.",
   "content": {
     "prompt": {
       "type": "static",

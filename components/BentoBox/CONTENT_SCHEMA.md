@@ -37,6 +37,7 @@ components/BentoBox/content/
   "id": "unique-bento-id",
   "variant": "service | link | product",
   "enabled": true,
+  "athenaPrompt": "Contextual question for Athena chat? (optional)",
   "metadata": {
     "created": "2025-11-16",
     "lastUpdated": "2025-11-16",
@@ -53,6 +54,33 @@ components/BentoBox/content/
   "style": { /* Optional style overrides */ }
 }
 ```
+
+### Athena Prompt (Optional - For Contextual Chat)
+
+**Used for:** Content-driven Athena chat prompts that update when a bento scrolls into viewport.
+
+```json
+"athenaPrompt": "Imagine culture and message perfectly aligned. Chat?"
+```
+
+**Key feature:** When a bento enters the viewport (gets `.in-viewport` class from MobileAnimations), its `athenaPrompt` appears in the Athena chat banner, inviting contextual conversation.
+
+**How it works:**
+- Athena chat banner watches for `.in-viewport` elements
+- If element has `data-athena-prompt` attribute → uses that prompt
+- If NO bento in viewport → uses page-level default prompt
+- Prompts should be conversational and invite engagement (max 100 chars)
+
+**Examples:**
+- Service: `"Picture insights flowing straight into execution. Ask Athena."`
+- Product: `"What if your CRM hunted opportunities while you slept? Ask more."`
+- Navigation: `"Need custom work that adapts as the problem reveals itself?"`
+
+**Best practices:**
+- Keep it short, punchy, and conversational
+- End with a question or call to action
+- Match the tone of the bento content
+- Avoid generic prompts like "Want to know more?"
 
 ### Service Configuration (Optional - For Consulting Services)
 
@@ -213,6 +241,7 @@ components/BentoBox/content/
   "id": "sir-alfie",
   "variant": "product",
   "enabled": true,
+  "athenaPrompt": "What if your CRM hunted opportunities while you slept? Ask more.",
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
@@ -259,6 +288,7 @@ components/BentoBox/content/
   "id": "go-to-market",
   "variant": "service",
   "enabled": true,
+  "athenaPrompt": "Launch once, launch right, no budget burned. Questions?",
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs"
@@ -313,6 +343,7 @@ components/BentoBox/content/
   "id": "consulting-services",
   "variant": "link",
   "enabled": true,
+  "athenaPrompt": "Need custom work that adapts as the problem reveals itself?",
   "content": {
     "title": "Consulting Services",
     "body": [

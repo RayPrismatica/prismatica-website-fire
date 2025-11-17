@@ -7,6 +7,7 @@
     "author": "Prismatica Labs",
     "notes": "ESI Framework - £40,000 consulting service"
   },
+  "athenaPrompt": "Picture insights flowing straight into execution. Ask Athena.",
   "service": {
     "durationWeeks": 6,
     "bufferWeeks": 2,

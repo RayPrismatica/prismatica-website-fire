@@ -34,31 +34,29 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile Header with Hamburger */}
-      <div className="mobile-header">
-        <button
-          className="hamburger-button"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+      {/* Mobile Header - Entire bar is tappable */}
+      <div
+        className="mobile-header"
+        onClick={toggleMobileMenu}
+        role="button"
+        aria-label="Toggle menu"
+        style={{ cursor: 'pointer' }}
+      >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <Image
             src="/images/logowebp.webp"
             alt="Prismatica Labs Logo"
             width={30}
             height={30}
-            style={{ width: '30px', height: 'auto' }}
+            style={{ width: '30px', height: 'auto', pointerEvents: 'none' }}
           />
           <h1 style={{
             fontFamily: 'var(--font-passion), sans-serif',
             fontSize: '16px',
             fontWeight: 600,
             letterSpacing: '-0.5px',
-            margin: 0
+            margin: 0,
+            pointerEvents: 'none'
           }}>
             PRISMATICA LABS
           </h1>

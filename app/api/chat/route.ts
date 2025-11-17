@@ -3,6 +3,7 @@ import { chatRateLimiter, getClientIdentifier } from '@/lib/rateLimiter';
 import Anthropic from '@anthropic-ai/sdk';
 import fs from 'fs';
 import path from 'path';
+import { put, list } from '@vercel/blob';
 
 // In production, load and cache the core prompt once
 const corePromptPath = path.join(process.cwd(), 'athena', 'prompts', 'core.md');
@@ -155,69 +156,71 @@ async function fetchWebPage(url: string): Promise<string> {
   }
 }
 
-// Save conversation transcript for post-chat analysis
-function saveConversationTranscript(messages: any[], pathname: string, existingConversationId?: string | null): string {
+// Save conversation transcript for post-chat analysis (using Vercel Blob)
+async function saveConversationTranscript(messages: any[], pathname: string, existingConversationId?: string | null): Promise<string> {
   try {
     const timestamp = new Date().toISOString();
     const date = timestamp.split('T')[0]; // YYYY-MM-DD
+    const yearMonth = date.substring(0, 7); // YYYY-MM (for monthly folders)
 
-    // Create directory structure
-    const conversationsDir = path.join(process.cwd(), 'athena', 'intel', 'layer1', 'raw-conversations', date);
-    if (!fs.existsSync(conversationsDir)) {
-      fs.mkdirSync(conversationsDir, { recursive: true });
-    }
-
-    // Try to find existing conversation file if we don't have an ID
+    // Try to find existing conversation if we don't have an ID
     let conversationId: string = '';
     if (existingConversationId) {
       conversationId = existingConversationId;
     } else {
-      // Check if there's already a file with fewer messages (same conversation)
-      const existingFiles = fs.readdirSync(conversationsDir).filter(f => f.endsWith('.json'));
-      let foundExisting = false;
+      // List existing conversations for today to find matching ones
+      try {
+        const prefix = `athena/intel/layer1/raw-conversations/${yearMonth}/`;
+        const { blobs } = await list({ prefix });
 
-      for (const file of existingFiles) {
-        const filePath = path.join(conversationsDir, file);
-        try {
-          const existingData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-          // Check if this is the same conversation (first messages match and this has more messages)
-          if (existingData.messages.length < messages.length &&
-              existingData.messages.length > 0 &&
-              messages.length > 0 &&
-              existingData.messages[0].content === messages[0].content &&
-              existingData.pathname === pathname) {
-            // Check if all existing messages match
-            let allMatch = true;
-            for (let i = 0; i < existingData.messages.length; i++) {
-              if (existingData.messages[i].content !== messages[i].content ||
-                  existingData.messages[i].role !== messages[i].role) {
-                allMatch = false;
+        let foundExisting = false;
+        for (const blob of blobs) {
+          try {
+            const response = await fetch(blob.url);
+            const existingData = await response.json();
+
+            // Check if this is the same conversation (first messages match and this has more messages)
+            if (existingData.messages.length < messages.length &&
+                existingData.messages.length > 0 &&
+                messages.length > 0 &&
+                existingData.messages[0].content === messages[0].content &&
+                existingData.pathname === pathname) {
+              // Check if all existing messages match
+              let allMatch = true;
+              for (let i = 0; i < existingData.messages.length; i++) {
+                if (existingData.messages[i].content !== messages[i].content ||
+                    existingData.messages[i].role !== messages[i].role) {
+                  allMatch = false;
+                  break;
+                }
+              }
+              if (allMatch) {
+                conversationId = existingData.id;
+                foundExisting = true;
+                console.log(`📁 Found existing conversation: ${conversationId}`);
                 break;
               }
             }
-            if (allMatch) {
-              conversationId = existingData.id;
-              foundExisting = true;
-              console.log(`📁 Found existing conversation: ${conversationId}`);
-              break;
-            }
+          } catch (e) {
+            // Skip invalid blobs
+            continue;
           }
-        } catch (e) {
-          // Skip invalid files
-          continue;
         }
-      }
 
-      if (!foundExisting) {
-        const timeSlug = timestamp.split('T')[1].replace(/:/g, '-').split('.')[0]; // HH-MM-SS
+        if (!foundExisting) {
+          const timeSlug = timestamp.split('T')[1].replace(/:/g, '-').split('.')[0]; // HH-MM-SS
+          conversationId = `conversation-${timeSlug}`;
+          console.log(`🆕 New conversation: ${conversationId}`);
+        }
+      } catch (e) {
+        // If list fails, create new conversation
+        const timeSlug = timestamp.split('T')[1].replace(/:/g, '-').split('.')[0];
         conversationId = `conversation-${timeSlug}`;
         console.log(`🆕 New conversation: ${conversationId}`);
       }
     }
 
-    const transcriptFile = path.join(conversationsDir, `${conversationId}.json`);
-
-    // Save conversation data
+    // Save conversation data to Blob
     const conversationData = {
       id: conversationId,
       timestamp,
@@ -226,8 +229,16 @@ function saveConversationTranscript(messages: any[], pathname: string, existingC
       message_count: messages.length
     };
 
-    fs.writeFileSync(transcriptFile, JSON.stringify(conversationData, null, 2));
-    console.log(`💾 Conversation saved: ${conversationId}`);
+    const blobPath = `athena/intel/layer1/raw-conversations/${yearMonth}/${conversationId}.json`;
+
+    const blob = await put(blobPath, JSON.stringify(conversationData, null, 2), {
+      access: 'public',
+      addRandomSuffix: false,
+      allowOverwrite: true, // Allow updating existing conversations
+      contentType: 'application/json'
+    });
+
+    console.log(`💾 Conversation saved to Blob: ${conversationId}`);
 
     return conversationId;
   } catch (error: any) {
@@ -451,7 +462,7 @@ export async function POST(request: NextRequest) {
     );
 
     // Save conversation transcript for post-chat analysis (Layer 1 Intelligence)
-    const conversationId = saveConversationTranscript(messages, pathname || '/', existingConversationId);
+    const conversationId = await saveConversationTranscript(messages, pathname || '/', existingConversationId);
 
     return NextResponse.json(
       {

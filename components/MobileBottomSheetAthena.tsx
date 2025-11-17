@@ -166,6 +166,13 @@ export default function MobileBottomSheetAthena() {
   const promptTransitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [isCloseFading, setIsCloseFading] = useState(false);
   const [isChatActivated, setIsChatActivated] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [scrollVelocity, setScrollVelocity] = useState(0);
+  const lastScrollY = useRef(0);
+  const lastScrollTime = useRef(Date.now());
+  const pendingPromptRef = useRef<string | null>(null);
+  const isInitialLoadRef = useRef(true);
 
   // Track state changes for transition direction
   useEffect(() => {
@@ -226,6 +233,63 @@ export default function MobileBottomSheetAthena() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Detect scrolling to disable transitions and prevent choppy browser chrome adjustments
+  useEffect(() => {
+    if (!isMobile || drawerState !== 'collapsed') return;
+
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // Calculate scroll velocity
+          const currentY = window.scrollY;
+          const currentTime = Date.now();
+          const deltaY = Math.abs(currentY - lastScrollY.current);
+          const deltaTime = currentTime - lastScrollTime.current;
+          const velocity = deltaTime > 0 ? deltaY / deltaTime : 0; // pixels per millisecond
+
+          lastScrollY.current = currentY;
+          lastScrollTime.current = currentTime;
+          setScrollVelocity(velocity);
+
+          // Set scrolling state immediately
+          setIsScrolling(true);
+
+          // Clear existing timeout
+          if (scrollTimeoutRef.current) {
+            clearTimeout(scrollTimeoutRef.current);
+          }
+
+          // Re-enable transitions after scrolling stops (150ms debounce)
+          scrollTimeoutRef.current = setTimeout(() => {
+            setIsScrolling(false);
+            setScrollVelocity(0);
+
+            // Apply pending prompt change if there is one
+            if (pendingPromptRef.current) {
+              setActiveSection(pendingPromptRef.current);
+              pendingPromptRef.current = null;
+            }
+          }, 150);
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Listen to scroll events
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, [isMobile, drawerState]);
 
   // Reset textarea height when input is cleared
   useEffect(() => {
@@ -339,13 +403,28 @@ export default function MobileBottomSheetAthena() {
         }
 
         if (prompt) {
-          // Store this as the last box prompt and update active section
+          // Store this as the last box prompt
           lastBoxPromptRef.current = prompt;
-          setActiveSection(prompt);
+
+          // Only update active section if scroll velocity is low (< 0.5 px/ms)
+          // During fast scroll, queue the change for later
+          if (scrollVelocity < 0.5) {
+            setActiveSection(prompt);
+            pendingPromptRef.current = null; // Clear any pending change
+          } else {
+            // Queue this prompt change for when scroll slows down
+            pendingPromptRef.current = prompt;
+          }
         }
       } else {
-        // No specific element in focus - always revert to page-level prompt
-        setActiveSection(null);
+        // No specific element in focus
+        if (scrollVelocity < 0.5) {
+          setActiveSection(null);
+          pendingPromptRef.current = null;
+        } else {
+          // Queue revert to page prompt
+          pendingPromptRef.current = null;
+        }
       }
     };
 
@@ -379,38 +458,33 @@ export default function MobileBottomSheetAthena() {
         clearTimeout(promptTransitionTimeoutRef.current);
       }
     };
-  }, [isMobile]);
+  }, [isMobile, scrollVelocity]);
 
   // Determine what prompt should be shown
   const targetPrompt = activeSection
     ? activeSection
     : (PAGE_PROMPTS[pathname]?.question || 'Have a question about what you just read?');
 
-  // Trigger transition when target prompt changes
+  // Update displayed prompt when target changes (instant, no transition)
   useEffect(() => {
+    // Skip if displayedPrompt hasn't been set yet (initial render)
+    if (displayedPrompt === null) return;
+
     if (targetPrompt !== displayedPrompt) {
-      // Start transition
-      setIsPromptTransitioning(true);
-
-      // Clear any existing timeout
-      if (promptTransitionTimeoutRef.current) {
-        clearTimeout(promptTransitionTimeoutRef.current);
-      }
-
-      // Wait for fade out to complete, then switch text and fade in
-      promptTransitionTimeoutRef.current = setTimeout(() => {
-        setDisplayedPrompt(targetPrompt);
-        setIsPromptTransitioning(false);
-      }, 1000); // Full 1 second - wait for complete fade out before switching
+      // Instant text change - no fade transition
+      setDisplayedPrompt(targetPrompt);
     }
   }, [targetPrompt, displayedPrompt]);
 
-  // Initialize displayed prompt on mount
+  // Initialize displayed prompt on mount and when pathname changes
   useEffect(() => {
-    if (displayedPrompt === null) {
-      setDisplayedPrompt(targetPrompt);
-    }
-  }, []);
+    // On page load or page change, immediately set the page prompt
+    const pagePrompt = PAGE_PROMPTS[pathname]?.question || 'Have a question about what you just read?';
+    setDisplayedPrompt(pagePrompt);
+    // Clear any pending prompt changes and reset active section
+    pendingPromptRef.current = null;
+    setActiveSection(null);
+  }, [pathname]);
 
   const currentPrompt = { question: displayedPrompt || targetPrompt, context: 'current section' };
 
@@ -584,8 +658,8 @@ export default function MobileBottomSheetAthena() {
   const getDrawerHeight = () => {
     switch (drawerState) {
       case 'collapsed': return '80px';
-      case 'expanded': return '100dvh';
-      case 'chat': return '100dvh';
+      case 'expanded': return '100vh';
+      case 'chat': return '100vh';
     }
   };
 
@@ -614,21 +688,27 @@ export default function MobileBottomSheetAthena() {
         bottom: 0,
         left: 0,
         right: 0,
-        height: '100dvh', // Always full height
+        height: '100vh', // Static viewport height - doesn't change when browser chrome hides
         zIndex: 1001, // Higher than mobile-header (1000) to cover it
         display: 'flex',
         flexDirection: 'column',
         overflow: 'visible',
         pointerEvents: drawerState === 'collapsed' ? 'auto' : 'auto',
         transform: drawerState === 'collapsed'
-          ? 'translate3d(0, calc(100dvh - 80px), 0)'
+          ? 'translate3d(0, calc(100vh - 80px), 0)'
           : 'translate3d(0, 0, 0)',
-        transition: drawerState === 'collapsed'
-          ? 'transform 0.25s cubic-bezier(0.4, 0, 1, 1)' // Fast collapse
-          : 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)', // Slow, elegant expand
+        // Disable transitions during scroll to prevent choppy browser chrome adjustments
+        transition: isScrolling
+          ? 'none'
+          : drawerState === 'collapsed'
+            ? 'transform 0.25s cubic-bezier(0.4, 0, 1, 1)' // Fast collapse
+            : 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)', // Slow, elegant expand
         willChange: 'transform',
         backfaceVisibility: 'hidden',
-        WebkitBackfaceVisibility: 'hidden'
+        WebkitBackfaceVisibility: 'hidden',
+        // More aggressive containment to prevent layout recalculation
+        contain: 'layout style paint',
+        isolation: 'isolate'
       }}
     >
       {/* Content container that slides up */}
@@ -639,7 +719,7 @@ export default function MobileBottomSheetAthena() {
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
-          transform: drawerState === 'chat' ? 'translate3d(0, -100dvh, 0)' : 'translate3d(0, 0, 0)',
+          transform: drawerState === 'chat' ? 'translate3d(0, -100vh, 0)' : 'translate3d(0, 0, 0)',
           transition: drawerState === 'chat'
             ? 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)' // Slow, elegant slide to chat
             : 'transform 0.25s cubic-bezier(0.4, 0, 1, 1)', // Fast return
@@ -653,7 +733,9 @@ export default function MobileBottomSheetAthena() {
         {/* Prompt banner and expanded content */}
         <div
           style={{
-            minHeight: '100dvh',
+            height: '100vh',
+            minHeight: '100vh',
+            maxHeight: '100vh',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
@@ -665,7 +747,8 @@ export default function MobileBottomSheetAthena() {
             paddingBottom: drawerState !== 'collapsed' ? 'env(safe-area-inset-bottom)' : '0',
             boxShadow: drawerState === 'collapsed'
               ? '0 -4px 16px rgba(0, 0, 0, 0.08), 0 -2px 4px rgba(0, 0, 0, 0.04)'
-              : '0 -2px 8px rgba(0, 0, 0, 0.04)'
+              : '0 -2px 8px rgba(0, 0, 0, 0.04)',
+            contain: 'layout style'
           }}
         >
           {/* Prompt banner - always visible in collapsed/expanded */}
@@ -684,23 +767,43 @@ export default function MobileBottomSheetAthena() {
               alignItems: 'center',
               gap: '12px',
               height: '80px',
+              minHeight: '80px',
+              maxHeight: '80px',
               cursor: drawerState === 'collapsed' ? 'pointer' : 'default',
               flexShrink: 0,
               padding: '0 40px',
               borderTop: isChatActivated ? '1px solid #10b981' : '1px solid #D43225',
               borderTopLeftRadius: '20px',
               borderTopRightRadius: '20px',
-              transition: 'border-color 0.4s ease'
+              // Disable border transition during scroll
+              transition: isScrolling ? 'none' : 'border-color 0.4s ease',
+              overflow: 'hidden',
+              position: 'relative',
+              transform: 'translateZ(0)',
+              willChange: 'transform',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              contain: 'layout style paint',
+              isolation: 'isolate'
             }}
           >
             <p style={{
               fontSize: '14px',
               fontWeight: 600,
               margin: 0,
+              padding: 0,
               color: '#222',
-              lineHeight: 1.3,
-              opacity: isPromptTransitioning ? 0 : (drawerState === 'chat' ? 0 : 1),
-              transition: 'opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+              lineHeight: '20px',
+              height: '20px',
+              flex: '0 0 auto',
+              opacity: drawerState === 'chat' ? 0 : 1,
+              transition: 'opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              maxWidth: '100%',
+              transform: 'translateZ(0)',
+              willChange: 'opacity'
             }}>
               {currentPrompt.question}
             </p>
@@ -864,7 +967,7 @@ export default function MobileBottomSheetAthena() {
 
         {/* Chat interface - positioned below the expanded content */}
         <div style={{
-          height: '100dvh',
+          height: '100vh',
           display: 'flex',
           flexDirection: 'column',
           paddingTop: '0', // No padding needed - drawer covers entire screen with z-index 1001

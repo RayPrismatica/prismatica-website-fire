@@ -224,6 +224,7 @@ export default function BentoBoxFromContent({
       shareEmail={shareEmail}
       onEnquire={onEnquire}
       customFooter={customFooter}
+      data-athena-prompt={content.athenaPrompt}
       className={className}
       style={content.style}
     >

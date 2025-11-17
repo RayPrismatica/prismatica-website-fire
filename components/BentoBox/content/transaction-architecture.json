@@ -7,6 +7,7 @@
     "author": "Prismatica Labs",
     "notes": "Transaction Architecture - £25,000 consulting service"
   },
+  "athenaPrompt": "See engagement converting at the rate it should. Curious?",
   "service": {
     "durationWeeks": 5,
     "bufferWeeks": 2,

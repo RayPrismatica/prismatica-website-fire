@@ -153,6 +153,7 @@ export interface BentoContent {
   actions?: Actions;
   style?: StyleOverrides;
   service?: ServiceConfig;
+  athenaPrompt?: string;
 }
 
 // ============================================================================

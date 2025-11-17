@@ -26,6 +26,9 @@
   "enabled": true,
   "_enabled_notes": "Set to false to temporarily hide this bento without deleting the file.",
 
+  "athenaPrompt": "Contextual question that appears in Athena chat banner when this bento is in viewport?",
+  "_athenaPrompt_notes": "Optional. Prompt shown in Athena chat when this bento scrolls into view. Should be conversational and invite engagement (e.g., 'Want to see how this works? Ask Athena.'). Max 100 chars.",
+
   "metadata": {
     "created": "2025-11-16",
     "lastUpdated": "2025-11-16",

@@ -7,6 +7,7 @@
     "author": "Prismatica Labs",
     "notes": "Focus Matrix product - time/priority management tool"
   },
+  "athenaPrompt": "Want to calculate expected value on your hours, not just your bets?",
   "content": {
     "prompt": {
       "type": "static",

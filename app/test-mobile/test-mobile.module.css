@@ -1,0 +1,239 @@
+.container {
+  min-height: 100vh;
+  background: #fff;
+}
+
+.main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 100px 20px 40px; /* Top padding accounts for fixed header */
+}
+
+/* SECTION 1: IDENTITY */
+.hero {
+  font-family: var(--font-passion), sans-serif;
+  font-size: clamp(36px, 12vw, 56px);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  margin: 0 0 32px 0;
+  color: #222;
+}
+
+.heroRed {
+  color: #D43225;
+}
+
+.intro {
+  margin-bottom: 40px;
+}
+
+.identity {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 0 0 12px 0;
+  color: #222;
+}
+
+.valueProp {
+  font-size: 17px;
+  line-height: 1.5;
+  margin: 0;
+  color: #444;
+}
+
+/* SECTION 2: POSITIONING */
+.positioningSection {
+  margin-bottom: 32px;
+}
+
+.positioningStatement {
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0 0 20px 0;
+  color: #222;
+}
+
+.positioningStatement strong {
+  font-weight: 700;
+}
+
+.evidence {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  color: #444;
+}
+
+/* SECTION 3: PROOF */
+.proofSection {
+  margin-bottom: 40px;
+}
+
+.dynamicProofCard {
+  background: #fafafa;
+  border-left: 4px solid #D43225;
+  padding: 20px;
+  margin: 24px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.proofLabel {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #D43225;
+  margin-bottom: 8px;
+}
+
+.proofContent {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  color: #333;
+}
+
+.payoffStatement {
+  margin-top: 32px;
+  padding-left: 20px;
+  border-left: 3px solid #D43225;
+}
+
+.payoffStatement p {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0;
+  color: #222;
+}
+
+/* SECTION 4: NAVIGATION */
+.navCards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.navCard {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  transition: all 150ms ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.navCard:hover {
+  border-color: #D43225;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.navCard:active {
+  transform: scale(0.98);
+}
+
+.navCardPrimary {
+  border-color: #D43225;
+  background: #fff;
+}
+
+.navCardPrimary:hover {
+  background: #fafafa;
+}
+
+.redAccent {
+  width: 3px;
+  height: 40px;
+  background: #D43225;
+  flex-shrink: 0;
+}
+
+.cardContent {
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 4px 0;
+  color: #222;
+}
+
+.cardDesc {
+  font-size: 15px;
+  margin: 0;
+  color: #666;
+}
+
+.arrow {
+  font-size: 20px;
+  color: #D43225;
+  flex-shrink: 0;
+  transition: transform 150ms ease;
+}
+
+.navCard:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Test note */
+.testNote {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.backLink {
+  color: #666;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 150ms ease;
+}
+
+.backLink:hover {
+  color: #D43225;
+}
+
+/* Mobile optimizations */
+@media (max-width: 480px) {
+  .main {
+    padding: 80px 16px 32px; /* Adjusted for mobile header */
+  }
+
+  .hero {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .navCard {
+    padding: 20px;
+  }
+
+  .redAccent {
+    height: 32px;
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 768px) {
+  .main {
+    padding: 120px 40px 60px; /* Top padding for fixed header */
+  }
+
+  .navCards {
+    gap: 20px;
+  }
+}

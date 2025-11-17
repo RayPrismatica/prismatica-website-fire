@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
 import fs from 'fs';
 import path from 'path';
+import { put, list } from '@vercel/blob';
 
 // Analysis prompt for Athena to summarize conversations
 function getAnalysisPrompt(): string {
@@ -22,28 +23,26 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Find the conversation file
+    // Find the conversation in Blob storage
     const today = new Date().toISOString().split('T')[0];
-    const conversationsDir = path.join(
-      process.cwd(),
-      'athena',
-      'intel',
-      'layer1',
-      'raw-conversations',
-      today
-    );
+    const yearMonth = today.substring(0, 7); // YYYY-MM
 
-    const transcriptFile = path.join(conversationsDir, `${conversationId}.json`);
+    // List blobs to find the conversation
+    const prefix = `athena/intel/layer1/raw-conversations/${yearMonth}/`;
+    const { blobs } = await list({ prefix });
 
-    if (!fs.existsSync(transcriptFile)) {
+    const conversationBlob = blobs.find(blob => blob.pathname.includes(`/${conversationId}.json`));
+
+    if (!conversationBlob) {
       return NextResponse.json(
         { error: 'Conversation not found' },
         { status: 404 }
       );
     }
 
-    // Read the conversation
-    const conversationData = JSON.parse(fs.readFileSync(transcriptFile, 'utf8'));
+    // Read the conversation from Blob
+    const response = await fetch(conversationBlob.url);
+    const conversationData = await response.json();
 
     // Skip analysis if conversation is too short (less than 3 exchanges)
     if (conversationData.message_count < 6) {
@@ -94,29 +93,24 @@ ${JSON.stringify(conversationData.messages, null, 2)}`
 
     const summary = textBlock?.text || 'Failed to generate summary';
 
-    // Save the summary
-    const summariesDir = path.join(
-      process.cwd(),
-      'athena',
-      'intel',
-      'layer1',
-      'summaries',
-      today
-    );
+    // Save the summary to Blob
+    const summaryBlobPath = `athena/intel/layer1/summaries/${yearMonth}/${conversationId}.md`;
 
-    if (!fs.existsSync(summariesDir)) {
-      fs.mkdirSync(summariesDir, { recursive: true });
-    }
-
-    const summaryFile = path.join(summariesDir, `${conversationId}.md`);
-    fs.writeFileSync(summaryFile, summary);
+    const summaryBlob = await put(summaryBlobPath, summary, {
+      access: 'public',
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: 'text/markdown'
+    });
 
     console.log(`📝 Analysis complete: ${conversationId}`);
+    console.log(`📝 Summary saved to Blob: ${summaryBlob.url}`);
 
     return NextResponse.json({
       status: 'analyzed',
       conversationId,
-      summaryPath: `athena/intel/layer1/summaries/${today}/${conversationId}.md`
+      summaryUrl: summaryBlob.url,
+      summaryPath: summaryBlobPath
     });
 
   } catch (error) {
