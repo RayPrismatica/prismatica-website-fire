@@ -1,7 +1,46 @@
 {
   "id": "creative-converts",
-  "variant": "link",
+  "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "Based on project",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "creative-converts"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "£1,200",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "/products/creative-converts-framework"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "Coming soon",
+      "productId": "creative-converts-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/creative-converts-tool"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
@@ -11,12 +50,12 @@
   "service": {
     "durationWeeks": 7,
     "bufferWeeks": 2,
-    "basePrice": 12.000
+    "basePrice": 12
   },
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If your brand looks professional but doesn't drive sales or premium pricing..."
+      "text": "If brand lacks pricing power..."
     },
     "title": "Creative That Converts",
     "badge": "Marketing",
@@ -29,7 +68,9 @@
     "metadata": {
       "type": "function",
       "function": "getDeliveryDate",
-      "args": ["creative-converts"],
+      "args": [
+        "creative-converts"
+      ],
       "template": "Six weeks. By {result}, your brand actually drives revenue instead of just looking pretty."
     }
   },

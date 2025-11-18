@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
-export default function Sidebar() {
+export default function Sidebar({ isHomepage = false }: { isHomepage?: boolean }) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
@@ -17,8 +17,6 @@ export default function Sidebar() {
 
   const isActive = (path: string) => pathname === path;
 
-  const mentalModelsSubPages = ['/triptych', '/demand', '/incentives', '/agentic', '/prismatic'];
-  const isMentalModelsActive = pathname === '/mental-models' || mentalModelsSubPages.includes(pathname);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -53,12 +51,10 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile Header - Entire bar is tappable */}
+      {/* Mobile Header - Entire banner toggles menu */}
       <div
         className="mobile-header"
         onClick={toggleMobileMenu}
-        role="button"
-        aria-label="Toggle menu"
         style={{ cursor: 'pointer' }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -67,101 +63,23 @@ export default function Sidebar() {
             alt="Prismatica Labs Logo"
             width={30}
             height={30}
-            style={{ width: '30px', height: 'auto', pointerEvents: 'none' }}
+            style={{ width: '30px', height: 'auto' }}
           />
           <h1 style={{
             fontFamily: 'var(--font-passion), sans-serif',
             fontSize: '16px',
             fontWeight: 600,
             letterSpacing: '-0.5px',
-            margin: 0,
-            pointerEvents: 'none'
+            margin: 0
           }}>
             PRISMATICA LABS
           </h1>
         </div>
       </div>
 
-      {/* Mobile Overlay */}
-      {isMobileMenuOpen && (
-        <div
-          className="mobile-overlay"
-          onClick={closeMobileMenu}
-        />
-      )}
-
       {/* Sidebar Navigation */}
-      <nav className={`sidebar ${isMobileMenuOpen ? 'mobile-open' : ''} ${isInitialLoad ? 'no-transition' : ''}`}>
+      <nav className={`sidebar ${isMobileMenuOpen ? 'mobile-open' : ''} ${isInitialLoad ? 'no-transition' : ''} ${isHomepage ? 'homepage-mode' : ''}`}>
         <div className="sidebar-content">
-          <Link
-            href="/"
-            className={`nav-item block w-full text-left ${isActive('/') ? 'active' : ''}`}
-            style={getMenuItemStyle('/', isActive('/'))}
-            onClick={handleNavClick}
-            onMouseEnter={() => setHoveredItem('/')}
-            onMouseLeave={() => setHoveredItem(null)}
-          >
-            {hoveredItem === '/' && !isActive('/') && (
-              <span style={{
-                position: 'absolute',
-                left: 0,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: '3px',
-                height: '20px',
-                background: '#D43225'
-              }} />
-            )}
-            Home
-          </Link>
-
-          <Link
-            href="/what"
-            className={`nav-item block w-full text-left ${isActive('/what') ? 'active' : ''}`}
-            style={getMenuItemStyle('/what', isActive('/what'))}
-            onClick={handleNavClick}
-            onMouseEnter={() => setHoveredItem('/what')}
-            onMouseLeave={() => setHoveredItem(null)}
-          >
-            {hoveredItem === '/what' && !isActive('/what') && (
-              <span style={{
-                position: 'absolute',
-                left: 0,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: '3px',
-                height: '20px',
-                background: '#D43225'
-              }} />
-            )}
-            About
-          </Link>
-
-          <Link
-            href="/articles"
-            className={`nav-item block w-full text-left ${isActive('/articles') ? 'active' : ''}`}
-            style={getMenuItemStyle('/articles', isActive('/articles'))}
-            onClick={handleNavClick}
-            onMouseEnter={() => setHoveredItem('/articles')}
-            onMouseLeave={() => setHoveredItem(null)}
-          >
-            {hoveredItem === '/articles' && !isActive('/articles') && (
-              <span style={{
-                position: 'absolute',
-                left: 0,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: '3px',
-                height: '20px',
-                background: '#D43225'
-              }} />
-            )}
-            Articles
-          </Link>
-
-          {/* Divider */}
-          <div style={{ height: '1px', background: '#e0e0e0', margin: '12px 0' }} />
-
           <Link
             href="/consulting"
             className={`nav-item block w-full text-left ${isActive('/consulting') ? 'active' : ''}`}
@@ -185,14 +103,14 @@ export default function Sidebar() {
           </Link>
 
           <Link
-            href="/products"
-            className={`nav-item block w-full text-left ${isActive('/products') ? 'active' : ''}`}
-            style={getMenuItemStyle('/products', isActive('/products'))}
+            href="/about"
+            className={`nav-item block w-full text-left ${isActive('/about') ? 'active' : ''}`}
+            style={getMenuItemStyle('/about', isActive('/about'))}
             onClick={handleNavClick}
-            onMouseEnter={() => setHoveredItem('/products')}
+            onMouseEnter={() => setHoveredItem('/about')}
             onMouseLeave={() => setHoveredItem(null)}
           >
-            {hoveredItem === '/products' && !isActive('/products') && (
+            {hoveredItem === '/about' && !isActive('/about') && (
               <span style={{
                 position: 'absolute',
                 left: 0,
@@ -203,55 +121,11 @@ export default function Sidebar() {
                 background: '#D43225'
               }} />
             )}
-            Products
-          </Link>
-
-          <Link
-            href="/who-we-are"
-            className={`nav-item block w-full text-left ${isActive('/who-we-are') ? 'active' : ''}`}
-            style={getMenuItemStyle('/who-we-are', isActive('/who-we-are'))}
-            onClick={handleNavClick}
-            onMouseEnter={() => setHoveredItem('/who-we-are')}
-            onMouseLeave={() => setHoveredItem(null)}
-          >
-            {hoveredItem === '/who-we-are' && !isActive('/who-we-are') && (
-              <span style={{
-                position: 'absolute',
-                left: 0,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: '3px',
-                height: '20px',
-                background: '#D43225'
-              }} />
-            )}
-            Who We Are
-          </Link>
-
-          <Link
-            href="/mental-models"
-            className={`nav-item block w-full text-left ${isMentalModelsActive ? 'active' : ''}`}
-            style={getMenuItemStyle('/mental-models', isMentalModelsActive)}
-            onClick={handleNavClick}
-            onMouseEnter={() => setHoveredItem('/mental-models')}
-            onMouseLeave={() => setHoveredItem(null)}
-          >
-            {hoveredItem === '/mental-models' && !isMentalModelsActive && (
-              <span style={{
-                position: 'absolute',
-                left: 0,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                width: '3px',
-                height: '20px',
-                background: '#D43225'
-              }} />
-            )}
-            Mental Models
+            About Us
           </Link>
 
           {/* Divider */}
-          <div style={{ height: '1px', background: '#e0e0e0', margin: '12px 0' }} />
+          <div style={{ height: '1px', background: '#e0e0e0', margin: '0' }} />
 
           <Link
             href="/contact"
@@ -274,18 +148,67 @@ export default function Sidebar() {
             )}
             Contact
           </Link>
+
+          {/* Divider */}
+          <div style={{ height: '1px', background: '#e0e0e0', margin: '0' }} />
+
+          {/* Philosophy note */}
+          <p className="sidebar-philosophy" style={{
+            fontFamily: '"Noto Sans", sans-serif',
+            fontSize: '11px',
+            lineHeight: '1.6',
+            color: '#666',
+            margin: '32px 0 0 0',
+            fontStyle: 'italic'
+          }}>
+            Simplest site we could make. Everything worth reading is here. Anything else needs a conversation. Time's finite.
+          </p>
         </div>
         <div style={{ flexGrow: 1, minHeight: '24px' }} />
         <div className="sidebar-logo" style={{ flexShrink: 0, paddingBottom: 0 }}>
-          <Image
-            src="/images/logowebp.webp"
-            alt="Prismatica Labs Logo"
-            width={1840}
-            height={1691}
-            style={{ width: '40px', height: 'auto', marginBottom: '8px' }}
-          />
-          <h1 style={{ fontFamily: 'var(--font-passion), sans-serif', fontSize: '18px', fontWeight: 600, letterSpacing: '-0.5px', margin: 0, textAlign: 'left' }}>PRISMATICA LABS</h1>
+          <Link href="/" onClick={handleNavClick} style={{ display: 'block', cursor: 'pointer' }}>
+            <Image
+              src="/images/logowebp.webp"
+              alt="Prismatica Labs Logo"
+              width={1840}
+              height={1691}
+              style={{ width: '40px', height: 'auto', marginBottom: '8px' }}
+            />
+            <h1 style={{ fontFamily: 'var(--font-passion), sans-serif', fontSize: '18px', fontWeight: 600, letterSpacing: '-0.5px', margin: 0, textAlign: 'left' }}>PRISMATICA LABS</h1>
+          </Link>
           <div style={{ display: 'flex', gap: '8px', marginTop: '8px', marginBottom: '4px' }}>
+            <Link
+              href="/products"
+              onClick={handleNavClick}
+              style={{
+                fontFamily: '"Noto Sans", sans-serif',
+                fontSize: '9px',
+                color: '#999',
+                textDecoration: 'none',
+                transition: 'color 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#999'}
+            >
+              Products
+            </Link>
+            <span style={{ fontSize: '9px', color: '#e0e0e0' }}>•</span>
+            <Link
+              href="/articles"
+              onClick={handleNavClick}
+              style={{
+                fontFamily: '"Noto Sans", sans-serif',
+                fontSize: '9px',
+                color: '#999',
+                textDecoration: 'none',
+                transition: 'color 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#999'}
+            >
+              Articles
+            </Link>
+            <span style={{ fontSize: '9px', color: '#e0e0e0' }}>•</span>
             <Link
               href="/privacy"
               onClick={handleNavClick}

@@ -118,7 +118,7 @@ export default function ProductsPage() {
             textDecoration: 'none',
             borderRadius: '6px',
             fontWeight: 600,
-            fontSize: '15px',
+            fontSize: '17px',
             letterSpacing: '0.3px',
             border: 'none',
             cursor: 'pointer',

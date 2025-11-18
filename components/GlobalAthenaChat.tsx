@@ -24,15 +24,11 @@ const PAGE_PROMPTS: Record<string, ContextualPrompt> = {
     question: 'Are you solving for the right variable?',
     context: 'landing page'
   },
-  '/what': {
-    question: 'Want to see new questions at work?',
-    context: 'services overview'
-  },
   '/products': {
     question: 'Which intelligence gap are you solving for?',
     context: 'product suite page'
   },
-  '/who-we-are': {
+  '/about': {
     question: 'Think this matches how you see the world?',
     context: 'about page'
   },
@@ -40,13 +36,13 @@ const PAGE_PROMPTS: Record<string, ContextualPrompt> = {
     question: 'Which one solves your actual problem?',
     context: 'consulting services'
   },
+  '/solutions': {
+    question: 'Which one solves your actual problem?',
+    context: 'solutions page'
+  },
   '/contact': {
     question: 'What variable are you trying to solve for?',
     context: 'contact page'
-  },
-  '/mental-models': {
-    question: 'Where does your market thinking break down?',
-    context: 'mental models service'
   },
   '/triptych': {
     question: 'Which channel are you ignoring?',
@@ -177,35 +173,43 @@ export default function GlobalAthenaChat() {
             setActiveSection(prompt);
           }
         } else {
-          // Element has no prompt - reset to page prompt
+          // Element has no prompt - keep the last bento prompt (sticky behavior)
+          // Don't reset unless we're clearly out of the bento section
+        }
+      } else {
+        // No box in viewport - STICKY BEHAVIOR
+        // Keep the last bento prompt unless user scrolled to top (before first bento)
+        // or past the last bento significantly
+
+        const allBentos = document.querySelectorAll('.bento-box, .service-bento, .product-bento, .bento-link, [data-athena-prompt]');
+
+        if (allBentos.length > 0) {
+          const firstBento = allBentos[0];
+          const lastBento = allBentos[allBentos.length - 1];
+
+          const firstBentoTop = firstBento.getBoundingClientRect().top + window.scrollY;
+          const lastBentoBottom = lastBento.getBoundingClientRect().bottom + window.scrollY;
+
+          // If we're above the first bento (at the top of the page), reset to page prompt
+          if (currentScrollY < firstBentoTop - 200) {
+            if (lastBoxPromptRef.current !== null) {
+              lastBoxPromptRef.current = null;
+              setActiveSection(null);
+            }
+          }
+          // If we're significantly below the last bento (scrolled past all bentos), reset to page prompt
+          else if (currentScrollY > lastBentoBottom + 200) {
+            if (lastBoxPromptRef.current !== null) {
+              lastBoxPromptRef.current = null;
+              setActiveSection(null);
+            }
+          }
+          // Otherwise, keep the last bento prompt (sticky behavior)
+        } else {
+          // No bentos on page, always use page prompt
           if (lastBoxPromptRef.current !== null) {
             lastBoxPromptRef.current = null;
             setActiveSection(null);
-          }
-        }
-      } else {
-        // No box in viewport
-        // If scrolling fast (> 1 pixel per millisecond), keep the last prompt
-        // If scrolling slow or stopped, reset to page prompt after a delay
-        const isFastScrolling = scrollVelocityRef.current > 1;
-
-        if (isFastScrolling && lastBoxPromptRef.current !== null) {
-          // Fast scrolling - keep the last bento prompt
-          // Clear any pending reset
-          if (resetPromptTimeoutRef.current) {
-            clearTimeout(resetPromptTimeoutRef.current);
-            resetPromptTimeoutRef.current = null;
-          }
-        } else {
-          // Slow or stopped - schedule reset to page prompt
-          if (!resetPromptTimeoutRef.current) {
-            resetPromptTimeoutRef.current = setTimeout(() => {
-              if (lastBoxPromptRef.current !== null) {
-                lastBoxPromptRef.current = null;
-                setActiveSection(null);
-              }
-              resetPromptTimeoutRef.current = null;
-            }, 500); // Wait 500ms before resetting to page prompt
           }
         }
       }
@@ -422,6 +426,11 @@ export default function GlobalAthenaChat() {
     // setMessages([]);
     // setCurrentConversationId(null);
   };
+
+  // Don't render on Focus homepage
+  if (pathname === '/') {
+    return null;
+  }
 
   return (
     <>

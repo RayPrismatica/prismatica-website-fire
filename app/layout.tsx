@@ -5,6 +5,8 @@ import GlobalAthenaChat from "@/components/GlobalAthenaChat";
 import { AthenaChatProvider } from "@/contexts/AthenaChatContext";
 import MobileAnimations from "@/components/MobileAnimations";
 import MobileBottomSheetAthena from "@/components/MobileBottomSheetAthena";
+import PersistentSidebar from "@/components/PersistentSidebar";
+import SessionDetector from "@/components/SessionDetector";
 
 const notoSans = Noto_Sans({
   variable: "--font-noto-sans",
@@ -43,6 +45,8 @@ export default function RootLayout({
         className={`${notoSans.variable} ${passionOne.variable} antialiased`}
       >
         <AthenaChatProvider>
+          <SessionDetector />
+          <PersistentSidebar />
           {children}
           <GlobalAthenaChat />
           <MobileAnimations />

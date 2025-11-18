@@ -175,12 +175,12 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
               <div style={{ marginBottom: '24px' }}>
                 <Dialog.Title
                   as="h3"
-                  style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, marginTop: 0, marginBottom: '8px', textTransform: 'uppercase' }}
+                  style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '17px', fontWeight: 700, marginTop: 0, marginBottom: '8px', textTransform: 'uppercase' }}
                 >
                   Check Capacity
                 </Dialog.Title>
                 {currentStep < 7 && (
-                  <p style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', color: '#999', marginBottom: 0 }}>
+                  <p style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '1px', color: '#999', marginBottom: 0 }}>
                     Step {currentStep} of 6
                   </p>
                 )}
@@ -191,7 +191,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                 {/* Step 1: Industry */}
                 {currentStep === 1 && (
                   <div>
-                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>
+                    <p style={{ fontSize: '17px', fontWeight: 600, marginBottom: '8px' }}>
                       What do you do?
                     </p>
                     <p style={{ fontSize: '13px', color: '#666', marginBottom: '16px' }}>
@@ -211,7 +211,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                             padding: '12px 16px',
                             border: '2px solid #e0e0e0',
                             borderRadius: '8px',
-                            fontSize: '15px',
+                            fontSize: '17px',
                             boxSizing: 'border-box',
                             backgroundColor: 'white',
                             transition: 'border-color 0.2s',
@@ -260,7 +260,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                               padding: '10px 12px',
                               border: '1px solid #ddd',
                               borderRadius: '4px',
-                              fontSize: '14px',
+                              fontSize: '17px',
                               boxSizing: 'border-box'
                             }}
                           />
@@ -273,7 +273,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                 {/* Step 2: Market */}
                 {currentStep === 2 && (
                   <div>
-                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>
+                    <p style={{ fontSize: '17px', fontWeight: 600, marginBottom: '8px' }}>
                       Where do you operate?
                     </p>
                     <p style={{ fontSize: '13px', color: '#666', marginBottom: '16px' }}>
@@ -295,7 +295,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                             padding: '12px 16px',
                             border: '2px solid #e0e0e0',
                             borderRadius: '8px',
-                            fontSize: '15px',
+                            fontSize: '17px',
                             boxSizing: 'border-box',
                             backgroundColor: 'white',
                             transition: 'border-color 0.2s',
@@ -329,7 +329,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                               padding: '10px 12px',
                               border: '1px solid #ddd',
                               borderRadius: '4px',
-                              fontSize: '14px',
+                              fontSize: '17px',
                               boxSizing: 'border-box',
                               backgroundColor: 'white'
                             }}
@@ -350,7 +350,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                 {/* Step 3: Motivation */}
                 {currentStep === 3 && (
                   <div>
-                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>
+                    <p style={{ fontSize: '17px', fontWeight: 600, marginBottom: '8px' }}>
                       Select your motivation
                     </p>
                     <p style={{ fontSize: '13px', color: '#666', marginBottom: '16px' }}>
@@ -367,7 +367,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
                           style={{ marginRight: '8px', marginTop: '2px', flexShrink: 0 }}
                         />
-                        <span style={{ fontSize: '14px' }}>Stuck On A Big Decision</span>
+                        <span style={{ fontSize: '17px' }}>Stuck On A Big Decision</span>
                       </label>
 
                       <label style={{ display: 'flex', alignItems: 'flex-start', cursor: 'pointer' }}>
@@ -379,7 +379,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
                           style={{ marginRight: '8px', marginTop: '2px', flexShrink: 0 }}
                         />
-                        <span style={{ fontSize: '14px' }}>Building Something New</span>
+                        <span style={{ fontSize: '17px' }}>Building Something New</span>
                       </label>
 
                       <label style={{ display: 'flex', alignItems: 'flex-start', cursor: 'pointer' }}>
@@ -391,7 +391,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
                           style={{ marginRight: '8px', marginTop: '2px', flexShrink: 0 }}
                         />
-                        <span style={{ fontSize: '14px' }}>Level Up Strategic Thinking</span>
+                        <span style={{ fontSize: '17px' }}>Level Up Strategic Thinking</span>
                       </label>
 
                       <label style={{ display: 'flex', alignItems: 'flex-start', cursor: 'pointer' }}>
@@ -403,7 +403,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
                           style={{ marginRight: '8px', marginTop: '2px', flexShrink: 0 }}
                         />
-                        <span style={{ fontSize: '14px' }}>Can't Afford Consultants Anymore</span>
+                        <span style={{ fontSize: '17px' }}>Can't Afford Consultants Anymore</span>
                       </label>
 
                       <label style={{ display: 'flex', alignItems: 'flex-start', cursor: 'pointer' }}>
@@ -415,7 +415,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
                           style={{ marginRight: '8px', marginTop: '2px', flexShrink: 0 }}
                         />
-                        <span style={{ fontSize: '14px' }}>Competitor Just Out-Thought Us</span>
+                        <span style={{ fontSize: '17px' }}>Competitor Just Out-Thought Us</span>
                       </label>
 
                       <label style={{ display: 'flex', alignItems: 'flex-start', cursor: 'pointer' }}>
@@ -427,7 +427,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
                           style={{ marginRight: '8px', marginTop: '2px', flexShrink: 0 }}
                         />
-                        <span style={{ fontSize: '14px' }}>Scaling Faster Than We Can Think</span>
+                        <span style={{ fontSize: '17px' }}>Scaling Faster Than We Can Think</span>
                       </label>
 
                       <label style={{ display: 'flex', alignItems: 'flex-start', cursor: 'pointer' }}>
@@ -439,7 +439,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
                           style={{ marginRight: '8px', marginTop: '2px', flexShrink: 0 }}
                         />
-                        <span style={{ fontSize: '14px' }}>Too Many Reactive Decisions</span>
+                        <span style={{ fontSize: '17px' }}>Too Many Reactive Decisions</span>
                       </label>
 
                       <label style={{ display: 'flex', alignItems: 'flex-start', cursor: 'pointer' }}>
@@ -451,7 +451,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
                           style={{ marginRight: '8px', marginTop: '2px', flexShrink: 0 }}
                         />
-                        <span style={{ fontSize: '14px' }}>Want An Unfair Advantage</span>
+                        <span style={{ fontSize: '17px' }}>Want An Unfair Advantage</span>
                       </label>
 
                       <label style={{ display: 'flex', alignItems: 'flex-start', cursor: 'pointer' }}>
@@ -463,7 +463,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           onChange={(e) => setFormData({ ...formData, motivation: e.target.value })}
                           style={{ marginRight: '8px', marginTop: '2px', flexShrink: 0 }}
                         />
-                        <span style={{ fontSize: '14px' }}>Compete With Prismatica Labs (We Love Competition)</span>
+                        <span style={{ fontSize: '17px' }}>Compete With Prismatica Labs (We Love Competition)</span>
                       </label>
                     </div>
 
@@ -475,7 +475,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         borderRadius: '8px',
                         marginTop: '16px'
                       }}>
-                        <p style={{ fontSize: '14px', lineHeight: '1.6', margin: 0, color: '#222', fontWeight: 500 }}>
+                        <p style={{ fontSize: '17px', lineHeight: '1.6', margin: 0, color: '#222', fontWeight: 500 }}>
                           Challenge accepted. We'll give you everything we've got. May the best thinking win. Let's do this!
                         </p>
                       </div>
@@ -486,7 +486,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                 {/* Step 4: Entity Details */}
                 {currentStep === 4 && (
                   <div>
-                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>
+                    <p style={{ fontSize: '17px', fontWeight: 600, marginBottom: '8px' }}>
                       About your entity
                     </p>
                     <p style={{ fontSize: '13px', color: '#666', marginBottom: '16px' }}>
@@ -506,7 +506,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                             padding: '12px 16px',
                             border: '2px solid #e0e0e0',
                             borderRadius: '8px',
-                            fontSize: '15px',
+                            fontSize: '17px',
                             boxSizing: 'border-box',
                             backgroundColor: 'white',
                             transition: 'border-color 0.2s',
@@ -538,7 +538,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                             padding: '12px 16px',
                             border: '2px solid #e0e0e0',
                             borderRadius: '8px',
-                            fontSize: '15px',
+                            fontSize: '17px',
                             boxSizing: 'border-box',
                             backgroundColor: 'white',
                             transition: 'border-color 0.2s',
@@ -562,7 +562,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                 {/* Step 5: Contact Details */}
                 {currentStep === 5 && (
                   <div>
-                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '16px' }}>
+                    <p style={{ fontSize: '17px', fontWeight: 600, marginBottom: '16px' }}>
                       Your details
                     </p>
 
@@ -583,7 +583,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                             padding: '12px 16px',
                             border: '2px solid #e0e0e0',
                             borderRadius: '8px',
-                            fontSize: '15px',
+                            fontSize: '17px',
                             boxSizing: 'border-box',
                             transition: 'border-color 0.2s',
                             outline: 'none'
@@ -609,7 +609,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                             padding: '12px 16px',
                             border: '2px solid #e0e0e0',
                             borderRadius: '8px',
-                            fontSize: '15px',
+                            fontSize: '17px',
                             boxSizing: 'border-box',
                             transition: 'border-color 0.2s',
                             outline: 'none'
@@ -635,7 +635,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                             padding: '12px 16px',
                             border: '2px solid #e0e0e0',
                             borderRadius: '8px',
-                            fontSize: '15px',
+                            fontSize: '17px',
                             boxSizing: 'border-box',
                             transition: 'border-color 0.2s',
                             outline: 'none'
@@ -651,7 +651,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                 {/* Step 6: Challenge */}
                 {currentStep === 6 && (
                   <div>
-                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>
+                    <p style={{ fontSize: '17px', fontWeight: 600, marginBottom: '8px' }}>
                       What's the challenge?
                     </p>
                     <p style={{ fontSize: '13px', color: '#666', marginBottom: '16px' }}>
@@ -673,7 +673,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                           padding: '12px 16px',
                           border: '2px solid #e0e0e0',
                           borderRadius: '8px',
-                          fontSize: '15px',
+                          fontSize: '17px',
                           boxSizing: 'border-box',
                           fontFamily: 'inherit',
                           resize: 'none',
@@ -684,7 +684,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
                         onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                       />
-                      <p style={{ fontSize: '12px', color: '#666', marginTop: '4px', textAlign: 'right' }}>
+                      <p style={{ fontSize: '13px', color: '#666', marginTop: '4px', textAlign: 'right' }}>
                         {formData.challenge.length}/200 characters
                       </p>
                     </div>
@@ -695,10 +695,10 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                 {currentStep === 7 && (
                   <div style={{ textAlign: 'center', padding: '20px 0' }}>
                     <div style={{ fontSize: '48px', marginBottom: '16px' }}>✓</div>
-                    <p style={{ fontSize: '18px', fontWeight: 600, marginBottom: '12px' }}>
+                    <p style={{ fontSize: '17px', fontWeight: 600, marginBottom: '12px' }}>
                       Request received
                     </p>
-                    <p style={{ fontSize: '14px', color: '#666', marginBottom: 0 }}>
+                    <p style={{ fontSize: '17px', color: '#666', marginBottom: 0 }}>
                       We'll check capacity and respond within 48 hours
                     </p>
                   </div>
@@ -721,7 +721,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                       background: 'none',
                       color: '#222',
                       border: 'none',
-                      fontSize: '11px',
+                      fontSize: '13px',
                       fontWeight: 600,
                       letterSpacing: '1px',
                       textTransform: 'uppercase',
@@ -752,7 +752,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -772,7 +772,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -803,7 +803,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -823,7 +823,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -854,7 +854,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -874,7 +874,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -905,7 +905,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -925,7 +925,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -956,7 +956,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -976,7 +976,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -1007,7 +1007,7 @@ export default function ProductsEnquiryModal({ onClose }: ProductsEnquiryModalPr
                       background: 'none',
                       color: '#222',
                       border: 'none',
-                      fontSize: '11px',
+                      fontSize: '13px',
                       fontWeight: 600,
                       letterSpacing: '1px',
                       textTransform: 'uppercase',

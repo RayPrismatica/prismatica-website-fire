@@ -45,8 +45,11 @@ export default function MobileAnimations() {
       }
     );
 
-    // Observer for "in-viewport" red accent state (happens at ~60% from top)
+    // Observer for "in-viewport" red accent state
+    // Desktop: triggers when more centered (later scroll)
+    // Mobile: triggers earlier (60% from top)
     // IMPORTANT: Only ONE element should have .in-viewport at a time
+    const isDesktop = window.innerWidth > 768;
     const focusObserver = new IntersectionObserver(
       (entries) => {
         // Process all entries to determine which should be active
@@ -83,8 +86,11 @@ export default function MobileAnimations() {
         }
       },
       {
-        threshold: 0, // Trigger as soon as any part is in the zone
-        rootMargin: '-60% 0px -40% 0px' // Top of element at 60% from top of screen
+        threshold: 0,
+        // Desktop: trigger when element is high on screen (-300px top = element must scroll 300px into viewport)
+        // Mobile: trigger earlier (-60% top = element at 60% from top = current behavior)
+        // Reduced bottom margin to allow last elements to trigger
+        rootMargin: isDesktop ? '-300px 0px -20% 0px' : '-60% 0px -10% 0px'
       }
     );
 
@@ -104,10 +110,10 @@ export default function MobileAnimations() {
           el.classList.add('revealed');
         }
 
-        // Add 'in-viewport' class if element is in the activation zone (60% from top)
-        // Activation zone: between 60% from top and 40% from bottom
-        const activationTop = viewportHeight * 0.6;
-        const activationBottom = viewportHeight * 0.4;
+        // Add 'in-viewport' class if element is in the activation zone
+        // Desktop: 300px from top (high on screen), Mobile: 60% from top (earlier)
+        const activationTop = isDesktop ? 300 : viewportHeight * 0.6;
+        const activationBottom = isDesktop ? viewportHeight * 0.8 : viewportHeight * 0.4;
         if (rect.top <= activationTop && rect.bottom >= activationBottom) {
           el.classList.add('in-viewport');
         }

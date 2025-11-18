@@ -1,17 +1,56 @@
 {
   "id": "marketing-reality-check",
-  "variant": "link",
+  "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "£8,000",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "marketing-reality-check"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "£800",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "/products/marketing-reality-check-framework"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "£299/mo",
+      "productId": "marketing-reality-check-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/marketing-reality-check-tool"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
-    "notes": "Marketing Reality Check - \u00a38,000 consulting service"
+    "notes": "Marketing Reality Check - £8,000 consulting service"
   },
   "athenaPrompt": "See what actually moves the needle in your market. Ready?",
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If your marketing looks busy but results feel random..."
+      "text": "If busy but random..."
     },
     "title": "Marketing Reality Check",
     "badge": "Marketing",
@@ -32,13 +71,13 @@
   },
   "footer": {
     "type": "price-cta",
-    "price": "From \u00a38,000"
+    "price": "From £8,000"
   },
   "actions": {
     "share": {
       "enabled": true,
       "subject": "Worth looking at: Marketing Reality Check",
-      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a marketing reality check based on actual customer behavior, not research reports. They track real patterns and show you what's working despite your strategy, not because of it.\n\nThree weeks, starts at \u00a38,000.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a marketing reality check based on actual customer behavior, not research reports. They track real patterns and show you what's working despite your strategy, not because of it.\n\nThree weeks, starts at £8,000.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
     },
     "enquire": {
       "enabled": true,

@@ -90,7 +90,7 @@ export default function BentoTestPage() {
           console.log('Enquire clicked for go-to-market');
         }}
       >
-        <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>
+        <p style={{ marginBottom: '16px', fontSize: '17px', lineHeight: '1.6', color: '#444' }}>
           Launch right the first time. We build your complete go-to-market strategy from positioning
           to channels to messaging to timeline. Who you're targeting, what you're saying, where you're
           saying it, and in what sequence. Everything mapped before you spend a pound on execution.
@@ -107,23 +107,23 @@ export default function BentoTestPage() {
         title="The Focus Matrix"
         customFooter={
           <div>
-            <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '0', color: '#222' }}>
+            <p style={{ fontWeight: 600, fontSize: '17px', marginBottom: '0', color: '#222' }}>
               Turns "busy" into "lethal".
             </p>
-            <p style={{ fontSize: '14px', color: '#666', marginTop: '4px' }}>
+            <p style={{ fontSize: '17px', color: '#666', marginTop: '4px' }}>
               Stop drowning. Start compounding.
             </p>
           </div>
         }
       >
-        <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>
+        <p style={{ marginBottom: '16px', fontSize: '17px', lineHeight: '1.6', color: '#444' }}>
           Poker players calculate expected value on every bet. You should too. But for your hours, not your chips.
         </p>
-        <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>
+        <p style={{ marginBottom: '16px', fontSize: '17px', lineHeight: '1.6', color: '#444' }}>
           This runs game theory on your entire calendar. EV vs. CV for every commitment. Accounts for global
           shifts that kill projects or create asymmetric opportunities. Shows you where to go all-in and what to fold.
         </p>
-        <p style={{ marginBottom: '20px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>
+        <p style={{ marginBottom: '20px', fontSize: '17px', lineHeight: '1.6', color: '#444' }}>
           Your time is finite. Most people spend it on what screams loudest. This shows you where it compounds.
           Pushes to calendar. Shares the math with others so they understand your no's.
         </p>
@@ -138,10 +138,10 @@ export default function BentoTestPage() {
         title="Consulting Services"
         customFooter={
           <div>
-            <p style={{ fontWeight: 600, fontSize: '18px', marginBottom: '4px', color: '#222' }}>
+            <p style={{ fontWeight: 600, fontSize: '17px', marginBottom: '4px', color: '#222' }}>
               We fix things. Then we leave.
             </p>
-            <p style={{ fontSize: '14px', color: '#666', marginBottom: '16px' }}>
+            <p style={{ fontSize: '17px', color: '#666', marginBottom: '16px' }}>
               No retainers. No dependency.
             </p>
             <a
@@ -151,7 +151,7 @@ export default function BentoTestPage() {
                 padding: '12px 24px',
                 backgroundColor: '#D43225',
                 color: '#ffffff',
-                fontSize: '15px',
+                fontSize: '17px',
                 fontWeight: 600,
                 textDecoration: 'none',
                 borderRadius: '4px',
@@ -170,12 +170,12 @@ export default function BentoTestPage() {
           padding: '40px 32px',
         }}
       >
-        <p style={{ marginBottom: '16px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>
+        <p style={{ marginBottom: '16px', fontSize: '17px', lineHeight: '1.6', color: '#444' }}>
           <strong>Some problems need custom work.</strong> Every consultancy, SaaS pitch deck, and agency
           website uses the same words. 'Transformation over transaction.' 'Strategic partnerships.' 'Solutions.'
           We won't.
         </p>
-        <p style={{ marginBottom: '20px', fontSize: '16px', lineHeight: '1.6', color: '#444' }}>
+        <p style={{ marginBottom: '20px', fontSize: '17px', lineHeight: '1.6', color: '#444' }}>
           We work directly with you and adapt as the problem reveals itself. First call is diagnostic.
           If we're not finding new angles within 30 minutes, walk away.
         </p>
@@ -197,7 +197,7 @@ export default function BentoTestPage() {
       <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '48px 0' }} />
 
       <div style={{ padding: '32px', backgroundColor: '#f5f5f5', borderRadius: '8px', marginTop: '48px' }}>
-        <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '16px' }}>Testing Checklist</h3>
+        <h3 style={{ fontSize: '17px', fontWeight: 700, marginBottom: '16px' }}>Testing Checklist</h3>
         <ul style={{ lineHeight: '1.8', color: '#444' }}>
           <li>✓ All three variants render correctly</li>
           <li>✓ Hover states work (scale on service/link, translateY on product)</li>
@@ -261,7 +261,7 @@ export default function BentoTestPage() {
 
       <div style={{ marginTop: '48px', padding: '24px', backgroundColor: '#fffbea', borderRadius: '8px', border: '1px solid #f0e68c' }}>
         <p style={{ fontWeight: 600, marginBottom: '8px' }}>⚠️ Remember to delete this test page</p>
-        <p style={{ fontSize: '14px', color: '#666' }}>
+        <p style={{ fontSize: '17px', color: '#666' }}>
           This page is for testing only. Delete <code>/app/bento-test/page.tsx</code> when you're done.
         </p>
       </div>

@@ -12,15 +12,11 @@ const PAGE_PROMPTS: Record<string, { question: string; context: string }> = {
     question: 'Are you solving for the right variable?',
     context: 'landing page'
   },
-  '/what': {
-    question: 'Want to see new questions at work?',
-    context: 'services overview'
-  },
   '/products': {
     question: 'Which intelligence gap are you solving for?',
     context: 'product suite page'
   },
-  '/who-we-are': {
+  '/about': {
     question: 'Think this matches how you see the world?',
     context: 'about page'
   },
@@ -28,13 +24,13 @@ const PAGE_PROMPTS: Record<string, { question: string; context: string }> = {
     question: 'Which one solves your actual problem?',
     context: 'consulting services'
   },
+  '/solutions': {
+    question: 'Which one solves your actual problem?',
+    context: 'solutions page'
+  },
   '/contact': {
     question: 'What variable are you trying to solve for?',
     context: 'contact page'
-  },
-  '/mental-models': {
-    question: 'Where does your market thinking break down?',
-    context: 'mental models service'
   },
   '/triptych': {
     question: 'Which channel are you ignoring?',
@@ -417,13 +413,46 @@ export default function MobileBottomSheetAthena() {
           }
         }
       } else {
-        // No specific element in focus
-        if (scrollVelocity < 0.5) {
-          setActiveSection(null);
-          pendingPromptRef.current = null;
+        // No box in viewport - STICKY BEHAVIOR
+        // Keep the last bento prompt unless user scrolled to top (before first bento)
+        // or past the last bento significantly
+
+        const allBentos = document.querySelectorAll('.bento-box, .service-bento, .product-bento, .bento-link, [data-athena-prompt]');
+
+        if (allBentos.length > 0) {
+          const firstBento = allBentos[0];
+          const lastBento = allBentos[allBentos.length - 1];
+
+          const firstBentoTop = firstBento.getBoundingClientRect().top + window.scrollY;
+          const lastBentoBottom = lastBento.getBoundingClientRect().bottom + window.scrollY;
+          const currentScrollY = window.scrollY;
+
+          // If we're above the first bento (at the top of the page), reset to page prompt
+          if (currentScrollY < firstBentoTop - 200) {
+            if (lastBoxPromptRef.current !== null && scrollVelocity < 0.5) {
+              lastBoxPromptRef.current = null;
+              setActiveSection(null);
+              pendingPromptRef.current = null;
+            }
+          }
+          // If we're significantly below the last bento (scrolled past all bentos), reset to page prompt
+          else if (currentScrollY > lastBentoBottom + 200) {
+            if (lastBoxPromptRef.current !== null && scrollVelocity < 0.5) {
+              lastBoxPromptRef.current = null;
+              setActiveSection(null);
+              pendingPromptRef.current = null;
+            }
+          }
+          // Otherwise, keep the last bento prompt (sticky behavior)
         } else {
-          // Queue revert to page prompt
-          pendingPromptRef.current = null;
+          // No bentos on page, always use page prompt
+          if (scrollVelocity < 0.5) {
+            if (lastBoxPromptRef.current !== null) {
+              lastBoxPromptRef.current = null;
+              setActiveSection(null);
+              pendingPromptRef.current = null;
+            }
+          }
         }
       }
     };
@@ -648,9 +677,9 @@ export default function MobileBottomSheetAthena() {
     }
   };
 
-  // Don't render on server or if not mobile
+  // Don't render on server, if not mobile, or on Focus homepage
   // Wait for client-side mount to prevent hydration mismatch
-  if (!isMounted || !isMobile) {
+  if (!isMounted || !isMobile || pathname === '/') {
     return null;
   }
 

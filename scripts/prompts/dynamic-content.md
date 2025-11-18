@@ -107,17 +107,17 @@ Pick ONE recent HBR article (from the list above) about consulting, strategy, tr
 
 ## PIECE 4 - CONTENT REMINDER (for the Contact page callback)
 
-This appears on the Contact page to remind visitors what they just saw on the previous pages.
+This appears on the Contact page to remind visitors what they just saw on the landing page.
 
 Write ONE sentence (under 35 words) that:
-1. References what appeared on the Focus page (the news insight from PIECE 1)
-2. References what appeared on What We Do (the question from PIECE 2)
-3. Shows they're connected - same story, different angles
+1. References what appeared on the landing page (the news insight from PIECE 1)
+2. Acknowledges they've read through the site
+3. Creates continuity and shows the content is live and current
 
-**Format:** "Remember how the landing page showed [brief reference to the news], and the What We Do page wondered [brief reference to the question]?"
+**Format:** "Remember how the landing page showed [brief reference to the news]?"
 
 **Example:**
-"Remember how the landing page showed Tesla's price cuts, and the What We Do page wondered if it was margin testing or demand panic?"
+"Remember how the landing page showed Tesla's price cuts testing margins in real-time?"
 
 Keep it super casual and conversational.
 

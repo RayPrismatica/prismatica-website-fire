@@ -2,6 +2,8 @@
 
 import React from 'react';
 import styles from './BentoBox.module.css';
+import DeliveryModeIcons from './DeliveryModeIcons';
+import type { DeliveryMode } from './types';
 
 // ============================================================================
 // TypeScript Interfaces
@@ -23,7 +25,7 @@ export interface BentoBoxProps {
   // Content
   prompt?: string;
   title: string;
-  badge?: string;
+  badge?: string; // Category badge (e.g., "Strategy", "Marketing")
   children: React.ReactNode;
 
   // Metadata (timeline/duration)
@@ -41,6 +43,9 @@ export interface BentoBoxProps {
 
   // Variant
   variant?: 'service' | 'link' | 'product';
+
+  // Delivery modes (Capabilities Consolidation Phase 2)
+  deliveryModes?: DeliveryMode[];
 
   // Athena prompt (for contextual chat)
   'data-athena-prompt'?: string;
@@ -65,6 +70,7 @@ export default function BentoBox({
   onEnquire,
   customFooter,
   variant = 'service',
+  deliveryModes,
   'data-athena-prompt': athenaPrompt,
   className = '',
   style = {},
@@ -81,6 +87,8 @@ export default function BentoBox({
     borderRadius: '12px',
     marginBottom: '24px',
     transition: 'transform 0.3s ease',
+    position: 'relative', // Required for absolute positioned icons
+    overflow: 'hidden', // Ensure zones don't overflow rounded corners
     ...style,
   };
 
@@ -90,15 +98,23 @@ export default function BentoBox({
       style={containerStyle}
       data-athena-prompt={athenaPrompt}
     >
-      {/* Prompt with red accent bar (optional) */}
+      {/* Prompt - pure typography, no decoration (Ive's approach) */}
       {prompt && (
-        <p style={{ position: 'relative', fontSize: '16px', marginBottom: '16px' }}>
-          <span className={styles.accentBar}></span>
+        <p
+          style={{
+            fontSize: '28px',
+            lineHeight: '1.3',
+            fontWeight: 300,
+            color: '#222',
+            marginBottom: '32px',
+            letterSpacing: '-0.02em',
+          }}
+        >
           {prompt}
         </p>
       )}
 
-      {/* Title with optional badge */}
+      {/* Title */}
       <h3
         style={{
           fontSize: '17px',
@@ -107,29 +123,9 @@ export default function BentoBox({
           textTransform: 'uppercase',
           marginBottom: '20px',
           color: '#222',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          flexWrap: 'wrap',
         }}
       >
         {title}
-        {badge && (
-          <span
-            style={{
-              fontSize: '10px',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              padding: '4px 8px',
-              background: '#f5f5f5',
-              color: '#666',
-              borderRadius: '4px',
-              textTransform: 'uppercase',
-            }}
-          >
-            {badge}
-          </span>
-        )}
       </h3>
 
       {/* Body content - styled paragraphs */}
@@ -142,9 +138,10 @@ export default function BentoBox({
         <p
           style={{
             marginBottom: '20px',
-            fontSize: '14px',
+            fontSize: '13px',
             color: '#666',
             fontStyle: 'italic',
+            lineHeight: '1.6',
           }}
         >
           {metadata}
@@ -153,18 +150,21 @@ export default function BentoBox({
 
       {/* Footer section with CTAs */}
       {(price || shareEmail || onEnquire || customFooter) && (
-        <div
-          className={`${variant === 'product' ? 'divider-line' : 'cta-divider'} ${styles.ctaDivider}`}
-          style={{
-            marginTop: 'auto',
-            paddingTop: '20px',
-            borderTop: '1px solid #e0e0e0',
-            transition: 'border-color 0.3s ease',
-          }}
-        >
+        <>
           {customFooter ? (
+            // Custom footer handles its own styling (e.g., multi-mode zones)
             customFooter
           ) : (
+            <div
+              className={`${variant === 'product' ? 'divider-line' : 'cta-divider'} ${styles.ctaDivider}`}
+              style={{
+                marginTop: 'auto',
+                paddingTop: '20px',
+                borderTop: '1px solid #e0e0e0',
+                transition: 'border-color 0.3s ease',
+                padding: prompt ? '20px 32px 0 32px' : '20px 0 0 0',
+              }}
+            >
             <>
               {/* Price */}
               {price && (
@@ -194,18 +194,19 @@ export default function BentoBox({
                   {shareEmail && (
                     <a
                       href={`mailto:?subject=${encodeURIComponent(shareEmail.subject)}&body=${encodeURIComponent(shareEmail.body)}`}
-                      title="Share with your team"
+                      title="Send to a colleague"
                       className={`service-cta-link ${styles.ctaLink}`}
                       style={{
                         color: '#666',
-                        fontSize: '15px',
-                        fontWeight: 500,
+                        fontSize: '17px',
+                        fontWeight: 400,
                         textDecoration: 'none',
                         transition: 'color 0.2s',
                         letterSpacing: '0.3px',
+                        textTransform: 'none',
                       }}
                     >
-                      Share
+                      Ask a friend?
                     </a>
                   )}
 
@@ -238,8 +239,9 @@ export default function BentoBox({
                 </div>
               )}
             </>
+            </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );

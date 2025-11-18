@@ -6,15 +6,16 @@
 .main {
   max-width: 600px;
   margin: 0 auto;
-  padding: 100px 20px 40px; /* Top padding for fixed header */
+  padding: 80px 20px 40px; /* Mobile: padding for mobile header */
 }
 
 /* SECTION 1: IDENTITY */
 .hero {
   font-family: var(--font-passion), sans-serif;
-  font-size: clamp(36px, 12vw, 80px);
-  line-height: 1.1;
-  letter-spacing: 0.02em;
+  font-size: clamp(44px, 10vw, 100px);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: 0.005em;
   margin: 0 0 32px 0;
   color: #222;
 }
@@ -29,15 +30,15 @@
 
 .identity {
   font-weight: 700;
-  font-size: 18px;
-  line-height: 1.4;
+  font-size: 17px;
+  line-height: 1.6;
   margin: 0 0 12px 0;
   color: #222;
 }
 
 .valueProp {
   font-size: 17px;
-  line-height: 1.5;
+  line-height: 1.6;
   margin: 0;
   color: #444;
 }
@@ -48,9 +49,9 @@
 }
 
 .positioningStatement {
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.6;
   margin: 0 0 20px 0;
   color: #222;
 }
@@ -60,7 +61,7 @@
 }
 
 .evidence {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.6;
   margin: 0;
   color: #444;
@@ -89,7 +90,7 @@
 }
 
 .proofContent {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.6;
   margin: 0;
   color: #333;
@@ -110,7 +111,7 @@
 }
 
 .silentThought {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.8;
   margin: 24px 0 0 0;
   color: #666;
@@ -179,13 +180,13 @@
 }
 
 .cardDesc {
-  font-size: 15px;
+  font-size: 17px;
   margin: 0;
   color: #666;
 }
 
 .arrow {
-  font-size: 20px;
+  font-size: 17px;
   color: #D43225;
   flex-shrink: 0;
   transition: transform 150ms ease;
@@ -211,7 +212,7 @@
 }
 
 .philosophyText {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.8;
   margin: 0 0 20px 0;
   color: #666;
@@ -222,7 +223,7 @@
 }
 
 .philosophyQuiet {
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.8;
   margin: 0;
   color: #999;
@@ -233,6 +234,33 @@
   widows: 3; /* Minimum 3 words on first line after break */
 }
 
+.signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+  width: 100%;
+  text-align: center;
+}
+
+.signatureText {
+  font-family: var(--font-passion), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin: 0;
+  color: #999;
+}
+
+.copyright {
+  font-family: "Noto Sans", sans-serif;
+  font-size: 9px;
+  margin: 0;
+  color: #999;
+}
+
 /* Mobile optimizations */
 @media (max-width: 480px) {
   .main {
@@ -240,7 +268,6 @@
   }
 
   .hero {
-    font-size: 36px;
     margin-bottom: 24px;
   }
 
@@ -257,11 +284,11 @@
 @media (min-width: 768px) {
   .main {
     max-width: 700px;
-    padding: 120px 40px 60px;
+    margin: 0 auto;
+    padding: 80px 40px 60px;
   }
 
   .hero {
-    font-size: clamp(48px, 8vw, 80px);
     margin-bottom: 40px;
   }
 
@@ -270,15 +297,15 @@
   }
 
   .identity {
-    font-size: 20px;
+    font-size: 17px;
   }
 
   .valueProp {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .positioningStatement {
-    font-size: 21px;
+    font-size: 17px;
   }
 
   .evidence {
@@ -295,11 +322,11 @@
   }
 
   .payoffStatement p {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .silentThought {
-    font-size: 16px;
+    font-size: 17px;
     margin-top: 28px;
   }
 
@@ -313,11 +340,11 @@
   }
 
   .cardTitle {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .cardDesc {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .philosophySection {
@@ -326,11 +353,11 @@
   }
 
   .philosophyText {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .philosophyQuiet {
-    font-size: 15px;
+    font-size: 17px;
   }
 }
 
@@ -338,11 +365,11 @@
 @media (min-width: 1024px) {
   .main {
     max-width: 900px;
-    padding: 140px 60px 80px;
+    margin: 0 auto;
+    padding: 80px 60px 80px;
   }
 
   .hero {
-    font-size: 80px;
     margin-bottom: 48px;
   }
 
@@ -351,11 +378,11 @@
   }
 
   .identity {
-    font-size: 22px;
+    font-size: 17px;
   }
 
   .valueProp {
-    font-size: 19px;
+    font-size: 17px;
   }
 
   .positioningSection {
@@ -363,12 +390,12 @@
   }
 
   .positioningStatement {
-    font-size: 23px;
+    font-size: 17px;
     margin-bottom: 24px;
   }
 
   .evidence {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .proofSection {
@@ -381,13 +408,13 @@
   }
 
   .proofLabel {
-    font-size: 14px;
+    font-size: 17px;
     margin-bottom: 12px;
   }
 
   .proofContent {
-    font-size: 18px;
-    line-height: 1.7;
+    font-size: 17px;
+    line-height: 1.6;
   }
 
   .payoffStatement {
@@ -397,7 +424,7 @@
   }
 
   .payoffStatement p {
-    font-size: 19px;
+    font-size: 17px;
   }
 
   .silentThought {
@@ -434,7 +461,7 @@
   }
 
   .cardTitle {
-    font-size: 19px;
+    font-size: 17px;
     margin-bottom: 8px;
   }
 
@@ -443,7 +470,7 @@
   }
 
   .arrow {
-    font-size: 24px;
+    font-size: 17px;
     align-self: flex-end;
   }
 
@@ -453,13 +480,13 @@
   }
 
   .philosophyText {
-    font-size: 16px;
-    line-height: 2;
+    font-size: 17px;
+    line-height: 1.8;
   }
 
   .philosophyQuiet {
-    font-size: 15px;
-    line-height: 2;
+    font-size: 17px;
+    line-height: 1.8;
   }
 }
 
@@ -467,9 +494,7 @@
 @media (min-width: 1440px) {
   .main {
     max-width: 1100px;
+    margin: 0 auto;
   }
 
-  .hero {
-    font-size: 90px;
-  }
 }

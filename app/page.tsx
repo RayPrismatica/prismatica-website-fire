@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import PrismaticaHeader from '@/components/PrismaticaHeader';
+import Image from 'next/image';
 import ContentTracker from '@/components/ContentTracker';
 import { getDynamicContent } from '@/lib/getDynamicContent';
 import styles from './homepage.module.css';
@@ -11,7 +11,6 @@ export default async function HomePage() {
 
   return (
     <>
-      <PrismaticaHeader />
       <ContentTracker newsInsight={content.newsInsight} intelligenceExample={content.intelligenceExample} />
 
       <div className={styles.container}>
@@ -54,7 +53,7 @@ export default async function HomePage() {
 
           {/* SECTION 4: NAVIGATION */}
           <div className={styles.navCards}>
-            <Link href="/consulting" className={styles.navCard}>
+            <Link href="/solutions" className={styles.navCard}>
               <div className={styles.redAccent}></div>
               <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>Solutions</h3>
@@ -63,7 +62,7 @@ export default async function HomePage() {
               <div className={styles.arrow}>→</div>
             </Link>
 
-            <Link href="/what" className={styles.navCard}>
+            <Link href="/about" className={styles.navCard}>
               <div className={styles.redAccent}></div>
               <div className={styles.cardContent}>
                 <h3 className={styles.cardTitle}>About</h3>
@@ -93,6 +92,18 @@ export default async function HomePage() {
             <p className={styles.philosophyQuiet}>Welcome to the quietest room on&nbsp;the&nbsp;internet.</p>
 
             <hr className={styles.divider} />
+
+            {/* Signature */}
+            <div className={styles.signature}>
+              <Image
+                src="/images/logowebp.webp"
+                alt="Prismatica Labs"
+                width={24}
+                height={24}
+                style={{ width: '24px', height: 'auto', opacity: 0.6, display: 'block', margin: '0 auto' }}
+              />
+              <p className={styles.copyright}>© 2025 Prismatica Labs Limited</p>
+            </div>
           </div>
         </main>
       </div>

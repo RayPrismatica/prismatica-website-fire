@@ -13,17 +13,37 @@ The BentoBox component replaces all inline bento box implementations with a sing
 
 ---
 
+## Recent Updates
+
+**November 2025 - Solutions Consolidation & Delivery Modes:**
+- All 15 solutions now use `variant="capability"` (replaces "service" and "product")
+- Added `deliveryModes` array for indicating consultant, AI, or framework delivery
+- Consolidated `/consulting` and `/products` into unified `/solutions` page
+- Delivery mode icons (👤 🤖 📦) display in top-right corner
+- Multi-mode capabilities show "Explore Options" modal
+
+---
+
 ## Quick Start
 
 ```tsx
 import BentoBox from '@/components/BentoBox';
 
 <BentoBox
-  variant="service"
+  variant="capability"
   prompt="If your internal culture and external message feel misaligned..."
   title="Pioneers of Purpose Assessment"
   badge="Strategy"
   price="From £50,000"
+  deliveryModes={[
+    {
+      type: "consulting",
+      available: true,
+      icon: "consultant",
+      label: "Available with consultant",
+      cta: { text: "Book Discovery Call", action: "enquire", modalId: "pioneers-of-purpose" }
+    }
+  ]}
   onEnquire={() => openModal('pioneers-of-purpose')}
 >
   <p>Your service description goes here...</p>
@@ -43,6 +63,7 @@ import BentoBox from '@/components/BentoBox';
 | `badge` | `string` | ❌ | Category badge (e.g., "Strategy", "Marketing") |
 | `children` | `ReactNode` | ✅ | Body content (paragraphs, dynamic components) |
 | `metadata` | `string \| ReactNode` | ❌ | Timeline/duration text (14px, italic, gray) |
+| `deliveryModes` | `DeliveryMode[]` | ❌ | Array of delivery options (consultant, AI, framework) |
 
 ### Footer Props
 
@@ -57,32 +78,44 @@ import BentoBox from '@/components/BentoBox';
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `variant` | `'service' \| 'link' \| 'product'` | `'service'` | Determines hover behavior and CSS class |
+| `variant` | `'capability' \| 'service' \| 'link' \| 'product'` | `'capability'` | Determines hover behavior and CSS class |
 | `className` | `string` | `''` | Additional CSS classes |
 | `style` | `CSSProperties` | `{}` | Inline style overrides |
+
+**Note:** `capability` is the recommended variant going forward. Legacy `service` and `product` variants are maintained for backward compatibility.
 
 ---
 
 ## Variants
 
-### `variant="service"` (Default)
+### `variant="capability"` (Recommended)
+- CSS class: `.capability-bento`
+- Hover: `scale(1.02)`
+- Use for: All solutions (consulting services, AI products, frameworks)
+- Pattern: Prompt + Title + Badge + Delivery Icons + Body + Metadata + Price + Share/Enquire CTAs
+- **Introduced:** November 2025 for unified `/solutions` page
+- **Features:** Supports `deliveryModes` array for multi-channel delivery
+
+### `variant="service"` (Legacy)
 - CSS class: `.service-bento`
 - Hover: `scale(1.02)`
 - Use for: High-tier consulting services (£40k+)
 - Pattern: Prompt + Title + Badge + Body + Metadata + Price + Share/Enquire CTAs
+- **Status:** Maintained for backward compatibility
 
 ### `variant="link"`
 - CSS class: `.bento-link`
 - Hover: `scale(1.02)` (same as service)
-- Use for: Lower-tier services (£8k-£25k), navigation cards
+- Use for: Navigation cards to other pages
 - Pattern: Identical to service variant
 
-### `variant="product"`
+### `variant="product"` (Legacy)
 - CSS class: `.product-bento`
 - Hover: `translateY(-2px)`
 - Divider class: `.divider-line`
 - Use for: Product showcase cards
 - Pattern: Prompt + Title + Body + Custom Footer (no pricing)
+- **Status:** Maintained for backward compatibility
 
 ---
 
@@ -99,6 +132,55 @@ All measurements extracted from `/components/EngagementClient.tsx`:
 | Metadata | 14px | 400 | #666 | 0 |
 | Price | 18px | 600 | #222 | 0 |
 | CTAs | 15px | 500 | #666 | 0.3px |
+
+---
+
+## Delivery Mode Icons
+
+**Added:** November 2025
+
+Display delivery options visually in the top-right corner of bento boxes:
+
+### Icon Types
+
+| Icon | Type | Meaning | Use Case |
+|------|------|---------|----------|
+| 👤 | `consultant` | Human consultant-led | Consulting services |
+| 🤖 | `ai` | AI-powered product | Self-service AI tools |
+| 📦 | `framework` | Downloadable template | Worksheets, frameworks |
+
+### Configuration
+
+```tsx
+deliveryModes={[
+  {
+    type: "consulting",
+    available: true,
+    icon: "consultant",
+    label: "Available with consultant",
+    cta: {
+      text: "Book Discovery Call",
+      action: "enquire",
+      modalId: "pioneers-of-purpose"
+    }
+  }
+]}
+```
+
+### Single vs Multi-Mode Behavior
+
+**Single Mode (Most Common):**
+- Shows one icon in top-right corner
+- CTA button uses mode's specified text and action
+- Example: "Book Discovery Call" → Opens enquiry modal
+
+**Multi-Mode (Future):**
+- Shows 2-3 icons in top-right corner
+- CTA button becomes "Explore Options"
+- Clicking opens modal with all delivery options
+- User selects preferred mode → executes that mode's CTA
+
+**Full Specification:** See `DELIVERY_MODE_SCHEMA.md` for complete details.
 
 ---
 

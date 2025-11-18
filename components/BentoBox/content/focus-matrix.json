@@ -1,7 +1,46 @@
 {
   "id": "focus-matrix",
-  "variant": "product",
+  "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": false,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "N/A",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "focus-matrix"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "N/A",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "#"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "£299/mo",
+      "productId": "focus-matrix",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/focus-matrix"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
@@ -11,7 +50,7 @@
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If you're saying yes to everything and achieving nothing..."
+      "text": "If yes to all achieves nothing..."
     },
     "title": "The Focus Matrix",
     "body": [
@@ -33,5 +72,12 @@
     "type": "custom",
     "primaryText": "Turns \"busy\" into \"lethal\".",
     "secondaryText": "Stop drowning. Start compounding."
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: The Focus Matrix",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nPoker players calculate expected value on every bet. This tool applies that same thinking to your calendar—running game theory on every commitment to show you where to go all-in and what to fold. It's time management for people who want their hours to compound, not just fill up.\n\nCheck it out: {url}\n\nWorth a look?"
+    }
   }
 }

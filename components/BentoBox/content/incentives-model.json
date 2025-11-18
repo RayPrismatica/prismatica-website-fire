@@ -1,0 +1,75 @@
+{
+  "id": "incentives-model",
+  "variant": "service",
+  "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Read article",
+      "pricing": "Free",
+      "cta": {
+        "text": "Read article",
+        "action": "link",
+        "href": "/incentives"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "Coming soon",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "#"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "Coming soon",
+      "productId": "incentives-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "#"
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2025-11-18",
+    "author": "Prismatica Labs",
+    "notes": "Mental Model: Incentives Alignment - Free article on our approach"
+  },
+  "athenaPrompt": "Want to explore incentives thinking? Chat?",
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If incentives misalign..."
+    },
+    "title": "Incentives Alignment",
+    "badge": "Mental Model",
+    "body": [
+      {
+        "type": "static",
+        "text": "Sales says they want better leads. What they optimize for is easy closes. Product says they want user feedback. What they optimize for is no complaints. Executives say they want innovation. What they optimize for is no surprises. Watch what they do, not what they say. Incentives reveal truth."
+      }
+    ]
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "Free to read"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Mental Model: Incentives Alignment",
+      "body": "Check out this mental model from Prismatica Labs: {url}"
+    }
+  }
+}

@@ -70,7 +70,7 @@ export default function ArticlesPage() {
                   onClick={() => setSelectedArticle(article)}
                 >
                   {/* Article Metadata */}
-                  <div style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '12px', fontSize: '11px', color: '#999', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600, fontFamily: '"Noto Sans", sans-serif' }}>
+                  <div style={{ marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', color: '#999', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 600, fontFamily: '"Noto Sans", sans-serif' }}>
                     <time>{new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
                     <span>•</span>
                     <span>{article.readTime}</span>
@@ -79,7 +79,7 @@ export default function ArticlesPage() {
                   {/* Title */}
                   <h3 style={{
                     fontFamily: '"Noto Sans", sans-serif',
-                    fontSize: '22px',
+                    fontSize: '17px',
                     fontWeight: 700,
                     lineHeight: '1.3',
                     marginBottom: '12px',
@@ -91,7 +91,7 @@ export default function ArticlesPage() {
 
                   {/* Excerpt */}
                   <p style={{
-                    fontSize: '15px',
+                    fontSize: '17px',
                     lineHeight: '1.6',
                     color: '#666',
                     marginBottom: '0'
@@ -118,7 +118,7 @@ export default function ArticlesPage() {
             background: 'none',
             border: 'none',
             color: '#D43225',
-            fontSize: '16px',
+            fontSize: '17px',
             fontWeight: '500',
             cursor: 'pointer',
             padding: '0',
@@ -135,7 +135,7 @@ export default function ArticlesPage() {
         <div style={{ marginBottom: '48px', maxWidth: '700px' }}>
           <div style={{
             marginBottom: '16px',
-            fontSize: '11px',
+            fontSize: '13px',
             color: '#999',
             textTransform: 'uppercase',
             letterSpacing: '1px',
@@ -161,7 +161,7 @@ export default function ArticlesPage() {
 
           <p style={{
             fontFamily: 'Georgia, "Times New Roman", serif',
-            fontSize: '22px',
+            fontSize: '17px',
             lineHeight: '1.6',
             color: '#555',
             marginBottom: '0',
@@ -177,7 +177,7 @@ export default function ArticlesPage() {
         <article style={{
           maxWidth: '700px',
           fontFamily: 'Georgia, "Times New Roman", serif',
-          fontSize: '20px',
+          fontSize: '17px',
           lineHeight: '1.7',
           color: '#1a1a1a'
         }}>
@@ -188,7 +188,7 @@ export default function ArticlesPage() {
                   key={index}
                   style={{
                     fontFamily: '"Noto Sans", sans-serif',
-                    fontSize: '24px',
+                    fontSize: '17px',
                     fontWeight: 700,
                     lineHeight: '1.3',
                     marginTop: '48px',
@@ -206,7 +206,7 @@ export default function ArticlesPage() {
                   key={index}
                   style={{
                     marginBottom: '28px',
-                    fontSize: '20px',
+                    fontSize: '17px',
                     lineHeight: '1.7',
                     fontFamily: 'Georgia, "Times New Roman", serif'
                   }}
@@ -232,7 +232,7 @@ export default function ArticlesPage() {
           }}>
             <span style={{
               fontFamily: '"Noto Sans", sans-serif',
-              fontSize: '15px',
+              fontSize: '17px',
               color: '#666',
               fontWeight: 600
             }}>
@@ -285,7 +285,7 @@ export default function ArticlesPage() {
                   border: '1px solid #ddd',
                   borderRadius: '4px',
                   color: '#0077B5',
-                  fontSize: '14px',
+                  fontSize: '17px',
                   fontWeight: 500,
                   textDecoration: 'none',
                   transition: 'all 0.2s',
@@ -312,7 +312,7 @@ export default function ArticlesPage() {
                   border: '1px solid #ddd',
                   borderRadius: '4px',
                   color: '#000',
-                  fontSize: '14px',
+                  fontSize: '17px',
                   fontWeight: 500,
                   textDecoration: 'none',
                   transition: 'all 0.2s',
@@ -337,7 +337,7 @@ export default function ArticlesPage() {
                   border: '1px solid #ddd',
                   borderRadius: '4px',
                   color: '#666',
-                  fontSize: '14px',
+                  fontSize: '17px',
                   fontWeight: 500,
                   textDecoration: 'none',
                   transition: 'all 0.2s',
@@ -374,7 +374,7 @@ export default function ArticlesPage() {
                   borderRadius: '4px',
                   backgroundColor: 'transparent',
                   color: '#666',
-                  fontSize: '14px',
+                  fontSize: '17px',
                   fontWeight: 500,
                   cursor: 'pointer',
                   transition: 'all 0.2s'

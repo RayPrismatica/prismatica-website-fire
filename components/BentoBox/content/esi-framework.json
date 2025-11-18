@@ -2,6 +2,45 @@
   "id": "esi-framework",
   "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "£40,000",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "esi-framework"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "£3,500",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "/products/esi-framework"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "£299/mo",
+      "productId": "esi-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/esi-tool"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
@@ -16,7 +55,7 @@
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If you have insights but struggle to execute them systematically..."
+      "text": "If insights don't execute..."
     },
     "title": "The ESI Framework",
     "badge": "Strategy",
@@ -30,7 +69,9 @@
     "metadata": {
       "type": "function",
       "function": "getDeliveryDate",
-      "args": ["esi-framework"],
+      "args": [
+        "esi-framework"
+      ],
       "template": "Six weeks. Roadmap delivered by {result}."
     }
   },

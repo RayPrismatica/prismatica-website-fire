@@ -1,7 +1,46 @@
 {
   "id": "transaction-architecture",
-  "variant": "link",
+  "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "£25,000",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "transaction-architecture"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "£2,500",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "/products/transaction-architecture-framework"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "£299/mo",
+      "productId": "transaction-architecture-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/transaction-architecture-tool"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
@@ -16,7 +55,7 @@
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If engagement is high but conversions don't match..."
+      "text": "If engagement doesn't convert..."
     },
     "title": "The Transaction Architecture",
     "badge": "Strategy",
@@ -30,7 +69,9 @@
     "metadata": {
       "type": "function",
       "function": "getDeliveryDate",
-      "args": ["transaction-architecture"],
+      "args": [
+        "transaction-architecture"
+      ],
       "template": "Five weeks. By {result} you'll know exactly how value flows through your business and where to increase conversion velocity."
     }
   },

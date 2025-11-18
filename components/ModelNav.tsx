@@ -31,7 +31,7 @@ export default function ModelNav({ currentModel }: ModelNavProps) {
     >
       <span style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
         <Link
-          href="/mental-models"
+          href="/about"
           style={{
             fontSize: '11px',
             fontFamily: '"Noto Sans", sans-serif',

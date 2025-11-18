@@ -1,28 +1,49 @@
 # BentoBox System - Complete Guide
 
+## Recent Updates
+
+**November 2025 - Solutions Consolidation:**
+- All 15 solutions moved to unified `/solutions` page
+- Added `deliveryModes` array for multi-channel delivery
+- New `variant="capability"` for all solutions
+- Delivery mode icons (👤 🤖 📦) in top-right corner
+- Legacy `/consulting` and `/products` redirect to `/solutions`
+
+---
+
 ## Table of Contents
 1. [Overview](#overview)
 2. [Quick Start](#quick-start)
 3. [Creating Your First Bento](#creating-your-first-bento)
 4. [Content Types](#content-types)
-5. [Dynamic Content with Fallbacks](#dynamic-content-with-fallbacks)
-6. [Footer Types](#footer-types)
-7. [Actions (Share, Enquire, Links)](#actions)
-8. [Complete JSON Schema Reference](#complete-json-schema-reference)
-9. [Examples](#examples)
-10. [Troubleshooting](#troubleshooting)
+5. [Delivery Modes](#delivery-modes)
+6. [Dynamic Content with Fallbacks](#dynamic-content-with-fallbacks)
+7. [Footer Types](#footer-types)
+8. [Actions (Share, Enquire, Links)](#actions)
+9. [Complete JSON Schema Reference](#complete-json-schema-reference)
+10. [Examples](#examples)
+11. [Troubleshooting](#troubleshooting)
 
 ---
 
 ## Overview
 
-The BentoBox system is a **content-driven architecture** that separates content from code. Instead of hardcoding content in React components, you define it in JSON files. This makes content easy to:
+The BentoBox system is a **content-driven architecture** that separates content from code. Instead of hardcoding content in React components, you define it in JSON files.
+
+**Current State:**
+- 15 active solution files (12 consulting + 3 AI products)
+- All content lives in `/components/BentoBox/content/`
+- Single `/solutions` page for all capabilities
+- Delivery modes indicate consultant, AI, or framework delivery
+
+This makes content easy to:
 
 - ✅ Update without touching code
 - ✅ Manage by non-developers
 - ✅ Version control
 - ✅ Reuse across pages
 - ✅ Generate dynamically with AI
+- ✅ Scale to 100+ solutions without complexity
 
 ### Benefits
 
@@ -52,8 +73,22 @@ Create a new file in `/components/BentoBox/content/your-bento.json`:
 ```json
 {
   "id": "your-bento-id",
-  "variant": "product",
+  "variant": "capability",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "ai-product",
+      "available": true,
+      "icon": "ai",
+      "label": "AI product available",
+      "pricing": "Included in £299/mo suite",
+      "cta": {
+        "text": "Launch Product",
+        "action": "link",
+        "href": "/products/your-bento-id"
+      }
+    }
+  ],
   "content": {
     "title": "Your Product Name",
     "body": [
@@ -105,8 +140,21 @@ cp components/BentoBox/content/template.json components/BentoBox/content/my-prod
 ```json
 {
   "id": "my-product",
-  "variant": "product",
+  "variant": "capability",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "ai-product",
+      "available": true,
+      "icon": "ai",
+      "label": "AI product available",
+      "cta": {
+        "text": "Launch",
+        "action": "link",
+        "href": "/products/my-product"
+      }
+    }
+  ],
   "content": {
     "title": "My Product Name",
     "body": [
@@ -134,12 +182,31 @@ const product = myProduct as any;
 
 ### Variants
 
-There are 3 bento variants, each with different styling:
+#### 1. `"capability"` - All Solutions (Recommended)
+- **Use for:** All solutions on `/solutions` page
+- **Style:** Standard bento with delivery mode icons
+- **Features:** Supports `deliveryModes` array
+- **Example:** All 15 current solutions
 
-#### 1. `"service"` - Consulting Services
-- **Use for:** High-value consulting services
+```json
+{
+  "variant": "capability",
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Available with consultant",
+      "cta": { "text": "Book Call", "action": "enquire", "modalId": "service-id" }
+    }
+  ]
+}
+```
+
+#### 2. `"service"` - Consulting Services (Legacy)
+- **Use for:** High-value consulting services (backward compatibility)
 - **Style:** Service bento with hover effects
-- **Example:** Pioneers of Purpose, ESI Framework
+- **Status:** Maintained for backward compatibility
 
 ```json
 {
@@ -147,10 +214,10 @@ There are 3 bento variants, each with different styling:
 }
 ```
 
-#### 2. `"product"` - Products
-- **Use for:** Product offerings
+#### 3. `"product"` - Products (Legacy)
+- **Use for:** Product offerings (backward compatibility)
 - **Style:** Product bento with mobile scroll animations
-- **Example:** Focus Matrix, Sir Alfie
+- **Status:** Maintained for backward compatibility
 
 ```json
 {
@@ -158,10 +225,10 @@ There are 3 bento variants, each with different styling:
 }
 ```
 
-#### 3. `"link"` - Navigation Links
+#### 4. `"link"` - Navigation Links
 - **Use for:** Links to other pages or sections
 - **Style:** Link bento with subtle borders
-- **Example:** Consulting Services link, Product Suite link
+- **Example:** Navigation cards on homepage
 
 ```json
 {
@@ -193,6 +260,74 @@ Small label next to the title:
 ```
 
 Options: `"Strategy"`, `"Marketing"`, `"Technology"`, `"Process"`
+
+---
+
+## Delivery Modes
+
+**Added:** November 2025
+
+Delivery modes indicate how users can access a capability. Icons display in the top-right corner of bento boxes.
+
+### Icon Types
+
+| Icon | Type | Meaning |
+|------|------|---------|
+| 👤 | `consultant` | Human consultant-led engagement |
+| 🤖 | `ai` | Self-service AI-powered product |
+| 📦 | `framework` | Downloadable template/worksheet |
+
+### Single Mode (Most Common)
+
+Most solutions have one delivery mode:
+
+```json
+"deliveryModes": [
+  {
+    "type": "consulting",
+    "available": true,
+    "icon": "consultant",
+    "label": "Available with consultant",
+    "cta": {
+      "text": "Book Discovery Call",
+      "action": "enquire",
+      "modalId": "pioneers-of-purpose"
+    }
+  }
+]
+```
+
+**Behavior:** Shows one icon. CTA button uses mode's text and action directly.
+
+### Multi-Mode (Future)
+
+Capabilities can have 2-3 delivery modes:
+
+```json
+"deliveryModes": [
+  {
+    "type": "consulting",
+    "available": true,
+    "icon": "consultant",
+    "label": "Available with consultant",
+    "cta": { "text": "Book Call", "action": "enquire", "modalId": "esi" }
+  },
+  {
+    "type": "framework",
+    "available": true,
+    "icon": "framework",
+    "label": "Framework available",
+    "pricing": "£99 one-time",
+    "cta": { "text": "Download", "action": "external", "href": "https://gumroad.com/esi" }
+  }
+]
+```
+
+**Behavior:** Shows both icons. CTA button becomes "Explore Options" → opens modal.
+
+**Full Specification:** See `DELIVERY_MODE_SCHEMA.md`
+
+---
 
 #### Metadata (Timeline/Duration)
 Shows below the body content in italics:
@@ -711,19 +846,41 @@ const functionRegistry = { getDeliveryDate };
 
 ```
 components/BentoBox/
-├── README.md                          # This file
+├── README.md                          # This file - User guide
+├── BentoBox.README.md                 # Component API reference
 ├── BentoBox.tsx                       # Core component (don't edit)
 ├── BentoBox.module.css               # Styles (don't edit)
 ├── BentoBoxFromContent.tsx           # JSON parser (don't edit)
 ├── types.ts                          # TypeScript types
 ├── contentParser.ts                  # Content parsing logic
 ├── index.ts                          # Exports
-├── content/                          # Your JSON files go here
+├── content/                          # ⭐ 15 active solution files
 │   ├── template.json                 # Template with instructions
-│   ├── your-bento.json              # Your custom bentos
-│   └── ...
-├── CONTENT_SCHEMA.md                 # Technical schema docs
-└── CONTENT_DRIVEN_ARCHITECTURE.md    # Architecture guide
+│   │
+│   ├── pioneers-of-purpose.json     # Big Picture (£40k-50k)
+│   ├── esi-framework.json
+│   ├── secret-agency.json
+│   ├── transaction-architecture.json # Mid-tier (£18k-25k)
+│   ├── kso-workshop.json
+│   ├── strategic-triptych.json
+│   │
+│   ├── go-to-market.json            # Tactical (£8k-15k)
+│   ├── creative-converts.json
+│   ├── design-thinking.json
+│   ├── ai-without-hallucination.json
+│   ├── process-surgery.json
+│   ├── marketing-reality-check.json
+│   │
+│   ├── focus-matrix.json            # AI Products (£299/mo)
+│   ├── sir-alfie.json
+│   ├── value-channel-matrix.json
+│   │
+│   ├── consulting-services-link.json # Navigation (legacy)
+│   └── product-suite-link.json       # Navigation (legacy)
+│
+├── CONTENT_SCHEMA.md                 # Complete JSON schema reference
+├── CONTENT_DRIVEN_ARCHITECTURE.md    # System architecture guide
+└── DELIVERY_MODE_SCHEMA.md           # Delivery modes specification
 ```
 
 ---

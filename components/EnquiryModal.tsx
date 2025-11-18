@@ -248,12 +248,12 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
               <div style={{ marginBottom: '24px' }}>
                 <Dialog.Title
                   as="h3"
-                  style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '18px', fontWeight: 700, marginTop: 0, marginBottom: '8px', textTransform: 'uppercase' }}
+                  style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '17px', fontWeight: 700, marginTop: 0, marginBottom: '8px', textTransform: 'uppercase' }}
                 >
                   {serviceName.replace(/-/g, ' ')}
                 </Dialog.Title>
                 {currentStep < 4 && (
-                  <p style={{ fontSize: '12px', textTransform: 'uppercase', letterSpacing: '1px', color: '#999', marginBottom: 0 }}>
+                  <p style={{ fontSize: '13px', textTransform: 'uppercase', letterSpacing: '1px', color: '#999', marginBottom: 0 }}>
                     Step {currentStep} of 3
                   </p>
                 )}
@@ -264,7 +264,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                 {/* Step 1: Deadline */}
                 {currentStep === 1 && (
                   <div>
-                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '16px' }}>
+                    <p style={{ fontSize: '17px', fontWeight: 600, marginBottom: '16px' }}>
                       When do you need results by?
                     </p>
 
@@ -278,7 +278,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                           onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
                           style={{ marginRight: '8px' }}
                         />
-                        <span style={{ fontSize: '14px' }}>ASAP (as soon as possible)</span>
+                        <span style={{ fontSize: '17px' }}>ASAP (as soon as possible)</span>
                       </label>
 
                       <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
@@ -290,7 +290,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                           onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
                           style={{ marginRight: '8px' }}
                         />
-                        <span style={{ fontSize: '14px' }}>End of this month</span>
+                        <span style={{ fontSize: '17px' }}>End of this month</span>
                       </label>
 
                       <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
@@ -302,7 +302,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                           onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
                           style={{ marginRight: '8px' }}
                         />
-                        <span style={{ fontSize: '14px' }}>Within 3 months</span>
+                        <span style={{ fontSize: '17px' }}>Within 3 months</span>
                       </label>
 
                       <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
@@ -314,7 +314,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                           onChange={(e) => setFormData({ ...formData, deadlineOption: e.target.value as DeadlineOption })}
                           style={{ marginRight: '8px' }}
                         />
-                        <span style={{ fontSize: '14px' }}>Specific deadline:</span>
+                        <span style={{ fontSize: '17px' }}>Specific deadline:</span>
                       </label>
                     </div>
 
@@ -329,7 +329,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                           padding: '12px 16px',
                           border: '2px solid #e0e0e0',
                           borderRadius: '8px',
-                          fontSize: '15px',
+                          fontSize: '17px',
                           width: '100%',
                           marginBottom: '16px',
                           boxSizing: 'border-box',
@@ -373,7 +373,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                         display: 'flex',
                         alignItems: 'center'
                       }}>
-                        <p style={{ fontSize: '14px', lineHeight: '1.6', margin: 0, color: '#222' }}>
+                        <p style={{ fontSize: '17px', lineHeight: '1.6', margin: 0, color: '#222' }}>
                           {getTimelineMessage()}
                         </p>
                       </div>
@@ -384,7 +384,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                 {/* Step 2: Details */}
                 {currentStep === 2 && (
                   <div>
-                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '16px' }}>
+                    <p style={{ fontSize: '17px', fontWeight: 600, marginBottom: '16px' }}>
                       Your details
                     </p>
 
@@ -405,7 +405,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                             padding: '12px 16px',
                             border: '2px solid #e0e0e0',
                             borderRadius: '8px',
-                            fontSize: '15px',
+                            fontSize: '17px',
                             boxSizing: 'border-box',
                             transition: 'border-color 0.2s',
                             outline: 'none'
@@ -431,7 +431,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                             padding: '12px 16px',
                             border: '2px solid #e0e0e0',
                             borderRadius: '8px',
-                            fontSize: '15px',
+                            fontSize: '17px',
                             boxSizing: 'border-box',
                             transition: 'border-color 0.2s',
                             outline: 'none'
@@ -457,7 +457,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                             padding: '12px 16px',
                             border: '2px solid #e0e0e0',
                             borderRadius: '8px',
-                            fontSize: '15px',
+                            fontSize: '17px',
                             boxSizing: 'border-box',
                             transition: 'border-color 0.2s',
                             outline: 'none'
@@ -472,7 +472,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                           Special terms (if applicable)
                         </label>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                          <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '14px' }}>
+                          <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '17px' }}>
                             <input
                               type="checkbox"
                               checked={formData.isNGO}
@@ -481,7 +481,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                             />
                             <span>We're an NGO (50% off)</span>
                           </label>
-                          <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '14px' }}>
+                          <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '17px' }}>
                             <input
                               type="checkbox"
                               checked={formData.isBCorp}
@@ -490,7 +490,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                             />
                             <span>We're a B-Corp (20% off)</span>
                           </label>
-                          <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '14px' }}>
+                          <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', fontSize: '17px' }}>
                             <input
                               type="checkbox"
                               checked={formData.isStartup}
@@ -508,7 +508,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                 {/* Step 3: Challenge */}
                 {currentStep === 3 && (
                   <div>
-                    <p style={{ fontSize: '15px', fontWeight: 600, marginBottom: '8px' }}>
+                    <p style={{ fontSize: '17px', fontWeight: 600, marginBottom: '8px' }}>
                       What's the challenge?
                     </p>
                     <p style={{ fontSize: '13px', color: '#666', marginBottom: '16px' }}>
@@ -530,7 +530,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                           padding: '12px 16px',
                           border: '2px solid #e0e0e0',
                           borderRadius: '8px',
-                          fontSize: '15px',
+                          fontSize: '17px',
                           boxSizing: 'border-box',
                           fontFamily: 'inherit',
                           resize: 'none',
@@ -541,7 +541,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                         onFocus={(e) => e.currentTarget.style.borderColor = '#D43225'}
                         onBlur={(e) => e.currentTarget.style.borderColor = '#e0e0e0'}
                       />
-                      <p style={{ fontSize: '12px', color: '#666', marginTop: '4px', textAlign: 'right' }}>
+                      <p style={{ fontSize: '13px', color: '#666', marginTop: '4px', textAlign: 'right' }}>
                         {formData.challenge.length}/200 characters
                       </p>
                     </div>
@@ -552,10 +552,10 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                 {currentStep === 4 && (
                   <div style={{ textAlign: 'center', padding: '20px 0' }}>
                     <div style={{ fontSize: '48px', marginBottom: '16px' }}>✓</div>
-                    <p style={{ fontSize: '18px', fontWeight: 600, marginBottom: '12px' }}>
+                    <p style={{ fontSize: '17px', fontWeight: 600, marginBottom: '12px' }}>
                       Got it
                     </p>
-                    <p style={{ fontSize: '14px', color: '#666', marginBottom: 0 }}>
+                    <p style={{ fontSize: '17px', color: '#666', marginBottom: 0 }}>
                       We'll respond within 24 hours
                     </p>
                   </div>
@@ -578,7 +578,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                       background: 'none',
                       color: '#222',
                       border: 'none',
-                      fontSize: '11px',
+                      fontSize: '13px',
                       fontWeight: 600,
                       letterSpacing: '1px',
                       textTransform: 'uppercase',
@@ -609,7 +609,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -629,7 +629,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -660,7 +660,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -680,7 +680,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                         background: 'none',
                         color: '#222',
                         border: 'none',
-                        fontSize: '11px',
+                        fontSize: '13px',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -711,7 +711,7 @@ export default function EnquiryModal({ serviceName, serviceDurationWeeks, basePr
                       background: 'none',
                       color: '#222',
                       border: 'none',
-                      fontSize: '11px',
+                      fontSize: '13px',
                       fontWeight: 600,
                       letterSpacing: '1px',
                       textTransform: 'uppercase',

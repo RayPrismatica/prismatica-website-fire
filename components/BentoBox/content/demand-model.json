@@ -1,0 +1,75 @@
+{
+  "id": "demand-model",
+  "variant": "service",
+  "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Read article",
+      "pricing": "Free",
+      "cta": {
+        "text": "Read article",
+        "action": "link",
+        "href": "/demand"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "Coming soon",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "#"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "Coming soon",
+      "productId": "demand-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "#"
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2025-11-18",
+    "author": "Prismatica Labs",
+    "notes": "Mental Model: Demand Creation - Free article on our approach"
+  },
+  "athenaPrompt": "Want to explore demand creation thinking? Chat?",
+  "content": {
+    "prompt": {
+      "type": "static",
+      "text": "If demand isn't real..."
+    },
+    "title": "Demand Creation",
+    "badge": "Mental Model",
+    "body": [
+      {
+        "type": "static",
+        "text": "Most businesses optimise for serving demand that already exists. We focus on creating demand that doesn't yet exist—or exposing latent demand that competitors haven't seen. Rolex doesn't sell watches. Peloton doesn't sell bikes. Slack doesn't sell chat. They sell status, tribe membership, professional identity. Your product is the excuse. The demand is primal."
+      }
+    ]
+  },
+  "footer": {
+    "type": "price-cta",
+    "price": "Free to read"
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Mental Model: Demand Creation",
+      "body": "Check out this mental model from Prismatica Labs: {url}"
+    }
+  }
+}

@@ -1,17 +1,56 @@
 {
   "id": "design-thinking",
-  "variant": "link",
+  "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "£8,000",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "design-thinking"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "£299/mo",
+      "productId": "design-thinking-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/design-thinking-tool"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "£1,200",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "/products/design-thinking-framework"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
-    "notes": "Design Thinking - \u00a36,000 consulting service"
+    "notes": "Design Thinking - £6,000 consulting service"
   },
   "athenaPrompt": "Reframe the problem and watch solutions appear. Want to know how?",
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If traditional solutions keep failing on the same recurring problem..."
+      "text": "If same problem needs different answer..."
     },
     "title": "Design Thinking",
     "badge": "Process",
@@ -38,7 +77,7 @@
     "share": {
       "enabled": true,
       "subject": "Worth looking at: Design Thinking",
-      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a design thinking approach for problems that traditional solutions can't fix. They reframe the problem, rapid prototype, and test with real users. Fast iteration before you commit to expensive solutions.\n\nStarts at \u00a310,000, first sprint done in 3 weeks.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's a design thinking approach for problems that traditional solutions can't fix. They reframe the problem, rapid prototype, and test with real users. Fast iteration before you commit to expensive solutions.\n\nStarts at £10,000, first sprint done in 3 weeks.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
     },
     "enquire": {
       "enabled": true,

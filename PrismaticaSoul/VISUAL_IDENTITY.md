@@ -123,12 +123,81 @@ The design speaks through restraint. No gradients. No shadows unless functional.
 
 ### Type Scale & Hierarchy
 
-**Mega Headers (Landing Page)**
+**Design Philosophy**: Following Jony Ive's principle - "When you have 21 font sizes, you have none."
+
+The system uses exactly **6 intentional font sizes** and **3 line-height values** for absolute clarity and consistency.
+
+**The Ive-Approved Scale:**
+- **9px** - Legal/copyright (9 instances)
+- **13px** - Labels/captions/navigation (34 instances)
+- **17px** - Body text - THE standard (258 instances)
+- **28px** - Section headings (29 instances)
+- **56px** - Page titles (19 instances)
+- **clamp(44-100px)** - Threshold hero only (1 instance)
+
+**Line-Height Scale:**
+- **0.9** - Display text (Passion One titles)
+- **1.6** - Standard body text (optimal reading)
+- **1.8** - Spacious text (philosophy, reflective content)
+
+---
+
+### Contextual Typography System
+
+**Ive's Principle:** *"Form and the material and process – they are beautifully intertwined – completely connected."*
+
+Typography follows **spatial context**, not just HTML semantics. Different spatial containers demand different typographic systems—but each must be internally consistent.
+
+#### Context 1: Page Typography (Continuous Reading Flow)
+
+**Purpose:** Structural hierarchy for continuous content consumption
+
+**Hierarchy:**
+- **Large jumps** (56px → 28px → 17px) create obvious visual structure
+- **Passion One** for page titles (brand voice)
+- **Noto Sans** for everything else (readability)
+- **Line-height:** Tighter for titles (0.9), comfortable for body (1.6-1.8)
+
+**When to use:** Main page content, article layouts, documentation
+
+#### Context 2: Bento Box Typography (Contained Objects)
+
+**Purpose:** Compact, scannable hierarchy within discrete spatial containers
+
+**Hierarchy:**
+- **Flatter scale** (17px → 17px → 17px → 13px → 9px)
+- **The container itself** (card border, background) creates primary hierarchy
+- **Weight and style** create secondary hierarchy within
+- **All Noto Sans** (no Passion One in cards - would overwhelm compact space)
+
+**When to use:** Service cards, product cards, navigation cards, any "bento box" component
+
+**The Key Insight:** When content is inside a visually distinct container (card, panel, modal), you don't need large font size jumps. The container does the hierarchical work. Use size consistently (17px) and let **weight, style, and accent marks** (like the red bar) create hierarchy.
+
+#### Typography Rules by Context
+
+| Element | Page Context | Bento Context |
+|---------|--------------|---------------|
+| Primary Title | 56px, Passion One, 700 | 17px, Noto Sans, 700, uppercase |
+| Section Header | 28px, Noto Sans, 700, uppercase | (Not used - container provides section) |
+| Body Text | 17px, Noto Sans, 400 | 17px, Noto Sans, 400 |
+| Prompt/Callout | 17px, Noto Sans, 500 + accent bar | 17px, Noto Sans, 400 + accent bar |
+| Metadata | 13px, Noto Sans, 400 | 13px, Noto Sans, 400, italic |
+| Badge/Label | 13px, Noto Sans, 600, uppercase | 9px, Noto Sans, 600, uppercase |
+
+**Critical Rule:** Never mix contexts. Don't put 28px headers inside bento boxes. Don't use 17px titles in main page hierarchy.
+
+---
+
+**Threshold Hero (Homepage `/` Only)**
 ```css
 font-family: var(--font-passion), sans-serif;
-font-size: clamp(40px, 5vw + 1rem, 80px);
-letter-spacing: 0.015em;
-line-height: 1 (approx);
+font-size: clamp(44px, 10vw, 100px); /* Dynamic scaling for statement */
+font-weight: 600;
+line-height: 0.9;
+letter-spacing: 0.005em;
+margin-bottom: 32px;
+color: #222;
 ```
 
 **Page Headers (h2)**
@@ -139,18 +208,9 @@ font-weight: 600;
 line-height: 0.9;
 letter-spacing: 0.005em;
 margin-bottom: 32px;
+color: #222;
 
-/* Mobile */
-@media (max-width: 768px) {
-  font-size: 36px;
-  line-height: 1;
-  margin-bottom: 24px;
-}
-
-@media (max-width: 480px) {
-  font-size: 28px;
-  line-height: 1.1;
-}
+/* Consistent across all breakpoints - no variation */
 ```
 
 **Section Headers (h3 - Uppercase)**
@@ -160,27 +220,20 @@ font-size: 28px;
 font-weight: 700;
 text-transform: uppercase;
 letter-spacing: 1px;
+line-height: 0.9;
 margin-top: 48px;
 margin-bottom: 24px;
-
-/* Mobile */
-@media (max-width: 768px) {
-  font-size: 20px;
-  margin-top: 32px;
-  margin-bottom: 8px;
-}
-
-@media (max-width: 480px) {
-  font-size: 15px;
-}
+color: #222;
 ```
 
 **Service Headers (h3 - Bento Boxes)**
 ```css
+font-family: "Noto Sans", sans-serif;
 font-size: 17px;
 font-weight: 700;
 letter-spacing: 1px;
 text-transform: uppercase;
+line-height: 1.6;
 margin-bottom: 20px;
 color: #222;
 ```
@@ -188,17 +241,13 @@ color: #222;
 **Body Text (Standard)**
 ```css
 font-family: "Noto Sans", sans-serif;
-font-size: 17px;
+font-size: 17px; /* THE body text standard */
 line-height: 1.6;
 margin-bottom: 16px;
 color: #444;
 
-/* Mobile */
-@media (max-width: 768px) {
-  font-size: 16px;
-  line-height: 1.7;
-  margin-bottom: 20px;
-}
+/* Consistent across all breakpoints - no mobile variation */
+/* This is the most common size in the entire codebase (258 instances) */
 ```
 
 **Emphasized Body (Quotes/Callouts)**
@@ -206,6 +255,7 @@ color: #444;
 position: relative;
 font-size: 17px;
 font-weight: 500;
+line-height: 1.6;
 color: #222;
 
 /* With left accent bar */
@@ -220,34 +270,43 @@ color: #222;
 }
 ```
 
-**Small Text (Details, Metadata)**
+**Spacious Text (Philosophy, Reflective)**
 ```css
-font-size: 14px;
+font-size: 17px;
+line-height: 1.8; /* More breathing room */
 color: #666;
-font-style: italic;
+font-weight: 400;
+text-wrap: balance;
+orphans: 3;
+widows: 3;
 ```
 
-**Micro Text (Labels)**
+**Labels & Captions**
 ```css
-font-size: 11px;
+font-size: 13px;
 font-weight: 600;
 letter-spacing: 1px;
 text-transform: uppercase;
+line-height: 1.6;
+color: #666;
 ```
 
-**Tiny Text (Footer, Legal)**
+**Legal Text (Footer, Copyright)**
 ```css
+font-family: "Noto Sans", sans-serif;
 font-size: 9px;
+line-height: 1.6;
 color: #999;
 ```
 
-### Navigation Text
+**Navigation Text**
 ```css
-font-size: 11px;
+font-size: 13px;
 font-family: "Noto Sans", sans-serif;
 font-weight: 600;
 letter-spacing: 1px;
 text-transform: uppercase;
+line-height: 1.6;
 padding: 8px 0;
 transition: opacity 0.2s;
 
@@ -359,7 +418,7 @@ padding: 14px 32px;
 background-color: #D43225;
 border-radius: 6px;
 font-weight: 600;
-font-size: 15px;
+font-size: 17px;
 letter-spacing: 0.3px;
 box-shadow: 0 2px 8px rgba(212, 50, 37, 0.2);
 transition: all 0.2s ease;
@@ -378,7 +437,7 @@ color: #222;
 padding: 8px 0;
 border: none;
 font-weight: 600;
-font-size: 11px;
+font-size: 13px;
 font-family: "Noto Sans", sans-serif;
 letter-spacing: 1px;
 text-transform: uppercase;
@@ -397,7 +456,7 @@ transition: color 0.2s;
 **Filter Buttons**
 ```css
 padding: 8px 16px;
-font-size: 11px;
+font-size: 13px;
 font-weight: 600;
 letter-spacing: 1px;
 text-transform: uppercase;
@@ -464,7 +523,7 @@ transition: transform 0.3s ease;
 **Left Accent Bar (Problem Statement)**
 ```css
 position: relative;
-font-size: 16px;
+font-size: 17px;
 margin-bottom: 16px;
 
 &::before {
@@ -480,7 +539,7 @@ margin-bottom: 16px;
 
 **Category Badge**
 ```css
-font-size: 10px;
+font-size: 13px;
 font-weight: 600;
 letter-spacing: 1px;
 padding: 4px 8px;
@@ -499,7 +558,7 @@ border-radius: 24px; /* Chat input */
 /* OR */
 border-radius: 4px; /* Standard forms */
 padding: 12px 20px;
-font-size: 16px; /* Prevents iOS zoom */
+font-size: 17px;
 outline: none;
 transition: all 0.2s;
 background: #fafafa;
@@ -719,7 +778,7 @@ animation: messageSlideIn 0.3s ease;
 **Message Text**
 ```css
 margin: 0;
-font-size: 14px;
+font-size: 17px;
 line-height: 1.6;
 white-space: pre-wrap;
 word-wrap: break-word;
@@ -1040,7 +1099,7 @@ transform: scale(1.02); /* OR translateY(-2px) */
 ### Section Labels
 
 ```css
-font-size: 11px;
+font-size: 13px;
 font-weight: 600;
 letter-spacing: 1px;
 margin-top: -28px;
@@ -1111,15 +1170,15 @@ color: #FFB800;
 **Mobile**: `<= 768px`
 - Sidebar drawer max-width: 320px
 - Main padding: 32px 20px
-- Font size: 16px (body)
-- h2: 36px
-- h3: 20px
+- Font size: 17px (body - consistent)
+- h2: 56px (consistent)
+- h3: 28px (consistent)
 - Reduced spacing overall
 
 **Small Mobile**: `<= 480px`
 - Main padding: 16px 12px
-- h2: 28px
-- h3: 15px
+- h2: 56px (consistent)
+- h3: 28px (consistent)
 - Minimum comfortable sizes
 
 ### Mobile-Specific Behaviors
@@ -1130,7 +1189,7 @@ color: #FFB800;
   input[type="text"],
   input[type="email"],
   textarea {
-    font-size: 16px; /* Minimum to prevent zoom */
+    font-size: 17px; /* Consistent with body text */
   }
 }
 ```
@@ -1530,6 +1589,7 @@ const passionOne = Passion_One({
 - Create new spacing values outside the scale
 - Use font weights other than 300, 400, 600, 700
 - Apply borders darker than #ccc for standard dividers
+- Create font sizes outside the approved 6-size scale
 
 ✅ **Do:**
 - Keep whitespace generous
@@ -1542,6 +1602,7 @@ const passionOne = Passion_One({
 - Ensure all text is readable (proper contrast)
 - Test responsive behavior at all breakpoints
 - Prioritize performance (GPU acceleration, optimized images)
+- Follow the Ive-approved typography scale rigorously
 
 ---
 
@@ -1553,12 +1614,18 @@ const passionOne = Passion_One({
 - Border: `#e0e0e0`
 - Background: `rgb(245, 245, 247)`
 
-### Most Used Font Sizes
-- Body: 17px (16px mobile)
-- Headers: 56px → 36px → 28px
-- Service titles: 17px uppercase
-- Labels: 11px uppercase
-- Micro: 9px
+### The Ive-Approved Font Size Scale
+- **9px** - Legal/copyright (9 instances)
+- **13px** - Labels/captions/navigation (34 instances)
+- **17px** - Body text - THE standard (258 instances)
+- **28px** - Section headings (29 instances)
+- **56px** - Page titles (19 instances)
+- **clamp(44-100px)** - Threshold hero only (1 instance)
+
+### Line Heights
+- **0.9** - Display text (Passion One)
+- **1.6** - Standard body text
+- **1.8** - Spacious/philosophy text
 
 ### Most Used Spacing
 - Card padding: 32px
@@ -1580,3 +1647,5 @@ const passionOne = Passion_One({
 **This is the design system.**
 
 Every component, every interaction, every pixel follows these principles. Restraint. Clarity. Precision. The brand doesn't shout. It speaks clearly and steps back.
+
+**"When you have 21 font sizes, you have none."** - Jony Ive

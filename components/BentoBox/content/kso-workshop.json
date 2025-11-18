@@ -1,7 +1,46 @@
 {
   "id": "kso-workshop",
-  "variant": "link",
+  "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "£25,000",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "kso-workshop"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "£2,200",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "/products/kso-framework"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "£299/mo",
+      "productId": "kso-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/kso-tool"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
@@ -16,7 +55,7 @@
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If AI systems are mediating how customers discover you..."
+      "text": "If AI decides who finds you..."
     },
     "title": "Knowledge Search Optimisation (KSO) Workshop",
     "badge": "Marketing",
@@ -30,7 +69,9 @@
     "metadata": {
       "type": "function",
       "function": "getDeliveryDate",
-      "args": ["kso-workshop"],
+      "args": [
+        "kso-workshop"
+      ],
       "template": "Four weeks. Workshop next week and by {result} you'll have a KSO blueprint showing what intellectual space you own and how to operationalise it. SEO makes you searchable. KSO makes you unforgettable."
     }
   },

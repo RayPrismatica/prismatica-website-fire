@@ -35,8 +35,23 @@ components/BentoBox/content/
 ```json
 {
   "id": "unique-bento-id",
-  "variant": "service | link | product",
+  "variant": "capability | service | link | product",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting | ai-product | framework",
+      "available": true,
+      "icon": "consultant | ai | framework",
+      "label": "Accessibility label",
+      "pricing": "Optional pricing display",
+      "cta": {
+        "text": "Button text",
+        "action": "enquire | link | external",
+        "modalId": "modal-id",
+        "href": "/path"
+      }
+    }
+  ],
   "athenaPrompt": "Contextual question for Athena chat? (optional)",
   "metadata": {
     "created": "2025-11-16",
@@ -81,6 +96,40 @@ components/BentoBox/content/
 - End with a question or call to action
 - Match the tone of the bento content
 - Avoid generic prompts like "Want to know more?"
+
+### Delivery Modes (Recommended - For All Capabilities)
+
+**Added:** November 2025 for unified `/solutions` page
+
+**Used for:** Indicating how users can access a capability (consultant-led, AI product, or framework).
+
+```json
+"deliveryModes": [
+  {
+    "type": "consulting",           // consulting | ai-product | framework
+    "available": true,              // Availability flag
+    "icon": "consultant",           // consultant | ai | framework
+    "label": "Available with consultant",  // Accessibility label
+    "pricing": "From £50,000",      // Optional pricing (AI/framework only)
+    "cta": {
+      "text": "Book Discovery Call",  // Button text
+      "action": "enquire",           // enquire | link | external
+      "modalId": "service-id",       // Required for 'enquire'
+      "href": "/path"                // Required for 'link' or 'external'
+    }
+  }
+]
+```
+
+**Key features:**
+- Single-mode capabilities (most common): Show one icon, use CTA directly
+- Multi-mode capabilities: Show multiple icons, "Explore Options" modal appears
+- Icons display in top-right corner: 👤 (consultant), 🤖 (AI), 📦 (framework)
+- Full specification: See `DELIVERY_MODE_SCHEMA.md`
+
+**Behavior:**
+- `deliveryModes.length === 1`: Direct CTA from mode's config
+- `deliveryModes.length > 1`: "Explore Options" button → modal with all modes
 
 ### Service Configuration (Optional - For Consulting Services)
 
@@ -234,13 +283,27 @@ components/BentoBox/content/
 
 ## Complete Examples
 
-### Example 1: Product Bento (Sir Alfie)
+### Example 1: Capability with Single Delivery Mode (Sir Alfie - AI Product)
 
 ```json
 {
   "id": "sir-alfie",
-  "variant": "product",
+  "variant": "capability",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "ai-product",
+      "available": true,
+      "icon": "ai",
+      "label": "AI product available",
+      "pricing": "Included in £299/mo suite",
+      "cta": {
+        "text": "Launch Product",
+        "action": "link",
+        "href": "/products/sir-alfie"
+      }
+    }
+  ],
   "athenaPrompt": "What if your CRM hunted opportunities while you slept? Ask more.",
   "metadata": {
     "created": "2025-11-16",
@@ -281,13 +344,26 @@ components/BentoBox/content/
 }
 ```
 
-### Example 2: Service Bento (Go-to-Market)
+### Example 2: Capability with Consulting Delivery Mode (Go-to-Market)
 
 ```json
 {
   "id": "go-to-market",
-  "variant": "service",
+  "variant": "capability",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Available with consultant",
+      "cta": {
+        "text": "Book Discovery Call",
+        "action": "enquire",
+        "modalId": "go-to-market"
+      }
+    }
+  ],
   "athenaPrompt": "Launch once, launch right, no budget burned. Questions?",
   "metadata": {
     "created": "2025-11-16",
@@ -336,7 +412,54 @@ components/BentoBox/content/
 }
 ```
 
-### Example 3: Link Bento (Navigation Card)
+### Example 3: Multi-Mode Capability (Future Enhancement)
+
+```json
+{
+  "id": "esi-framework-multi",
+  "variant": "capability",
+  "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Available with consultant",
+      "cta": {
+        "text": "Book Discovery Call",
+        "action": "enquire",
+        "modalId": "esi-framework"
+      }
+    },
+    {
+      "type": "framework",
+      "available": true,
+      "icon": "framework",
+      "label": "Framework available",
+      "pricing": "£99 one-time",
+      "cta": {
+        "text": "Download Framework",
+        "action": "external",
+        "href": "https://gumroad.com/esi-framework"
+      }
+    }
+  ],
+  "content": {
+    "title": "ESI Framework",
+    "badge": "Strategy",
+    "body": [
+      {
+        "type": "text",
+        "text": "Available as guided consulting or self-service framework."
+      }
+    ]
+  }
+}
+```
+
+**Result:** Shows both 👤 and 📦 icons. CTA button becomes "Explore Options" which opens modal.
+
+### Example 4: Link Bento (Navigation Card - Legacy)
 
 ```json
 {
@@ -439,19 +562,30 @@ Override component defaults:
 
 1. **Required Fields:**
    - `id` (unique)
-   - `variant` (service | link | product)
+   - `variant` (capability | service | link | product)
    - `content.title`
 
-2. **Field Limits:**
+2. **Recommended Fields (capability variant):**
+   - `deliveryModes` array with at least one mode
+   - `deliveryModes[].cta` with valid action and required fields
+
+3. **Field Limits:**
    - `id`: kebab-case, max 50 chars
    - `title`: max 100 chars
    - `body`: max 5 paragraphs
    - `prompt`: max 200 chars
 
-3. **Variant-Specific:**
-   - `service` bentos SHOULD have price + CTAs
-   - `product` bentos SHOULD have custom footer
+4. **Variant-Specific:**
+   - `capability` bentos SHOULD have `deliveryModes` array
+   - `service` bentos (legacy) SHOULD have price + CTAs
+   - `product` bentos (legacy) SHOULD have custom footer
    - `link` bentos MUST have navigation action
+
+5. **Delivery Mode Validation:**
+   - At least one mode must have `available: true`
+   - CTA action `enquire` requires `modalId`
+   - CTA actions `link` or `external` require `href`
+   - Consulting modes should NOT have `pricing` field
 
 ---
 
@@ -522,6 +656,8 @@ const dynamicData = await getDynamicContent();
 ✅ **A/B Testing** - Easy to swap content files
 ✅ **Type Safety** - JSON schema validation
 ✅ **Dynamic + Static** - Mix both content types seamlessly
+✅ **Multi-Channel Delivery** - Single capability, multiple delivery options
+✅ **Scalable Architecture** - Add 100 solutions without code complexity
 
 ---
 

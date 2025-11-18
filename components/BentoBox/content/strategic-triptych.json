@@ -1,7 +1,46 @@
 {
   "id": "strategic-triptych",
-  "variant": "link",
+  "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "£18,000",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "strategic-triptych"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "£1,800",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "/products/strategic-triptych-framework"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "£299/mo",
+      "productId": "strategic-triptych-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/strategic-triptych-tool"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
@@ -16,7 +55,7 @@
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If you know something's off but can't pinpoint where..."
+      "text": "If something's off but where..."
     },
     "title": "The Strategic Triptych Assessment",
     "badge": "Strategy",
@@ -30,7 +69,9 @@
     "metadata": {
       "type": "function",
       "function": "getDeliveryDate",
-      "args": ["strategic-triptych"],
+      "args": [
+        "strategic-triptych"
+      ],
       "template": "Four weeks. By {result} you'll know exactly where you're leaving money on the table and what to do about it."
     }
   },

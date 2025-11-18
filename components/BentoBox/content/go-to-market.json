@@ -1,7 +1,46 @@
 {
   "id": "go-to-market",
-  "variant": "link",
+  "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "£15,000",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "go-to-market"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "£1,500",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "/products/go-to-market-framework"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "Coming soon",
+      "productId": "go-to-market-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/go-to-market-tool"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
@@ -16,7 +55,7 @@
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If you're launching something new and can't afford to get it wrong..."
+      "text": "If launch can't be wrong..."
     },
     "title": "Go-to-Market",
     "badge": "Marketing",
@@ -29,7 +68,9 @@
     "metadata": {
       "type": "function",
       "function": "getDeliveryDate",
-      "args": ["go-to-market"],
+      "args": [
+        "go-to-market"
+      ],
       "template": "Six weeks beats six months of \"let's try this and see.\" Launch strategy ready by {result}, budget intact."
     }
   },

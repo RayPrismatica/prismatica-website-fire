@@ -1,7 +1,46 @@
 {
   "id": "value-channel-matrix",
-  "variant": "product",
+  "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": false,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "N/A",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "value-channel-matrix"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "N/A",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "#"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "£299/mo",
+      "productId": "value-channel-matrix",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/value-channel-matrix"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
@@ -11,7 +50,7 @@
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If they're comparing you on price, you've already lost..."
+      "text": "If competing on price alone..."
     },
     "title": "Value Channel Matrix",
     "body": [
@@ -33,5 +72,12 @@
     "type": "custom",
     "primaryText": "Make them need you, not want you.",
     "secondaryText": "Price becomes irrelevant."
+  },
+  "actions": {
+    "share": {
+      "enabled": true,
+      "subject": "Worth looking at: Value Channel Matrix",
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nThis tool engineers value exchanges so strong your customers never leave. It maps every tangible and intangible channel in the relationship—from Maslow to Jung—to design offerings where people get 30% more than they put in. That's when price becomes irrelevant.\n\nCheck it out: {url}\n\nWorth a look?"
+    }
   }
 }

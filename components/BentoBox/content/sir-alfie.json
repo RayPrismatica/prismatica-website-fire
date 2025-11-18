@@ -1,7 +1,46 @@
 {
   "id": "sir-alfie",
-  "variant": "product",
+  "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": false,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "N/A",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "sir-alfie"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "N/A",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "#"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "£299/mo",
+      "productId": "sir-alfie",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/sir-alfie"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "lastUpdated": "2025-11-16",
@@ -12,7 +51,7 @@
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If your CRM is a graveyard and your pipeline is a prayer..."
+      "text": "If CRM's dead and pipeline's hope..."
     },
     "title": "Sir Alfie",
     "body": [

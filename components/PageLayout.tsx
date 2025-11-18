@@ -1,18 +1,10 @@
-import Sidebar from './Sidebar';
-import PrismaticaHeader from './PrismaticaHeader';
 import styles from './PageLayout.module.css';
 
 export default function PageLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {/* Mobile: Show new header */}
-      <div className={styles.mobileOnly}>
-        <PrismaticaHeader />
-      </div>
-
-      {/* Desktop: Show sidebar + content */}
+      {/* Desktop: Content area (Sidebar is in root layout) */}
       <div className={styles.desktopLayout}>
-        <Sidebar />
         <main className="main">
           {children}
         </main>

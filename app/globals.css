@@ -58,43 +58,34 @@ body {
     display: flex;
     flex-direction: column;
     z-index: 40;
-    animation: slideInFromLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Stagger nav items for elegant reveal */
-.sidebar .nav-item:nth-child(1) { animation: fadeInNav 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards; }
-.sidebar .nav-item:nth-child(2) { animation: fadeInNav 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards; }
-.sidebar .nav-item:nth-child(3) { animation: fadeInNav 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards; }
-.sidebar .nav-item:nth-child(4) { animation: fadeInNav 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.25s backwards; }
-.sidebar .nav-item:nth-child(5) { animation: fadeInNav 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s backwards; }
-.sidebar .nav-item:nth-child(6) { animation: fadeInNav 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.35s backwards; }
-.sidebar .nav-item:nth-child(7) { animation: fadeInNav 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards; }
-.sidebar .nav-item:nth-child(8) { animation: fadeInNav 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s backwards; }
-
-/* Logo fades in last */
-.sidebar-logo {
-    animation: fadeInNav 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s backwards;
-}
-
-@keyframes fadeInNav {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
+/* Hide desktop sidebar on homepage (mobile header still shows via mobile-header class) */
+@media (min-width: 1025px) {
+    .sidebar.homepage-mode {
+        display: none;
     }
 }
 
-@keyframes slideInFromLeft {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
+/* Sidebar philosophy note */
+.sidebar-philosophy {
+    text-align: left;
+}
+
+@media (max-width: 1024px) {
+    .sidebar-philosophy {
+        text-align: center;
     }
-    to {
-        transform: translateX(0);
-        opacity: 1;
+}
+
+/* About page footer tagline */
+.about-footer-tagline {
+    text-align: center;
+}
+
+@media (min-width: 769px) {
+    .about-footer-tagline {
+        text-align: left;
     }
 }
 
@@ -105,18 +96,6 @@ body {
     max-width: 1200px;
     width: 100%;
     box-sizing: border-box;
-    animation: shiftRight 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes shiftRight {
-    from {
-        margin-left: 0;
-        opacity: 0.8;
-    }
-    to {
-        margin-left: 240px;
-        opacity: 1;
-    }
 }
 
 .section {
@@ -159,7 +138,7 @@ h2 {
 
 h3 {
     font-family: "Noto Sans", sans-serif;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
     margin-top: 32px;
     margin-bottom: 4px;
@@ -173,7 +152,7 @@ p {
 }
 
 .section-label {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 1px;
     margin-top: -28px;
@@ -197,7 +176,7 @@ p {
     transition: color 0.2s;
     border: none;
     cursor: pointer;
-    font-size: 11px;
+    font-size: 13px;
     font-family: "Noto Sans", sans-serif;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -245,21 +224,23 @@ p {
   background-color: #D43225 !important;
 }
 
-/* All bentos get transparent top border and transition on desktop */
+/* All bentos get transparent top and bottom borders with transitions */
 .bento-box,
 .product-bento,
 .service-bento,
 .bento-link {
   border-top: 3px solid transparent;
-  transition: border-top-color 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 3px solid transparent;
+  transition: border-top-color 0.8s ease, border-bottom-color 0.8s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Activate red top border + lift effect when in viewport */
+/* Activate red top and bottom borders + lift effect when in viewport */
 .bento-box.in-viewport,
 .product-bento.in-viewport,
 .service-bento.in-viewport,
 .bento-link.in-viewport {
   border-top-color: #D43225;
+  border-bottom-color: #D43225;
   transform: translateY(-2px);
 }
 
@@ -273,6 +254,40 @@ p {
 .bento-link.in-viewport .service-cta-link,
 .bento-link.in-viewport .service-cta-btn {
     color: #D43225 !important;
+}
+
+/* Delivery dates and CTAs get slow color transitions */
+.delivery-date {
+    transition: color 0.8s ease;
+}
+
+.service-cta-link,
+.service-cta-btn {
+    transition: color 0.8s ease;
+}
+
+/* Delivery mode zones - hover effect for available modes */
+.delivery-mode-zone:not(:disabled):hover {
+    color: #D43225 !important;
+}
+
+.delivery-mode-zone:not(:disabled):hover .delivery-mode-price {
+    color: #D43225 !important;
+}
+
+/* Share zone hover */
+.share-zone:hover {
+    color: #D43225 !important;
+}
+
+.share-zone:hover svg {
+    stroke: #D43225 !important;
+}
+
+/* Divider lines get slow color transitions */
+.bento-link > div:last-child,
+.service-bento > div:last-child {
+    transition: border-top-color 0.8s ease;
 }
 
 /* CTA Button Hovers */
@@ -438,7 +453,7 @@ p {
     height: 40px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 17px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -490,21 +505,21 @@ p {
     align-items: center;
     justify-content: center;
     gap: 4px;
-    font-size: 20px;
+    font-size: 17px;
     color: #FFB800;
 }
 
 .testimonial-text {
-    font-size: 16px;
+    font-size: 17px;
     font-style: italic;
     color: #fafafa;
-    line-height: 1.5;
+    line-height: 1.6;
     max-width: 500px;
     margin: 48px 0 24px 0;
 }
 
 .testimonial-author {
-    font-size: 11px;
+    font-size: 13px;
     color: #999;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -538,7 +553,12 @@ p {
     }
 }
 
-/* Mobile Header - Entire bar is tappable */
+/* Minimal Logo - Desktop only homepage logo */
+.minimal-logo {
+    display: block;
+}
+
+/* Mobile Header - Logo left, menu button right */
 .mobile-header {
     display: none;
     position: fixed;
@@ -550,18 +570,9 @@ p {
     border-bottom: 1px solid #e0e0e0;
     padding: 0 20px;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     z-index: 1000;
-    gap: 12px;
     transition: background-color 0.2s;
-}
-
-.mobile-header:hover {
-    background-color: #fafafa;
-}
-
-.mobile-header:active {
-    background-color: #f5f5f5;
 }
 
 /* Hamburger Button */
@@ -605,6 +616,10 @@ p {
         --sidebar-width: 0px;
     }
 
+    .minimal-logo {
+        display: none;
+    }
+
     .mobile-header {
         display: flex;
     }
@@ -632,17 +647,30 @@ p {
         transition: none !important;
     }
 
-    /* Better touch targets for nav */
+    /* Better touch targets for nav - center aligned on mobile */
     .sidebar a,
     .sidebar button {
         min-height: 44px;
         display: flex;
         align-items: center;
+        justify-content: center;
         padding: 8px 0;
+        text-align: center;
     }
 
     .sidebar.mobile-open {
         transform: translateY(0);
+    }
+
+    /* Center align menu items on mobile */
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sidebar-content > * {
+        width: 100%;
     }
 
     .sidebar-logo img,
@@ -674,7 +702,7 @@ p {
 @media (max-width: 768px) {
     .sidebar {
         width: 100%;
-        max-width: 320px;
+        max-width: none;
     }
 
     .main {
@@ -683,20 +711,20 @@ p {
     }
 
     h2 {
-        font-size: 36px;
-        line-height: 1;
+        font-size: 56px;
+        line-height: 0.9;
         margin-bottom: 28px;
     }
 
     h3 {
-        font-size: 20px;
+        font-size: 17px;
         margin-top: 40px;
         margin-bottom: 12px;
     }
 
     p {
-        font-size: 16px;
-        line-height: 1.7;
+        font-size: 17px;
+        line-height: 1.6;
         margin-bottom: 20px;
     }
 
@@ -709,7 +737,7 @@ p {
     }
 
     body {
-        font-size: 16px;
+        font-size: 17px;
     }
 
     /* Better touch targets for buttons */
@@ -719,7 +747,7 @@ p {
     .who-cta-button {
         min-height: 48px;
         padding: 16px 32px !important;
-        font-size: 16px !important;
+        font-size: 17px !important;
     }
 
     /* Adjust left accent bars for mobile padding */
@@ -734,8 +762,8 @@ p {
 
     /* Service details on mobile */
     .service-details {
-        font-size: 12px !important;
-        line-height: 1.7 !important;
+        font-size: 13px !important;
+        line-height: 1.6 !important;
         color: #666 !important;
     }
 
@@ -749,7 +777,7 @@ p {
     }
 
     .testimonial-text {
-        font-size: 15px;
+        font-size: 17px;
     }
 }
 
@@ -795,12 +823,12 @@ p {
 
 .athena-name {
     font-weight: 600;
-    font-size: 15px;
-    line-height: 1.2;
+    font-size: 17px;
+    line-height: 1.6;
 }
 
 .athena-status {
-    font-size: 12px;
+    font-size: 13px;
     color: #999;
     display: flex;
     align-items: center;
@@ -882,7 +910,7 @@ p {
 
 .message-text {
     margin: 0;
-    font-size: 14px;
+    font-size: 17px;
     line-height: 1.6;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -933,7 +961,7 @@ p {
     border: 1px solid #ddd;
     border-radius: 24px;
     padding: 12px 20px;
-    font-size: 16px;
+    font-size: 17px;
     outline: none;
     transition: all 0.2s;
     background: #fafafa;
@@ -1053,18 +1081,18 @@ p {
 
     h2 {
         font-size: 28px;
-        line-height: 1.1;
+        line-height: 0.9;
         margin-bottom: 24px;
     }
 
     h3 {
-        font-size: 16px;
+        font-size: 17px;
         margin-top: 36px;
         margin-bottom: 12px;
     }
 
     p {
-        font-size: 16px;
+        font-size: 17px;
         margin-bottom: 18px;
     }
 
@@ -1121,7 +1149,7 @@ p {
     }
 
     .message-text {
-        font-size: 16px;
+        font-size: 17px;
     }
 
     .athena-input-area {
@@ -1131,7 +1159,7 @@ p {
 
     .athena-input {
         padding: 10px 16px;
-        font-size: 16px;
+        font-size: 17px;
     }
 
     .athena-send-button {
@@ -1154,7 +1182,7 @@ p {
     .carousel-button {
         width: 32px;
         height: 32px;
-        font-size: 18px;
+        font-size: 17px;
     }
 
     .carousel-slides-container {
@@ -1171,17 +1199,17 @@ p {
     .testimonial-stars {
         position: absolute;
         top: 32px;
-        font-size: 16px;
+        font-size: 17px;
     }
 
     .testimonial-text {
-        font-size: 14px;
+        font-size: 17px;
         margin: 48px 0 20px 0;
         max-width: 100%;
     }
 
     .testimonial-author {
-        font-size: 10px;
+        font-size: 9px;
     }
 }
 
@@ -1190,7 +1218,7 @@ p {
 .dynamic-pattern-insight {
     margin-bottom: 16px;
     padding: 0;
-    font-size: 14px;
+    font-size: 17px;
     line-height: 1.6;
     color: #444;
     font-weight: 300;
@@ -1263,21 +1291,21 @@ p {
     .modal-content input[type="text"],
     .modal-content input[type="email"],
     .modal-content textarea {
-        font-size: 16px !important;
+        font-size: 17px !important;
         padding: 12px !important;
     }
 
     /* Modal buttons on mobile */
     .modal-content button {
         padding: 14px 24px !important;
-        font-size: 15px !important;
+        font-size: 17px !important;
     }
 
     /* Modal title/heading on mobile */
     .modal-content h2,
     .modal-content h3 {
-        font-size: 24px !important;
-        line-height: 1.2 !important;
+        font-size: 17px !important;
+        line-height: 1.6 !important;
     }
 }
 
@@ -1286,7 +1314,7 @@ p {
     .modal-content select,
     .modal-content textarea,
     .modal-content input {
-        font-size: 16px !important;
+        font-size: 17px !important;
     }
 }
 
@@ -1316,7 +1344,7 @@ p {
     input[type="email"],
     input[type="tel"],
     textarea {
-        font-size: 16px;
+        font-size: 17px;
     }
 }
 
@@ -1344,7 +1372,7 @@ p {
 @media (max-width: 768px) {
   h2 {
     font-size: clamp(28px, 8vw, 42px) !important;
-    line-height: 1.1 !important;
+    line-height: 0.9 !important;
   }
 
   h3 {
@@ -1352,7 +1380,7 @@ p {
   }
 
   p {
-    line-height: 1.75 !important;
+    line-height: 1.6 !important;
   }
 
   /* Tighter letter spacing on mobile for ALL CAPS */
@@ -1653,4 +1681,9 @@ p {
   p[style*="position: relative"] span[style*="position: absolute"][style*="width: 3px"] {
     transition: background-color 0.3s ease !important;
   }
+}
+
+/* Evidence link hover effect */
+.evidence-link:hover {
+  color: #D43225 !important;
 }

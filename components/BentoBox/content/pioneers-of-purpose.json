@@ -2,6 +2,45 @@
   "id": "pioneers-of-purpose",
   "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "£50,000",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "pioneers-of-purpose"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "£5,000",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "/products/pioneers-of-purpose-framework"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "£299/mo",
+      "productId": "pioneers-of-purpose-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/pioneers-of-purpose-tool"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
@@ -16,7 +55,7 @@
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If your internal culture and external message feel misaligned..."
+      "text": "If culture and message collide..."
     },
     "title": "Pioneers of Purpose Assessment",
     "badge": "Strategy",

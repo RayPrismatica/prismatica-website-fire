@@ -1,17 +1,56 @@
 {
   "id": "process-surgery",
-  "variant": "link",
+  "variant": "service",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Work with consultant",
+      "pricing": "£10,000",
+      "cta": {
+        "text": "Work with us",
+        "action": "enquire",
+        "modalId": "process-surgery"
+      }
+    },
+    {
+      "type": "framework",
+      "available": false,
+      "icon": "framework",
+      "label": "Buy framework",
+      "pricing": "£1,000",
+      "cta": {
+        "text": "Buy framework",
+        "action": "external",
+        "href": "/products/process-surgery-framework"
+      }
+    },
+    {
+      "type": "ai-product",
+      "available": false,
+      "icon": "ai",
+      "label": "Use AI tool",
+      "pricing": "£299/mo",
+      "productId": "process-surgery-tool",
+      "cta": {
+        "text": "Use tool",
+        "action": "link",
+        "href": "/products/process-surgery-tool"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Prismatica Labs",
-    "notes": "Process Surgery - \u00a310,000 consulting service"
+    "notes": "Process Surgery - £10,000 consulting service"
   },
   "athenaPrompt": "Imagine work getting easier, not just documented. Ask Athena now.",
   "content": {
     "prompt": {
       "type": "static",
-      "text": "If you're hiring faster than you're fixing processes..."
+      "text": "If hiring faster than fixing..."
     },
     "title": "Process Surgery",
     "badge": "Process",
@@ -32,13 +71,13 @@
   },
   "footer": {
     "type": "price-cta",
-    "price": "From \u00a310,000"
+    "price": "From £10,000"
   },
   "actions": {
     "share": {
       "enabled": true,
       "subject": "Worth looking at: Process Surgery",
-      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Process Surgery. They find the 20% of processes causing 80% of pain, eliminate unnecessary steps, and rebuild critical paths. Process that makes work easier, not just documented.\n\nFour weeks, starts at \u00a310,000.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
+      "body": "Hey,\n\nI came across this and thought it might help with [ADD_YOUR_CHALLENGE_HERE].\n\nIt's called Process Surgery. They find the 20% of processes causing 80% of pain, eliminate unnecessary steps, and rebuild critical paths. Process that makes work easier, not just documented.\n\nFour weeks, starts at £10,000.\n\nIf we talk to them next week, we could have results by {deliveryDate}.\n\nHere's the link: {url}\n\nWorth a conversation?"
     },
     "enquire": {
       "enabled": true,

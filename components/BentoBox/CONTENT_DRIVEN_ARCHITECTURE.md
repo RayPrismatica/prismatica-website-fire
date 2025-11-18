@@ -4,6 +4,8 @@
 
 A complete **content-driven system** for creating BentoBox instances using JSON files instead of hardcoded JSX.
 
+**Latest Update (November 2025):** All 15 solutions consolidated on unified `/solutions` page with delivery modes system for multi-channel capabilities.
+
 ---
 
 ## 📁 File Structure
@@ -16,13 +18,33 @@ components/BentoBox/
 ├── BentoBox.README.md               # Component API documentation
 ├── BentoBox.examples.tsx            # JSX usage examples
 │
-├── CONTENT_SCHEMA.md                # ⭐ THIS DOCUMENT - JSON schema definition
-├── CONTENT_DRIVEN_ARCHITECTURE.md   # ⭐ THIS SUMMARY - How it all works
+├── CONTENT_SCHEMA.md                # ⭐ JSON schema definition
+├── CONTENT_DRIVEN_ARCHITECTURE.md   # ⭐ THIS DOCUMENT - How it all works
+├── DELIVERY_MODE_SCHEMA.md          # Delivery modes specification
 │
-└── content/                         # ⭐ CONTENT FILES
+└── content/                         # ⭐ CONTENT FILES (15 active solutions)
     ├── template.json                # Template with inline instructions
-    ├── sir-alfie.json              # Example product bento
-    └── [your-bento].json           # Add new bentos here
+    │
+    ├── pioneers-of-purpose.json     # Big Picture (£40k-50k)
+    ├── esi-framework.json
+    ├── secret-agency.json
+    ├── transaction-architecture.json # Mid-tier (£18k-25k)
+    ├── kso-workshop.json
+    ├── strategic-triptych.json
+    │
+    ├── go-to-market.json            # Tactical (£8k-15k)
+    ├── creative-converts.json
+    ├── design-thinking.json
+    ├── ai-without-hallucination.json
+    ├── process-surgery.json
+    ├── marketing-reality-check.json
+    │
+    ├── focus-matrix.json            # AI Products (£299/mo)
+    ├── sir-alfie.json
+    ├── value-channel-matrix.json
+    │
+    ├── consulting-services-link.json # Navigation (legacy)
+    └── product-suite-link.json       # Navigation (legacy)
 ```
 
 ---
@@ -53,7 +75,16 @@ components/BentoBox/
 // components/BentoBox/content/sir-alfie.json
 {
   "id": "sir-alfie",
-  "variant": "product",
+  "variant": "capability",
+  "deliveryModes": [
+    {
+      "type": "ai-product",
+      "available": true,
+      "icon": "ai",
+      "label": "AI product available",
+      "cta": { "text": "Launch Product", "action": "link", "href": "/products/sir-alfie" }
+    }
+  ],
   "content": {
     "title": "Sir Alfie",
     "prompt": { "text": "..." },
@@ -66,7 +97,7 @@ components/BentoBox/
 ```
 
 ```tsx
-// app/products/page.tsx
+// app/solutions/page.tsx
 import sirAlfie from '@/components/BentoBox/content/sir-alfie.json';
 <BentoBoxFromContent content={sirAlfie} />
 ```
@@ -94,8 +125,21 @@ Open `my-new-product.json` and fill in:
 ```json
 {
   "id": "my-new-product",
-  "variant": "product",
+  "variant": "capability",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Available with consultant",
+      "cta": {
+        "text": "Book Discovery Call",
+        "action": "enquire",
+        "modalId": "my-new-product"
+      }
+    }
+  ],
   "metadata": {
     "created": "2025-11-16",
     "author": "Your Name"
@@ -126,7 +170,9 @@ Open `my-new-product.json` and fill in:
 }
 ```
 
-**Note:** The `service` object is optional - only needed for consulting services with delivery dates and modals.
+**Notes:**
+- The `service` object is optional - only needed for consulting services with delivery dates and modals.
+- All solutions now use `variant: "capability"` (legacy `service`/`product` variants still work)
 
 ### Step 3: Remove Comments
 
@@ -135,12 +181,22 @@ Delete all `_notes`, `_comment`, and `_instructions` fields.
 ### Step 4: Use in Page
 
 ```tsx
+// app/solutions/page.tsx
 import myProduct from '@/components/BentoBox/content/my-new-product.json';
 
-<BentoBoxFromContent content={myProduct} />
+<ConsultingBentoProvider bentos={[myProduct, ...otherBentos]}>
+  {({ dynamicContent, functionRegistry, onEnquire }) => (
+    <BentoBoxFromContent
+      content={myProduct as any}
+      dynamicData={dynamicContent}
+      functionRegistry={functionRegistry}
+      onEnquire={onEnquire}
+    />
+  )}
+</ConsultingBentoProvider>
 ```
 
-**That's it!** No code changes needed.
+**That's it!** No code changes needed beyond adding your import and component.
 
 ---
 
@@ -151,7 +207,16 @@ import myProduct from '@/components/BentoBox/content/my-new-product.json';
 ```json
 {
   "id": "unique-id",
-  "variant": "product",
+  "variant": "capability",
+  "deliveryModes": [
+    {
+      "type": "ai-product",
+      "available": true,
+      "icon": "ai",
+      "label": "AI product available",
+      "cta": { "text": "Launch", "action": "link", "href": "/products/unique-id" }
+    }
+  ],
   "content": {
     "title": "Title Here"
   }
@@ -163,8 +228,17 @@ import myProduct from '@/components/BentoBox/content/my-new-product.json';
 ```json
 {
   "id": "full-example",
-  "variant": "service",
+  "variant": "capability",
   "enabled": true,
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Available with consultant",
+      "cta": { "text": "Book Call", "action": "enquire", "modalId": "full-example" }
+    }
+  ],
   "metadata": { "author": "You" },
   "content": {
     "prompt": { "type": "static", "text": "Problem..." },
@@ -250,25 +324,19 @@ Calls `getDeliveryDate('service-id')` and replaces `{deliveryDate}` in text.
 
 ## 🎨 Variants
 
-### Product Bento
+### Capability Bento (Recommended)
 ```json
 {
-  "variant": "product",
-  "footer": {
-    "type": "custom",
-    "primaryText": "Tagline.",
-    "secondaryText": "Subtitle."
-  }
-}
-```
-- No price
-- No CTAs
-- Custom messaging in footer
-
-### Service Bento
-```json
-{
-  "variant": "service",
+  "variant": "capability",
+  "deliveryModes": [
+    {
+      "type": "consulting",
+      "available": true,
+      "icon": "consultant",
+      "label": "Available with consultant",
+      "cta": { "text": "Book Call", "action": "enquire", "modalId": "service-id" }
+    }
+  ],
   "footer": {
     "type": "price-cta",
     "price": "From £50,000"
@@ -279,24 +347,49 @@ Calls `getDeliveryDate('service-id')` and replaces `{deliveryDate}` in text.
   }
 }
 ```
-- Shows price
-- Share + Enquire CTAs
+- **Introduced:** November 2025
+- **Use for:** All solutions (consulting, AI products, frameworks)
+- Shows delivery mode icons in top-right corner
+- Supports multi-mode capabilities with modal selection
 
-### Link Bento
+### Legacy Variants (Backward Compatible)
+
+**Service Bento:**
+```json
+{
+  "variant": "service",
+  "footer": {
+    "type": "price-cta",
+    "price": "From £50,000"
+  }
+}
+```
+
+**Product Bento:**
+```json
+{
+  "variant": "product",
+  "footer": {
+    "type": "custom",
+    "primaryText": "Tagline.",
+    "secondaryText": "Subtitle."
+  }
+}
+```
+
+**Link Bento:**
 ```json
 {
   "variant": "link",
   "actions": {
     "link": {
       "enabled": true,
-      "href": "/consulting",
+      "href": "/solutions",
       "text": "Learn More"
     }
   }
 }
 ```
-- Navigation card
-- Single link action
 
 ---
 
@@ -341,6 +434,42 @@ Navigates to URL.
 }
 ```
 Calls JavaScript function (advanced).
+
+---
+
+## 📍 Solutions Page Consolidation
+
+**Before (Split Pages):**
+- `/consulting` - 12 consulting services
+- `/products` - 3 AI products
+- Duplicate navigation cards on homepage
+
+**After (Unified `/solutions`):**
+- Single page with all 15 capabilities
+- Three-tier structure:
+  1. **The Big Picture** (6 services, £18k-50k)
+  2. **Tactical Steps Forward** (6 services, £8k-15k)
+  3. **AI-Powered Tools** (3 products, £299/mo suite)
+- Shared `ConsultingBentoProvider` manages all dynamic content, dates, modals
+- Delivery mode icons show at-a-glance availability
+
+**File Count:**
+- 15 active solution JSON files (12 consulting + 3 AI products)
+- 2 legacy navigation links (can be removed)
+- 1 template.json for creating new solutions
+
+**Adding New Solutions:**
+1. Copy `template.json` → `my-solution.json`
+2. Fill in content and set `deliveryModes` array
+3. Import in `app/solutions/page.tsx`
+4. Add `<BentoBoxFromContent />` in appropriate tier section
+5. Done - no code changes, no config files to update
+
+**Benefits:**
+- One source of truth for all capabilities
+- Easier for users to browse and compare options
+- Delivery modes provide clear differentiation
+- Scalable: Add 100 solutions without page complexity
 
 ---
 

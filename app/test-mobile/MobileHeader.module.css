@@ -33,7 +33,7 @@
 
 .logoText {
   font-family: var(--font-passion), sans-serif;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: -0.5px;
   color: #222;
@@ -124,7 +124,7 @@
 
 .menuItem {
   font-family: "Noto Sans", sans-serif;
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -184,7 +184,7 @@
 
 .footerLink {
   font-family: "Noto Sans", sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   color: #999;
   text-decoration: none;
   transition: color 0.2s;
@@ -195,13 +195,13 @@
 }
 
 .footerDot {
-  font-size: 11px;
+  font-size: 13px;
   color: #e0e0e0;
 }
 
 .copyright {
   font-family: "Noto Sans", sans-serif;
-  font-size: 11px;
+  font-size: 13px;
   color: #999;
   margin: 0;
 }

@@ -6,6 +6,30 @@ export type FooterType = 'price-cta' | 'custom';
 export type BodyItemType = 'text' | 'dynamic';
 
 // ============================================================================
+// Delivery Mode Types (Capabilities Consolidation)
+// ============================================================================
+
+export type DeliveryModeType = 'consulting' | 'ai-product' | 'framework';
+export type DeliveryModeIcon = 'consultant' | 'ai' | 'framework';
+
+export interface DeliveryModeCTA {
+  text: string; // Button text
+  action: 'enquire' | 'link' | 'external';
+  modalId?: string; // For enquire action
+  href?: string; // For link/external action
+}
+
+export interface DeliveryMode {
+  type: DeliveryModeType;
+  available: boolean;
+  icon: DeliveryModeIcon;
+  label: string; // Tooltip text for accessibility
+  pricing?: string; // Optional pricing display (AI/framework only)
+  productId?: string; // Link to product detail page
+  cta: DeliveryModeCTA; // Call-to-action configuration
+}
+
+// ============================================================================
 // Content Structures
 // ============================================================================
 
@@ -147,6 +171,7 @@ export interface BentoContent {
   id: string;
   variant: BentoVariant;
   enabled?: boolean;
+  deliveryModes?: DeliveryMode[];
   metadata?: BentoMetadata;
   content: ContentFields;
   footer?: FooterContent;

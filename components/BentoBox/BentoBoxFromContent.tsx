@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import BentoBox from './BentoBox';
-import type { BentoBoxFromContentProps } from './types';
+import DeliveryModeModal from './DeliveryModeModal';
+import type { BentoBoxFromContentProps, DeliveryMode } from './types';
 import {
   parsePromptContent,
   parseBodyContent,
@@ -33,6 +34,12 @@ export default function BentoBoxFromContent({
   onEnquire: externalOnEnquire,
   className
 }: BentoBoxFromContentProps) {
+  // ============================================================================
+  // State Management (Delivery Mode Modal)
+  // ============================================================================
+
+  const [modalOpen, setModalOpen] = useState(false);
+
   // ============================================================================
   // Validation
   // ============================================================================
@@ -188,6 +195,135 @@ export default function BentoBoxFromContent({
     : undefined;
 
   // ============================================================================
+  // Delivery Mode Logic (Capabilities Consolidation Phase 2)
+  // ============================================================================
+
+  const deliveryModes = content.deliveryModes || [];
+
+  // Enforce order: consulting → framework → ai-product (include ALL modes, even unavailable)
+  const modeOrder = { 'consulting': 1, 'framework': 2, 'ai-product': 3 };
+  const sortedModes = [...deliveryModes].sort((a, b) =>
+    (modeOrder[a.type] || 99) - (modeOrder[b.type] || 99)
+  );
+
+  const hasMultipleModes = deliveryModes.length >= 2;
+
+  // Handler for modal mode selection
+  const handleModeSelect = (mode: DeliveryMode) => {
+    // Don't do anything if mode is unavailable
+    if (!mode.available) {
+      return;
+    }
+
+    switch (mode.cta.action) {
+      case 'enquire':
+        if (externalOnEnquire && mode.cta.modalId) {
+          externalOnEnquire(mode.cta.modalId);
+        }
+        break;
+      case 'link':
+        if (mode.cta.href) {
+          window.location.href = mode.cta.href;
+        }
+        break;
+      case 'external':
+        if (mode.cta.href) {
+          window.open(mode.cta.href, '_blank', 'noopener,noreferrer');
+        }
+        break;
+    }
+  };
+
+  // Override footer if deliveryModes are present
+  let finalCustomFooter = customFooter;
+  let finalOnEnquire = onEnquire;
+
+  if (hasMultipleModes) {
+    // Multi-mode: Full-width action zones - edge to edge
+    finalCustomFooter = (
+      <div style={{ margin: '0 -32px -32px -32px' }}>
+        {/* Delivery mode zones - full width bars (sorted order) */}
+        {sortedModes.map((mode, index) => (
+          <button
+            key={mode.type}
+            onClick={() => handleModeSelect(mode)}
+            className="delivery-mode-zone"
+            disabled={!mode.available}
+            style={{
+              width: '100%',
+              background: 'transparent',
+              border: 'none',
+              borderTop: '1px solid #e0e0e0',
+              padding: '16px 32px',
+              cursor: mode.available ? 'pointer' : 'not-allowed',
+              fontSize: '13px',
+              fontWeight: 600,
+              transition: 'background 0.8s ease, color 0.8s ease',
+              letterSpacing: '1px',
+              fontFamily: '"Noto Sans", sans-serif',
+              textTransform: 'uppercase',
+              color: mode.available ? '#444' : '#ccc',
+              textAlign: 'left',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              opacity: mode.available ? 1 : 0.5,
+            }}
+          >
+            <span>{mode.cta.text}</span>
+            <span
+              className="delivery-mode-price"
+              style={{
+                fontSize: '13px',
+                fontWeight: 400,
+                color: mode.available ? '#999' : '#ccc',
+                transition: 'color 0.8s ease'
+              }}
+            >
+              {mode.available ? (mode.type === 'consulting' ? '→' : mode.pricing) : 'N/A'}
+            </span>
+          </button>
+        ))}
+
+        {/* Share link zone */}
+        {shareEmail && (
+          <a
+            href={buildShareEmailUrl(shareEmail.subject, shareEmail.body)}
+            title="Send to a colleague"
+            className="share-zone"
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              width: '100%',
+              background: 'transparent',
+              borderTop: '1px solid #e0e0e0',
+              borderRadius: '0 0 12px 12px',
+              padding: '16px 32px',
+              color: '#666',
+              fontSize: '13px',
+              fontWeight: 600,
+              textDecoration: 'none',
+              transition: 'background 0.8s ease, color 0.8s ease',
+              letterSpacing: '1px',
+              fontFamily: '"Noto Sans", sans-serif',
+              textTransform: 'uppercase',
+            }}
+          >
+            <span>Ask a friend?</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m2 7 10 7 10-7" />
+            </svg>
+          </a>
+        )}
+      </div>
+    );
+    finalOnEnquire = undefined; // Don't show default enquire button
+  }
+  // If no delivery modes, use existing footer/actions (backward compatible)
+
+  // ============================================================================
   // Build Children (Body Paragraphs)
   // ============================================================================
 
@@ -222,8 +358,9 @@ export default function BentoBoxFromContent({
       metadata={metadata || undefined}
       price={price}
       shareEmail={shareEmail}
-      onEnquire={onEnquire}
-      customFooter={customFooter}
+      onEnquire={finalOnEnquire}
+      customFooter={finalCustomFooter}
+      deliveryModes={deliveryModes}
       data-athena-prompt={content.athenaPrompt}
       className={className}
       style={content.style}

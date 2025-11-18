@@ -49,8 +49,9 @@ The application's unique feature is AI-generated content that stays contextually
    - Max tokens: 2200
    - System prompt: `scripts/prompts/dynamic-content.md`
 4. Content uploaded to **Vercel Blob Storage** and saved to markdown file:
-   - **Vercel Blob**: `dynamic-content.json` (24-hour validity, instant updates, no rebuilds)
+   - **Vercel Blob**: `dynamic-content.json` (24-hour max-age safety limit, 6-hour refresh cycle, instant updates, no rebuilds)
    - **Local file**: `athena/knowledge/pages/dynamic-content.md` - Markdown for Athena's knowledge base
+   - **Storage options**: Uses `allowOverwrite: true` and `addRandomSuffix: false` for deterministic file paths
 5. Components fetch from Blob via `lib/getDynamicContent.ts` and `/api/dynamic-content`
 6. Athena reads from markdown via `getPageContent()` in chat API
 7. Fallback content ensures site never breaks if Blob fetch fails or content expires
@@ -81,6 +82,64 @@ All dynamic components follow the same pattern: fetch from cache, display with f
 **`/api/products-enquiry`** - Product enquiry form
 **`/api/dynamic-content`** - Serves cached dynamic content
 **`/api/generate-content`** - Webhook endpoint for content regeneration
+**`/api/chat/end`** - Post-chat analysis endpoint (triggers automated conversation summarization)
+
+### Athena Intelligence System
+
+Athena implements a dual-layer intelligence system for learning from user interactions while maintaining privacy:
+
+**Layer 1 - Anonymous Behavioral Intelligence (IMPLEMENTED)**
+
+Stores anonymous conversation data in Vercel Blob Storage at `athena/intel/layer1/`:
+
+- **Raw Conversations**: Saved to `raw-conversations/{YYYY-MM}/` as JSON files
+  - Conversation matching logic associates new messages with existing conversation IDs
+  - Uses blob prefix listing to find and continue existing conversations
+  - Files use deterministic naming with `allowOverwrite: true` for continuation
+
+- **Post-Chat Analysis**: Triggered by `/api/chat/end` endpoint
+  - Requires 6+ messages (3+ exchanges) to trigger analysis
+  - Uses dedicated prompt: `athena/prompts/conversation-analysis.md`
+  - Analysis saved to `summaries/{YYYY-MM}/` as markdown files
+  - Summaries publicly accessible for future analytics/dashboard features
+
+- **Web Research Tools**: Athena can research user context
+  - `search_web` - Google search with fallback
+  - `fetch_webpage` - JSDOM-based content extraction
+  - 10-second timeout on web requests
+  - Used for company research, LinkedIn profiles, etc.
+
+- **Session Continuity**: Optional username parameter enables session persistence
+  - Loads previous session notes if username provided
+  - Searches current month, then previous month (YYYY-MM folder structure)
+  - Session context injected into system prompt with "RETURNING USER" marker
+
+**Layer 2 - Named Session Notes (PLANNED)**
+
+Placeholder infrastructure exists for opt-in session persistence:
+- Designed for explicit user permission (after 3-4 exchanges demonstrate value)
+- Would store to `sessions/{YYYY-MM}/` under sanitized user identifiers
+- Not yet implemented - infrastructure only
+
+**Page-Specific Contextual Prompts**
+
+Athena adapts opening questions based on current page:
+- `PAGE_PROMPTS` constant defines 15 unique contextual questions
+- Implemented in both `GlobalAthenaChat.tsx` (desktop) and `MobileBottomSheetAthena.tsx` (mobile)
+- Fallback to generic prompt if page not in list
+- Examples: "/consulting" asks about project timelines, "/products" about transformation goals
+
+**Prompt Caching Strategy**
+
+- **Development**: Prompts reload from filesystem on every request (hot-reload enabled)
+- **Production**: Core Athena prompt (`athena/prompts/core.md`) cached once at server startup
+- Allows rapid iteration on prompts without server restarts during development
+
+**Security Protocol**
+
+- Embedded verification code "sun-on-elba" in core prompt for team access
+- Forces team verification before discussing internal matters
+- Privacy: Conversation data folders git-ignored, never committed
 
 ### Environment Variables
 
@@ -94,18 +153,42 @@ ANTHROPIC_API_KEY=          # Fallback for both
 
 RESEND_API_KEY=             # Email notifications
 
-# Vercel Blob Storage (for dynamic content)
+# Vercel Blob Storage (dual-purpose: dynamic content + Athena intelligence)
 BLOB_READ_WRITE_TOKEN=      # Token from Vercel dashboard (for writing content)
 BLOB_URL=                   # Public URL of your blob (set by Vercel)
 ```
 
+### Vercel Blob Storage Architecture
+
+The application uses Vercel Blob Storage for two distinct, independent data streams:
+
+**A. Dynamic Content Storage**
+- File: `dynamic-content.json`
+- Cache strategy: 24-hour max-age safety limit, 6-hour refresh via GitHub Actions
+- Accessed via: `lib/getDynamicContent.ts` and `/api/dynamic-content` endpoint
+- Fallback: Hardcoded content matching brand voice if Blob fetch fails or expires
+
+**B. Athena Intelligence Storage**
+- Conversation transcripts: `athena/intel/layer1/raw-conversations/{YYYY-MM}/`
+- Analysis summaries: `athena/intel/layer1/summaries/{YYYY-MM}/`
+- Accessed via: `/api/chat/route.ts` (save) and `/api/chat/end/route.ts` (analyze)
+- Public access for summaries enables future analytics/dashboard features
+
+**Both use consistent Blob options:**
+- `allowOverwrite: true` - Enables conversation continuation and content updates
+- `addRandomSuffix: false` - Deterministic file paths for reliable retrieval
+- Prefix-based listing for conversation discovery and matching
+
 ### Rate Limiting
 
 Implemented in `lib/rateLimiter.ts`:
-- Sliding window algorithm
+- Sliding window algorithm (in-memory, singleton instance)
 - Chat: 10 requests per 60 seconds
-- Client identification: IP-based with X-Forwarded-For support
+- Client identification: IP-based with X-Forwarded-For, X-Real-IP, CF-Connecting-IP support
 - Returns 429 with retry-after headers when exceeded
+- Automatic cleanup every 5 minutes (removes old entries)
+
+**Production Consideration:** Current implementation is in-memory (single server). For production deployments with multiple servers, consider migrating to Redis-backed rate limiting to share state across instances.
 
 ### Page Layout Pattern
 
@@ -126,11 +209,11 @@ Pages use a consistent two-column layout:
 ### Page Routes
 
 **Public Pages:**
-- `/` - Landing page with dynamic news insight
+- `/` - Landing page with dynamic news insight (Focus)
 - `/what` - What We Do (services overview)
 - `/consulting` - Consulting services and engagement types
 - `/products` - Product offerings
-- `/who-we-are` - About page
+- `/about` - About page (team identity + mental models combined)
 - `/mental-models`, `/triptych`, `/prismatic`, `/agentic`, `/demand`, `/incentives` - Service detail pages
 - `/articles` - Content hub
 - `/contact`, `/terms`, `/privacy` - Standard pages
@@ -169,14 +252,27 @@ Complete visual identity and styling guidelines are documented in `PrismaticaSou
 **Configuration:**
 - `scripts/configs/generation-config.json` - Content generation and chat model settings
 - `scripts/prompts/dynamic-content.md` - Content generation system prompt
-- `scripts/prompts/athena-chat.md` - Chat assistant system prompt
+- `athena/prompts/core.md` - Core Athena system prompt (includes security protocol)
+- `athena/prompts/conversation-analysis.md` - Post-chat analysis template
+- `athena/config/settings.json` - Athena model configuration (Sonnet 4.5, temperature 0.7, max tokens 1024)
 - `.github/workflows/generate-content.yml` - GitHub Actions workflow for automated content generation
 
 **Design:**
 - `PrismaticaSoul/VISUAL_IDENTITY.md` - Complete visual design system and styling guidelines
 
 **Data:**
-- `data/dynamic-content.json` - Generated content cache (48-hour validity)
+- `data/dynamic-content.json` - Generated content cache (24-hour validity, 6-hour refresh)
+- **Athena Intelligence** (Vercel Blob Storage, git-ignored):
+  - `athena/intel/layer1/raw-conversations/{YYYY-MM}/` - Anonymous conversation transcripts
+  - `athena/intel/layer1/summaries/{YYYY-MM}/` - Automated conversation analyses
+  - `athena/intel/layer2/sessions/{YYYY-MM}/` - Named session notes (planned, not implemented)
+
+**Athena Knowledge Base:**
+- `athena/knowledge/pages/` - Page-specific knowledge files
+  - `dynamic-content.md` - Synced with website dynamic content every 6 hours
+  - `consulting.md` - Consulting services knowledge
+  - Additional page knowledge files as needed
+- Accessed via `getPageContent()` function in chat API
 
 **Scripts:**
 - `scripts/generate-dynamic-content.js` - Content generation logic
@@ -258,15 +354,18 @@ import BentoBox from '@/components/BentoBox';
 ### Modifying AI Prompts
 
 **Chat (Athena):**
-- Edit `scripts/prompts/athena-chat.md`
-- Changes hot-reload in development
+- Core system prompt: Edit `athena/prompts/core.md`
+- Conversation analysis: Edit `athena/prompts/conversation-analysis.md`
+- Changes hot-reload in development (cached in production)
 - Test locally before deploying
+- Security protocol embedded in core prompt (never modify "sun-on-elba" code)
 
 **Content Generation:**
 - Edit `scripts/prompts/dynamic-content.md`
 - Run `npm run generate-content` to test
-- Check output in `data/dynamic-content.json`
+- Check output in `data/dynamic-content.json` and `athena/knowledge/pages/dynamic-content.md`
 - Verify all 12 pieces parse correctly
+- Ensure British English compliance (template includes spelling guide)
 
 ### Adding API Routes
 
@@ -277,9 +376,43 @@ import BentoBox from '@/components/BentoBox';
 
 ### Cache Management
 
-- Dynamic content: 48-hour safety fallback (primary refresh: 6 hours via GitHub Actions)
-- Chat prompt: cached in production, reloaded in development
+**Dynamic Content Caching Strategy:**
+
+- **API Layer** (`/api/dynamic-content`):
+  - Next.js: `export const dynamic = 'force-dynamic'` and `export const revalidate = 0`
+  - HTTP headers: `Cache-Control: no-cache, no-store, must-revalidate`
+  - Ensures fresh content on every request
+
+- **Client Layer** (dynamic components):
+  - All dynamic components use `'use client'` directive
+  - Fetch with `cache: 'no-store'` option
+  - `useEffect` with mounted flag prevents hydration mismatches
+  - Individual fallback strings in each component if API fails
+
+- **Blob Storage Layer**:
+  - 24-hour max-age safety limit (serves fallback if content older than 24 hours)
+  - Primary refresh: 6-hour cycle via GitHub Actions
+  - Fallback content in `lib/getDynamicContent.ts` matches brand voice exactly
+
+- **Component Pattern**:
+  ```typescript
+  // All dynamic components follow this pattern:
+  const [content, setContent] = useState<string>('');
+  useEffect(() => {
+    fetch('/api/dynamic-content', { cache: 'no-store' })
+      .then(res => res.json())
+      .then(data => setContent(data.fieldName))
+      .catch(() => setContent('Fallback content'));
+  }, []);
+  ```
+
+**Prompt Caching:**
+- Chat prompt: cached in production (loaded once at startup), reloaded on every request in development
+- Enables hot-reload during development without server restarts
+
+**State Management:**
 - Components include loading states for async data fetching
+- Fade-in animations on content load for smooth UX
 
 ### Component Architecture
 
@@ -347,3 +480,29 @@ TypeScript configured with `@/*` mapping to root directory:
 import { getDynamicContent } from '@/lib/getDynamicContent';
 import PageLayout from '@/components/PageLayout';
 ```
+
+## Build & Linting Configuration
+
+**ESLint Setup (ESLint 9+ Flat Config):**
+- Config file: `eslint.config.mjs` (flat config format)
+- Presets: `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`
+- Custom global ignores: `.next/`, `out/`, `build/`
+- No Prettier config - code style governed by ESLint only
+- Run with: `npm run lint`
+
+**Next.js Configuration:**
+- `next.config.ts` - Minimal configuration (default Next.js 16 settings)
+- PostCSS: Uses `@tailwindcss/postcss` plugin only
+- Tailwind CSS v4 with custom variables in `app/globals.css`
+
+**TypeScript Configuration:**
+- Strict mode enabled
+- Path aliases: `@/*` maps to root directory
+- Target: ES2015+
+- Module: ESNext with bundler resolution
+
+**Font Configuration:**
+- Google Fonts: Noto Sans (body) and Passion One (headings)
+- Weights: Noto Sans (300, 400, 600, 700), Passion One (400, 700, 900)
+- CSS variables: `--font-noto-sans` and `--font-passion`
+- Applied globally in `app/layout.tsx`
