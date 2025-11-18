@@ -78,6 +78,29 @@ body {
     }
 }
 
+/* Hide logo image and title from mobile menu (keep on desktop) */
+@media (max-width: 1024px) {
+    .sidebar-logo-image,
+    .sidebar-logo-title {
+        display: none;
+    }
+}
+
+/* Footer links positioning - mobile shows below philosophy, desktop at bottom */
+.mobile-footer-links {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .mobile-footer-links {
+        display: block;
+    }
+    .desktop-footer-links,
+    .desktop-copyright {
+        display: none;
+    }
+}
+
 /* About page footer tagline */
 .about-footer-tagline {
     text-align: center;

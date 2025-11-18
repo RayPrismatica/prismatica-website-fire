@@ -148,7 +148,7 @@ Best,
             One more thing
           </h3>
 
-            <UserContentReminder fallbackReminder={content.contentReminder || "Remember how the landing page showed today's news story, and the What We Do page wondered what question immediately came to mind?"} />
+            <UserContentReminder fallbackReminder={content.contentReminder || "Remember how the landing page showed today's news story?"} />
 
             <p style={{ fontSize: '17px', lineHeight: '1.6', marginBottom: '16px', color: '#444', marginTop: '24px', fontWeight: 600 }}>Same story, different angles. But if you come back tomorrow it'll be another event.</p>
 
