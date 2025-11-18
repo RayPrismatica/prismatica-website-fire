@@ -1,0 +1,64 @@
+{
+  "category": "case-studies",
+  "description": "8 real-world applications of physics-based thinking - vague by design, principles over details",
+  "overview": "These cases show molecules and models in action. Deliberately vague (NDAs, but also: principles matter more than specifics). Each reveals a pattern that repeats everywhere once you see it.",
+  "cases": {
+    "warehouse": {
+      "title": "The Warehouse That Wasn't",
+      "pattern": "Supply Chain Diagnostics",
+      "insight": "Problem wasn't the warehouse. Was upstream forecasting. Symptoms downstream, causes upstream.",
+      "molecule": "Supply (Resources + Constraints + Time)",
+      "when_relevant": "Misdiagnosed problems, treating symptoms not causes, operational issues"
+    },
+    "search": {
+      "title": "The Search Nobody Needed",
+      "pattern": "Product Pivot",
+      "insight": "Users needed organization, not better search. Built what they asked for, not what they needed.",
+      "molecule": "Demand (Actors + Objectives + Information)",
+      "when_relevant": "Product-market fit, user research vs behavior, feature prioritization"
+    },
+    "push-to-pull": {
+      "title": "From Push to Pull",
+      "pattern": "Market Positioning",
+      "insight": "Made the problem visible first. Let prospects come to them instead of chasing.",
+      "model": "Demand Model",
+      "when_relevant": "Marketing strategy, lead generation, positioning, demand creation"
+    },
+    "bottleneck": {
+      "title": "The Misdiagnosed Bottleneck",
+      "pattern": "Operations",
+      "insight": "Approval wasn't slow. Work arriving at approval was incomplete. Fixed upstream, not downstream.",
+      "molecule": "Friction (Constraints + Information + Incentives)",
+      "when_relevant": "Process optimization, bottleneck analysis, workflow problems"
+    },
+    "canyon": {
+      "title": "The £15K Canyon",
+      "pattern": "Customer Experience",
+      "insight": "£2K diagnostic bridged gap to £15K commitment. Reduced perceived risk by creating intermediate step.",
+      "molecule": "Risk (Time + Information + Objectives)",
+      "when_relevant": "Pricing strategy, customer journey, conversion optimization, reducing friction"
+    },
+    "platform": {
+      "title": "From Retail to Platform",
+      "pattern": "Business Model",
+      "insight": "Shifted from selling products to selling expertise platform. Different value capture model.",
+      "molecule": "Value (Resources + Objectives + Actors)",
+      "when_relevant": "Business model innovation, monetization strategy, value creation vs capture"
+    },
+    "music": {
+      "title": "Classical Music for Running",
+      "pattern": "Brand Repositioning",
+      "insight": "Same music, different context. Repositioned from 'classical' to 'focused running music'.",
+      "model": "Prismatic Model (cross-industry patterns)",
+      "when_relevant": "Positioning, market segmentation, finding new audiences, reframing"
+    },
+    "coaching": {
+      "title": "The Coaching Wave",
+      "pattern": "Market Timing",
+      "insight": "Predicted market shift before it happened. Positioned ahead of the wave, not chasing it.",
+      "molecule": "Risk + Time",
+      "when_relevant": "Market timing, trend anticipation, strategic bets, being early vs being right"
+    }
+  },
+  "usage_note": "Cases are pattern libraries. When you see similar dynamics, reference relevant case. 'This sounds like The Warehouse That Wasn't - symptom downstream, cause upstream.'"
+}

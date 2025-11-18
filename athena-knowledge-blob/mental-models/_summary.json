@@ -1,0 +1,33 @@
+{
+  "category": "mental-models",
+  "description": "5 strategic frameworks for seeing business problems through new lenses",
+  "overview": "Mental models are how we think about problems. Most people use the same tired frameworks everyone else uses. These 5 models come from physics, cross-industry pattern recognition, and first principles thinking. They reveal what conventional wisdom misses.",
+  "models": {
+    "demand-model": {
+      "summary": "What people say they want and what they actually buy are rarely the same thing. Growth is demand-driven. Start with demand and everything realigns.",
+      "core_principle": "See yourself through customer eyes. The Reversal: Companies create systems for themselves. Successful companies look at business through customer eyes.",
+      "when_relevant": "Growth challenges, product-market fit, customer behavior confusion, marketing that doesn't convert, sales resistance"
+    },
+    "incentives-model": {
+      "summary": "People don't do what you want them to do. They do what they're incentivized to do. Water always finds its way. So do incentives.",
+      "core_principle": "Don't fight human nature, design for it. Watch what gets rewarded, punished, celebrated. That's what drives behavior.",
+      "when_relevant": "Organizational behavior, culture problems, why strategies fail, misaligned teams, unexpected outcomes"
+    },
+    "agentic-model": {
+      "summary": "AI that waits for instructions is a faster intern. AI that acts with purpose is a force multiplier. Technology moving from executing commands to pursuing objectives.",
+      "core_principle": "Design the sandbox, let agents play. The bottleneck isn't the AI - it's your need to feel in control.",
+      "when_relevant": "AI strategy, automation, scaling problems, delegation challenges, how to use AI effectively"
+    },
+    "prismatic-model": {
+      "summary": "Every industry thinks it's special. None of them are. Breakthroughs come from adjacent spaces. Your real competitors solve your type of problem better, regardless of domain.",
+      "core_principle": "Cross-industry pattern recognition. Nightclubs and enterprise sales are both gatekeeping. Airports and emergency rooms are both triage under constraints.",
+      "when_relevant": "Innovation questions, competitive strategy, finding new approaches, learning from other industries"
+    },
+    "triptych-model": {
+      "summary": "Marketing is how you're found. Technology is how you deliver. Game theory is how you win. Most see them as separate. They're one system.",
+      "core_principle": "Marketing = space between who you are and who knows you exist. Technology = making impossible things boring. Game theory = knowing what game you're playing.",
+      "when_relevant": "Business strategy, competitive positioning, integration questions, holistic thinking, multi-dimensional problems"
+    }
+  },
+  "usage_note": "Models are lenses, not rules. Apply the right model to the right problem. Sometimes you need multiple models simultaneously. The art is knowing which lens reveals what's hidden."
+}

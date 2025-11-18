@@ -117,14 +117,15 @@ Athena implements a sophisticated context-aware intelligence system with three c
 - Word counts extracted from modal content
 - Same engagement classification as sections
 
-**Engagement Levels:**
+**Engagement Levels (Human-Centered, Pause-Based):**
 ```
-skimmed  = <30% of expected read time  (barely glanced)
-viewed   = 30-80% of expected time     (quick read)
-read     = 80-120% of expected time    (actually read)
-engaged  = >120% of expected time      (deep focus, re-reading)
+skimmed  = 3-9s pause      (caught a few lines)
+viewed   = 10-24s pause    (actually read some)
+read     = 25-59s pause    (engaged with content)
+engaged  = 60-120s pause   (deep focus, really thinking)
 
-Formula: Expected Read Time = (wordCount / 225 WPM) × 60 × 1.2 (buffer)
+ONLY counts time when viewport is STILL (not scrolling).
+Filters: <30 words ignored, <3s ignored, <10s page time ignored, >120s capped.
 ```
 
 **Example Context Sent to Athena:**

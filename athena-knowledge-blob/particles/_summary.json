@@ -1,0 +1,36 @@
+{
+  "category": "particles",
+  "description": "The 7 fundamental building blocks - first principles that govern every business problem",
+  "overview": "Every business challenge is physics. Forces trying to move through constraints. These 7 particles are the atomic elements that combine into all business patterns. Understanding them lets you see what's actually happening beneath surface symptoms.",
+  "particles": {
+    "time": {
+      "summary": "The window narrows. Momentum builds or dies. Opportunity decays. The universal constraint.",
+      "when_relevant": "Deadlines, urgency, timing decisions, opportunity windows, momentum questions"
+    },
+    "actors": {
+      "summary": "Who can say yes. Who can say no. Who just gets affected. The people with power and impact.",
+      "when_relevant": "Stakeholder questions, decision-making authority, organizational dynamics"
+    },
+    "resources": {
+      "summary": "What you have to work with. Energy, money, attention, people, materials. Never enough of what matters.",
+      "when_relevant": "Budget constraints, capacity planning, resource allocation, what's possible given what exists"
+    },
+    "objectives": {
+      "summary": "What everyone's actually after. Surprisingly identical across industries once you strip away jargon.",
+      "when_relevant": "Goal clarity, motivation understanding, what success looks like, what people really want"
+    },
+    "constraints": {
+      "summary": "The edges of possibility. Physics, budgets, regulations, human nature. What you can't change.",
+      "when_relevant": "Limitations, boundaries, what's non-negotiable, immovable forces"
+    },
+    "information": {
+      "summary": "What you know, what they know, what nobody knows yet. Asymmetries create opportunity and risk.",
+      "when_relevant": "Knowledge gaps, market intelligence, competitive advantage, uncertainty"
+    },
+    "incentives": {
+      "summary": "What people say drives them. What actually drives them. The invisible force behind all behavior.",
+      "when_relevant": "Behavior design, motivation, why things happen despite plans, alignment questions"
+    }
+  },
+  "usage_note": "These combine into molecules (larger patterns). Rarely examine particles alone - use them to decompose complex problems into understandable components."
+}

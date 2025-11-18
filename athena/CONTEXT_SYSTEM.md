@@ -76,27 +76,36 @@ interface ViewingHistory {
 }
 ```
 
-### Engagement Classification
+### Engagement Classification (Human-Centered)
+
+**NEW APPROACH:** Classification is based on **pause time** (viewport stillness), not word count ratios.
 
 ```typescript
-function classifyEngagement(duration: number, wordCount: number): EngagementLevel {
-  const minimumReadTime = (wordCount / 225) * 60 * 1.2; // 225 WPM + 20% buffer
+// HUMAN BEHAVIOR PATTERNS:
+// - Only count time when viewport is STILL (not scrolling)
+// - Filter out very short sections (< 30 words)
+// - Cap max engagement at 120 seconds (distraction detection)
+// - Minimum 3-second pause to count as engagement
+// - Minimum 10-second total page time to prevent drive-by false positives
 
-  if (duration < minimumReadTime * 0.3) return 'skimmed';   // <30% = barely glanced
-  if (duration < minimumReadTime * 0.8) return 'viewed';    // 30-80% = quick read
-  if (duration < minimumReadTime * 1.2) return 'read';      // 80-120% = actually read
-  return 'engaged';                                         // >120% = deep focus
+function classifyEngagement(pauseTime: number): EngagementLevel {
+  if (pauseTime < 10) return 'skimmed';    // 3-9s: Quick scan
+  if (pauseTime < 25) return 'viewed';     // 10-24s: Actually read some
+  if (pauseTime < 60) return 'read';       // 25-59s: Engaged with content
+  return 'engaged';                        // 60-120s: Deep focus
 }
 ```
 
 **Examples:**
 
-| Content | Word Count | Expected Time | Actual Time | Classification |
-|---------|-----------|---------------|-------------|----------------|
-| Short section | 50 words | ~13s | 3s | **skimmed** |
-| Medium section | 200 words | ~53s | 25s | **viewed** |
-| Long section | 200 words | ~53s | 45s | **read** |
-| Modal | 150 words | ~40s | 60s | **engaged** |
+| Behavior | Pause Time | Classification | Reasoning |
+|----------|-----------|----------------|-----------|
+| Quick scroll through | 0-2s | *ignored* | Not tracked (< 3s threshold) |
+| Glanced at headline | 5s | **skimmed** | Caught a few lines |
+| Read one paragraph | 15s | **viewed** | Actually read some content |
+| Read full section | 40s | **read** | Engaged with content |
+| Deep focus, re-reading | 90s | **engaged** | Really thinking about it |
+| Left tab open | 150s | **engaged** (capped at 120s) | Likely distracted, capped |
 
 ## Section Tracking
 
@@ -104,15 +113,19 @@ function classifyEngagement(duration: number, wordCount: number): EngagementLeve
 
 **File:** `hooks/useScrollTracking.ts`
 
-**Technology:** IntersectionObserver API
+**Technology:** Scroll event + IntersectionObserver API + Pause detection
 
 **Key Features:**
-- Tracks when sections become 50%+ visible in viewport
-- Starts timer on entry, calculates duration on exit
-- Handles rapid scrolling (1-second minimum threshold)
-- Pauses timers when tab is inactive (Page Visibility API)
-- Flushes all timers on page navigation or unmount
-- Cumulative tracking if section viewed multiple times
+- **Pause-based tracking:** Only counts time when viewport is STILL (not scrolling)
+- **Scroll velocity detection:** 150ms debounce to detect when user stops scrolling
+- **Smart filters:**
+  - Sections < 30 words = ignored (too short to matter)
+  - Pauses < 3 seconds = ignored (just passing through)
+  - Page time < 10 seconds = ignored (drive-by visit)
+  - Pauses > 120 seconds = capped (distraction detection)
+- **Tab visibility:** Discards data if user away > 30 seconds
+- **Cumulative pauses:** Multiple pause periods on same section are added together
+- **Real human patterns:** Scroll → Pause → Read → Scroll (not continuous visibility)
 
 **Usage:**
 

@@ -1,0 +1,30 @@
+{
+  "category": "wisdom",
+  "description": "Strategic thinking library - world-class frameworks applied to real problems",
+  "overview": "Beyond Prismatica's own frameworks, this is curated wisdom from business physics, game theory, cognitive science, and strategic thinking. The patterns that work everywhere, synthesized and made actionable.",
+  "status": "Partially populated - expanding over time",
+  "topics": {
+    "business-physics": {
+      "summary": "Every business is a physical system. Energy flows, forces interact, equilibrium shifts. Apply physics principles to see business dynamics clearly.",
+      "key_concepts": "Conservation laws, feedback loops, equilibrium states, force vectors, momentum, inertia",
+      "when_relevant": "System thinking, dynamics understanding, why things resist change, momentum questions"
+    },
+    "game-theory": {
+      "summary": "How finite beings navigate infinite possibilities. Not just Nash equilibria - practical game theory for business decisions.",
+      "key_concepts": "Dominant strategies, coordination games, signaling, commitment, sequential moves, information asymmetry",
+      "when_relevant": "Competitive strategy, pricing decisions, negotiation, strategic positioning, multi-player dynamics"
+    },
+    "cognitive-patterns": {
+      "summary": "How humans actually make decisions vs how they think they do. Biases, heuristics, mental shortcuts that shape behavior.",
+      "key_concepts": "Anchoring, loss aversion, status quo bias, framing effects, social proof, scarcity",
+      "when_relevant": "User behavior, decision design, persuasion, why rational arguments fail, behavior change"
+    },
+    "decision-frameworks": {
+      "summary": "Structured approaches to complex decisions. When intuition isn't enough, use frameworks that work.",
+      "key_concepts": "Expected value, reversible vs irreversible decisions, regret minimization, optionality, decision trees",
+      "when_relevant": "High-stakes decisions, uncertainty, strategic bets, risk assessment, option evaluation"
+    }
+  },
+  "usage_note": "Wisdom library supplements Prismatica frameworks. Use when generic strategic thinking helps. Don't force - only relevant when user's problem maps to these patterns.",
+  "expansion_plan": "Will add: Systems thinking, organizational behavior, market dynamics, innovation patterns, negotiation theory"
+}

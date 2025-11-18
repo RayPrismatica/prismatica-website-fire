@@ -149,7 +149,7 @@ async function buildSystemPrompt(pathname: string, viewingContext?: ViewingConte
   // Get knowledge context based on viewing history (if provided)
   let knowledgeContext = '';
   if (viewingContext) {
-    knowledgeContext = getKnowledgeContext(viewingContext);
+    knowledgeContext = await getKnowledgeContext(viewingContext);
   } else {
     // Fallback to single page content if no viewing context
     const pageContent = getPageContent(pathname);

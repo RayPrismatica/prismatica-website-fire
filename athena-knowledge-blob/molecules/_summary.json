@@ -1,0 +1,38 @@
+{
+  "category": "molecules",
+  "description": "Emergent patterns formed when particles combine - the building blocks of business strategy",
+  "overview": "Particles combine into molecules. Like chemistry. Time + Resources + Constraints = Supply. Actors + Objectives + Information = Demand. These molecular patterns repeat across every industry, every problem. See the molecule, solve the problem.",
+  "molecules": {
+    "demand": {
+      "formula": "Actors + Objectives + Information",
+      "summary": "What people want, know they want, and will act on. Not surveys or focus groups - actual behavior shaped by what they know and need.",
+      "key_insight": "Growth is demand-driven, not supply-driven. Companies create for themselves. Successful companies see through customer eyes.",
+      "when_relevant": "Market questions, customer behavior, product-market fit, growth challenges, why things don't sell"
+    },
+    "supply": {
+      "formula": "Resources + Constraints + Time",
+      "summary": "What's possible to deliver given what you have and how long you have it. The physics of production and delivery.",
+      "key_insight": "Supply doesn't create demand. But supply constraints shape what demand can be met. The bottleneck is always upstream.",
+      "when_relevant": "Capacity planning, operations, delivery challenges, what's actually possible, timeline questions"
+    },
+    "friction": {
+      "formula": "Constraints + Information + Incentives",
+      "summary": "Everything that slows you down. Not just surface obstacles - the deep structural forces that resist change and flow.",
+      "key_insight": "Demand flows like water, takes path of least resistance. Remove friction and behavior shifts overnight.",
+      "when_relevant": "Process problems, why things are slow, resistance to change, organizational drag, conversion issues"
+    },
+    "value": {
+      "formula": "Resources + Objectives + Actors",
+      "summary": "What you can create when resources meet real objectives for real people. Not price, not features - actual value created and captured.",
+      "key_insight": "Value is never objective. Coffee tastes better in expensive mugs. Perception shapes reality.",
+      "when_relevant": "Pricing questions, value proposition, worth conversations, what to charge, how to position"
+    },
+    "risk": {
+      "formula": "Time + Information + Objectives",
+      "summary": "The gap between what you're betting on and what you actually know. Every decision is a bet against incomplete information.",
+      "key_insight": "Risk isn't about probability - it's about what you can't afford to be wrong about. Different stakes, different risk tolerance.",
+      "when_relevant": "Decision making, uncertainty, bets and investments, what could go wrong, unknown unknowns"
+    }
+  },
+  "usage_note": "Molecules are diagnostic tools. When someone describes a problem, map it to molecules. 'That's a friction problem masquerading as a demand problem.' Clarity emerges."
+}

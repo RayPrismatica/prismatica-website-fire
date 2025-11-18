@@ -1,0 +1,38 @@
+{
+  "description": "Athena's hierarchical knowledge base - master index",
+  "version": "1.0.0",
+  "last_updated": "2025-01-19",
+  "categories": {
+    "particles": {
+      "summary": "The 7 fundamental building blocks of every business problem: Time, Actors, Resources, Objectives, Constraints, Information, Incentives. First principles that combine into larger patterns.",
+      "items": 7,
+      "path": "particles/_summary.json"
+    },
+    "molecules": {
+      "summary": "Emergent patterns formed by combining particles: Demand (Actors+Objectives+Information), Supply (Resources+Constraints+Time), Friction (Constraints+Information+Incentives), Value (Resources+Objectives+Actors), Risk (Time+Information+Objectives).",
+      "items": 5,
+      "path": "molecules/_summary.json"
+    },
+    "mental-models": {
+      "summary": "5 strategic frameworks for seeing business differently: Demand Model (customer-driven growth), Incentives Model (aligned behavior design), Agentic Model (autonomous AI systems), Prismatic Model (cross-industry pattern recognition), Triptych Model (marketing+technology+game theory).",
+      "items": 5,
+      "path": "mental-models/_summary.json"
+    },
+    "case-studies": {
+      "summary": "8 real-world applications of physics-based thinking: warehouse diagnostics, product pivots, market positioning, process surgery, customer experience design, business model shifts, brand repositioning, market timing.",
+      "items": 8,
+      "path": "case-studies/_summary.json"
+    },
+    "services": {
+      "summary": "12 consulting engagements across strategy, technology, marketing, and process tiers. From £5k Process Surgery to £30k+ Secret Agency custom AI. Fixed price, fixed timeline, clear outcomes.",
+      "items": 12,
+      "path": "services/_summary.json"
+    },
+    "wisdom": {
+      "summary": "Strategic thinking library: business physics, game theory, cognitive patterns, decision frameworks. World-class frameworks applied to real problems.",
+      "items": 4,
+      "path": "wisdom/_summary.json"
+    }
+  },
+  "navigation_instructions": "Start with category summaries. Fetch deep knowledge only when users ask specific questions requiring detailed frameworks, pricing, or implementation guidance."
+}

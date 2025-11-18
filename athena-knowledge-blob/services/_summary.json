@@ -1,0 +1,104 @@
+{
+  "category": "services",
+  "description": "12 consulting engagements - fixed price, fixed timeline, clear outcomes",
+  "overview": "We fix things. Then we leave. Most consultants optimize for retention. We optimize for resolution. Four tiers: Strategy, Technology, Marketing, Process. From £5K to £30K+. Each with clear deliverables, no retainers, no recurring revenue model.",
+  "philosophy": "Some fixes take two weeks. Some take two months. None take two years.",
+  "special_terms": "B-Corps get 20% off. NGOs get 50% off or pro-bono. Startups can do equity deals.",
+  "tiers": {
+    "strategy": {
+      "summary": "High-level business architecture and alignment. £12K-£30K range.",
+      "services": {
+        "pioneers-of-purpose": {
+          "price": "£30,000",
+          "duration": "8 weeks",
+          "summary": "Purpose architecture mapped across every system and touchpoint. Inside-out authenticity for culture and message alignment.",
+          "when_relevant": "Purpose clarity, culture work, organizational alignment, authentic brand building"
+        },
+        "esi-framework": {
+          "price": "£25,000",
+          "duration": "6 weeks",
+          "summary": "Explore, Synthesize, Ignite. Connects insights to implementation. From research through execution.",
+          "when_relevant": "Research to action, synthesis problems, strategic planning through delivery"
+        },
+        "strategic-triptych": {
+          "price": "£12,000",
+          "duration": "4 weeks",
+          "summary": "Business through three lenses: marketing, competition, building. Shows where money's being left on the table.",
+          "when_relevant": "Holistic assessment, finding gaps, multi-dimensional business analysis"
+        },
+        "transaction-architecture": {
+          "price": "£15,000",
+          "duration": "5 weeks",
+          "summary": "Maps value flow across emotional, cognitive, tangible dimensions. Conversion through understanding.",
+          "when_relevant": "Customer experience design, conversion optimization, value exchange mapping"
+        }
+      }
+    },
+    "technology": {
+      "summary": "Custom AI infrastructure and practical AI strategy. £5K-£25K+.",
+      "services": {
+        "secret-agency": {
+          "price": "£25,000+",
+          "duration": "12 weeks",
+          "note": "Invitation only",
+          "summary": "Custom AI infrastructure built around how you think. Bespoke intelligence layers that multiply capacity.",
+          "when_relevant": "Custom AI needs, unique workflows, strategic AI advantage, capacity multiplication"
+        },
+        "ai-without-hallucination": {
+          "price": "£5,000",
+          "duration": "5 weeks",
+          "summary": "Cut through hype, find profitable AI applications. Maps workflows, identifies real value, prioritizes by ROI.",
+          "when_relevant": "AI strategy, practical AI adoption, separating signal from noise, ROI-focused AI"
+        }
+      }
+    },
+    "marketing": {
+      "summary": "Demand creation, positioning, go-to-market. £5K-£18.5K range.",
+      "services": {
+        "kso-workshop": {
+          "price": "£18,500",
+          "duration": "4 weeks",
+          "summary": "Position as recognized source in knowledge graphs. AI systems recognize and cite you. SEO makes you searchable. KSO makes you unforgettable.",
+          "when_relevant": "AI-era SEO, thought leadership, becoming the reference source, AI citation strategy"
+        },
+        "go-to-market": {
+          "price": "£8,000",
+          "duration": "7 weeks",
+          "summary": "Complete launch strategy from positioning to timeline. Everything mapped before spending on execution.",
+          "when_relevant": "Product launches, market entry, strategic launch planning"
+        },
+        "creative-that-converts": {
+          "price": "£5,000",
+          "duration": "7 weeks",
+          "summary": "Brand work measured in revenue, not awards. Positioning based on what shifts perception and pricing power.",
+          "when_relevant": "Brand development, creative strategy, positioning work, revenue-driven branding"
+        },
+        "marketing-reality-check": {
+          "price": "£5,000",
+          "duration": "4 weeks",
+          "summary": "Watch actual customer behavior, not research reports. Shows what's working despite strategy, not because of it.",
+          "when_relevant": "Marketing audit, reality check, behavior vs. assumptions, what's actually working"
+        }
+      }
+    },
+    "process": {
+      "summary": "Operational efficiency and problem-solving. £5K-£6K range.",
+      "services": {
+        "design-thinking": {
+          "price": "£6,000",
+          "duration": "3 weeks",
+          "summary": "Rapid prototyping and iteration for problems traditional solutions can't fix. Fail fast, learn faster.",
+          "when_relevant": "Novel problems, rapid experimentation, prototyping needs, unconventional challenges"
+        },
+        "process-surgery": {
+          "price": "£5,000",
+          "duration": "5 weeks",
+          "summary": "Find 20% of processes causing 80% of pain. Eliminate unnecessary steps, rebuild critical paths.",
+          "when_relevant": "Process optimization, workflow pain, operational efficiency, finding bottlenecks"
+        }
+      }
+    }
+  },
+  "how_it_works": "Fixed price and timeline. No surprises. First call is diagnostic. If we're not asking better questions than you within 30 minutes, walk away.",
+  "usage_note": "Recommend based on problem type, not budget. Match service to actual need. If they need simple process work, don't upsell strategy. Be honest about fit."
+}
