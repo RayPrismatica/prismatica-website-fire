@@ -210,13 +210,15 @@ Pages use a consistent two-column layout:
 
 **Public Pages:**
 - `/` - Landing page with dynamic news insight (Focus)
-- `/what` - What We Do (services overview)
-- `/consulting` - Consulting services and engagement types
-- `/products` - Product offerings
-- `/about` - About page (team identity + mental models combined)
-- `/mental-models`, `/triptych`, `/prismatic`, `/agentic`, `/demand`, `/incentives` - Service detail pages
+- `/solutions` - Consolidated solutions page (replaced `/consulting` and `/products`)
+- `/products` - Product offerings (legacy/specific products)
+- `/about` - About page (manifesto, philosophy, "how we think")
+- `/triptych`, `/prismatic`, `/agentic`, `/demand`, `/incentives` - Mental model detail pages
 - `/articles` - Content hub
 - `/contact`, `/terms`, `/privacy` - Standard pages
+
+**Test/Development Pages:**
+- `/about-test`, `/bento-test`, `/test-mobile` - Testing environments
 
 ## Design System
 
@@ -232,6 +234,14 @@ Complete visual identity and styling guidelines are documented in `PrismaticaSou
 - **Design Patterns**: Left accent bars, underline emphasis, bento box structure
 
 **When making UI changes**, always consult `PrismaticaSoul/VISUAL_IDENTITY.md` to maintain design consistency. The design philosophy is: **quiet confidence, zero noise, maximum clarity**.
+
+### Content Architecture Philosophy
+
+The site follows a deliberate minimalist approach:
+- **Most pages**: Sparse, clean, minimal copy - only essential information
+- **About page (`/about`)**: The intentional exception - this is where the manifesto, philosophy, and "how we think" content lives
+- This creates self-selection: visitors get quick info on service pages, but those who want to understand the worldview read the About page in full
+- **Copy style on About page**: "Spatial poetry" - strategic use of paragraph breaks, bold emphasis, line breaks (`<br/>`), and breathing room (16px/32px margins) to create rhythm and momentum
 
 ### Critical Naming Conventions
 
@@ -336,8 +346,19 @@ import BentoBox from '@/components/BentoBox';
 - Examples: `components/BentoBox.examples.tsx`
 - Specifications: `BENTO_BOX_SPEC.md`
 
-### Working with Dynamic Content
+### Working with Copy and Content
 
+**Copy Editing Pattern (especially for About page):**
+When editing copy, maintain "spatial poetry" rhythm:
+1. **Separate distinct thoughts** into individual `<p>` tags (not all in one block)
+2. **Use line breaks** (`<br/>`) within paragraphs for internal rhythm
+3. **Strategic bold** (`<strong>`) for emphasis on key phrases or conclusions
+4. **Spacing**: 16px between related ideas, 32px for breathing room between concepts
+5. **No colons in section headers** - use periods instead ("Some problems need human agility." not "Some problems need human agility:")
+6. **Ellipsis for suspense** ("Seven particles exist in every business…")
+7. **Read existing sections** to match the established voice and pacing
+
+**Dynamic Content:**
 1. All content pieces are generated together as a cohesive narrative
 2. When adding new dynamic content fields, update:
    - `scripts/generate-dynamic-content.js` (parsing logic)

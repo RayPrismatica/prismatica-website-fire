@@ -274,15 +274,20 @@ Best,
         <div style={{ maxWidth: '700px' }}>
           {/* Opening statements */}
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
-            Physics governs the universe.<br/>It should govern how we think.
+            Physics governs the universe.<br/>
+            It should govern how we think.
           </p>
 
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
             Light through a prism reveals what was always there but invisible. That's what we're passionate about. <strong>The tangible invisible.</strong>
           </p>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '120px', color: '#444' }}>
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
             That's why we're called Prismatica.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '120px', color: '#444' }}>
+            And this is how we think.
           </p>
 
           {/* THE UNCOMFORTABLE TRUTH */}
@@ -303,28 +308,32 @@ Best,
           </h2>
 
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
-            Big consultancies charge seven figures to tell you what you already suspect.
-            Agencies charge day rates to avoid solving your actual problem.
-            Your internal team knows exactly what you already suspect but can't say it.
+            You are not here to fix success. You're here to fix problems.
           </p>
 
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
-            We just say it.
+            The less time you spend on the problem, the more time you have for solutions.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+            The best way to save time is to map problems. Because at the end, for as unique as you may want to feel, all problems boil down to three very distinguishable parts.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+            One class of Agent.<br/>
+            One class of objective.<br/>
+            One class of constraint.
           </p>
 
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444', fontWeight: 600 }}>
-            It's simple.
-          </p>
-
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
-            Every business problem is physics. Forces trying to move through constraints. Energy seeking equilibrium. Parts colliding until something breaks or something works.
+            That's all.
           </p>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
-          {/* WHY THIS MATTERS */}
+          {/* THE STATUS QUO */}
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -335,18 +344,117 @@ Best,
             marginBottom: '40px',
             color: '#222'
           }}>
-            Why This Matters
+            The Status Quo
+          </h2>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+            Big consultancies charge seven figures to tell you what you already suspect. Agencies charge day rates to avoid solving your actual problem. Your internal team knows exactly what's wrong but can't say it.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+            Everyone sells you the same tired metaphor: "We don't give you a fish, we teach you to fish."
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444', fontWeight: 600 }}>
+            We coded the fisherman.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+            We synthesised centuries of pattern recognition with sequential intelligence.<br/>
+            Turned frameworks into functions.<br/>
+            Made wisdom run while you sleep.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
+            Now you don't need to learn to fish. You get a tireless expert that catches fish 24/7 for less than your team's coffee budget.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+            £39.99 gets you started.<br/>
+            £299/month gets you everything.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+            Compare that to a day rate from any consultancy. <strong>We'll wait.</strong>
+          </p>
+
+          <div style={{ marginTop: '120px', marginBottom: '120px' }}>
+            <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
+          </div>
+
+          {/* WHY WE BUILD BOTH WAYS */}
+          <h2 style={{
+            fontFamily: '"Noto Sans", sans-serif',
+            fontSize: '28px',
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            marginTop: '0',
+            marginBottom: '40px',
+            color: '#222'
+          }}>
+            Why We Build Both Ways
+          </h2>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444', fontWeight: 600 }}>
+            Some problems need human agility.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
+            Complex politics. Delicate negotiations. Reading the room. Knowing when to break the rules. That's where we come in directly.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444', fontWeight: 600 }}>
+            Some problems need relentless iteration.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
+            Testing every permutation. Running scenarios at 3am. Analysing patterns across industries. Never getting tired or defensive. That's where our AI products live.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444', fontWeight: 600 }}>
+            The freedom part?
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+            When we work together directly, there's a deadline, then we're done.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
+            When you access our products, they're yours to deploy. No lock-in. No dependency.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+            Either way, you get independence. <strong>We want to be free. Like most.</strong>
+          </p>
+
+          <div style={{ marginTop: '120px', marginBottom: '120px' }}>
+            <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
+          </div>
+
+          {/* BACK TO SOLUTIONS */}
+          <h2 style={{
+            fontFamily: '"Noto Sans", sans-serif',
+            fontSize: '28px',
+            fontWeight: 700,
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            marginTop: '0',
+            marginBottom: '40px',
+            color: '#222'
+          }}>
+            Back To Solutions
           </h2>
 
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
             Your competitors are solving the wrong problem beautifully.
           </p>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
             They're adding supply when friction is killing them. Removing friction when demand doesn't exist. Building features when distribution is broken.
           </p>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
             Meanwhile, nightclubs and enterprise software use the same gatekeeping physics. Museums and Netflix fight the same attention retention battle. Airports and emergency rooms run the same triage algorithm.
           </p>
 
@@ -354,7 +462,7 @@ Best,
             The pattern is right there. Most people don't notice.
           </p>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444', fontWeight: 600 }}>
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444', fontWeight: 600 }}>
             That's your arbitrage.
           </p>
 
@@ -362,7 +470,7 @@ Best,
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
-          {/* THE PARTICLES, MOLECULES & PATTERNS */}
+          {/* PARTICLES, MOLECULES, PATTERNS */}
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -373,11 +481,15 @@ Best,
             marginBottom: '40px',
             color: '#222'
           }}>
-            The Particles, Molecules & Patterns
+            Particles, Molecules, Patterns
           </h2>
 
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+            Every business problem is physics. Forces trying to move through constraints. Energy seeking equilibrium. Parts colliding until something breaks or something works.
+          </p>
+
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444', fontWeight: 600 }}>
-            Seven particles exist in every business
+            We have seven particles that exist in every business…
           </p>
 
           <div style={{ marginTop: '24px', marginBottom: '48px' }}>
@@ -412,7 +524,7 @@ Best,
           </div>
 
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444', fontWeight: 600 }}>
-            They bond into five molecules
+            They bond into five molecules…
           </p>
 
           <div style={{ marginTop: '24px', marginBottom: '48px' }}>
@@ -439,7 +551,7 @@ Best,
           </div>
 
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444', fontWeight: 600 }}>
-            Which create predictable patterns
+            Which create predictable patterns…
           </p>
 
           <div style={{ marginTop: '24px', marginBottom: '48px' }}>
@@ -514,8 +626,12 @@ Best,
             Five frameworks. Same physics. Different lenses.
           </p>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444' }}>
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
             Explore each. Or don't.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444' }}>
+            See? Patterns <strong>are</strong> like gravity. They exist whether you see them or not.
           </p>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
@@ -601,27 +717,18 @@ Best,
             What We Actually Do
           </h2>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444', fontWeight: 600 }}>
-            Brave?
-          </p>
-
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '48px', color: '#444' }}>
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
+            <strong>Brave?</strong><br/>
             We'll tell you your real problem in under an hour. Not the problem you came with. The one that's actually killing you.
           </p>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444', fontWeight: 600 }}>
-            Ambitious?
-          </p>
-
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '48px', color: '#444' }}>
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
+            <strong>Ambitious?</strong><br/>
             We'll show you how patterns from unrelated industries solve your exact situation. Because physics doesn't care about your industry vertical.
           </p>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444', fontWeight: 600 }}>
-            Impatient?
-          </p>
-
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444' }}>
+            <strong>Impatient?</strong><br/>
             We built AI that thinks like we do. It runs while you sleep. No meetings, no check-ins, no PowerPoints. Just solutions.
           </p>
 
@@ -714,17 +821,17 @@ Best,
           </h2>
 
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
-            If you need:
+            If you need…
           </p>
 
-          <p style={{ fontSize: '17px', lineHeight: '2.0', marginBottom: '0', color: '#444' }}>
-            - Someone to validate your existing strategy<br/>
-            - Impressive slides for your board meeting<br/>
-            - A prestigious logo on your vendor list<br/>
-            - Someone who speaks fluent corporate
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
+            Someone to validate your existing strategy.<br/>
+            Impressive slides for your board meeting.<br/>
+            A prestigious logo on your vendor list.<br/>
+            Someone who speaks fluent corporate.
           </p>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginTop: '32px', marginBottom: '0', color: '#444' }}>
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444', fontWeight: 600 }}>
             We're not your people.
           </p>
 
@@ -774,7 +881,7 @@ Best,
             Testimonials?
           </h2>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444', fontWeight: 600 }}>
             We don't do testimonials.
           </p>
 
@@ -782,13 +889,22 @@ Best,
             Not because we couldn't get them. Because they're theatre. Five stars from people you'll never meet, solving problems you don't have, in contexts that aren't yours.
           </p>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '12px', color: '#444' }}>
-            The work speaks or it doesn't.
-          </p>
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '12px', color: '#444' }}>
-            The thinking resonates or it doesn't.
-          </p>
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
+            The decision to work together isn't social, it's intellectual. You're not trying to choose a blender or checking if we're rated for basic competence.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
+            Stars are for commodities.<br/>
+            You're not a crowd. Our thinking isn't a product.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444', fontWeight: 600 }}>
+            Respect works both ways.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
+            The work speaks or it doesn't.<br/>
+            The thinking resonates or it doesn't.<br/>
             You get it or you don't.
           </p>
 
@@ -796,7 +912,7 @@ Best,
             And that's fine. We're not for everyone.
           </p>
 
-          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444' }}>
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444', fontWeight: 600 }}>
             Are you?
           </p>
 
@@ -893,7 +1009,9 @@ Best,
             color: '#666',
             fontStyle: 'italic'
           }}>
-            Founded in London. Operating globally.<br/>Small by design, sharp by necessity.
+            Founded in London.<br/>
+            Operating globally.<br/>
+            Small by design, sharp by necessity.
           </p>
 
         </div>
