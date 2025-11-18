@@ -145,7 +145,7 @@ export default function BentoTestPage() {
               No retainers. No dependency.
             </p>
             <a
-              href="/consulting"
+              href="/solutions"
               style={{
                 display: 'inline-block',
                 padding: '12px 24px',

@@ -13,9 +13,13 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useScrollTracking } from '@/hooks/useScrollTracking';
 
 export default function NotFound() {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // Initialize scroll tracking for 404 page
+  useScrollTracking();
   return (
     <div style={{
       display: 'flex',
@@ -45,9 +49,11 @@ export default function NotFound() {
         </div>
 
         {/* Rory Sutherland-style reframe: The problem isn't the 404 */}
-        <div style={{
-          marginBottom: '48px',
-        }}>
+        <div
+          data-section-id="/404:hero"
+          style={{
+            marginBottom: '48px',
+          }}>
           <p style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '17px',
@@ -94,6 +100,7 @@ export default function NotFound() {
 
         {/* Easter egg: Complete navigation tree */}
         <button
+          data-section-id="/404:navigation-tree"
           onClick={() => setIsExpanded(!isExpanded)}
           style={{
             width: '100%',
@@ -294,15 +301,15 @@ export default function NotFound() {
               </div>
             </div>
 
-            {/* Products */}
+            {/* Solutions (Products merged into Solutions) */}
             <div style={{ marginBottom: '24px' }}>
-              <Link href="/products" style={{ color: '#666', textDecoration: 'none', fontWeight: '600', transition: 'color 0.2s' }}
+              <Link href="/solutions" style={{ color: '#666', textDecoration: 'none', fontWeight: '600', transition: 'color 0.2s' }}
                 onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
                 onMouseLeave={(e) => e.currentTarget.style.color = '#666'}>
-                /products
+                /solutions
               </Link>
               <div style={{ color: '#666', fontSize: '13px', marginTop: '2px' }}>
-                25+ AI products. Consulting methods coded into tools. £299/month gets you everything. No waitlists. Real constraints based on market saturation. We cap access so your competitors don't get the same edge. Minimum 25 interactions monthly required. If you're not using them hard, we give your spot to someone who will.
+                We fix things. Then we leave. No retainers. No dependency. Every engagement has an end date. Or one you control.
               </div>
             </div>
 
@@ -381,12 +388,14 @@ export default function NotFound() {
 
 
         {/* The reveal about the reveal */}
-        <div style={{
-          backgroundColor: '#fff',
-          border: '1px solid #e0e0e0',
-          padding: '24px',
-          marginBottom: '32px',
-        }}>
+        <div
+          data-section-id="/404:meta-commentary"
+          style={{
+            backgroundColor: '#fff',
+            border: '1px solid #e0e0e0',
+            padding: '24px',
+            marginBottom: '32px',
+          }}>
           <p style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '15px',

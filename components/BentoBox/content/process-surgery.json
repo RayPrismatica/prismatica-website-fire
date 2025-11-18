@@ -56,8 +56,9 @@
     "badge": "Process",
     "body": [
       {
-        "type": "text",
-        "text": "Cut what's broken. Fix what matters. Leave the rest alone. We find the 20% of processes causing 80% of your pain, eliminate unnecessary steps, and rebuild the critical paths. Not process for process sake. Process that actually makes work easier."
+        "type": "dynamic",
+        "field": "processDescription",
+        "fallback": "Cut what's broken. Fix what matters. Leave the rest alone. We find the 20% of processes causing 80% of your pain, eliminate unnecessary steps, and rebuild the critical paths. Not process for process sake. Process that actually makes work easier."
       }
     ],
     "metadata": {

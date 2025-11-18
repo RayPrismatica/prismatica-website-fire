@@ -212,39 +212,47 @@ async function generateContent() {
 
     const responseText = response.content[0].text;
 
-    // Parse the response
-    const insightMatch = responseText.match(/INSIGHT:\s*(.+?)(?=\nQUESTION:)/s);
-    const questionMatch = responseText.match(/QUESTION:\s*(.+?)(?=\nCONSULTING:)/s);
-    const consultingMatch = responseText.match(/CONSULTING:\s*(.+?)(?=\nREMINDER:)/s);
-    const reminderMatch = responseText.match(/REMINDER:\s*(.+?)(?=\nOBSERVATION:)/s);
-    const observationMatch = responseText.match(/OBSERVATION:\s*(.+?)(?=\nPURPOSE:)/s);
-    const purposeMatch = responseText.match(/PURPOSE:\s*(.+?)(?=\nSERVICE:)/s);
+    // Parse the response (now 16 pieces)
+    const insightMatch = responseText.match(/INSIGHT:\s*(.+?)(?=\nREMINDER:)/s);
+    const reminderMatch = responseText.match(/REMINDER:\s*(.+?)(?=\nSERVICE:)/s);
     const serviceMatch = responseText.match(/SERVICE:\s*(.+?)(?=\nESI:)/s);
     const esiMatch = responseText.match(/ESI:\s*(.+?)(?=\nAGENCY:)/s);
     const agencyMatch = responseText.match(/AGENCY:\s*(.+?)(?=\nKSO:)/s);
     const ksoMatch = responseText.match(/KSO:\s*(.+?)(?=\nTRANSACTION:)/s);
     const transactionMatch = responseText.match(/TRANSACTION:\s*(.+?)(?=\nTRIPTYCH:)/s);
-    const triptychMatch = responseText.match(/TRIPTYCH:\s*(.+)/s);
+    const triptychMatch = responseText.match(/TRIPTYCH:\s*(.+?)(?=\nGTM:)/s);
+    const gtmMatch = responseText.match(/GTM:\s*(.+?)(?=\nCREATIVE:)/s);
+    const creativeMatch = responseText.match(/CREATIVE:\s*(.+?)(?=\nDESIGN:)/s);
+    const designMatch = responseText.match(/DESIGN:\s*(.+?)(?=\nAI:)/s);
+    const aiMatch = responseText.match(/AI:\s*(.+?)(?=\nPROCESS:)/s);
+    const processMatch = responseText.match(/PROCESS:\s*(.+?)(?=\nMARKETING:)/s);
+    const marketingMatch = responseText.match(/MARKETING:\s*(.+?)(?=\nFOCUS:)/s);
+    const focusMatch = responseText.match(/FOCUS:\s*(.+?)(?=\nVALUE:)/s);
+    const valueMatch = responseText.match(/VALUE:\s*(.+)/s);
 
-    if (!insightMatch || !questionMatch || !consultingMatch || !reminderMatch || !observationMatch || !purposeMatch || !serviceMatch || !esiMatch || !agencyMatch || !ksoMatch || !transactionMatch || !triptychMatch) {
-      throw new Error('Failed to parse Claude response');
+    if (!insightMatch || !reminderMatch || !serviceMatch || !esiMatch || !agencyMatch || !ksoMatch || !transactionMatch || !triptychMatch || !gtmMatch || !creativeMatch || !designMatch || !aiMatch || !processMatch || !marketingMatch || !focusMatch || !valueMatch) {
+      throw new Error('Failed to parse Claude response - missing required pieces');
     }
 
     const newsInsight = insightMatch[1].trim().replace(/```/g, '');
-    const intelligenceExample = questionMatch[1].trim().replace(/```/g, '');
-    const consultingInsight = consultingMatch[1].trim().replace(/```/g, '');
     const contentReminder = reminderMatch[1].trim().replace(/```/g, '');
-    const marketObservation = observationMatch[1].trim().replace(/```/g, '');
-    const purposeContext = purposeMatch[1].trim().replace(/```/g, '');
     const serviceDescription = serviceMatch[1].trim().replace(/```/g, '');
     const esiDescription = esiMatch[1].trim().replace(/```/g, '');
     const agencyDescription = agencyMatch[1].trim().replace(/```/g, '');
     const ksoDescription = ksoMatch[1].trim().replace(/```/g, '');
     const transactionDescription = transactionMatch[1].trim().replace(/```/g, '');
     const triptychDescription = triptychMatch[1].trim().replace(/```/g, '');
+    const gtmDescription = gtmMatch[1].trim().replace(/```/g, '');
+    const creativeDescription = creativeMatch[1].trim().replace(/```/g, '');
+    const designDescription = designMatch[1].trim().replace(/```/g, '');
+    const aiDescription = aiMatch[1].trim().replace(/```/g, '');
+    const processDescription = processMatch[1].trim().replace(/```/g, '');
+    const marketingDescription = marketingMatch[1].trim().replace(/```/g, '');
+    const focusDescription = focusMatch[1].trim().replace(/```/g, '');
+    const valueDescription = valueMatch[1].trim().replace(/```/g, '');
 
     const generationTime = Date.now() - startTime;
-    console.log(`\n✓ Claude generated all twelve pieces in ${generationTime}ms`);
+    console.log(`\n✓ Claude generated all sixteen pieces in ${generationTime}ms`);
 
     // 3. Save to cache with metadata
     const content = {
@@ -253,30 +261,40 @@ async function generateContent() {
       content: {
         newsInsight: newsInsight,
         patternInsight: "You're still reading. That already puts you ahead.",
-        intelligenceExample: intelligenceExample,
-        consultingInsight: consultingInsight,
+        consultingInsight: "Every firm guards their thinking like gold. Makes sense. Scarcity creates value.", // Static fallback
         contentReminder: contentReminder,
-        marketObservation: marketObservation,
-        purposeContext: purposeContext,
+        marketObservation: "Most consultants optimize for retention. We optimize for resolution.", // Static fallback
+        purposeContext: "Dissect your business from its root reason to exist.", // Static fallback
         serviceDescription: serviceDescription,
         esiDescription: esiDescription,
         agencyDescription: agencyDescription,
         ksoDescription: ksoDescription,
         transactionDescription: transactionDescription,
-        triptychDescription: triptychDescription
+        triptychDescription: triptychDescription,
+        gtmDescription: gtmDescription,
+        creativeDescription: creativeDescription,
+        designDescription: designDescription,
+        aiDescription: aiDescription,
+        processDescription: processDescription,
+        marketingDescription: marketingDescription,
+        focusDescription: focusDescription,
+        valueDescription: valueDescription
       },
       metadata: {
         model: contentConfig.model,
         temperature: contentConfig.temperature,
         maxTokens: contentConfig.maxTokens,
-        headlinesAnalyzed: globalNewsHeadlines.length + businessHeadlines.length + hbrHeadlines.length,
+        headlinesAnalyzed: globalNewsHeadlines.length + businessHeadlines.length + leadershipHeadlines.length + hbrHeadlines.length,
         sources: {
           bbc: bbcHeadlines.length,
           nyt: nytHeadlines.length,
           fastCompany: fastCompanyHeadlines.length,
           forbes: forbesHeadlines.length,
           marketingWeek: marketingWeekHeadlines.length,
-          hbr: hbrHeadlines.length
+          hbr: hbrHeadlines.length,
+          wired: wiredHeadlines.length,
+          inc: incHeadlines.length,
+          atlantic: atlanticHeadlines.length
         },
         generationTimeMs: generationTime,
         promptFile: contentConfig.promptFile
@@ -284,18 +302,18 @@ async function generateContent() {
       fallbackUsed: false
     };
 
-    // Upload to Vercel Blob
-    console.log('☁️  Uploading to Vercel Blob...');
-    const blob = await put('dynamic-content.json', JSON.stringify(content, null, 2), {
+    // Upload JSON to Vercel Blob
+    console.log('☁️  Uploading JSON to Vercel Blob...');
+    const jsonBlob = await put('dynamic-content.json', JSON.stringify(content, null, 2), {
       access: 'public',
       addRandomSuffix: false,
       allowOverwrite: true, // Allow overwriting existing blob
       cacheControlMaxAge: 21600, // 6 hours
       contentType: 'application/json'
     });
-    console.log(`✓ Uploaded to Vercel Blob: ${blob.url}`);
+    console.log(`✓ JSON uploaded: ${jsonBlob.url}`);
 
-    // Also write a markdown file for Athena's knowledge base
+    // Generate markdown file for Athena's knowledge base
     const knowledgeDir = join(__dirname, '..', 'athena', 'knowledge', 'pages');
     if (!fs.existsSync(knowledgeDir)) {
       fs.mkdirSync(knowledgeDir, { recursive: true });
@@ -304,130 +322,221 @@ async function generateContent() {
     // Find the primary news story that was used (first headline from the selected source)
     const primaryNewsStory = [...globalNewsHeadlines, ...businessHeadlines, ...leadershipHeadlines][0];
 
-    const markdownContent = `# Current Dynamic Content
+    const markdownContent = `# Hey Athena - Current Dynamic Content Update
 
 **Last Updated:** ${new Date(content.generated).toLocaleString()}
 **Expires:** ${new Date(content.expires).toLocaleString()}
-
-This content is currently live on the Prismatica website. Reference this when users ask about what they're reading or when providing context about current market insights.
+**Content Status:** ${content.fallbackUsed ? '⚠️ USING FALLBACK CONTENT (generation failed)' : '✅ FRESH CONTENT (AI-generated)'}
 
 ---
 
-## Primary News Story
+## What You Need To Know
+
+This file tells you EXACTLY what content is currently live on the website. Users are seeing this content RIGHT NOW.
+
+**16 pieces were AI-generated** based on current news (listed below).
+**5 pieces are static** (same every time, listed with [STATIC] markers).
+
+When users reference what they're reading, check this file. When they ask "where did that come from?", you can share the news source link below.
+
+---
+
+## Primary News Story (What Inspired The Content)
 
 **Source:** ${primaryNewsStory.source}
 **Headline:** ${primaryNewsStory.title}
 **Link:** ${primaryNewsStory.link}
 
-This is the main news story that informed today's content generation. If users ask where the news came from or want to read more, you can share this link.
+This is the main news story that informed today's content generation. PIECE 1 and PIECE 2 both reference this story.
 
 ---
 
-## Landing Page
+## PIECE 1: Landing Page - News Insight (✨ AI-GENERATED)
 
-### News Insight
-${content.content.newsInsight}
-
-### Pattern Insight
-${content.content.patternInsight}
+**WHERE:** Homepage, first paragraph after main heading
+**WHAT:** ${content.content.newsInsight}
 
 ---
 
-## What We Do Page
+## PIECE 2: Contact Page - Content Reminder (✨ AI-GENERATED)
 
-### Intelligence Example
-${content.content.intelligenceExample}
-
----
-
-## Consulting Page
-
-### Consulting Insight
-${content.content.consultingInsight}
+**WHERE:** Contact page, reminds them of what they saw on landing page
+**WHAT:** ${content.content.contentReminder}
 
 ---
 
-## Cross-Page Continuity
+## [STATIC] Landing Page - Pattern Insight
 
-### Content Reminder
-${content.content.contentReminder}
-
----
-
-## Market Observations
-
-### Current Market Observation
-${content.content.marketObservation}
-
-### Purpose Context
-${content.content.purposeContext}
+**WHERE:** Landing page, second paragraph
+**WHAT:** ${content.content.patternInsight}
+**NOTE:** This is the same every time. Not generated.
 
 ---
 
-## Service Descriptions (Currently Live)
+## [STATIC] Consulting Insight
 
-### Purpose Assessment
-${content.content.serviceDescription}
-
-### ESI Framework
-${content.content.esiDescription}
-
-### Secret Agency
-${content.content.agencyDescription}
-
-### KSO Workshop
-${content.content.ksoDescription}
-
-### Transaction Architecture
-${content.content.transactionDescription}
-
-### Strategic Triptych
-${content.content.triptychDescription}
+**WHERE:** Not currently displayed on site
+**WHAT:** ${content.content.consultingInsight}
+**NOTE:** Legacy field, not in use.
 
 ---
 
-## Generation Metadata
+## [STATIC] Market Observation
+
+**WHERE:** Not currently displayed on site
+**WHAT:** ${content.content.marketObservation}
+**NOTE:** Legacy field, not in use.
+
+---
+
+## [STATIC] Purpose Context
+
+**WHERE:** Not currently displayed on site
+**WHAT:** ${content.content.purposeContext}
+**NOTE:** Legacy field, not in use.
+
+---
+
+## Solutions Page - Service Descriptions (All ✨ AI-GENERATED)
+
+### PIECE 3: Pioneers of Purpose
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.serviceDescription}
+
+### PIECE 4: ESI Framework (Explore, Synthesise, Ignite)
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.esiDescription}
+
+### PIECE 5: Secret Agency
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.agencyDescription}
+
+### PIECE 6: KSO Workshop (Knowledge Search Optimization)
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.ksoDescription}
+
+### PIECE 7: Transaction Architecture
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.transactionDescription}
+
+### PIECE 8: Strategic Triptych Assessment
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.triptychDescription}
+
+### PIECE 9: Go-to-Market
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.gtmDescription}
+
+### PIECE 10: Creative That Converts
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.creativeDescription}
+
+### PIECE 11: Design Thinking
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.designDescription}
+
+### PIECE 12: AI Without the Hallucination
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.aiDescription}
+
+### PIECE 13: Process Surgery
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.processDescription}
+
+### PIECE 14: Marketing Reality Check
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.marketingDescription}
+
+### PIECE 15: Focus Matrix
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.focusDescription}
+
+### PIECE 16: Value Channel Matrix
+**WHERE:** Solutions page, full service description
+**WHAT:** ${content.content.valueDescription}
+
+---
+
+## Generation Metadata (For Your Reference)
 
 - **Headlines Analyzed:** ${content.metadata.headlinesAnalyzed}
-- **Sources:** BBC (${content.metadata.sources.bbc}), NYT (${content.metadata.sources.nyt}), Fast Company (${content.metadata.sources.fastCompany}), Forbes (${content.metadata.sources.forbes}), Marketing Week (${content.metadata.sources.marketingWeek}), HBR (${content.metadata.sources.hbr})
-- **Model:** ${content.metadata.model}
+- **News Sources:** BBC (${content.metadata.sources.bbc} headlines), NYT (${content.metadata.sources.nyt}), Fast Company (${content.metadata.sources.fastCompany}), Forbes (${content.metadata.sources.forbes}), Marketing Week (${content.metadata.sources.marketingWeek}), HBR (${content.metadata.sources.hbr}), Wired (${content.metadata.sources.wired}), Inc (${content.metadata.sources.inc}), The Atlantic (${content.metadata.sources.atlantic})
+- **AI Model Used:** ${content.metadata.model}
 - **Generation Time:** ${content.metadata.generationTimeMs}ms
+- **Temperature:** ${content.metadata.temperature}
+- **Prompt File:** ${content.metadata.promptFile}
 
-**IMPORTANT:** This content changes every 6 hours based on current news. When users reference what they're seeing on the site, they're referring to this content.
+---
+
+## Important Notes For You, Athena
+
+1. **This content updates every 6 hours** (0:00, 6:00, 12:00, 18:00 UTC)
+2. **Users are seeing these exact words** on the website right now
+3. **PIECE 1 and PIECE 2** both reference the same news story (for coherence)
+4. **PIECES 3-16** each use different business/leadership/marketing headlines to make services feel current and inevitable
+5. **When users ask about the news**, share the source link above
+6. **If fallback is active** (see status at top), the AI generation failed and static content is being used
+7. **Reference this naturally** - don't say "according to my knowledge file", just know what users saw
+8. **Cross-page continuity**: The contact page reminder (PIECE 2) explicitly references the landing page insight (PIECE 1)
+
+---
+
+**Status:** ${content.fallbackUsed ? '⚠️ Using fallback content - generation script failed' : '✅ Content is fresh and current'}
 `;
 
+    // Write markdown locally for development
     const mdFilePath = join(knowledgeDir, 'dynamic-content.md');
     fs.writeFileSync(mdFilePath, markdownContent);
+    console.log('✓ Markdown written locally: athena/knowledge/pages/dynamic-content.md');
+
+    // Upload markdown to Vercel Blob for production
+    console.log('☁️  Uploading Markdown to Vercel Blob...');
+    const mdBlob = await put('athena-dynamic-content.md', markdownContent, {
+      access: 'public',
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      cacheControlMaxAge: 21600, // 6 hours
+      contentType: 'text/markdown'
+    });
+    console.log(`✓ Markdown uploaded: ${mdBlob.url}`);
 
     console.log('\n✅ CONTENT GENERATED SUCCESSFULLY');
     console.log('═══════════════════════════════════════');
     console.log(`📅 Generated: ${new Date().toISOString()}`);
     console.log(`⏱️  Generation time: ${generationTime}ms`);
-    console.log(`📊 Headlines analyzed: ${globalNewsHeadlines.length + businessHeadlines.length + hbrHeadlines.length} (BBC: ${bbcHeadlines.length}, NYT: ${nytHeadlines.length}, Fast Company: ${fastCompanyHeadlines.length}, Forbes: ${forbesHeadlines.length}, Marketing Week: ${marketingWeekHeadlines.length}, HBR: ${hbrHeadlines.length})`);
-    console.log(`\n📰 News Insight:`);
+    console.log(`📊 Headlines analyzed: ${globalNewsHeadlines.length + businessHeadlines.length + leadershipHeadlines.length + hbrHeadlines.length} (BBC: ${bbcHeadlines.length}, NYT: ${nytHeadlines.length}, Fast Company: ${fastCompanyHeadlines.length}, Forbes: ${forbesHeadlines.length}, Marketing Week: ${marketingWeekHeadlines.length}, HBR: ${hbrHeadlines.length}, Wired: ${wiredHeadlines.length}, Inc: ${incHeadlines.length}, Atlantic: ${atlanticHeadlines.length})`);
+    console.log(`\n📰 PIECE 1 - News Insight (Landing):`);
     console.log(`   ${newsInsight}`);
-    console.log(`\n🧠 Intelligence Example:`);
-    console.log(`   ${intelligenceExample}`);
-    console.log(`\n💼 Consulting Insight:`);
-    console.log(`   ${consultingInsight}`);
-    console.log(`\n🔔 Content Reminder:`);
+    console.log(`\n🔔 PIECE 2 - Content Reminder (Contact):`);
     console.log(`   ${contentReminder}`);
-    console.log(`\n📊 Market Observation:`);
-    console.log(`   ${marketObservation}`);
-    console.log(`\n🎯 Purpose Context:`);
-    console.log(`   ${purposeContext}`);
-    console.log(`\n📝 Service Description:`);
-    console.log(`   ${serviceDescription}`);
-    console.log(`\n⚙️  ESI Framework Description:`);
-    console.log(`   ${esiDescription}`);
-    console.log(`\n🔐 Secret Agency Description:`);
-    console.log(`   ${agencyDescription}`);
-    console.log(`\n🔍 KSO Workshop Description:`);
-    console.log(`   ${ksoDescription}`);
-    console.log(`\n🏗️  Transaction Architecture Description:`);
-    console.log(`   ${transactionDescription}`);
-    console.log(`\n🔬 Strategic Triptych Description:`);
-    console.log(`   ${triptychDescription}`);
+    console.log(`\n💼 PIECE 3 - Pioneers of Purpose:`);
+    console.log(`   ${serviceDescription.substring(0, 100)}...`);
+    console.log(`\n🔄 PIECE 4 - ESI Framework:`);
+    console.log(`   ${esiDescription.substring(0, 100)}...`);
+    console.log(`\n🔐 PIECE 5 - Secret Agency:`);
+    console.log(`   ${agencyDescription.substring(0, 100)}...`);
+    console.log(`\n🔍 PIECE 6 - KSO Workshop:`);
+    console.log(`   ${ksoDescription.substring(0, 100)}...`);
+    console.log(`\n🏗️  PIECE 7 - Transaction Architecture:`);
+    console.log(`   ${transactionDescription.substring(0, 100)}...`);
+    console.log(`\n🔬 PIECE 8 - Strategic Triptych:`);
+    console.log(`   ${triptychDescription.substring(0, 100)}...`);
+    console.log(`\n🚀 PIECE 9 - Go-to-Market:`);
+    console.log(`   ${gtmDescription.substring(0, 100)}...`);
+    console.log(`\n🎨 PIECE 10 - Creative That Converts:`);
+    console.log(`   ${creativeDescription.substring(0, 100)}...`);
+    console.log(`\n⚡ PIECE 11 - Design Thinking:`);
+    console.log(`   ${designDescription.substring(0, 100)}...`);
+    console.log(`\n🤖 PIECE 12 - AI Without the Hallucination:`);
+    console.log(`   ${aiDescription.substring(0, 100)}...`);
+    console.log(`\n⚙️  PIECE 13 - Process Surgery:`);
+    console.log(`   ${processDescription.substring(0, 100)}...`);
+    console.log(`\n📊 PIECE 14 - Marketing Reality Check:`);
+    console.log(`   ${marketingDescription.substring(0, 100)}...`);
+    console.log(`\n🎯 PIECE 15 - Focus Matrix:`);
+    console.log(`   ${focusDescription.substring(0, 100)}...`);
+    console.log(`\n💎 PIECE 16 - Value Channel Matrix:`);
+    console.log(`   ${valueDescription.substring(0, 100)}...`);
     console.log('═══════════════════════════════════════\n');
 
   } catch (error) {

@@ -31,7 +31,8 @@ const PAGE_KNOWLEDGE_MAP: { [key: string]: string } = {
   '/incentives': 'incentives.md',
   '/agentic': 'agentic.md',
   '/prismatic': 'prismatic.md',
-  '/triptych': 'triptych.md'
+  '/triptych': 'triptych.md',
+  'not-found': 'not-found.md' // Special key for 404 pages
 };
 
 /**
@@ -63,7 +64,16 @@ export function getKnowledgeContext(viewingContext: ViewingContext): string {
 
   // Current page
   sections.push(`## Current Page: ${viewingContext.currentPage}\n`);
-  const currentPageFile = PAGE_KNOWLEDGE_MAP[viewingContext.currentPage];
+
+  // Check if current page is in the map, or if it's a 404 (not in known routes)
+  let currentPageFile = PAGE_KNOWLEDGE_MAP[viewingContext.currentPage];
+
+  // If page not found in map, treat as 404
+  if (!currentPageFile && !viewingContext.currentPage.match(/^\/(solutions|products|about|contact|articles|demand|incentives|agentic|prismatic|triptych|terms|privacy|test-mobile|bento-test|about-test)$/)) {
+    currentPageFile = PAGE_KNOWLEDGE_MAP['not-found'];
+    sections.push('*(User landed on a 404 page - they saw the complete site architecture)*\n\n');
+  }
+
   if (currentPageFile) {
     const content = loadKnowledgeFile('pages', currentPageFile);
     if (content) {
@@ -81,11 +91,19 @@ export function getKnowledgeContext(viewingContext: ViewingContext): string {
     sections.push('## Previously Visited Pages\n');
 
     for (const page of previousPages) {
-      const pageFile = PAGE_KNOWLEDGE_MAP[page];
+      let pageFile = PAGE_KNOWLEDGE_MAP[page];
+
+      // If page not found in map, treat as 404
+      if (!pageFile && !page.match(/^\/(solutions|products|about|contact|articles|demand|incentives|agentic|prismatic|triptych|terms|privacy|test-mobile|bento-test|about-test)$/)) {
+        pageFile = PAGE_KNOWLEDGE_MAP['not-found'];
+        sections.push(`### ${page} *(404 page)*\n`);
+      } else {
+        sections.push(`### ${page}\n`);
+      }
+
       if (pageFile) {
         const content = loadKnowledgeFile('pages', pageFile);
         if (content) {
-          sections.push(`### ${page}\n`);
           sections.push(content);
           sections.push('\n---\n');
         }

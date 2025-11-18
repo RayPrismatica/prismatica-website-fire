@@ -103,14 +103,14 @@ export default function Sidebar({ isHomepage = false }: { isHomepage?: boolean }
           </Link>
 
           <Link
-            href="/consulting"
-            className={`nav-item block w-full text-left ${isActive('/consulting') ? 'active' : ''}`}
-            style={getMenuItemStyle('/consulting', isActive('/consulting'))}
+            href="/solutions"
+            className={`nav-item block w-full text-left ${isActive('/solutions') ? 'active' : ''}`}
+            style={getMenuItemStyle('/solutions', isActive('/solutions'))}
             onClick={handleNavClick}
-            onMouseEnter={() => setHoveredItem('/consulting')}
+            onMouseEnter={() => setHoveredItem('/solutions')}
             onMouseLeave={() => setHoveredItem(null)}
           >
-            {hoveredItem === '/consulting' && !isActive('/consulting') && (
+            {hoveredItem === '/solutions' && !isActive('/solutions') && (
               <span style={{
                 position: 'absolute',
                 left: 0,

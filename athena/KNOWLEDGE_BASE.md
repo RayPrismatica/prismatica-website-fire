@@ -1,12 +1,12 @@
 # Athena Knowledge Base
 
-Documentation for the 41 markdown files that provide Athena with contextual knowledge about website content.
+Documentation for the 42 markdown files that provide Athena with contextual knowledge about website content.
 
 ## Overview
 
 The knowledge base is structured into two categories:
 
-1. **Page Knowledge** (11 files) - Complete page content for context
+1. **Page Knowledge** (12 files) - Complete page content for context
 2. **Modal Knowledge** (30 files) - Case studies, particles, molecules, patterns, and mental models
 
 Files are loaded dynamically based on user viewing history, ensuring Athena only receives content users have actually seen.
@@ -15,7 +15,7 @@ Files are loaded dynamically based on user viewing history, ensuring Athena only
 
 ```
 athena/knowledge/
-├── pages/                    # 11 page knowledge files
+├── pages/                    # 12 page knowledge files
 │   ├── homepage.md           # Landing page content
 │   ├── about.md              # About page manifesto
 │   ├── solutions.md          # Solutions/consulting overview
@@ -27,6 +27,7 @@ athena/knowledge/
 │   ├── agentic.md            # Agentic mental model page
 │   ├── prismatic.md          # Prismatic mental model page
 │   ├── triptych.md           # Triptych mental model page
+│   ├── not-found.md          # 404 page with full site architecture
 │   ├── consulting.md         # Legacy/reference file
 │   └── dynamic-content.md    # Auto-synced every 6 hours
 │
@@ -353,6 +354,40 @@ Last updated: {timestamp}
 
 **Why This Matters:**
 When a user sees "Arctic blast hits UK" on the homepage and asks Athena about it, she knows exactly what they're referring to because her knowledge file was updated at the same moment the website content changed.
+
+### Special Case: 404 Page Detection
+
+**File:** `not-found.md`
+
+**Route:** Any unmatched URL (auto-detected by `getKnowledgeContext.ts`)
+
+**Purpose:** The 404 page isn't just an error—it's a curated discovery tool that presents the complete site architecture.
+
+**Detection Logic:**
+```typescript
+// In lib/getKnowledgeContext.ts
+if (!currentPageFile && !viewingContext.currentPage.match(/known-routes-regex/)) {
+  currentPageFile = PAGE_KNOWLEDGE_MAP['not-found'];
+  sections.push('*(User landed on a 404 page - they saw the complete site architecture)*');
+}
+```
+
+**What Makes It Special:**
+1. **Complete Navigation Tree** - Shows all 11 pages + 30 modals in expandable structure
+2. **Philosophical Reframe** - Rory Sutherland-style messaging ("This page doesn't exist. Actually it does.")
+3. **Section Tracking** - Three tracked sections with engagement data:
+   - `/404:hero` - Opening reframe
+   - `/404:navigation-tree` - Expandable site architecture
+   - `/404:meta-commentary` - Design philosophy reveal
+
+**Conversation Context:**
+When users chat after exploring the 404 page, Athena knows they've seen:
+- The complete site overview
+- All available services and products
+- The full mental model framework
+- Case study options
+
+This informs conversational starters like: "I see you explored the full site map. Which area caught your attention?"
 
 ## Maintenance
 

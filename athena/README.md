@@ -15,7 +15,7 @@ athena/
 │   ├── core.md                        # Core system prompt and personality
 │   └── conversation-analysis.md       # Post-chat analysis template
 ├── knowledge/
-│   ├── pages/                         # 11 page knowledge files
+│   ├── pages/                         # 12 page knowledge files
 │   │   ├── homepage.md
 │   │   ├── about.md
 │   │   ├── solutions.md
@@ -25,8 +25,10 @@ athena/
 │   │   ├── agentic.md
 │   │   ├── prismatic.md
 │   │   ├── triptych.md
+│   │   ├── not-found.md               # 404 page with full site architecture
 │   │   ├── consulting.md              # Legacy/reference
 │   │   └── dynamic-content.md         # Auto-synced every 6 hours
+│   ├── navigation-tree.md             # Complete navigation with 42 deep links
 │   └── modals/                        # 30 modal knowledge files
 │       ├── warehouse.md               # Case studies (8 files)
 │       ├── particle-time.md           # Particles (7 files)
@@ -49,7 +51,18 @@ See `config/settings.json` for full configuration.
 
 ## Core Features
 
-### 1. Context-Aware Intelligence
+### 1. Hyper-Accurate Navigation
+
+Athena has access to the complete site navigation tree with **42 deep links**:
+- Direct links to all pages, sections, modals, services, and products
+- Can link to specific case studies: `[The Warehouse That Wasn't](/about#warehouse)`
+- Can link to specific services: `[ESI Framework](/solutions#esi-framework)`
+- Can link to specific concepts: `[Friction](/about#molecule-friction)`
+- Matches user problems to exact resources with surgical precision
+
+See `knowledge/navigation-tree.md` for the complete structure.
+
+### 2. Context-Aware Intelligence
 
 Athena knows exactly what users have seen on the website through three layers of tracking:
 

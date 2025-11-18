@@ -1,36 +1,24 @@
 {
-  "generated": "2025-11-16T18:25:23.362Z",
-  "expires": "2025-11-16T19:25:23.362Z",
+  "generated": "2025-11-18T18:44:16.426Z",
+  "expires": "2025-11-18T19:44:16.426Z",
   "content": {
-    "newsInsight": "UK just announced 5% unemployment whilst job listings hit record highs. Everyone sees recession signals. We see something weirder. When millions of openings can't find millions of workers, that's not economic failure. That's the entire labour market speaking different languages.",
+    "newsInsight": "Notice how every CEO says they want innovation but hires for predictability? That's not contradiction. That's institutional self-preservation disguised as strategy.",
     "patternInsight": "You're still reading. That already puts you ahead.",
-    "intelligenceExample": "The UK unemployment paradox, for example. We read that and our mind goes to: what if the real crisis isn't jobs or workers, but the matching algorithm between them has fundamentally broken?",
-    "consultingInsight": "We were just reading how McKinsey's workforce transformation framework helps Fortune 500s navigate talent crises. Brilliant methodology, decades of pattern recognition. But what if that calibre of strategic workforce insight wasn't confined to seven-figure engagements? What if every ambitious leader could access it?",
-    "contentReminder": "Remember how the landing page showed UK's weird unemployment-meets-job-openings paradox, and the What We Do page wondered if the matching algorithm itself is broken?",
-    "marketObservation": "This week three different CEOs asked us why they can't hire despite record applicants. That's the labour paradox playing out in real boardrooms before economists name it.",
-    "purposeContext": "Notice how companies struggling to hire can't actually articulate what they're hiring for beyond job titles?",
-    "serviceDescription": "John Lewis nailed their Christmas ad by understanding something competitors missed: nostalgia sells when the present feels uncertain. Most brands chase relevance whilst Lewis owns timelessness. We excavate what your business actually means beyond quarterly targets, then engineer that meaning into every hire, decision, and customer moment. Purpose as North Star when markets offer only fog.",
-    "esiDescription": "Burberry just returned to growth after two years by finally connecting brand heritage with modern execution. Everyone knew the problem, nobody had a system to fix it. Explore, Synthesize, Ignite: our method for closing insight-to-action gaps. Explore surfaces truth, Synthesize transforms discovery into clarity, Ignite makes strategy move. Not three separate engagements but one continuous system.",
-    "agencyDescription": "Inc reports 9 common behaviours of bad bosses, and number one is working themselves into the ground whilst their teams coast. Sound familiar? We work with executives who've optimised for hours instead of outcomes, inbox management instead of market impact. Secret Agency: where leaders learn their 80-hour weeks are mostly performance theatre. Time to optimise for leverage, not labour.",
-    "ksoDescription": "Marketing Week reports AI search now influences 67% of B2B purchase decisions whilst most brands still chase Google rankings. Traditional SEO optimises for yesterday's game. KSO Workshop: we transform your expertise into knowledge graphs that AI systems actually cite and reference. Four weeks to shift from searchable to authoritative. Because when ChatGPT answers your industry's questions, page one rankings become irrelevant.",
-    "transactionDescription": "Tesco's back-to-school campaign combined emotion with practicality and saw 23% conversion uplift. Most brands choose heart or head, rarely both. Transaction Architecture maps how decisions actually happen across emotional resonance, cognitive understanding, and action triggers. Then engineers every touchpoint to complete those exchanges. Deep psychology meets surface appeal where transactions actually live.",
-    "triptychDescription": "Ford's new HQ showcases cutting-edge design whilst their EVs lag competitors by years. Brilliant facilities team, strong brand, clear strategy, yet somehow missing the forest. Strategic Triptych Assessment examines how you market, compete, and execute simultaneously. Problems hide where functions don't talk. So do your biggest opportunities.\n"
+    "intelligenceExample": "Unemployment hitting 5%, for example. We read that and our mind goes to: what industries are hardest hit, and what does that tell us about which skills are becoming obsolete?",
+    "consultingInsight": "We were just reading about how the big consulting firms built something remarkable. World class thinking, rigorous frameworks, proven methodologies. But what if that caliber of strategic insight wasn't locked behind day rates? What if the mental models that transform Fortune 500 companies could be infrastructure instead of scarcity?",
+    "contentReminder": "Remember how the landing page showed CEOs hiring for predictability, and the What We Do page wondered which skills are becoming obsolete?",
+    "marketObservation": "Right now we're watching companies panic about efficiency while missing the real pattern: their best people are solving the wrong problems brilliantly.",
+    "purposeContext": "The companies surviving best are the ones whose teams already knew the answer to 'why do we exist beyond making money?'",
+    "serviceDescription": "Dissect your business from its root reason to exist. Then cascade that purpose through every system and touchpoint. Inside-out authenticity that strengthens both internal culture and external message. Purpose as operating system, not marketing tagline.",
+    "esiDescription": "Explore, Synthesize, Ignite. Our operating system for transformation. Explore uncovers truth. Synthesize turns discovery into clarity. Ignite makes clarity executable. Research, strategy, and execution as a continuous loop.",
+    "agencyDescription": "For high-performers who realize their 70-hour weeks produce 40 hours of value. Secret Agency: where executives learn to optimize for impact, not inbox zero. Because busy and effective stopped being the same thing years ago.",
+    "ksoDescription": "The future of discoverability isn't about links. It's about ideas. In a world where AI systems index knowledge instead of URLs, authority belongs to those who own the narrative. We dissect your business DNA and rebuild it as a knowledge graph of authority.",
+    "transactionDescription": "Vision to transaction to validation. Map how value exchanges actually happen across three dimensions: spiritual (emotional resonance), cognitive (understanding shifts), and tangible (measurable actions). Then design every touchpoint to trigger those transactions. Conversion through understanding, not manipulation.",
+    "triptychDescription": "We examine your business through three lenses simultaneously: how you market, how you compete, how you build. Most problems live in the gaps between these. Most opportunities too."
   },
   "metadata": {
-    "model": "claude-opus-4-20250514",
-    "temperature": 1,
-    "maxTokens": 2200,
-    "headlinesAnalyzed": 38,
-    "sources": {
-      "bbc": 8,
-      "nyt": 8,
-      "fastCompany": 8,
-      "forbes": 8,
-      "marketingWeek": 6,
-      "hbr": 0
-    },
-    "generationTimeMs": 41516,
-    "promptFile": "prompts/dynamic-content.md"
+    "error": "intelligenceExample is not defined",
+    "errorTime": "2025-11-18T18:44:16.426Z"
   },
-  "fallbackUsed": false
+  "fallbackUsed": true
 }

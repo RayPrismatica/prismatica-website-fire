@@ -195,6 +195,7 @@ class ComplianceMonitor {
       path.join(PROJECT_ROOT, 'app/about/page.tsx'),
       path.join(PROJECT_ROOT, 'components/BentoBox/content/*.json'),
       path.join(PROJECT_ROOT, 'app/not-found.tsx'),
+      path.join(PROJECT_ROOT, 'athena/knowledge/navigation-tree.md'),
     ];
 
     const watcher = chokidar.watch(watchPaths, {
@@ -322,7 +323,19 @@ class ComplianceMonitor {
       const notFoundPath = path.join(PROJECT_ROOT, 'app/not-found.tsx');
       const notFoundContent = await fs.readFile(notFoundPath, 'utf-8');
 
-      // Check for missing routes
+      // Read navigation tree
+      const navTreePath = path.join(PROJECT_ROOT, 'athena/knowledge/navigation-tree.md');
+      let navTreeContent = '';
+      try {
+        navTreeContent = await fs.readFile(navTreePath, 'utf-8');
+      } catch (error) {
+        audit.issues.critical.push({
+          type: 'missing_nav_tree',
+          message: 'Navigation tree file (athena/knowledge/navigation-tree.md) not found',
+        });
+      }
+
+      // Check for missing routes in 404 page
       for (const page of pages) {
         if (!notFoundContent.includes(`href="${page.route}"`)) {
           audit.issues.high.push({
@@ -333,7 +346,23 @@ class ComplianceMonitor {
         }
       }
 
-      // Check for missing modals
+      // Check for missing routes in navigation-tree.md
+      if (navTreeContent) {
+        for (const page of pages) {
+          // Skip test pages and special routes
+          if (page.route.includes('test') || page.route.includes('api')) continue;
+
+          if (!navTreeContent.includes(`](${page.route})`)) {
+            audit.issues.high.push({
+              type: 'missing_nav_tree_route',
+              route: page.route,
+              message: `Route ${page.route} not found in navigation-tree.md`,
+            });
+          }
+        }
+      }
+
+      // Check for missing modals in 404 page
       for (const modal of modals) {
         if (!notFoundContent.includes(`#${modal.id}`)) {
           audit.issues.medium.push({
@@ -344,7 +373,20 @@ class ComplianceMonitor {
         }
       }
 
-      // Check for missing bento boxes
+      // Check for missing modals in navigation-tree.md
+      if (navTreeContent) {
+        for (const modal of modals) {
+          if (!navTreeContent.includes(`#${modal.id}`)) {
+            audit.issues.medium.push({
+              type: 'missing_nav_tree_modal',
+              modal: modal.id,
+              message: `Modal #${modal.id} not linked in navigation-tree.md`,
+            });
+          }
+        }
+      }
+
+      // Check for missing bento boxes in 404 page
       for (const bento of bentos) {
         if (!notFoundContent.includes(`#${bento.id}`)) {
           audit.issues.medium.push({
@@ -352,6 +394,19 @@ class ComplianceMonitor {
             bento: bento.id,
             message: `Bento box #${bento.id} not linked in 404 page`,
           });
+        }
+      }
+
+      // Check for missing bento boxes in navigation-tree.md
+      if (navTreeContent) {
+        for (const bento of bentos) {
+          if (!navTreeContent.includes(`#${bento.id}`)) {
+            audit.issues.medium.push({
+              type: 'missing_nav_tree_bento',
+              bento: bento.id,
+              message: `Bento box #${bento.id} not linked in navigation-tree.md`,
+            });
+          }
         }
       }
 
@@ -506,38 +561,95 @@ class ComplianceMonitor {
   generateSuggestions(audit) {
     const suggestions = [];
 
-    if (audit.issues.high.length > 0) {
-      suggestions.push({
-        priority: 'high',
-        action: 'Add missing routes to 404 navigation tree',
-        routes: audit.issues.high
-          .filter(i => i.type === 'missing_route')
-          .map(i => i.route),
-      });
+    // Critical issues
+    if (audit.issues.critical.length > 0) {
+      const navTreeMissing = audit.issues.critical.find(i => i.type === 'missing_nav_tree');
+      if (navTreeMissing) {
+        suggestions.push({
+          priority: 'critical',
+          action: 'Create navigation-tree.md file in athena/knowledge/',
+          details: 'This file is essential for Athena to provide hyper-accurate deep links',
+        });
+      }
     }
 
-    if (audit.issues.medium.length > 0) {
-      const missingModals = audit.issues.medium
-        .filter(i => i.type === 'missing_modal')
-        .map(i => i.modal);
+    // High priority issues
+    if (audit.issues.high.length > 0) {
+      const missing404Routes = audit.issues.high
+        .filter(i => i.type === 'missing_route')
+        .map(i => i.route);
 
-      if (missingModals.length > 0) {
+      if (missing404Routes.length > 0) {
         suggestions.push({
-          priority: 'medium',
-          action: 'Add missing modal links to 404 page',
-          modals: missingModals,
+          priority: 'high',
+          action: 'Add missing routes to 404 page navigation tree',
+          routes: missing404Routes,
         });
       }
 
-      const missingBentos = audit.issues.medium
+      const missingNavTreeRoutes = audit.issues.high
+        .filter(i => i.type === 'missing_nav_tree_route')
+        .map(i => i.route);
+
+      if (missingNavTreeRoutes.length > 0) {
+        suggestions.push({
+          priority: 'high',
+          action: 'Add missing routes to navigation-tree.md',
+          routes: missingNavTreeRoutes,
+          details: 'Update athena/knowledge/navigation-tree.md with these routes',
+        });
+      }
+    }
+
+    // Medium priority issues
+    if (audit.issues.medium.length > 0) {
+      const missing404Modals = audit.issues.medium
+        .filter(i => i.type === 'missing_modal')
+        .map(i => i.modal);
+
+      if (missing404Modals.length > 0) {
+        suggestions.push({
+          priority: 'medium',
+          action: 'Add missing modal links to 404 page',
+          modals: missing404Modals,
+        });
+      }
+
+      const missingNavTreeModals = audit.issues.medium
+        .filter(i => i.type === 'missing_nav_tree_modal')
+        .map(i => i.modal);
+
+      if (missingNavTreeModals.length > 0) {
+        suggestions.push({
+          priority: 'medium',
+          action: 'Add missing modal deep links to navigation-tree.md',
+          modals: missingNavTreeModals,
+          details: 'Format: [Modal Name](/about#modal-id)',
+        });
+      }
+
+      const missing404Bentos = audit.issues.medium
         .filter(i => i.type === 'missing_bento')
         .map(i => i.bento);
 
-      if (missingBentos.length > 0) {
+      if (missing404Bentos.length > 0) {
         suggestions.push({
           priority: 'medium',
           action: 'Add missing bento box links to 404 page',
-          bentos: missingBentos,
+          bentos: missing404Bentos,
+        });
+      }
+
+      const missingNavTreeBentos = audit.issues.medium
+        .filter(i => i.type === 'missing_nav_tree_bento')
+        .map(i => i.bento);
+
+      if (missingNavTreeBentos.length > 0) {
+        suggestions.push({
+          priority: 'medium',
+          action: 'Add missing service/product deep links to navigation-tree.md',
+          bentos: missingNavTreeBentos,
+          details: 'Format: [Service Name](/solutions#service-id)',
         });
       }
     }

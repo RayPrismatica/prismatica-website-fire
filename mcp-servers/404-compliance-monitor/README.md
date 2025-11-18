@@ -1,18 +1,22 @@
 # 404 Compliance Monitor MCP Server
 
-**Purpose:** Automatically monitor the Prismatica website architecture and notify when the 404 error page falls out of sync.
+**Purpose:** Automatically monitor the Prismatica website architecture and notify when the 404 error page AND navigation tree fall out of sync.
 
 ## What It Does
 
-This MCP server provides real-time monitoring and compliance auditing for the 404 error page (`app/not-found.tsx`). It watches critical files and notifies you when changes require 404 page updates.
+This MCP server provides real-time monitoring and compliance auditing for:
+- **404 error page** (`app/not-found.tsx`) - User-facing navigation
+- **Navigation tree** (`athena/knowledge/navigation-tree.md`) - Athena's deep link reference
+
+It watches critical files and notifies you when changes require updates to either file.
 
 ### Key Features
 
-1. **File Monitoring** - Watches routes, modals, and bento boxes for changes
-2. **Automatic Audits** - Scans architecture and compares against 404 navigation tree
+1. **File Monitoring** - Watches routes, modals, bento boxes, AND navigation tree for changes
+2. **Dual Auditing** - Scans architecture and compares against BOTH 404 page AND navigation tree
 3. **Smart Notifications** - Alerts when files are added/removed/changed
 4. **Compliance Scoring** - Generates 0-100 compliance score with prioritized issues
-5. **Fix Suggestions** - Provides actionable recommendations
+5. **Fix Suggestions** - Provides actionable recommendations with formatted examples
 
 ## Installation
 
@@ -71,6 +75,7 @@ Use the start_monitoring tool to begin watching for 404 compliance changes
 - `app/about/page.tsx` - Modal definitions
 - `components/BentoBox/content/*.json` - Bento box services/products
 - `app/not-found.tsx` - The 404 page itself
+- `athena/knowledge/navigation-tree.md` - Athena's navigation reference
 
 ### 2. `stop_monitoring`
 
@@ -260,15 +265,19 @@ Always include the compliance score and top 3 priority issues in your reports.
 - 404 page syntax errors
 - Broken navigation structure
 - Security vulnerabilities
+- **Navigation tree file missing** (`athena/knowledge/navigation-tree.md` not found)
 
 ### High (15 points each)
-- Missing primary routes (/about, /solutions, /contact, etc.)
+- Missing primary routes in 404 page (/about, /solutions, /contact, etc.)
+- **Missing primary routes in navigation-tree.md**
 - Broken hash links to modals
-- Missing /products route
+- Missing /products route (if still relevant)
 
 ### Medium (10 points each)
-- Missing modal links
-- Missing bento box links
+- Missing modal links in 404 page
+- **Missing modal deep links in navigation-tree.md**
+- Missing bento box links in 404 page
+- **Missing service/product deep links in navigation-tree.md**
 - Outdated descriptions
 
 ### Low (5 points each)
@@ -295,10 +304,11 @@ The server monitors these file patterns:
 
 | Pattern | What It Catches | Why It Matters |
 |---------|----------------|----------------|
-| `app/**/page.tsx` | All route pages | New routes need 404 navigation entries |
-| `app/about/page.tsx` | Modal definitions in `briefs` object | Modal additions/removals need 404 updates |
-| `components/BentoBox/content/*.json` | Service/product bento boxes | New offerings need 404 navigation links |
+| `app/**/page.tsx` | All route pages | New routes need 404 navigation entries AND navigation-tree.md |
+| `app/about/page.tsx` | Modal definitions in `briefs` object | Modal additions/removals need 404 updates AND navigation-tree.md |
+| `components/BentoBox/content/*.json` | Service/product bento boxes | New offerings need 404 navigation links AND navigation-tree.md |
 | `app/not-found.tsx` | The 404 page itself | Track when compliance fixes are made |
+| `athena/knowledge/navigation-tree.md` | Athena's navigation reference | Ensures deep link accuracy for chat responses |
 
 ## Architecture Detection
 
@@ -321,6 +331,76 @@ The audit scans and categorizes:
 - Reads `id`, `title`, and `prompt.text` fields
 - Filters out disabled items (`enabled: false`)
 - Expected count: 15 active bento boxes
+
+## Navigation Tree Reference
+
+**File:** `athena/knowledge/navigation-tree.md`
+
+This file serves as the authoritative source for all deep links across the site. It contains:
+- **42 deep links** to pages, sections, modals, services, and products
+- Direct links to case studies (e.g., `/about#warehouse`)
+- Direct links to services (e.g., `/solutions#esi-framework`)
+- Direct links to concepts (e.g., `/about#molecule-friction`)
+- Usage examples for matching user problems to resources
+
+**Purpose for Athena:**
+The navigation tree enables hyper-accurate linking in chat responses. Athena uses this to provide surgical precision when directing users to specific resources.
+
+**Purpose for 404 Compliance:**
+The navigation tree should mirror the expandable navigation structure on the 404 page. When the architecture changes (new pages, services, or modals added), both files need updating:
+1. `app/not-found.tsx` - User-facing 404 page navigation
+2. `athena/knowledge/navigation-tree.md` - Athena's internal reference
+
+**Automated Compliance Checking (✅ IMPLEMENTED):**
+The MCP server now automatically maintains navigation-tree.md compliance:
+- ✅ **File Monitoring** - Watches `navigation-tree.md` for changes
+- ✅ **Dual Auditing** - Checks both 404 page AND navigation-tree.md for completeness
+- ✅ **Missing Route Detection** - Flags routes missing from navigation-tree.md
+- ✅ **Missing Deep Link Detection** - Flags modals/services missing from navigation-tree.md
+- ✅ **Priority Classification** - Critical if file missing, high for routes, medium for deep links
+- ✅ **Fix Suggestions** - Provides formatted examples for adding missing links
+
+**How It Works:**
+When you run `run_audit`, the server now checks:
+1. **404 Page Completeness** - Are all routes/modals/services in the 404 navigation?
+2. **Navigation Tree Completeness** - Are all routes/modals/services in navigation-tree.md?
+3. **Dual Sync** - Flags when one file is updated but the other isn't
+
+**Example Audit Output:**
+```json
+{
+  "issues": {
+    "high": [
+      {
+        "type": "missing_nav_tree_route",
+        "route": "/new-page",
+        "message": "Route /new-page not found in navigation-tree.md"
+      }
+    ],
+    "medium": [
+      {
+        "type": "missing_nav_tree_modal",
+        "modal": "new-case-study",
+        "message": "Modal #new-case-study not linked in navigation-tree.md"
+      }
+    ]
+  },
+  "suggestions": [
+    {
+      "priority": "high",
+      "action": "Add missing routes to navigation-tree.md",
+      "routes": ["/new-page"],
+      "details": "Update athena/knowledge/navigation-tree.md with these routes"
+    },
+    {
+      "priority": "medium",
+      "action": "Add missing modal deep links to navigation-tree.md",
+      "modals": ["new-case-study"],
+      "details": "Format: [Modal Name](/about#modal-id)"
+    }
+  ]
+}
+```
 
 ## Troubleshooting
 

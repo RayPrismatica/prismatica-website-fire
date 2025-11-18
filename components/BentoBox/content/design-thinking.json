@@ -56,8 +56,9 @@
     "badge": "Process",
     "body": [
       {
-        "type": "text",
-        "text": "New answers to old problems. When traditional approaches keep failing, we reframe the problem entirely. Rapid prototyping, user testing, iteration. We work in sprints to test assumptions quickly and cheaply before you commit to expensive solutions. Fail fast, learn faster."
+        "type": "dynamic",
+        "field": "designDescription",
+        "fallback": "New answers to old problems. When traditional approaches keep failing, we reframe the problem entirely. Rapid prototyping, user testing, iteration. We work in sprints to test assumptions quickly and cheaply before you commit to expensive solutions. Fail fast, learn faster."
       }
     ],
     "metadata": {

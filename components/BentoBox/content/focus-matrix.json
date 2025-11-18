@@ -55,16 +55,9 @@
     "title": "The Focus Matrix",
     "body": [
       {
-        "type": "text",
-        "text": "Poker players calculate expected value on every bet. You should too. But for your hours, not your chips."
-      },
-      {
-        "type": "text",
-        "text": "This runs game theory on your entire calendar. EV vs. CV for every commitment. Accounts for global shifts that kill projects or create asymmetric opportunities. Shows you where to go all-in and what to fold."
-      },
-      {
-        "type": "text",
-        "text": "Your time is finite. Most people spend it on what screams loudest. This shows you where it compounds. Pushes to calendar. Shares the math with others so they understand your no's."
+        "type": "dynamic",
+        "field": "focusDescription",
+        "fallback": "Poker players calculate expected value on every bet. You should too. But for your hours, not your chips.\n\nThis runs game theory on your entire calendar. EV vs. CV for every commitment. Accounts for global shifts that kill projects or create asymmetric opportunities. Shows you where to go all-in and what to fold.\n\nYour time is finite. Most people spend it on what screams loudest. This shows you where it compounds. Pushes to calendar. Shares the math with others so they understand your no's."
       }
     ]
   },

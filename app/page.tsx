@@ -11,7 +11,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <ContentTracker newsInsight={content.newsInsight} intelligenceExample={content.intelligenceExample} />
+      <ContentTracker newsInsight={content.newsInsight} />
 
       <div className={styles.container}>
         <main className={styles.main}>

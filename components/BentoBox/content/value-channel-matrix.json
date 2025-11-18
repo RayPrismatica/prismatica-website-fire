@@ -55,16 +55,9 @@
     "title": "Value Channel Matrix",
     "body": [
       {
-        "type": "text",
-        "text": "Value is the cast iron that forms between what's given and what's received. That's what makes deals strong. That's what scales."
-      },
-      {
-        "type": "text",
-        "text": "This maps every channel in the exchange. Tangible and intangible forces. Customer psychology from Maslow to Jung. What particles actually move people. Makes sure whoever takes the hardest step forward gets more than they put in. 10% more? Good. 30% more? They'll never leave you."
-      },
-      {
-        "type": "text",
-        "text": "Offering architecture they can't refuse. Overdelivery by design. This isn't marketing tactics. This is value engineering."
+        "type": "dynamic",
+        "field": "valueDescription",
+        "fallback": "Value is the cast iron that forms between what's given and what's received. That's what makes deals strong. That's what scales.\n\nThis maps every channel in the exchange. Tangible and intangible forces. Customer psychology from Maslow to Jung. What particles actually move people. Makes sure whoever takes the hardest step forward gets more than they put in. 10% more? Good. 30% more? They'll never leave you.\n\nOffering architecture they can't refuse. Overdelivery by design. This isn't marketing tactics. This is value engineering."
       }
     ]
   },

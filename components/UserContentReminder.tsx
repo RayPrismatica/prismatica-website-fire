@@ -15,13 +15,12 @@ export default function UserContentReminder({ fallbackReminder }: UserContentRem
 
       if (storedContent) {
         try {
-          const { newsInsight, intelligenceExample } = JSON.parse(storedContent);
+          const { newsInsight } = JSON.parse(storedContent);
 
-          // Extract brief references from the actual content they saw
+          // Extract brief reference from the actual content they saw
           const newsRef = extractBriefReference(newsInsight);
-          const questionRef = extractBriefReference(intelligenceExample);
 
-          setReminder(`Remember how the landing page showed ${newsRef}, and the What We Do page wondered ${questionRef}?`);
+          setReminder(`Remember that bit on the landing page about ${newsRef}? Well, the pattern holds.`);
         } catch (error) {
           // If parsing fails, use fallback
           setReminder(fallbackReminder);

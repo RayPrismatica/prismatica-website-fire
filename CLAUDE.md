@@ -44,29 +44,36 @@ The application's unique feature is AI-generated content that stays contextually
 **Flow:**
 1. GitHub Actions runs `scripts/generate-dynamic-content.js` every 6 hours
 2. Script fetches RSS feeds from 9 news sources (BBC, NYT, Fast Company, Forbes, Marketing Week, HBR, Wired, Inc, The Atlantic)
-3. Claude Opus 4 (`claude-opus-4-20250514`) analyzes headlines and generates 12 contextually-related content pieces
+3. Claude Opus 4 (`claude-opus-4-20250514`) analyzes headlines and generates 16 contextually-related content pieces
    - Temperature: 1.0
    - Max tokens: 2200
    - System prompt: `scripts/prompts/dynamic-content.md`
-4. Content uploaded to **Vercel Blob Storage** and saved to markdown file:
-   - **Vercel Blob**: `dynamic-content.json` (24-hour max-age safety limit, 6-hour refresh cycle, instant updates, no rebuilds)
-   - **Local file**: `athena/knowledge/pages/dynamic-content.md` - Markdown for Athena's knowledge base
+   - Uses "RADICAL STRUCTURE VARIETY" to avoid formulaic AI writing patterns
+4. **Dual-Output to Vercel Blob Storage** (perfect synchronization):
+   - **For Website**: `dynamic-content.json` uploaded to Blob (instant updates, no rebuilds)
+   - **For Athena**: `athena-dynamic-content.md` uploaded to Blob (same content, markdown format)
    - **Storage options**: Uses `allowOverwrite: true` and `addRandomSuffix: false` for deterministic file paths
-5. Components fetch from Blob via `lib/getDynamicContent.ts` and `/api/dynamic-content`
-6. Athena reads from markdown via `getPageContent()` in chat API
+   - **Cache**: 6-hour cache control (aligns with refresh cycle)
+   - **Fallback**: Also writes locally to `athena/knowledge/pages/dynamic-content.md` for development
+5. Website components fetch JSON from Blob via `lib/getDynamicContent.ts` and `/api/dynamic-content`
+6. Athena chat fetches markdown from Blob in `app/api/chat/route.ts` via async `getDynamicContent()`
+   - **Production**: Fetches from Blob (always fresh)
+   - **Development**: Falls back to local filesystem
 7. Fallback content ensures site never breaks if Blob fetch fails or content expires
 
-**Athena Awareness:** Athena is always aware of current dynamic content because the generation script updates her knowledge base file in sync with the website content. This ensures she can reference what users are actually seeing on each page.
+**Perfect Synchronization:** Both website and Athena fetch from Vercel Blob, ensuring they always see identical content. The dual-output architecture (JSON + Markdown) happens in a single generation pass, guaranteeing consistency.
 
 **Dynamic Components:**
-- `DynamicNewsInsight` - Landing page insight
-- `DynamicIntelligenceExample` - "What We Do" intelligence example
-- `DynamicServiceDescription` - Service descriptions
-- `DynamicESIDescription`, `DynamicAgencyDescription`, `DynamicKSODescription`, `DynamicTransactionDescription`, `DynamicTriptychDescription` - Product/service explanations
-- `MarketObservation`, `InlineObservation` - Contextual market insights
-- `UserContentReminder` - Cross-page continuity
+- `DynamicNewsInsight` - Landing page insight (PIECE 1)
+- `UserContentReminder` - Contact page reminder (PIECE 2) - references landing page content
+- Service descriptions (PIECE 3-16) - All 14 solution bento boxes on `/solutions` page:
+  - Pioneers of Purpose, ESI Framework, Secret Agency, KSO Workshop, Transaction Architecture
+  - Strategic Triptych, Go-to-Market, Creative That Converts, Design Thinking
+  - AI Without Hallucination, Process Surgery, Marketing Reality Check, Focus Matrix, Value Channel Matrix
 
 All dynamic components follow the same pattern: fetch from cache, display with fade-in animation, fallback to hardcoded content if cache fails/expires.
+
+**Key Architecture Note:** Dynamic content rendering uses `parseBodyContent()` in `components/BentoBox/contentParser.ts` which automatically splits on `\n\n` to create paragraph breaks, matching the visual style of static content.
 
 ### API Routes Structure
 
@@ -271,8 +278,7 @@ Pages use a consistent two-column layout:
 
 **Public Pages:**
 - `/` - Landing page with dynamic news insight (Focus)
-- `/solutions` - Consolidated solutions page (replaced `/consulting` and `/products`)
-- `/products` - Product offerings (legacy/specific products)
+- `/solutions` - Consolidated solutions page (consulting and products)
 - `/about` - About page (manifesto, philosophy, "how we think")
 - `/triptych`, `/prismatic`, `/agentic`, `/demand`, `/incentives` - Mental model detail pages
 - `/articles` - Content hub
@@ -280,6 +286,8 @@ Pages use a consistent two-column layout:
 
 **Test/Development Pages:**
 - `/about-test`, `/bento-test`, `/test-mobile` - Testing environments
+
+**Note:** Legacy `/products` page and `/what-we-do` page removed - content consolidated into `/solutions`
 
 ## Design System
 
@@ -340,10 +348,10 @@ The site follows a deliberate minimalist approach:
 
 **Athena Knowledge Base:**
 - `athena/knowledge/pages/` - Page-specific knowledge files
-  - `dynamic-content.md` - Synced with website dynamic content every 6 hours
-  - `consulting.md` - Consulting services knowledge
+  - `dynamic-content.md` - Synced with website dynamic content every 6 hours (16 pieces)
   - Additional page knowledge files as needed
 - Accessed via `getPageContent()` function in chat API
+- **Important:** `intelligenceExample` field removed - no longer references "What We Do" page
 
 **Scripts:**
 - `scripts/generate-dynamic-content.js` - Content generation logic
@@ -363,11 +371,14 @@ The site follows a deliberate minimalist approach:
 - `components/MobilePrototypeToggle.tsx` - UI control for mobile prototype mode
 
 **UI Components:**
-- `components/BentoBox.tsx` - Universal bento box component for services, products, and navigation cards
+- `components/BentoBox/` - Universal bento box component system
+  - `BentoBox.tsx` - Main component for services, products, and navigation cards
+  - `BentoBoxFromContent.tsx` - Renders bentos from JSON content definitions
+  - `contentParser.ts` - Parses dynamic/static content (handles `\n\n` paragraph splitting)
+  - `content/*.json` - 14+ bento content definitions for solutions page
   - Documentation: `components/BentoBox.README.md`
   - Examples: `components/BentoBox.examples.tsx`
   - Specification: `BENTO_BOX_SPEC.md`
-  - Roadmap: `BENTO_BOX_ROADMAP.md`
 
 **MCP Servers:**
 - `mcp-servers/404-compliance-monitor/` - Automated 404 page compliance monitoring
@@ -452,8 +463,9 @@ When editing copy, maintain "spatial poetry" rhythm:
 - Edit `scripts/prompts/dynamic-content.md`
 - Run `npm run generate-content` to test
 - Check output in `data/dynamic-content.json` and `athena/knowledge/pages/dynamic-content.md`
-- Verify all 12 pieces parse correctly
+- Verify all 16 pieces parse correctly (PIECE 1-2 for pages, PIECE 3-16 for services)
 - Ensure British English compliance (template includes spelling guide)
+- Content uses "RADICAL STRUCTURE VARIETY" - avoid formulaic patterns in prompt writing
 
 ### Adding API Routes
 
@@ -579,7 +591,7 @@ import PageLayout from '@/components/PageLayout';
 - Run with: `npm run lint`
 
 **Next.js Configuration:**
-- `next.config.ts` - Minimal configuration (default Next.js 16 settings)
+- `next.config.ts` - Minimal configuration using Next.js 16 defaults
 - PostCSS: Uses `@tailwindcss/postcss` plugin only
 - Tailwind CSS v4 with custom variables in `app/globals.css`
 

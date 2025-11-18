@@ -4,20 +4,18 @@ import { useEffect } from 'react';
 
 interface ContentTrackerProps {
   newsInsight: string;
-  intelligenceExample: string;
 }
 
-export default function ContentTracker({ newsInsight, intelligenceExample }: ContentTrackerProps) {
+export default function ContentTracker({ newsInsight }: ContentTrackerProps) {
   useEffect(() => {
     // Always update with the most recent content
     if (typeof window !== 'undefined') {
       sessionStorage.setItem('userSeenContent', JSON.stringify({
         newsInsight,
-        intelligenceExample,
         timestamp: new Date().toISOString()
       }));
     }
-  }, [newsInsight, intelligenceExample]);
+  }, [newsInsight]);
 
   return null; // This component doesn't render anything
 }

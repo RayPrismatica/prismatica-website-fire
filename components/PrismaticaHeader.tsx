@@ -58,7 +58,7 @@ export default function PrismaticaHeader() {
 
           <div className={styles.menuDivider} />
 
-          <Link href="/consulting" className={styles.menuItem} onClick={closeMenu}>
+          <Link href="/solutions" className={styles.menuItem} onClick={closeMenu}>
             Solutions
           </Link>
 

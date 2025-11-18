@@ -90,6 +90,8 @@ export function resolveDynamicContent(
 /**
  * Parses body items (array of paragraphs)
  * Returns array of strings (text content)
+ *
+ * For dynamic content: splits on \n\n to create multiple paragraphs
  */
 export function parseBodyContent(
   bodyItems: BodyItem[] | undefined,
@@ -99,11 +101,13 @@ export function parseBodyContent(
     return [];
   }
 
-  return bodyItems.map(item => {
+  return bodyItems.flatMap(item => {
     if (item.type === 'dynamic') {
       const key = item.field || item.dynamicKey;
       if (key) {
-        return resolveDynamicContent(key, dynamicData, item.fallback);
+        const content = resolveDynamicContent(key, dynamicData, item.fallback);
+        // Split on double newlines to create separate paragraphs
+        return content.split('\n\n').map(p => p.trim()).filter(p => p.length > 0);
       }
     }
     return item.text || '';

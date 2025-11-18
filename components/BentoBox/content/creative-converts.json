@@ -61,8 +61,9 @@
     "badge": "Marketing",
     "body": [
       {
-        "type": "text",
-        "text": "Brand work measured in revenue, not awards. We rebuild your positioning from the ground up based on what actually shifts customer perception and pricing power. Every design decision, every message, every touchpoint gets tested against one question: does this make people willing to pay more or buy faster?"
+        "type": "dynamic",
+        "field": "creativeDescription",
+        "fallback": "Brand work measured in revenue, not awards. We rebuild your positioning from the ground up based on what actually shifts customer perception and pricing power. Every design decision, every message, every touchpoint gets tested against one question: does this make people willing to pay more or buy faster?"
       }
     ],
     "metadata": {

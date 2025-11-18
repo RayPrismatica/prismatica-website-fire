@@ -49,7 +49,7 @@ export default async function TestMobilePage() {
 
         {/* SECTION 4: NAVIGATION */}
         <div className={styles.navCards}>
-          <Link href="/consulting" className={styles.navCard}>
+          <Link href="/solutions" className={styles.navCard}>
             <div className={styles.redAccent}></div>
             <div className={styles.cardContent}>
               <h3 className={styles.cardTitle}>Solutions</h3>

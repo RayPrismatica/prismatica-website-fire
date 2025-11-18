@@ -56,8 +56,9 @@
     "badge": "Marketing",
     "body": [
       {
-        "type": "text",
-        "text": "We watch how customers actually behave, not how your research says they behave. Shopping at 2am looks different from focus groups at 2pm. We track real patterns, identify what's working despite your strategy (not because of it), and show you where budget should actually go."
+        "type": "dynamic",
+        "field": "marketingDescription",
+        "fallback": "We watch how customers actually behave, not how your research says they behave. Shopping at 2am looks different from focus groups at 2pm. We track real patterns, identify what's working despite your strategy (not because of it), and show you where budget should actually go."
       }
     ],
     "metadata": {

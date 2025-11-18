@@ -61,8 +61,9 @@
     "badge": "Marketing",
     "body": [
       {
-        "type": "text",
-        "text": "Launch right the first time. We build your complete go-to-market strategy from positioning to channels to messaging to timeline. Who you're targeting, what you're saying, where you're saying it, and in what sequence. Everything mapped before you spend a pound on execution."
+        "type": "dynamic",
+        "field": "gtmDescription",
+        "fallback": "Launch right the first time. We build your complete go-to-market strategy from positioning to channels to messaging to timeline. Who you're targeting, what you're saying, where you're saying it, and in what sequence. Everything mapped before you spend a pound on execution."
       }
     ],
     "metadata": {

@@ -56,8 +56,9 @@
     "badge": "Technology",
     "body": [
       {
-        "type": "text",
-        "text": "Cut through the hype and find the boring, profitable AI applications that actually matter. We map your workflows, identify where AI adds real value, and prioritize implementations by ROI. Not the flashy demos everyone's chasing. The practical automations that save hours and generate revenue."
+        "type": "dynamic",
+        "field": "aiDescription",
+        "fallback": "Cut through the hype and find the boring, profitable AI applications that actually matter. We map your workflows, identify where AI adds real value, and prioritize implementations by ROI. Not the flashy demos everyone's chasing. The practical automations that save hours and generate revenue."
       }
     ],
     "metadata": {

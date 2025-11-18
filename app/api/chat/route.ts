@@ -91,12 +91,33 @@ function getSessionContext(username?: string): string {
 }
 
 // Load dynamic content for Athena's awareness
-function getDynamicContent(): string {
+async function getDynamicContent(): Promise<string> {
   try {
+    // Try Blob first (production)
+    const blobUrl = process.env.BLOB_URL?.replace('/dynamic-content.json', '/athena-dynamic-content.md');
+    if (blobUrl) {
+      try {
+        const response = await fetch(blobUrl, {
+          cache: 'no-store',
+          headers: { 'Cache-Control': 'no-cache' }
+        });
+        if (response.ok) {
+          const content = await response.text();
+          console.log('✓ Loaded dynamic content from Blob');
+          return content;
+        }
+      } catch (blobError) {
+        console.warn('Blob fetch failed, falling back to filesystem:', blobError);
+      }
+    }
+
+    // Fallback to filesystem (development)
     const dynamicContentPath = path.join(process.cwd(), 'athena', 'knowledge', 'pages', 'dynamic-content.md');
     if (fs.existsSync(dynamicContentPath)) {
+      console.log('✓ Loaded dynamic content from filesystem');
       return fs.readFileSync(dynamicContentPath, 'utf8');
     }
+
     return '';
   } catch (error) {
     console.error('Error loading dynamic content:', error);
@@ -104,10 +125,25 @@ function getDynamicContent(): string {
   }
 }
 
+// Load navigation tree for precise linking
+function getNavigationTree(): string {
+  try {
+    const navTreePath = path.join(process.cwd(), 'athena', 'knowledge', 'navigation-tree.md');
+    if (fs.existsSync(navTreePath)) {
+      return fs.readFileSync(navTreePath, 'utf8');
+    }
+    return '';
+  } catch (error) {
+    console.error('Error loading navigation tree:', error);
+    return '';
+  }
+}
+
 // Build the complete system prompt with page context and viewing history
-function buildSystemPrompt(pathname: string, viewingContext?: ViewingContext, username?: string): string {
+async function buildSystemPrompt(pathname: string, viewingContext?: ViewingContext, username?: string): Promise<string> {
   const corePrompt = getCorePrompt();
-  const dynamicContent = getDynamicContent();
+  const dynamicContent = await getDynamicContent();
+  const navigationTree = getNavigationTree();
   const sessionContext = getSessionContext(username);
 
   // Get knowledge context based on viewing history (if provided)
@@ -121,6 +157,12 @@ function buildSystemPrompt(pathname: string, viewingContext?: ViewingContext, us
   }
 
   return `${corePrompt}
+
+---
+
+## COMPLETE SITE NAVIGATION TREE
+
+${navigationTree}
 
 ---
 
@@ -424,7 +466,7 @@ export async function POST(request: NextRequest) {
     let response = await anthropic.messages.create({
       model: 'claude-sonnet-4-5-20250929',
       max_tokens: 1024,
-      system: buildSystemPrompt(pathname || '/', viewingContext, username),
+      system: await buildSystemPrompt(pathname || '/', viewingContext, username),
       messages: messages,
       tools: tools
     });
@@ -470,7 +512,7 @@ export async function POST(request: NextRequest) {
       response = await anthropic.messages.create({
         model: 'claude-sonnet-4-5-20250929',
         max_tokens: 1024,
-        system: buildSystemPrompt(pathname || '/', viewingContext, username),
+        system: await buildSystemPrompt(pathname || '/', viewingContext, username),
         messages: messages,
         tools: tools
       });
