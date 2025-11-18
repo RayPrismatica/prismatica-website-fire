@@ -86,9 +86,68 @@ All dynamic components follow the same pattern: fetch from cache, display with f
 
 ### Athena Intelligence System
 
-Athena implements a dual-layer intelligence system for learning from user interactions while maintaining privacy:
+Athena implements a sophisticated context-aware intelligence system with three core capabilities:
 
-**Layer 1 - Anonymous Behavioral Intelligence (IMPLEMENTED)**
+#### 1. Context-Aware Viewing Tracking
+
+**Purpose:** Athena knows exactly what users have seen and HOW they engaged with it.
+
+**Three Layers of Tracking:**
+
+**A. Page Tracking**
+- Automatically tracks all pages visited in session
+- Routes map to knowledge files: `/about` → `athena/knowledge/pages/about.md`
+- 11 page knowledge files covering all major pages
+
+**B. Section Tracking**
+- Uses IntersectionObserver to detect 50%+ visibility
+- Tracks time spent on each section (pauses when tab inactive)
+- Word counts automatically calculated from content
+- Engagement classification: skimmed, viewed, read, engaged
+
+**C. Modal Tracking**
+- Tracks modal open/close timing
+- Word counts extracted from modal content
+- Same engagement classification as sections
+
+**Engagement Levels:**
+```
+skimmed  = <30% of expected read time  (barely glanced)
+viewed   = 30-80% of expected time     (quick read)
+read     = 80-120% of expected time    (actually read)
+engaged  = >120% of expected time      (deep focus, re-reading)
+
+Formula: Expected Read Time = (wordCount / 225 WPM) × 60 × 1.2 (buffer)
+```
+
+**Example Context Sent to Athena:**
+```markdown
+### /about
+- hero (read, 12s / 45 words)
+- status-quo (engaged, 38s / 120 words)
+- physics-framework (skimmed, 4s / 200 words)
+
+### warehouse (viewed, 15s / 180 words)
+[Full warehouse case study content...]
+```
+
+**Files:**
+- `contexts/AthenaChatContext.tsx` - Global state, viewing history, modal tracking
+- `hooks/useScrollTracking.ts` - Section tracking with IntersectionObserver
+- `lib/getKnowledgeContext.ts` - Knowledge loader and formatter
+- `lib/wordCount.ts` - Word counting and engagement classification
+- 41 knowledge base files (11 pages + 30 modals)
+
+**API Cost Impact:**
+- Before: ~50k tokens per message (~$0.15)
+- After: ~5k tokens per message (~$0.016)
+- **90% cost reduction** while improving precision
+
+**See:** `athena/CONTEXT_SYSTEM.md` and `athena/KNOWLEDGE_BASE.md` for technical details.
+
+#### 2. Intelligence Layers
+
+**Layer 1 - Anonymous Behavioral Intelligence (ACTIVE)**
 
 Stores anonymous conversation data in Vercel Blob Storage at `athena/intel/layer1/`:
 
@@ -120,6 +179,8 @@ Placeholder infrastructure exists for opt-in session persistence:
 - Designed for explicit user permission (after 3-4 exchanges demonstrate value)
 - Would store to `sessions/{YYYY-MM}/` under sanitized user identifiers
 - Not yet implemented - infrastructure only
+
+#### 3. Additional Features
 
 **Page-Specific Contextual Prompts**
 
@@ -307,6 +368,12 @@ The site follows a deliberate minimalist approach:
   - Examples: `components/BentoBox.examples.tsx`
   - Specification: `BENTO_BOX_SPEC.md`
   - Roadmap: `BENTO_BOX_ROADMAP.md`
+
+**MCP Servers:**
+- `mcp-servers/404-compliance-monitor/` - Automated 404 page compliance monitoring
+  - Server README: `mcp-servers/404-compliance-monitor/README.md` - Complete tool documentation
+  - Project Documentation: `docs/MCP_SERVERS.md` - MCP overview, setup, and usage guide
+  - Related Skill: `.claude/skills/404-compliance-auditor/` - Manual audit skill for detailed tone analysis
 
 ## Development Guidelines
 

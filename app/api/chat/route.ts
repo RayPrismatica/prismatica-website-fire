@@ -4,6 +4,23 @@ import Anthropic from '@anthropic-ai/sdk';
 import fs from 'fs';
 import path from 'path';
 import { put, list } from '@vercel/blob';
+import { getKnowledgeContext } from '@/lib/getKnowledgeContext';
+
+interface EngagementData {
+  id: string;
+  engagement: 'skimmed' | 'viewed' | 'read' | 'engaged';
+  duration: number;
+  wordCount: number;
+  firstViewed: number;
+  lastViewed: number;
+}
+
+interface ViewingContext {
+  currentPage: string;
+  pagesVisited: string[];
+  modalsOpened: EngagementData[];
+  sectionsViewed: EngagementData[];
+}
 
 // In production, load and cache the core prompt once
 const corePromptPath = path.join(process.cwd(), 'athena', 'prompts', 'core.md');
@@ -87,12 +104,21 @@ function getDynamicContent(): string {
   }
 }
 
-// Build the complete system prompt with page context
-function buildSystemPrompt(pathname: string, username?: string): string {
+// Build the complete system prompt with page context and viewing history
+function buildSystemPrompt(pathname: string, viewingContext?: ViewingContext, username?: string): string {
   const corePrompt = getCorePrompt();
-  const pageContent = getPageContent(pathname);
   const dynamicContent = getDynamicContent();
   const sessionContext = getSessionContext(username);
+
+  // Get knowledge context based on viewing history (if provided)
+  let knowledgeContext = '';
+  if (viewingContext) {
+    knowledgeContext = getKnowledgeContext(viewingContext);
+  } else {
+    // Fallback to single page content if no viewing context
+    const pageContent = getPageContent(pathname);
+    knowledgeContext = `## CURRENT PAGE CONTEXT\n\nThe user is currently viewing: ${pathname}\n\n### Page Content:\n\n${pageContent}`;
+  }
 
   return `${corePrompt}
 
@@ -104,17 +130,11 @@ ${dynamicContent}
 
 ---
 
-## CURRENT PAGE CONTEXT
-
-The user is currently viewing: ${pathname}
-
-### Page Content:
-
-${pageContent}
+${knowledgeContext}
 
 ---
 
-Use the page content above to provide contextual, relevant responses. The user can see this page, so reference specific sections, prices, or details from it naturally.${sessionContext}`;
+Use the viewing context above to provide relevant responses. Reference specific content the user has seen. Don't spoil content from pages or modals they haven't visited yet.${sessionContext}`;
 }
 
 // Simple web page fetcher
@@ -351,7 +371,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    const { messages, pathname, conversationId: existingConversationId, username } = await request.json();
+    const { messages, pathname, conversationId: existingConversationId, username, viewingContext } = await request.json();
 
     // Use separate API key for chat (fallback to main key for backward compatibility)
     const apiKey = process.env.ANTHROPIC_API_KEY_CHAT || process.env.ANTHROPIC_API_KEY;
@@ -404,7 +424,7 @@ export async function POST(request: NextRequest) {
     let response = await anthropic.messages.create({
       model: 'claude-sonnet-4-5-20250929',
       max_tokens: 1024,
-      system: buildSystemPrompt(pathname || '/', username),
+      system: buildSystemPrompt(pathname || '/', viewingContext, username),
       messages: messages,
       tools: tools
     });
@@ -450,7 +470,7 @@ export async function POST(request: NextRequest) {
       response = await anthropic.messages.create({
         model: 'claude-sonnet-4-5-20250929',
         max_tokens: 1024,
-        system: buildSystemPrompt(pathname || '/', username),
+        system: buildSystemPrompt(pathname || '/', viewingContext, username),
         messages: messages,
         tools: tools
       });

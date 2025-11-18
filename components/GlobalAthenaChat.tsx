@@ -84,7 +84,7 @@ const DEFAULT_PROMPT: ContextualPrompt = {
 };
 
 export default function GlobalAthenaChat() {
-  const { isOpen, closeChat } = useAthenaChat();
+  const { isOpen, closeChat, getViewingContext } = useAthenaChat();
   const pathname = usePathname();
   const [drawerState, setDrawerState] = useState<DrawerState>('collapsed');
   const [isChatActivated, setIsChatActivated] = useState(false);
@@ -313,7 +313,8 @@ export default function GlobalAthenaChat() {
           messages: [contextMessage].map(m => ({
             role: m.role,
             content: m.content
-          }))
+          })),
+          viewingContext: getViewingContext()
         }),
       });
 
@@ -363,7 +364,8 @@ export default function GlobalAthenaChat() {
             content: m.content
           })),
           pathname,
-          conversationId: currentConversationId
+          conversationId: currentConversationId,
+          viewingContext: getViewingContext()
         }),
       });
 
@@ -429,6 +431,13 @@ export default function GlobalAthenaChat() {
 
   // Don't render on Focus homepage
   if (pathname === '/') {
+    return null;
+  }
+
+  // Hide Athena on 404 pages
+  const is404Page = pathname === '/not-found' || !pathname;
+
+  if (is404Page) {
     return null;
   }
 
@@ -821,7 +830,7 @@ export default function GlobalAthenaChat() {
                                           lineHeight: '1.6',
                                           fontWeight: 400,
                                           color: '#D43225',
-                                          textAlign: 'right',
+                                          textAlign: 'left',
                                           maxWidth: '85%'
                                         }}
                                       >

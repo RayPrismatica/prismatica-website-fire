@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
+import { useAthenaChat } from '@/contexts/AthenaChatContext';
 
 // Contextual prompts based on current page
 const PAGE_PROMPTS: Record<string, { question: string; context: string }> = {
@@ -138,6 +139,7 @@ type DrawerState = 'collapsed' | 'expanded' | 'chat';
 
 export default function MobileBottomSheetAthena() {
   const pathname = usePathname();
+  const { getViewingContext } = useAthenaChat();
   const [drawerState, setDrawerState] = useState<DrawerState>('collapsed');
   const [previousState, setPreviousState] = useState<DrawerState>('collapsed');
   const [showExpandedContent, setShowExpandedContent] = useState(false);
@@ -592,7 +594,8 @@ export default function MobileBottomSheetAthena() {
           messages: [contextMessage].map(m => ({
             role: m.role,
             content: m.content
-          }))
+          })),
+          viewingContext: getViewingContext()
         }),
       });
 
@@ -642,7 +645,8 @@ export default function MobileBottomSheetAthena() {
           messages: [...messages, userMessage].map(m => ({
             role: m.role,
             content: m.content
-          }))
+          })),
+          viewingContext: getViewingContext()
         }),
       });
 
@@ -677,9 +681,11 @@ export default function MobileBottomSheetAthena() {
     }
   };
 
-  // Don't render on server, if not mobile, or on Focus homepage
+  // Don't render on server, if not mobile, on Focus homepage, or on 404 pages
   // Wait for client-side mount to prevent hydration mismatch
-  if (!isMounted || !isMobile || pathname === '/') {
+  const is404Page = pathname === '/not-found' || !pathname;
+
+  if (!isMounted || !isMobile || pathname === '/' || is404Page) {
     return null;
   }
 
@@ -1082,15 +1088,14 @@ export default function MobileBottomSheetAthena() {
                       </div>
                     </div>
                   ) : (
-                    <div style={{ textAlign: 'right' }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                       <p style={{
                         fontSize: '15px',
                         lineHeight: '1.6',
                         color: '#D43225',
                         margin: 0,
-                        display: 'inline-block',
                         maxWidth: '85%',
-                        textAlign: 'right'
+                        textAlign: 'left'
                       }}>
                         {message.content}
                       </p>

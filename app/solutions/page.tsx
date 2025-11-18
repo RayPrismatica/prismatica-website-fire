@@ -70,27 +70,27 @@ export default function SolutionsPage() {
               <div style={{ margin: '48px 0', borderTop: '1px solid #ccc', borderBottom: '1px solid #ccc', height: '3px' }}></div>
 
               {/* Big Picture Services - £40k-50k */}
-              <BentoBoxFromContent content={pioneers} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
-              <BentoBoxFromContent content={esi} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
-              <BentoBoxFromContent content={secretAgency} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
+              <div id="pioneers-of-purpose"><BentoBoxFromContent content={pioneers} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
+              <div id="esi-framework"><BentoBoxFromContent content={esi} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
+              <div id="secret-agency"><BentoBoxFromContent content={secretAgency} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
 
               {/* Mid-tier Services - £18k-25k */}
-              <BentoBoxFromContent content={transaction} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
-              <BentoBoxFromContent content={kso} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
-              <BentoBoxFromContent content={triptych} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
+              <div id="transaction-architecture"><BentoBoxFromContent content={transaction} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
+              <div id="kso-workshop"><BentoBoxFromContent content={kso} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
+              <div id="strategic-triptych"><BentoBoxFromContent content={triptych} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
 
               {/* Tactical Services - £8k-15k */}
-              <BentoBoxFromContent content={gtm} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
-              <BentoBoxFromContent content={creative} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
-              <BentoBoxFromContent content={design} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
-              <BentoBoxFromContent content={ai} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
-              <BentoBoxFromContent content={process} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
-              <BentoBoxFromContent content={marketing} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
+              <div id="go-to-market"><BentoBoxFromContent content={gtm} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
+              <div id="creative-converts"><BentoBoxFromContent content={creative} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
+              <div id="design-thinking"><BentoBoxFromContent content={design} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
+              <div id="ai-without-hallucination"><BentoBoxFromContent content={ai} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
+              <div id="process-surgery"><BentoBoxFromContent content={process} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
+              <div id="marketing-reality-check"><BentoBoxFromContent content={marketing} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
 
               {/* AI Products */}
-              <BentoBoxFromContent content={focusMatrix} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
-              <BentoBoxFromContent content={sirAlfie} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
-              <BentoBoxFromContent content={valueChannel} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} />
+              <div id="focus-matrix"><BentoBoxFromContent content={focusMatrix} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
+              <div id="sir-alfie"><BentoBoxFromContent content={sirAlfie} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
+              <div id="value-channel-matrix"><BentoBoxFromContent content={valueChannel} dynamicData={dynamicContent} functionRegistry={functionRegistry} onEnquire={onEnquire} /></div>
 
               {/* Spacer to ensure last boxes can scroll into activation zone */}
               <div style={{ height: '200px' }}></div>

@@ -44,7 +44,7 @@
   "metadata": {
     "created": "2025-11-18",
     "author": "Prismatica Labs",
-    "notes": "Mental Model: Incentives Alignment - Free article on our approach"
+    "notes": "Mental Model: The Incentive Polarity - Free article on our approach"
   },
   "athenaPrompt": "Want to explore incentives thinking? Chat?",
   "content": {
@@ -52,7 +52,7 @@
       "type": "static",
       "text": "If incentives misalign..."
     },
-    "title": "Incentives Alignment",
+    "title": "The Incentive Polarity",
     "badge": "Mental Model",
     "body": [
       {
@@ -68,7 +68,7 @@
   "actions": {
     "share": {
       "enabled": true,
-      "subject": "Mental Model: Incentives Alignment",
+      "subject": "Mental Model: The Incentive Polarity",
       "body": "Check out this mental model from Prismatica Labs: {url}"
     }
   }

@@ -170,22 +170,6 @@ export default function Sidebar({ isHomepage = false }: { isHomepage?: boolean }
         <div className="mobile-footer-links" style={{ marginBottom: '24px' }}>
           <div style={{ display: 'flex', gap: '8px', marginBottom: '4px', justifyContent: 'center' }}>
             <Link
-              href="/products"
-              onClick={handleNavClick}
-              style={{
-                fontFamily: '"Noto Sans", sans-serif',
-                fontSize: '9px',
-                color: '#999',
-                textDecoration: 'none',
-                transition: 'color 0.2s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#999'}
-            >
-              Products
-            </Link>
-            <span style={{ fontSize: '9px', color: '#e0e0e0' }}>•</span>
-            <Link
               href="/articles"
               onClick={handleNavClick}
               style={{
@@ -248,22 +232,6 @@ export default function Sidebar({ isHomepage = false }: { isHomepage?: boolean }
             <h1 style={{ fontFamily: 'var(--font-passion), sans-serif', fontSize: '18px', fontWeight: 600, letterSpacing: '-0.5px', margin: 0, textAlign: 'left' }} className="sidebar-logo-title">PRISMATICA LABS</h1>
           </Link>
           <div className="desktop-footer-links" style={{ display: 'flex', gap: '8px', marginTop: '8px', marginBottom: '4px' }}>
-            <Link
-              href="/products"
-              onClick={handleNavClick}
-              style={{
-                fontFamily: '"Noto Sans", sans-serif',
-                fontSize: '9px',
-                color: '#999',
-                textDecoration: 'none',
-                transition: 'color 0.2s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
-              onMouseLeave={(e) => e.currentTarget.style.color = '#999'}
-            >
-              Products
-            </Link>
-            <span style={{ fontSize: '9px', color: '#e0e0e0' }}>•</span>
             <Link
               href="/articles"
               onClick={handleNavClick}

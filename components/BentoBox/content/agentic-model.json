@@ -44,7 +44,7 @@
   "metadata": {
     "created": "2025-11-18",
     "author": "Prismatica Labs",
-    "notes": "Mental Model: Agentic Systems - Free article on our approach"
+    "notes": "Mental Model: The Agentic Edge - Free article on our approach"
   },
   "athenaPrompt": "Want to explore agentic thinking? Chat?",
   "content": {
@@ -52,7 +52,7 @@
       "type": "static",
       "text": "If systems don't adapt..."
     },
-    "title": "Agentic Systems",
+    "title": "The Agentic Edge",
     "badge": "Mental Model",
     "body": [
       {
@@ -68,7 +68,7 @@
   "actions": {
     "share": {
       "enabled": true,
-      "subject": "Mental Model: Agentic Systems",
+      "subject": "Mental Model: The Agentic Edge",
       "body": "Check out this mental model from Prismatica Labs: {url}"
     }
   }

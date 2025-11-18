@@ -1,10 +1,12 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 import PageLayout from '@/components/PageLayout';
 import { Dialog, Transition } from '@headlessui/react';
 import EmailButton from '@/components/EmailButton';
+import { useAthenaChat } from '@/contexts/AthenaChatContext';
+import { useScrollTracking } from '@/hooks/useScrollTracking';
 
 // Import mental model JSON files
 import demandModel from '@/components/BentoBox/content/demand-model.json';
@@ -22,7 +24,9 @@ const prismatic = prismaticModel as any;
 const triptych = triptychModel as any;
 
 export default function AboutPage() {
+  useScrollTracking(); // Track scroll position and section visibility
   const [activeModal, setActiveModal] = useState<string | null>(null);
+  const { trackModalOpen, trackModalClose } = useAthenaChat();
 
   // Email setup
   const emailSubject = "Let's talk";
@@ -37,7 +41,29 @@ Best,
 
   const openModal = (briefId: string) => {
     setActiveModal(briefId);
+    trackModalOpen(briefId);
   };
+
+  const closeModal = () => {
+    if (activeModal) {
+      trackModalClose(activeModal);
+    }
+    setActiveModal(null);
+  };
+
+  // Auto-open modal from URL hash (for 404 page deep links)
+  useEffect(() => {
+    const hash = window.location.hash.slice(1); // Remove the # symbol
+    if (hash) {
+      // Check if the hash matches a valid modal ID
+      const validModals = Object.keys(briefs);
+      if (validModals.includes(hash)) {
+        openModal(hash);
+        // Clear the hash after opening (optional - keeps URL clean)
+        // window.history.replaceState(null, '', window.location.pathname);
+      }
+    }
+  }, []);
 
   const briefs: { [key: string]: { title: string; category: string; problem: string; howWeSawIt: string; result: string } } = {
     'warehouse': {
@@ -214,41 +240,6 @@ Best,
       problem: 'Markets find balance. Arbitrage opportunities close. Excess profits attract competition.\n\nMost businesses assume their edge is structural. They build long-term plans around temporary advantages.\n\nThen competition arrives and margins compress to normal. What looked like genius was just timing.',
       howWeSawIt: 'Equilibrium is inevitable. Not immediate.\n\nIMBALANCE: Opportunity exists. Demand exceeds supply or supply exceeds demand. Margins are abnormal. Profits signal opportunity.\n\nCOMPETITION ENTERS: Others see the opportunity. Capital flows in. New players emerge. Customers have alternatives.\n\nEQUILIBRIUM APPROACHES: Supply matches demand. Prices normalize. Margins compress. Advantage requires actual differentiation, not just being early.\n\nThe window between imbalance and equilibrium is your window to build structural advantages. After equilibrium, you\'re competing on execution, not opportunity.\n\nWe identify whether you\'re pre-equilibrium or post-equilibrium. Strategy is completely different.',
       result: 'Equilibrium mapping reveals:\n\n• Whether your advantage is structural or temporal\n• How long before competition closes the gap\n• Where to build moats before equilibrium arrives\n• Why high margins attract the competition that kills high margins\n\nEquilibrium is coming. Build before it arrives or compete after it does. Pretending it won\'t come is not a strategy.'
-    },
-    'model-demand': {
-      title: 'The Demand Flywheel',
-      category: 'Mental Model',
-      problem: 'Rolex doesn\'t sell watches. Peloton doesn\'t sell bikes. Slack doesn\'t sell chat.\n\nThey sell status, tribe membership, professional identity. Your product is the excuse. The demand is primal.\n\nMiss this and your marketing is just noise.',
-      howWeSawIt: 'Demand exists in three states:\n\nLATENT: The problem exists but people don\'t know it yet. Make the problem visible before you can sell the solution.\n\nEXPRESSED: People say they want it. But saying and paying are different physics. Most expressed demand evaporates at transaction.\n\nREVEALED: People vote with money, time, or behavior change. This is the only demand that matters.\n\nMost businesses optimize for expressed demand. We only trust revealed demand.\n\nThe Demand model maps what people actually want versus what they say they want. Watch behavior, not surveys.',
-      result: 'Understanding demand reveals:\n\n• What customers are really buying (not what you\'re selling)\n• Why product-market fit is about revealed demand physics\n• Where phantom demand is wasting resources\n• Which customer segments have real vs. fake demand'
-    },
-    'model-incentives': {
-      title: 'The Incentive Polarity',
-      category: 'Mental Model',
-      problem: 'Sales says they want better leads. What they optimize for is easy closes.\n\nProduct says they want user feedback. What they optimize for is no complaints.\n\nExecutives say they want innovation. What they optimize for is no surprises.\n\nWatch what they do, not what they say.',
-      howWeSawIt: 'People optimize for what they\'re measured on. Always.\n\nEven when they disagree with the measurement. Even when it contradicts stated values.\n\nYou want to know what a business actually optimizes for? Look at compensation structure. Promotion criteria. What gets celebrated. What gets punished.\n\nThen compare that to stated objectives. The gap explains most organizational dysfunction.\n\nThe Incentives model maps actual optimization versus stated objectives. Fix the forces. Behavior follows.',
-      result: 'When you fix incentives:\n\n• Behavior changes without mandates\n• Culture changes without initiatives\n• Strategy changes without retreats\n• Execution changes without processes'
-    },
-    'model-agentic': {
-      title: 'The Agentic Edge',
-      category: 'Mental Model',
-      problem: 'Humans need meetings, check-ins, approvals, reassurance.\n\nAI doesn\'t.\n\nGive it clear objectives, hard constraints, quality thresholds, and kill switches. Then let it run while you sleep.\n\nThe bottleneck isn\'t the AI. It\'s your need to feel in control.',
-      howWeSawIt: 'Agentic systems work differently than human systems.\n\nHUMANS: Need context, motivation, feedback loops, social dynamics. Coordination is expensive. Scaling is hard.\n\nAGENTS: Need clear objectives, constraints, and decision rules. Coordination is cheap. Scaling is trivial.\n\nMost businesses try to manage AI like humans. Meetings. Status updates. Approvals.\n\nThe Agentic model maps how to design systems that run autonomously. Define the physics. Let it operate.',
-      result: 'Agentic thinking reveals:\n\n• Where human oversight adds value vs. where it adds friction\n• How to design objectives that scale without supervision\n• Why most AI deployments fail (treating AI like interns)\n• Where autonomous systems multiply capacity'
-    },
-    'model-prismatic': {
-      title: 'The Prismatic Mindset',
-      category: 'Mental Model',
-      problem: 'Every industry thinks it\'s special. None of them are.\n\nNightclubs and enterprise sales are both gatekeeping. Museums and Netflix are both attention retention. Airports and emergency rooms are both triage under constraints.\n\nSee structure, not surface, and solutions transfer instantly.',
-      howWeSawIt: 'Industries are different surfaces on identical physics.\n\nRetail, SaaS, consulting, manufacturing, healthcare. Different vocabularies. Different constraints. Same fundamental forces.\n\nSupply. Demand. Friction. Value. Risk. Time. Actors. Incentives.\n\nThe Prismatic model strips away industry-specific language to reveal universal structure. Once you see the pattern, solutions from completely unrelated domains become obviously applicable.',
-      result: 'Prismatic thinking reveals:\n\n• Which "industry-specific" problems are actually universal\n• How solutions from unrelated fields solve your exact situation\n• Why best practices within your industry are often collectively stupid\n• Where cross-domain pattern matching creates unfair advantages'
-    },
-    'model-triptych': {
-      title: 'The Triptych Nexus',
-      category: 'Mental Model',
-      problem: 'Most companies fight the wrong battle.\n\nThey add supply when friction is killing them. Remove friction when demand doesn\'t exist. Build features when distribution is broken.\n\nStop guessing. Map the forces. Fix what\'s actually stuck.',
-      howWeSawIt: 'Every business problem is Supply, Demand, or Friction.\n\nSUPPLY PROBLEM: You can\'t deliver. Capacity, resources, or capabilities are the constraint.\n\nDEMAND PROBLEM: Nobody wants it. The problem isn\'t visible or the solution isn\'t compelling.\n\nFRICTION PROBLEM: They want it, you can deliver it, but something is blocking the transaction.\n\nMost businesses misdiagnose which problem they have. They optimize the wrong variable.\n\nThe Triptych model maps which force is actually constraining growth. Then you fix that. Not everything else.',
-      result: 'Triptych mapping reveals:\n\n• Which of the three forces is actually binding\n• Why adding resources sometimes makes problems worse\n• Where you\'re solving the wrong constraint beautifully\n• What to fix first for maximum leverage'
     }
   };
 
@@ -256,7 +247,7 @@ Best,
     <PageLayout>
       <section id="about" className="section active">
         {/* HERO STATEMENT - 1200px container for desktop */}
-        <div style={{ maxWidth: '1200px', marginBottom: '80px' }}>
+        <div data-section-id="/about:hero" style={{ maxWidth: '1200px', marginBottom: '80px' }}>
           <h1 style={{
             fontFamily: 'var(--font-passion), sans-serif',
             fontSize: 'clamp(32px, 9vw, 80px)',
@@ -271,7 +262,7 @@ Best,
           </h1>
         </div>
 
-        <div style={{ maxWidth: '700px' }}>
+        <div data-section-id="/about:opening" style={{ maxWidth: '700px' }}>
           {/* Opening statements */}
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
             Physics governs the universe.<br/>
@@ -291,6 +282,7 @@ Best,
           </p>
 
           {/* THE UNCOMFORTABLE TRUTH */}
+          <div data-section-id="/about:uncomfortable-truth">
           <h2 style={{
             position: 'relative',
             paddingLeft: '20px',
@@ -328,12 +320,14 @@ Best,
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444', fontWeight: 600 }}>
             That's all.
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* THE STATUS QUO */}
+          <div data-section-id="/about:status-quo">
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -377,12 +371,14 @@ Best,
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
             Compare that to a day rate from any consultancy. <strong>We'll wait.</strong>
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* WHY WE BUILD BOTH WAYS */}
+          <div data-section-id="/about:why-both-ways">
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -427,12 +423,14 @@ Best,
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
             Either way, you get independence. <strong>We want to be free. Like most.</strong>
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* BACK TO SOLUTIONS */}
+          <div data-section-id="/about:back-to-solutions">
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -465,12 +463,14 @@ Best,
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444', fontWeight: 600 }}>
             That's your arbitrage.
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* PARTICLES, MOLECULES, PATTERNS */}
+          <div data-section-id="/about:physics-framework">
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -576,12 +576,14 @@ Best,
               <span style={{ fontSize: '13px', color: '#888', display: 'block' }}>Arbitrage closes. Margins compress. Temporary becomes permanent.</span>
             </p>
           </div>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* MENTAL MODELS */}
+          <div data-section-id="/about:mental-models">
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -633,12 +635,14 @@ Best,
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444' }}>
             See? Patterns <strong>are</strong> like gravity. They exist whether you see them or not.
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* IN PRACTICE */}
+          <div data-section-id="/about:case-studies">
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -695,12 +699,14 @@ Best,
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444' }}>
             Different surfaces. Same underlying laws.
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* WHAT WE ACTUALLY DO */}
+          <div data-section-id="/about:what-we-do">
           <h2 style={{
             position: 'relative',
             paddingLeft: '20px',
@@ -731,12 +737,14 @@ Best,
             <strong>Impatient?</strong><br/>
             We built AI that thinks like we do. It runs while you sleep. No meetings, no check-ins, no PowerPoints. Just solutions.
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* OUR USP */}
+          <div data-section-id="/about:usp">
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -761,12 +769,14 @@ Best,
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444' }}>
             That's the whole thing.
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* THE BEHAVIOURAL REALITY */}
+          <div data-section-id="/about:behavioural-reality">
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -801,12 +811,14 @@ Best,
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444' }}>
             This isn't cynicism. It's physics. And physics doesn't judge.
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* WHO WE'RE NOT FOR */}
+          <div data-section-id="/about:not-for">
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -834,12 +846,14 @@ Best,
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444', fontWeight: 600 }}>
             We're not your people.
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* WHO WE'RE ABSOLUTELY FOR */}
+          <div data-section-id="/about:for">
           <h2 style={{
             position: 'relative',
             paddingLeft: '20px',
@@ -862,12 +876,14 @@ Best,
             You suspect your industry's "best practices" are collectively stupid.<br/>
             You'd rather be uncomfortably right than comfortably wrong.
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* TESTIMONIALS */}
+          <div data-section-id="/about:testimonials">
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -915,12 +931,14 @@ Best,
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444', fontWeight: 600 }}>
             Are you?
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* COMPLEXITY IS EVERYWHERE */}
+          <div data-section-id="/about:complexity">
           <h2 style={{
             fontFamily: '"Noto Sans", sans-serif',
             fontSize: '28px',
@@ -949,12 +967,14 @@ Best,
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '0', color: '#444' }}>
             We do clear.
           </p>
+          </div>
 
           <div style={{ marginTop: '120px', marginBottom: '120px' }}>
             <hr style={{ border: 'none', borderTop: '1px solid #e0e0e0', margin: '0' }} />
           </div>
 
           {/* READY? */}
+          <div data-section-id="/about:cta">
           <h2 style={{
             position: 'relative',
             paddingLeft: '20px',
@@ -1013,13 +1033,14 @@ Best,
             Operating globally.<br/>
             Small by design, sharp by necessity.
           </p>
+          </div>
 
         </div>
       </section>
 
       {/* Evidence Modal */}
       <Transition appear show={activeModal !== null} as={Fragment}>
-        <Dialog as="div" className="modal active" onClose={() => setActiveModal(null)}>
+        <Dialog as="div" className="modal active" onClose={closeModal}>
           {/* Backdrop */}
           <Transition.Child
             as={Fragment}
@@ -1049,6 +1070,7 @@ Best,
             >
               <Dialog.Panel
                 className="modal-content"
+                data-modal-id={activeModal || ''}
                 style={{
                   backgroundColor: '#fafafa',
                   padding: '48px',
@@ -1062,7 +1084,7 @@ Best,
               >
                 <button
                   type="button"
-                  onClick={() => setActiveModal(null)}
+                  onClick={closeModal}
                   style={{
                     position: 'absolute',
                     top: '16px',
