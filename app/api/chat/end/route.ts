@@ -3,6 +3,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import fs from 'fs';
 import path from 'path';
 import { put, list } from '@vercel/blob';
+import { ServiceType, getApiKey } from '@/lib/apiKeyManager';
 
 // Analysis prompt for Athena to summarize conversations
 function getAnalysisPrompt(): string {
@@ -53,15 +54,8 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Use API key
-    const apiKey = process.env.ANTHROPIC_API_KEY_CHAT || process.env.ANTHROPIC_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json(
-        { error: 'API key not configured' },
-        { status: 500 }
-      );
-    }
-
+    // Use API key manager for Athena analysis
+    const apiKey = getApiKey(ServiceType.ATHENA_ANALYSIS);
     const anthropic = new Anthropic({ apiKey });
 
     // Ask Athena to analyze the conversation

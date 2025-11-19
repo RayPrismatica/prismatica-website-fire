@@ -33,6 +33,7 @@ jobs:
       
       - name: Generate dynamic content
         env:
+          ANTHROPIC_API_KEY_CONTENT: ${{ secrets.ANTHROPIC_API_KEY_CONTENT }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
         run: npm run generate-content

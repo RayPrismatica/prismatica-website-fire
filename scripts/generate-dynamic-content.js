@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import dotenv from 'dotenv';
 import { put } from '@vercel/blob';
+import { ServiceType, getApiKey, getModelForService } from '../lib/apiKeyManager.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -17,8 +18,8 @@ const configPath = join(__dirname, 'configs', 'generation-config.json');
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
 const contentConfig = config.dynamicContent;
 
-// Use separate API key for content generation (fallback to main key for backward compatibility)
-const apiKey = process.env.ANTHROPIC_API_KEY_CONTENT || process.env.ANTHROPIC_API_KEY;
+// Use API key manager for content generation
+const apiKey = getApiKey(ServiceType.CONTENT_GENERATION);
 const anthropic = new Anthropic({
   apiKey: apiKey,
 });

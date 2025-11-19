@@ -227,6 +227,22 @@ BLOB_READ_WRITE_TOKEN=      # Token from Vercel dashboard (for writing content)
 BLOB_URL=                   # Public URL of your blob (set by Vercel)
 ```
 
+**API Key Manager:**
+
+The application uses a centralized API key manager (`lib/apiKeyManager.ts` for TypeScript, `lib/apiKeyManager.js` for scripts) that provides:
+
+- **Service-specific keys with automatic fallback**: Each service (Content Generation, Athena Chat, Athena Analysis) tries its dedicated key first, then falls back to `ANTHROPIC_API_KEY`
+- **Clear logging**: Shows which key is being used (✓ for dedicated keys, ⚠️ for fallback)
+- **Type-safe API**: `getApiKey(ServiceType.ATHENA_CHAT)` returns the correct key or throws an error
+- **Validation on startup**: `validateApiKeys()` checks all services and reports status
+
+**Three deployment options:**
+1. **BEST**: Set all three keys (dedicated keys for cost tracking and rate limit isolation)
+2. **GOOD**: Set `ANTHROPIC_API_KEY_CONTENT` and `ANTHROPIC_API_KEY_CHAT` (analysis falls back to chat key)
+3. **MINIMUM**: Set only `ANTHROPIC_API_KEY` (all services use this fallback)
+
+See `.env.example` for detailed configuration instructions.
+
 ### Vercel Blob Storage Architecture
 
 The application uses Vercel Blob Storage for two distinct, independent data streams:

@@ -3,9 +3,12 @@ import Anthropic from '@anthropic-ai/sdk';
 import Parser from 'rss-parser';
 import fs from 'fs';
 import path from 'path';
+import { ServiceType, getApiKey } from '@/lib/apiKeyManager';
 
+// Use API key manager for content generation
+const apiKey = getApiKey(ServiceType.CONTENT_GENERATION);
 const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+  apiKey: apiKey,
 });
 
 const parser = new Parser();

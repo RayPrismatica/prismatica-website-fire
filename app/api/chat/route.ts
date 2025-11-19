@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import { put, list } from '@vercel/blob';
 import { getKnowledgeContext } from '@/lib/getKnowledgeContext';
+import { ServiceType, getApiKey } from '@/lib/apiKeyManager';
 
 interface EngagementData {
   id: string;
@@ -441,15 +442,8 @@ export async function POST(request: NextRequest) {
   try {
     const { messages, pathname, conversationId: existingConversationId, username, viewingContext } = await request.json();
 
-    // Use separate API key for chat (fallback to main key for backward compatibility)
-    const apiKey = process.env.ANTHROPIC_API_KEY_CHAT || process.env.ANTHROPIC_API_KEY;
-    if (!apiKey) {
-      return NextResponse.json(
-        { error: 'ANTHROPIC_API_KEY_CHAT or ANTHROPIC_API_KEY environment variable is not set' },
-        { status: 500 }
-      );
-    }
-
+    // Use API key manager for Athena chat
+    const apiKey = getApiKey(ServiceType.ATHENA_CHAT);
     const anthropic = new Anthropic({ apiKey });
 
     // Define tools for Athena
