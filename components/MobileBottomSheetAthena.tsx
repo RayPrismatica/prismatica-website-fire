@@ -162,6 +162,7 @@ export default function MobileBottomSheetAthena() {
   const [isPromptTransitioning, setIsPromptTransitioning] = useState(false);
   const lastBoxPromptRef = useRef<string | null>(null);
   const promptTransitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isSendingRef = useRef<boolean>(false); // Synchronous guard against React Strict Mode double-invocation
   const [isCloseFading, setIsCloseFading] = useState(false);
   const [isChatActivated, setIsChatActivated] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -564,24 +565,32 @@ export default function MobileBottomSheetAthena() {
     // setIsCloseFading(true); // Removed to preserve upward slide animation
 
     // Initialize conversation with the contextual prompt as context
-    if (messages.length === 0) {
-      const contextMessage: Message = {
-        role: 'user',
-        content: `I'm interested in: ${currentPrompt.question}`
-      };
-      setMessages([contextMessage]);
+    // Use functional update to prevent React Strict Mode from creating duplicates
+    const contextMessage: Message = {
+      role: 'user',
+      content: `I'm interested in: ${currentPrompt.question}`
+    };
 
-      // Auto-send the context to get Athena's response
-      setTimeout(() => {
-        sendContextMessage(contextMessage);
-      }, 100);
-    }
+    setMessages(prev => {
+      if (prev.length === 0) {
+        // Auto-send the context to get Athena's response
+        setTimeout(() => {
+          sendContextMessage(contextMessage);
+        }, 100);
+        return [contextMessage];
+      }
+      return prev;
+    });
 
     setDrawerState('chat');
   };
 
   const sendContextMessage = async (contextMessage: Message) => {
     setIsLoading(true);
+
+    // Create a placeholder for the streaming response
+    const streamingMessageIndex = messages.length;
+    setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
 
     try {
       const response = await fetch('/api/chat', {
@@ -599,30 +608,91 @@ export default function MobileBottomSheetAthena() {
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
         throw new Error('Failed to get response');
       }
 
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: data.message
-      };
+      // Handle streaming response
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
 
-      setMessages(prev => [...prev, assistantMessage]);
+      if (!reader) {
+        throw new Error('No response body');
+      }
+
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+
+          const eventMatch = line.match(/^event: (.+)\ndata: ([\s\S]+)$/);
+          if (!eventMatch) continue;
+
+          const [, eventType, dataStr] = eventMatch;
+          const data = JSON.parse(dataStr);
+
+          if (eventType === 'text') {
+            setMessages(prev => {
+              const newMessages = [...prev];
+              const lastAssistantIndex = newMessages.length - 1;
+              if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+                newMessages[lastAssistantIndex] = {
+                role: 'assistant',
+                content: data.accumulated
+              };
+              }
+              return newMessages;
+            });
+          } else if (eventType === 'done') {
+            setIsLoading(false);
+          } else if (eventType === 'error') {
+            setMessages(prev => {
+              const newMessages = [...prev];
+              const lastAssistantIndex = newMessages.length - 1;
+              if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+                newMessages[lastAssistantIndex] = {
+                role: 'assistant',
+                content: data.message || 'Connection issue. Try again.'
+              };
+              }
+              return newMessages;
+            });
+            setIsLoading(false);
+          }
+        }
+      }
     } catch (error) {
       console.error('Error sending context:', error);
-    } finally {
+      setMessages(prev => {
+        const newMessages = [...prev];
+        newMessages[streamingMessageIndex] = {
+          role: 'assistant',
+          content: 'Connection issue. Try again.'
+        };
+        return newMessages;
+      });
       setIsLoading(false);
     }
   };
 
   const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || isSendingRef.current) {
+      return;
+    }
+
+    // Set synchronous guard FIRST - prevents React Strict Mode from double-invoking entire function
+    isSendingRef.current = true;
 
     // Mark chat as activated when user sends their first message
-    console.log('🟢 User sent a message - activating chat');
     setIsChatActivated(true);
 
     const userMessage: Message = {
@@ -630,9 +700,19 @@ export default function MobileBottomSheetAthena() {
       content: input
     };
 
-    setMessages(prev => [...prev, userMessage]);
+    // Create assistant placeholder ONCE (outside updater) to prevent React Strict Mode from creating duplicates
+    const assistantPlaceholder: Message = {
+      role: 'assistant',
+      content: ''
+    };
+
+    // Clear input and set loading FIRST to prevent double-submission
     setInput('');
     setIsLoading(true);
+
+    // Add user message and placeholder in one update
+    // React Strict Mode will call setMessages twice, but using same object references prevents duplicates
+    setMessages(prev => [...prev, userMessage, assistantPlaceholder]);
 
     try {
       const response = await fetch('/api/chat', {
@@ -650,33 +730,155 @@ export default function MobileBottomSheetAthena() {
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
         if (response.status === 429) {
+          const data = await response.json();
           const retryAfter = data.retryAfter || 60;
-          setMessages(prev => [...prev, {
-            role: 'assistant',
-            content: `You're moving fast. Slow down for ${retryAfter} seconds.`
-          }]);
+          setMessages(prev => {
+            const newMessages = [...prev];
+            const lastAssistantIndex = newMessages.length - 1;
+            if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+              newMessages[lastAssistantIndex] = {
+                role: 'assistant',
+                content: `You're moving fast. Slow down for ${retryAfter} seconds.`
+              };
+            }
+            return newMessages;
+          });
+          setIsLoading(false);
           return;
         }
         throw new Error('Failed to get response');
       }
 
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: data.message
+      // Handle streaming response with smooth buffering
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+
+      if (!reader) {
+        throw new Error('No response body');
+      }
+
+      let buffer = '';
+      let accumulatedContent = '';
+      let pendingUpdate = false;
+
+      // Batch React updates using requestAnimationFrame (no throttling, just efficient batching)
+      const scheduleUpdate = () => {
+        if (!pendingUpdate) {
+          pendingUpdate = true;
+          requestAnimationFrame(() => {
+            setMessages(prev => {
+              const newMessages = [...prev];
+              const lastAssistantIndex = newMessages.length - 1;
+              if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+                newMessages[lastAssistantIndex] = {
+                  role: 'assistant',
+                  content: accumulatedContent
+                };
+              }
+              return newMessages;
+            });
+            pendingUpdate = false;
+          });
+        }
       };
 
-      setMessages(prev => [...prev, assistantMessage]);
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) {
+          // Ensure final update is applied immediately
+          setMessages(prev => {
+            const newMessages = [...prev];
+            const lastAssistantIndex = newMessages.length - 1;
+            if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+              newMessages[lastAssistantIndex] = {
+                role: 'assistant',
+                content: accumulatedContent
+              };
+            }
+            return newMessages;
+          });
+          break;
+        }
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+
+          const eventMatch = line.match(/^event: (.+)\ndata: ([\s\S]+)$/);
+          if (!eventMatch) continue;
+
+          const [, eventType, dataStr] = eventMatch;
+          const data = JSON.parse(dataStr);
+
+          if (eventType === 'text') {
+            accumulatedContent = data.accumulated;
+            scheduleUpdate();
+          } else if (eventType === 'tool_start') {
+            setMessages(prev => {
+              const newMessages = [...prev];
+              const lastAssistantIndex = newMessages.length - 1;
+              if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+                newMessages[lastAssistantIndex] = {
+                role: 'assistant',
+                content: `_Searching..._`
+              };
+              }
+              return newMessages;
+            });
+          } else if (eventType === 'tool_executing') {
+            const toolName = data.tool === 'search_web' ? 'Searching' : 'Reading';
+            setMessages(prev => {
+              const newMessages = [...prev];
+              const lastAssistantIndex = newMessages.length - 1;
+              if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+                newMessages[lastAssistantIndex] = {
+                role: 'assistant',
+                content: `_${toolName}..._`
+              };
+              }
+              return newMessages;
+            });
+          } else if (eventType === 'done') {
+            setIsLoading(false);
+          } else if (eventType === 'error') {
+            setMessages(prev => {
+              const newMessages = [...prev];
+              const lastAssistantIndex = newMessages.length - 1;
+              if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+                newMessages[lastAssistantIndex] = {
+                role: 'assistant',
+                content: data.message || 'Connection issue. Try again.'
+              };
+              }
+              return newMessages;
+            });
+            setIsLoading(false);
+          }
+        }
+      }
     } catch (error) {
       console.error('Error sending message:', error);
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: "Connection issue. Try again."
-      }]);
+      setMessages(prev => {
+        const newMessages = [...prev];
+        const lastAssistantIndex = newMessages.length - 1;
+        if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+          newMessages[lastAssistantIndex] = {
+            role: 'assistant',
+            content: "Connection issue. Try again."
+          };
+        }
+        return newMessages;
+      });
+      setIsLoading(false);
     } finally {
+      // Always reset the guard and loading state, even if there was an error or stream was cancelled
+      isSendingRef.current = false;
       setIsLoading(false);
     }
   };
@@ -1055,10 +1257,51 @@ export default function MobileBottomSheetAthena() {
                             fontWeight: 400
                           }}
                         >
-                          <ReactMarkdown
-                            components={{
-                              // Style links
-                              a: ({ node, ...props }) => (
+                          {!message.content ? (
+                            <div style={{ display: 'flex', gap: '6px', paddingTop: '4px' }}>
+                              <div style={{
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                                animation: 'pulse-green-purple 1.4s ease-in-out infinite',
+                                animationDelay: '0s'
+                              }}></div>
+                              <div style={{
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                                animation: 'pulse-green-purple 1.4s ease-in-out infinite',
+                                animationDelay: '0.2s'
+                              }}></div>
+                              <div style={{
+                                width: '10px',
+                                height: '10px',
+                                borderRadius: '50%',
+                                animation: 'pulse-green-purple 1.4s ease-in-out infinite',
+                                animationDelay: '0.4s'
+                              }}></div>
+                            </div>
+                          ) : (
+                            <div style={{ position: 'relative', display: 'inline' }}>
+                              {/* Render plain text during streaming, markdown when complete */}
+                              {isLoading && index === messages.length - 1 ? (
+                                <>
+                                  <span style={{ whiteSpace: 'pre-wrap' }}>{message.content}</span>
+                                  <span style={{
+                                    display: 'inline-block',
+                                    width: '8px',
+                                    height: '16px',
+                                    backgroundColor: '#222',
+                                    marginLeft: '2px',
+                                    animation: 'cursorBlink 1s step-end infinite',
+                                    verticalAlign: 'text-bottom'
+                                  }}></span>
+                                </>
+                              ) : (
+                              <ReactMarkdown
+                                components={{
+                                // Style links
+                                a: ({ node, ...props }) => (
                                 <Link
                                   href={props.href || '#'}
                                   onClick={() => setDrawerState('collapsed')}
@@ -1152,6 +1395,9 @@ export default function MobileBottomSheetAthena() {
                           >
                             {message.content}
                           </ReactMarkdown>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -1171,52 +1417,6 @@ export default function MobileBottomSheetAthena() {
                   )}
                 </div>
               ))}
-
-              {isLoading && (
-                <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
-                  <div style={{ flexShrink: 0 }}>
-                    <Image
-                      src="/images/athena-advisor.jpg"
-                      alt="Athena"
-                      width={32}
-                      height={32}
-                      style={{
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '50%',
-                        objectFit: 'cover'
-                      }}
-                    />
-                  </div>
-                  <div style={{ flex: 1, paddingTop: '8px' }}>
-                    <div style={{ display: 'flex', gap: '4px' }}>
-                      <div style={{
-                        width: '8px',
-                        height: '8px',
-                        backgroundColor: '#D43225',
-                        borderRadius: '50%',
-                        animation: 'bounce 1.4s infinite ease-in-out both',
-                        animationDelay: '-0.32s'
-                      }}></div>
-                      <div style={{
-                        width: '8px',
-                        height: '8px',
-                        backgroundColor: '#D43225',
-                        borderRadius: '50%',
-                        animation: 'bounce 1.4s infinite ease-in-out both',
-                        animationDelay: '-0.16s'
-                      }}></div>
-                      <div style={{
-                        width: '8px',
-                        height: '8px',
-                        backgroundColor: '#D43225',
-                        borderRadius: '50%',
-                        animation: 'bounce 1.4s infinite ease-in-out both'
-                      }}></div>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* Input Area */}

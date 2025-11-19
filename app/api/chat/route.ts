@@ -139,6 +139,32 @@ function getNavigationTree(): string {
   }
 }
 
+// Fetch specific knowledge file (pages or modals)
+function fetchKnowledgeFile(category: 'pages' | 'modals', filename: string): string {
+  try {
+    // Sanitize filename to prevent directory traversal
+    const sanitizedFilename = filename.replace(/[^a-z0-9-]/gi, '-');
+    const knowledgeFilePath = path.join(
+      process.cwd(),
+      'athena',
+      'knowledge',
+      category,
+      `${sanitizedFilename}.md`
+    );
+
+    if (fs.existsSync(knowledgeFilePath)) {
+      const content = fs.readFileSync(knowledgeFilePath, 'utf8');
+      console.log(`📖 Loaded knowledge: ${category}/${sanitizedFilename}.md`);
+      return content;
+    }
+
+    return `Knowledge file not found: ${category}/${sanitizedFilename}.md\n\nAvailable files can be found in the navigation tree.`;
+  } catch (error) {
+    console.error(`Error loading knowledge file ${category}/${filename}:`, error);
+    return `Error loading knowledge file: ${category}/${filename}`;
+  }
+}
+
 // Build the complete system prompt with page context and viewing history
 async function buildSystemPrompt(pathname: string, viewingContext?: ViewingContext, username?: string): Promise<string> {
   const corePrompt = getCorePrompt();
@@ -459,86 +485,186 @@ export async function POST(request: NextRequest) {
           },
           required: ['url', 'purpose']
         }
+      },
+      {
+        name: 'fetch_deep_knowledge',
+        description: 'Fetch detailed content from Prismatica\'s internal knowledge base. Use this when users ask about specific topics, frameworks, or concepts that aren\'t in your current context. Available categories: "pages" (main site pages) or "modals" (detailed framework explanations). Reference the navigation tree to find available files.',
+        input_schema: {
+          type: 'object',
+          properties: {
+            category: {
+              type: 'string',
+              enum: ['pages', 'modals'],
+              description: 'The knowledge category: "pages" for site pages, "modals" for detailed framework/concept explanations'
+            },
+            filename: {
+              type: 'string',
+              description: 'The filename without .md extension (e.g., "particle-incentives", "about", "model-demand")'
+            }
+          },
+          required: ['category', 'filename']
+        }
       }
     ];
 
-    // Make initial API call
-    let response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-5-20250929',
-      max_tokens: 1024,
-      system: await buildSystemPrompt(pathname || '/', viewingContext, username),
-      messages: messages,
-      tools: tools
+    const systemPrompt = await buildSystemPrompt(pathname || '/', viewingContext, username);
+
+    // Create a ReadableStream for Server-Sent Events
+    const encoder = new TextEncoder();
+    let accumulatedText = '';
+    let conversationIdToSave: string | null = null;
+
+    const stream = new ReadableStream({
+      async start(controller) {
+        try {
+          // Helper function to send SSE events
+          const sendEvent = (event: string, data: any) => {
+            try {
+              controller.enqueue(encoder.encode(`event: ${event}\ndata: ${JSON.stringify(data)}\n\n`));
+            } catch (error) {
+              // Controller already closed (client disconnected), silently ignore
+            }
+          };
+
+          // Start streaming
+          const streamResponse = anthropic.messages.stream({
+            model: 'claude-sonnet-4-5-20250929',
+            max_tokens: 1024,
+            system: systemPrompt,
+            messages: messages,
+            tools: tools
+          });
+
+          // Handle tool use in streaming mode
+          let requiresToolCall = false;
+          let toolCallData: { name: string; input: any; id: string } | null = null;
+
+          // Listen to stream events using proper event handlers
+          // Use .on() with proper type casting for SDK events
+          streamResponse
+            .on('text', (textDelta: string) => {
+              // Send text chunk to client
+              accumulatedText += textDelta;
+              sendEvent('text', { delta: textDelta, accumulated: accumulatedText });
+            })
+            .on('finalMessage', async (message: any) => {
+              // Handle tool calls if needed
+              const toolUseBlock = message.content.find((block: any) => block.type === 'tool_use');
+              if (toolUseBlock) {
+                requiresToolCall = true;
+                toolCallData = {
+                  name: toolUseBlock.name,
+                  input: toolUseBlock.input,
+                  id: toolUseBlock.id
+                };
+                try {
+                  // Execute tool
+                  let toolResult = '';
+
+                  if (toolCallData.name === 'search_web') {
+                    const { query } = toolCallData.input as { query: string };
+                    sendEvent('tool_executing', { tool: 'search_web', query });
+                    console.log(`🔍 Athena is searching: ${query}`);
+                    toolResult = await searchWeb(query);
+                  } else if (toolCallData.name === 'fetch_webpage') {
+                    const { url } = toolCallData.input as { url: string; purpose: string };
+                    sendEvent('tool_executing', { tool: 'fetch_webpage', url });
+                    console.log(`🌐 Athena is browsing: ${url}`);
+                    toolResult = await fetchWebPage(url);
+                  } else if (toolCallData.name === 'fetch_deep_knowledge') {
+                    const { category, filename } = toolCallData.input as { category: 'pages' | 'modals'; filename: string };
+                    sendEvent('tool_executing', { tool: 'fetch_deep_knowledge', category, filename });
+                    console.log(`📖 Athena is fetching knowledge: ${category}/${filename}`);
+                    toolResult = fetchKnowledgeFile(category, filename);
+                  }
+
+                  sendEvent('tool_result', { tool: toolCallData.name, success: true });
+
+                  // Continue conversation with tool result
+                  messages.push({
+                    role: 'assistant',
+                    content: [{ type: 'tool_use', name: toolCallData.name, input: toolCallData.input, id: toolCallData.id }]
+                  });
+
+                  messages.push({
+                    role: 'user',
+                    content: [
+                      {
+                        type: 'tool_result',
+                        tool_use_id: toolCallData.id,
+                        content: toolResult
+                      }
+                    ]
+                  });
+
+                  // Stream the follow-up response
+                  const followUpStream = anthropic.messages.stream({
+                    model: 'claude-sonnet-4-5-20250929',
+                    max_tokens: 1024,
+                    system: systemPrompt,
+                    messages: messages,
+                    tools: tools
+                  });
+
+                  // Reset accumulated text for follow-up response
+                  accumulatedText = '';
+
+                  followUpStream
+                    .on('text', (textDelta: string) => {
+                      accumulatedText += textDelta;
+                      sendEvent('text', { delta: textDelta, accumulated: accumulatedText });
+                    })
+                    .on('finalMessage', async () => {
+                      // Save conversation and complete
+                      conversationIdToSave = await saveConversationTranscript(messages, pathname || '/', existingConversationId);
+                      sendEvent('done', { conversationId: conversationIdToSave });
+                      controller.close();
+                    })
+                    .on('error', (error: Error) => {
+                      console.error('Follow-up stream error:', error);
+                      sendEvent('error', { message: 'Stream interrupted. Please try again.' });
+                      controller.close();
+                    });
+
+                } catch (toolError) {
+                  console.error('Tool execution error:', toolError);
+                  sendEvent('error', { message: 'Tool execution failed. Please try again.' });
+                  controller.close();
+                }
+              } else {
+                // No tool calls, save and complete
+                conversationIdToSave = await saveConversationTranscript(messages, pathname || '/', existingConversationId);
+                sendEvent('done', { conversationId: conversationIdToSave });
+                controller.close();
+              }
+            })
+            .on('error', (error: Error) => {
+              console.error('Stream error:', error);
+              sendEvent('error', { message: 'Connection interrupted. Please try again.' });
+              controller.close();
+            });
+
+        } catch (error) {
+          console.error('Stream start error:', error);
+          controller.enqueue(encoder.encode(`event: error\ndata: ${JSON.stringify({ message: 'Failed to start stream' })}\n\n`));
+          controller.close();
+        }
+      },
+      cancel() {
+        console.log('Stream cancelled by client');
+      }
     });
 
-    // Handle tool use (web search & browsing)
-    while (response.stop_reason === 'tool_use') {
-      const toolUse = response.content.find((block): block is Anthropic.ToolUseBlock =>
-        block.type === 'tool_use'
-      );
-
-      if (!toolUse) break;
-
-      let toolResult = '';
-
-      if (toolUse.name === 'search_web') {
-        const { query } = toolUse.input as { query: string };
-        console.log(`🔍 Athena is searching: ${query}`);
-        toolResult = await searchWeb(query);
-      } else if (toolUse.name === 'fetch_webpage') {
-        const { url } = toolUse.input as { url: string; purpose: string };
-        console.log(`🌐 Athena is browsing: ${url}`);
-        toolResult = await fetchWebPage(url);
+    return new Response(stream, {
+      headers: {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache, no-transform',
+        'Connection': 'keep-alive',
+        'X-RateLimit-Limit': '10',
+        'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+        'X-RateLimit-Reset': new Date(rateLimitResult.resetTime).toISOString()
       }
-
-      // Continue conversation with tool result
-      messages.push({
-        role: 'assistant',
-        content: response.content
-      });
-
-      messages.push({
-        role: 'user',
-        content: [
-          {
-            type: 'tool_result',
-            tool_use_id: toolUse.id,
-            content: toolResult
-          }
-        ]
-      });
-
-      // Get next response
-      response = await anthropic.messages.create({
-        model: 'claude-sonnet-4-5-20250929',
-        max_tokens: 1024,
-        system: await buildSystemPrompt(pathname || '/', viewingContext, username),
-        messages: messages,
-        tools: tools
-      });
-    }
-
-    // Extract final text response
-    const textBlock = response.content.find((block): block is Anthropic.TextBlock =>
-      block.type === 'text'
-    );
-
-    // Save conversation transcript for post-chat analysis (Layer 1 Intelligence)
-    const conversationId = await saveConversationTranscript(messages, pathname || '/', existingConversationId);
-
-    return NextResponse.json(
-      {
-        message: textBlock?.text || 'Sorry, I encountered an issue processing your request.',
-        conversationId // Return ID for potential post-chat analysis trigger
-      },
-      {
-        headers: {
-          'X-RateLimit-Limit': '10',
-          'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
-          'X-RateLimit-Reset': new Date(rateLimitResult.resetTime).toISOString()
-        }
-      }
-    );
+    });
   } catch (error) {
     console.error('Error in chat API:', error);
     return NextResponse.json(

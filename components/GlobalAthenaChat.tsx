@@ -104,6 +104,7 @@ export default function GlobalAthenaChat() {
   const scrollVelocityRef = useRef<number>(0);
   const resetPromptTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isInitialPageLoadRef = useRef<boolean>(true);
+  const isSendingRef = useRef<boolean>(false); // Synchronous guard against double-submission
 
   // Get contextual prompt based on current page or active section
   const currentPrompt = {
@@ -290,19 +291,27 @@ export default function GlobalAthenaChat() {
 
   const handleStartConversation = () => {
     // Initialize conversation with just Athena's greeting (like mobile)
-    if (messages.length === 0) {
-      const initialMessage: Message = {
-        role: 'assistant',
-        content: 'You start.'
-      };
-      setMessages([initialMessage]);
-    }
+    // Use a ref to prevent React Strict Mode from creating duplicate messages
+    setMessages(prev => {
+      // Only add initial message if we truly have no messages
+      if (prev.length === 0) {
+        return [{
+          role: 'assistant',
+          content: 'You start.'
+        }];
+      }
+      return prev;
+    });
 
     setDrawerState('chat');
   };
 
   const sendContextMessage = async (contextMessage: Message) => {
     setIsLoading(true);
+
+    // Create a placeholder for the streaming response
+    const streamingMessageIndex = messages.length;
+    setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
 
     try {
       const response = await fetch('/api/chat', {
@@ -320,27 +329,108 @@ export default function GlobalAthenaChat() {
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
         throw new Error('Failed to get response');
       }
 
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: data.message
+      // Handle streaming response with smooth buffering
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
+
+      if (!reader) {
+        throw new Error('No response body');
+      }
+
+      let buffer = '';
+      let accumulatedContent = '';
+      let pendingUpdate = false;
+
+      // Batch React updates using requestAnimationFrame (no throttling, just efficient batching)
+      const scheduleUpdate = () => {
+        if (!pendingUpdate) {
+          pendingUpdate = true;
+          requestAnimationFrame(() => {
+            setMessages(prev => {
+              const newMessages = [...prev];
+              newMessages[streamingMessageIndex] = {
+                role: 'assistant',
+                content: accumulatedContent
+              };
+              return newMessages;
+            });
+            pendingUpdate = false;
+          });
+        }
       };
 
-      setMessages(prev => [...prev, assistantMessage]);
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) {
+          // Ensure final update is applied immediately
+          setMessages(prev => {
+            const newMessages = [...prev];
+            newMessages[streamingMessageIndex] = {
+              role: 'assistant',
+              content: accumulatedContent
+            };
+            return newMessages;
+          });
+          break;
+        }
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+
+          const eventMatch = line.match(/^event: (.+)\ndata: ([\s\S]+)$/);
+          if (!eventMatch) continue;
+
+          const [, eventType, dataStr] = eventMatch;
+          const data = JSON.parse(dataStr);
+
+          if (eventType === 'text') {
+            accumulatedContent = data.accumulated;
+            scheduleUpdate();
+          } else if (eventType === 'done') {
+            setIsLoading(false);
+          } else if (eventType === 'error') {
+            setMessages(prev => {
+              const newMessages = [...prev];
+              newMessages[streamingMessageIndex] = {
+                role: 'assistant',
+                content: data.message || 'Connection issue. Try again.'
+              };
+              return newMessages;
+            });
+            setIsLoading(false);
+          }
+        }
+      }
     } catch (error) {
       console.error('Error sending context:', error);
-    } finally {
+      setMessages(prev => {
+        const newMessages = [...prev];
+        newMessages[streamingMessageIndex] = {
+          role: 'assistant',
+          content: 'Connection issue. Try again.'
+        };
+        return newMessages;
+      });
       setIsLoading(false);
     }
   };
 
   const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
+    if (!input.trim() || isLoading || isSendingRef.current) {
+      return;
+    }
+
+    // Set synchronous guard FIRST - prevents React Strict Mode from double-invoking entire function
+    isSendingRef.current = true;
 
     // Mark chat as activated when user sends their first message
     setIsChatActivated(true);
@@ -350,9 +440,19 @@ export default function GlobalAthenaChat() {
       content: input
     };
 
-    setMessages(prev => [...prev, userMessage]);
+    // Create assistant placeholder ONCE (outside updater) to prevent React Strict Mode from creating duplicates
+    const assistantPlaceholder: Message = {
+      role: 'assistant',
+      content: ''
+    };
+
+    // Clear input and set loading
     setInput('');
     setIsLoading(true);
+
+    // Add user message and placeholder in one update
+    // React Strict Mode will call setMessages twice, but using same object references prevents duplicates
+    setMessages(prev => [...prev, userMessage, assistantPlaceholder]);
 
     try {
       const response = await fetch('/api/chat', {
@@ -371,37 +471,140 @@ export default function GlobalAthenaChat() {
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
         if (response.status === 429) {
+          const data = await response.json();
           const retryAfter = data.retryAfter || 60;
-          setMessages(prev => [...prev, {
-            role: 'assistant',
-            content: `You're moving fast. Slow down for ${retryAfter} seconds.`
-          }]);
+          setMessages(prev => {
+            const newMessages = [...prev];
+            const lastAssistantIndex = newMessages.length - 1;
+            if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+              newMessages[lastAssistantIndex] = {
+                role: 'assistant',
+                content: `You're moving fast. Slow down for ${retryAfter} seconds.`
+              };
+            }
+            return newMessages;
+          });
+          setIsLoading(false);
           return;
         }
         throw new Error('Failed to get response');
       }
 
-      const assistantMessage: Message = {
-        role: 'assistant',
-        content: data.message
-      };
+      // Handle streaming response
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder();
 
-      setMessages(prev => [...prev, assistantMessage]);
+      if (!reader) {
+        throw new Error('No response body');
+      }
 
-      if (data.conversationId) {
-        setCurrentConversationId(data.conversationId);
+      let buffer = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) break;
+
+        // Decode the chunk
+        buffer += decoder.decode(value, { stream: true });
+
+        // Process complete SSE messages (separated by \n\n)
+        const lines = buffer.split('\n\n');
+        buffer = lines.pop() || ''; // Keep incomplete message in buffer
+
+        for (const line of lines) {
+          if (!line.trim()) continue;
+
+          // Parse SSE format: "event: eventName\ndata: {...}"
+          const eventMatch = line.match(/^event: (.+)\ndata: ([\s\S]+)$/);
+          if (!eventMatch) continue;
+
+          const [, eventType, dataStr] = eventMatch;
+          const data = JSON.parse(dataStr);
+
+          if (eventType === 'text') {
+            // Update the last assistant message with accumulated text
+            setMessages(prev => {
+              const newMessages = [...prev];
+              // Find the last assistant message (the streaming placeholder)
+              const lastAssistantIndex = newMessages.length - 1;
+              if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+                newMessages[lastAssistantIndex] = {
+                  role: 'assistant',
+                  content: data.accumulated
+                };
+              }
+              return newMessages;
+            });
+          } else if (eventType === 'tool_start') {
+            // Show tool execution indicator
+            setMessages(prev => {
+              const newMessages = [...prev];
+              const lastAssistantIndex = newMessages.length - 1;
+              if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+                newMessages[lastAssistantIndex] = {
+                  role: 'assistant',
+                  content: `_Searching..._`
+                };
+              }
+              return newMessages;
+            });
+          } else if (eventType === 'tool_executing') {
+            // Update tool status
+            const toolName = data.tool === 'search_web' ? 'Searching' : 'Reading';
+            setMessages(prev => {
+              const newMessages = [...prev];
+              const lastAssistantIndex = newMessages.length - 1;
+              if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+                newMessages[lastAssistantIndex] = {
+                  role: 'assistant',
+                  content: `_${toolName}..._`
+                };
+              }
+              return newMessages;
+            });
+          } else if (eventType === 'done') {
+            // Stream complete
+            if (data.conversationId) {
+              setCurrentConversationId(data.conversationId);
+            }
+            setIsLoading(false);
+          } else if (eventType === 'error') {
+            // Handle error
+            setMessages(prev => {
+              const newMessages = [...prev];
+              const lastAssistantIndex = newMessages.length - 1;
+              if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+                newMessages[lastAssistantIndex] = {
+                  role: 'assistant',
+                  content: data.message || 'Connection issue. Try again.'
+                };
+              }
+              return newMessages;
+            });
+            setIsLoading(false);
+          }
+        }
       }
     } catch (error) {
       console.error('Error sending message:', error);
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: "Connection issue. Try again."
-      }]);
+      setMessages(prev => {
+        const newMessages = [...prev];
+        const lastAssistantIndex = newMessages.length - 1;
+        if (newMessages[lastAssistantIndex]?.role === 'assistant') {
+          newMessages[lastAssistantIndex] = {
+            role: 'assistant',
+            content: "Connection issue. Try again."
+          };
+        }
+        return newMessages;
+      });
+      setIsLoading(false);
     } finally {
+      // Always reset the guard and loading state, even if there was an error or stream was cancelled
+      isSendingRef.current = false;
       setIsLoading(false);
     }
   };
@@ -819,8 +1022,49 @@ export default function GlobalAthenaChat() {
                                             fontWeight: 400
                                           }}
                                         >
-                                          <ReactMarkdown
-                                            components={{
+                                          {!message.content ? (
+                                            <div style={{ display: 'flex', gap: '6px', paddingTop: '4px' }}>
+                                              <div style={{
+                                                width: '10px',
+                                                height: '10px',
+                                                borderRadius: '50%',
+                                                animation: 'pulse-green-purple 1.4s ease-in-out infinite',
+                                                animationDelay: '0s'
+                                              }}></div>
+                                              <div style={{
+                                                width: '10px',
+                                                height: '10px',
+                                                borderRadius: '50%',
+                                                animation: 'pulse-green-purple 1.4s ease-in-out infinite',
+                                                animationDelay: '0.2s'
+                                              }}></div>
+                                              <div style={{
+                                                width: '10px',
+                                                height: '10px',
+                                                borderRadius: '50%',
+                                                animation: 'pulse-green-purple 1.4s ease-in-out infinite',
+                                                animationDelay: '0.4s'
+                                              }}></div>
+                                            </div>
+                                          ) : (
+                                            <div style={{ position: 'relative', display: 'inline' }}>
+                                              {/* Render plain text during streaming, markdown when complete */}
+                                              {isLoading && index === messages.length - 1 ? (
+                                                <>
+                                                  <span style={{ whiteSpace: 'pre-wrap' }}>{message.content}</span>
+                                                  <span style={{
+                                                    display: 'inline-block',
+                                                    width: '8px',
+                                                    height: '16px',
+                                                    backgroundColor: '#222',
+                                                    marginLeft: '2px',
+                                                    animation: 'cursorBlink 1s step-end infinite',
+                                                    verticalAlign: 'text-bottom'
+                                                  }}></span>
+                                                </>
+                                              ) : (
+                                              <ReactMarkdown
+                                              components={{
                                               // Style links
                                               a: ({ node, ...props }) => (
                                                 <Link
@@ -916,6 +1160,9 @@ export default function GlobalAthenaChat() {
                                           >
                                             {message.content}
                                           </ReactMarkdown>
+                                              )}
+                                            </div>
+                                          )}
                                         </div>
                                       </div>
                                     </div>
