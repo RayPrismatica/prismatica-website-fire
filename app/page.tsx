@@ -101,6 +101,7 @@ export default async function HomePage() {
                 width={24}
                 height={24}
                 style={{ width: '24px', height: 'auto', opacity: 0.6, display: 'block', margin: '0 auto' }}
+                sizes="24px"
               />
               <p className={styles.copyright}>© 2025 Prismatica Labs Limited</p>
             </div>

@@ -141,6 +141,16 @@ export default function MobileBottomSheetAthena() {
   const pathname = usePathname();
   const { getViewingContext } = useAthenaChat();
   const [drawerState, setDrawerState] = useState<DrawerState>('collapsed');
+
+  // Listen for navigation events to collapse chat
+  useEffect(() => {
+    const handleNavigation = () => {
+      setDrawerState('collapsed');
+    };
+
+    window.addEventListener('athena:collapse', handleNavigation);
+    return () => window.removeEventListener('athena:collapse', handleNavigation);
+  }, []);
   const [previousState, setPreviousState] = useState<DrawerState>('collapsed');
   const [showExpandedContent, setShowExpandedContent] = useState(false);
   const [startY, setStartY] = useState<number | null>(null);
@@ -177,11 +187,6 @@ export default function MobileBottomSheetAthena() {
   useEffect(() => {
     setPreviousState(drawerState);
   }, [drawerState]);
-
-  // Debug: Log when isChatActivated changes
-  useEffect(() => {
-    console.log('🔵 isChatActivated changed to:', isChatActivated);
-  }, [isChatActivated]);
 
   // Reset close button fade only when explicitly going to expanded (not collapsed)
   useEffect(() => {
@@ -991,10 +996,8 @@ export default function MobileBottomSheetAthena() {
           <div
             onClick={() => {
               if (drawerState === 'collapsed') {
-                console.log('🔴 Banner clicked. isChatActivated:', isChatActivated);
                 // If chat has been activated, skip expanded view and go directly to chat
                 const nextState = isChatActivated ? 'chat' : 'expanded';
-                console.log('🔴 Going to state:', nextState);
                 setDrawerState(nextState);
               }
             }}
@@ -1282,28 +1285,17 @@ export default function MobileBottomSheetAthena() {
                             </div>
                           ) : (
                             <div style={{ position: 'relative', display: 'inline' }}>
-                              {/* Render plain text during streaming, markdown when complete */}
-                              {isLoading && index === messages.length - 1 ? (
-                                <>
-                                  <span style={{ whiteSpace: 'pre-wrap' }}>{message.content}</span>
-                                  <span style={{
-                                    display: 'inline-block',
-                                    width: '8px',
-                                    height: '16px',
-                                    backgroundColor: '#222',
-                                    marginLeft: '2px',
-                                    animation: 'cursorBlink 1s step-end infinite',
-                                    verticalAlign: 'text-bottom'
-                                  }}></span>
-                                </>
-                              ) : (
+                              {/* Always render markdown for consistent appearance */}
                               <ReactMarkdown
                                 components={{
                                 // Style links
                                 a: ({ node, ...props }) => (
                                 <Link
                                   href={props.href || '#'}
-                                  onClick={() => setDrawerState('collapsed')}
+                                  onClick={() => {
+                                    setDrawerState('collapsed');
+                                    window.dispatchEvent(new Event('athena:collapse'));
+                                  }}
                                   style={{
                                     color: '#D43225',
                                     textDecoration: 'underline',
@@ -1394,7 +1386,6 @@ export default function MobileBottomSheetAthena() {
                           >
                             {message.content}
                           </ReactMarkdown>
-                              )}
                             </div>
                           )}
                         </div>

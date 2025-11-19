@@ -28,6 +28,8 @@ export default function Sidebar({ isHomepage = false }: { isHomepage?: boolean }
 
   const handleNavClick = () => {
     closeMobileMenu();
+    // Collapse Athena chat when navigating
+    window.dispatchEvent(new Event('athena:collapse'));
   };
 
   // Inline hover handler for menu items

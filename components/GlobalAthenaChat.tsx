@@ -106,6 +106,16 @@ export default function GlobalAthenaChat() {
   const isInitialPageLoadRef = useRef<boolean>(true);
   const isSendingRef = useRef<boolean>(false); // Synchronous guard against double-submission
 
+  // Listen for navigation events to collapse chat
+  useEffect(() => {
+    const handleNavigation = () => {
+      setDrawerState('collapsed');
+    };
+
+    window.addEventListener('athena:collapse', handleNavigation);
+    return () => window.removeEventListener('athena:collapse', handleNavigation);
+  }, []);
+
   // Get contextual prompt based on current page or active section
   const currentPrompt = {
     question: activeSection || PAGE_PROMPTS[pathname]?.question || DEFAULT_PROMPT.question,
@@ -1048,28 +1058,17 @@ export default function GlobalAthenaChat() {
                                             </div>
                                           ) : (
                                             <div style={{ position: 'relative', display: 'inline' }}>
-                                              {/* Render plain text during streaming, markdown when complete */}
-                                              {isLoading && index === messages.length - 1 ? (
-                                                <>
-                                                  <span style={{ whiteSpace: 'pre-wrap' }}>{message.content}</span>
-                                                  <span style={{
-                                                    display: 'inline-block',
-                                                    width: '8px',
-                                                    height: '16px',
-                                                    backgroundColor: '#222',
-                                                    marginLeft: '2px',
-                                                    animation: 'cursorBlink 1s step-end infinite',
-                                                    verticalAlign: 'text-bottom'
-                                                  }}></span>
-                                                </>
-                                              ) : (
+                                              {/* Always render markdown for consistent appearance */}
                                               <ReactMarkdown
                                               components={{
                                               // Style links
                                               a: ({ node, ...props }) => (
                                                 <Link
                                                   href={props.href || '#'}
-                                                  onClick={handleCollapse}
+                                                  onClick={() => {
+                                                    handleCollapse();
+                                                    window.dispatchEvent(new Event('athena:collapse'));
+                                                  }}
                                                   style={{
                                                     color: '#D43225',
                                                     textDecoration: 'underline',
@@ -1160,7 +1159,6 @@ export default function GlobalAthenaChat() {
                                           >
                                             {message.content}
                                           </ReactMarkdown>
-                                              )}
                                             </div>
                                           )}
                                         </div>
