@@ -1046,15 +1046,18 @@ export default function MobileBottomSheetAthena() {
                         }}>
                           Athena
                         </p>
-                        <div style={{
-                          fontSize: '15px',
-                          lineHeight: '1.6',
-                          margin: 0,
-                          color: '#333'
-                        }}>
+                        <div
+                          className="prose prose-sm max-w-none text-gray-800"
+                          style={{
+                            fontFamily: '"Noto Sans", sans-serif',
+                            fontSize: '15px',
+                            lineHeight: '1.7',
+                            fontWeight: 400
+                          }}
+                        >
                           <ReactMarkdown
                             components={{
-                              // Style links (already in markdown format from AI)
+                              // Style links
                               a: ({ node, ...props }) => (
                                 <Link
                                   href={props.href || '#'}
@@ -1062,15 +1065,18 @@ export default function MobileBottomSheetAthena() {
                                   style={{
                                     color: '#D43225',
                                     textDecoration: 'underline',
-                                    fontWeight: 600
+                                    fontWeight: 600,
+                                    transition: 'opacity 0.2s'
                                   }}
+                                  onTouchStart={(e) => e.currentTarget.style.opacity = '0.7'}
+                                  onTouchEnd={(e) => e.currentTarget.style.opacity = '1'}
                                 >
                                   {props.children}
                                 </Link>
                               ),
                               // Style strong/bold text
                               strong: ({ node, ...props }) => (
-                                <strong style={{ fontWeight: 700 }}>
+                                <strong style={{ fontWeight: 700, color: '#222' }}>
                                   {props.children}
                                 </strong>
                               ),
@@ -1079,6 +1085,68 @@ export default function MobileBottomSheetAthena() {
                                 <p style={{ margin: '0 0 12px 0' }}>
                                   {props.children}
                                 </p>
+                              ),
+                              // Style unordered lists
+                              ul: ({ node, ...props }) => (
+                                <ul style={{ margin: '8px 0', paddingLeft: '24px', listStyleType: 'disc' }}>
+                                  {props.children}
+                                </ul>
+                              ),
+                              // Style ordered lists
+                              ol: ({ node, ...props }) => (
+                                <ol style={{ margin: '8px 0', paddingLeft: '24px', listStyleType: 'decimal' }}>
+                                  {props.children}
+                                </ol>
+                              ),
+                              // Style list items
+                              li: ({ node, ...props }) => (
+                                <li style={{ margin: '4px 0' }}>
+                                  {props.children}
+                                </li>
+                              ),
+                              // Style code blocks
+                              code: ({ node, ...props }) => {
+                                const isInline = !props.className;
+                                return isInline ?
+                                  <code style={{
+                                    backgroundColor: '#f5f5f5',
+                                    padding: '2px 6px',
+                                    borderRadius: '4px',
+                                    fontSize: '14px',
+                                    fontFamily: 'monospace',
+                                    color: '#D43225'
+                                  }}>
+                                    {props.children}
+                                  </code>
+                                :
+                                  <code style={{
+                                    display: 'block',
+                                    backgroundColor: '#f5f5f5',
+                                    padding: '12px',
+                                    borderRadius: '6px',
+                                    fontSize: '14px',
+                                    fontFamily: 'monospace',
+                                    overflowX: 'auto',
+                                    margin: '8px 0'
+                                  }}>
+                                    {props.children}
+                                  </code>;
+                              },
+                              // Style headings
+                              h1: ({ node, ...props }) => (
+                                <h1 style={{ fontSize: '18px', fontWeight: 700, margin: '16px 0 8px', color: '#222' }}>
+                                  {props.children}
+                                </h1>
+                              ),
+                              h2: ({ node, ...props }) => (
+                                <h2 style={{ fontSize: '17px', fontWeight: 700, margin: '14px 0 6px', color: '#222' }}>
+                                  {props.children}
+                                </h2>
+                              ),
+                              h3: ({ node, ...props }) => (
+                                <h3 style={{ fontSize: '16px', fontWeight: 700, margin: '12px 0 6px', color: '#222' }}>
+                                  {props.children}
+                                </h3>
                               )
                             }}
                           >

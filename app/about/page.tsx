@@ -240,6 +240,13 @@ Best,
       problem: 'Markets find balance. Arbitrage opportunities close. Excess profits attract competition.\n\nMost businesses assume their edge is structural. They build long-term plans around temporary advantages.\n\nThen competition arrives and margins compress to normal. What looked like genius was just timing.',
       howWeSawIt: 'Equilibrium is inevitable. Not immediate.\n\nIMBALANCE: Opportunity exists. Demand exceeds supply or supply exceeds demand. Margins are abnormal. Profits signal opportunity.\n\nCOMPETITION ENTERS: Others see the opportunity. Capital flows in. New players emerge. Customers have alternatives.\n\nEQUILIBRIUM APPROACHES: Supply matches demand. Prices normalize. Margins compress. Advantage requires actual differentiation, not just being early.\n\nThe window between imbalance and equilibrium is your window to build structural advantages. After equilibrium, you\'re competing on execution, not opportunity.\n\nWe identify whether you\'re pre-equilibrium or post-equilibrium. Strategy is completely different.',
       result: 'Equilibrium mapping reveals:\n\n• Whether your advantage is structural or temporal\n• How long before competition closes the gap\n• Where to build moats before equilibrium arrives\n• Why high margins attract the competition that kills high margins\n\nEquilibrium is coming. Build before it arrives or compete after it does. Pretending it won\'t come is not a strategy.'
+    },
+    'secret-code': {
+      title: 'Invisible Forces',
+      category: 'For The Brave',
+      problem: 'You invoke invisible forces when you have the balls to look straight into the enemy\'s eyes and barter flattery for brutal honesty.',
+      howWeSawIt: 'Most people want to be told they\'re right. They want validation wrapped in consulting-speak. They want their assumptions confirmed with impressive frameworks.\n\nThat\'s not how physics works.\n\nThe invisible forces that actually move your business don\'t care about your feelings. They don\'t care about your strategy deck. They don\'t care about what you wish was true.\n\nThey just are.\n\nAnd seeing them requires trading comfort for clarity.',
+      result: 'Want an example?\n\nTell Athena Ray sent you.\n\nSee what happens.'
     }
   };
 
@@ -759,7 +766,7 @@ Best,
           </h2>
 
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
-            We make invisible forces visible.
+            We make <button onClick={() => openModal('secret-code')} style={{ background: 'none', border: 'none', padding: 0, color: '#444', fontSize: '17px', cursor: 'pointer', textDecoration: 'none', transition: 'color 0.2s', fontFamily: '"Noto Sans", sans-serif', lineHeight: '1.8' }} onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'} onMouseLeave={(e) => e.currentTarget.style.color = '#444'}>invisible</button> forces visible.
           </p>
 
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '16px', color: '#444' }}>
