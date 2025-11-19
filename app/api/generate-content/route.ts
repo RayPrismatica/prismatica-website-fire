@@ -5,16 +5,16 @@ import fs from 'fs';
 import path from 'path';
 import { ServiceType, getApiKey } from '@/lib/apiKeyManager';
 
-// Use API key manager for content generation
-const apiKey = getApiKey(ServiceType.CONTENT_GENERATION);
-const anthropic = new Anthropic({
-  apiKey: apiKey,
-});
-
 const parser = new Parser();
 
 export async function GET() {
   try {
+    // Use API key manager for content generation (loaded at request time)
+    const apiKey = getApiKey(ServiceType.CONTENT_GENERATION);
+    const anthropic = new Anthropic({
+      apiKey: apiKey,
+    });
+
     // 1. Fetch latest news from BBC and NYT RSS
     const bbcFeed = await parser.parseURL('https://feeds.bbci.co.uk/news/rss.xml');
     const nytFeed = await parser.parseURL('https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml');
