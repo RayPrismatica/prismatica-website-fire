@@ -116,6 +116,15 @@ export default function GlobalAthenaChat() {
     return () => window.removeEventListener('athena:collapse', handleNavigation);
   }, []);
 
+  // Dispatch events when entering/exiting state 3 (chat mode that covers content)
+  useEffect(() => {
+    if (drawerState === 'chat') {
+      window.dispatchEvent(new Event('athena:chat-cover'));
+    } else {
+      window.dispatchEvent(new Event('athena:chat-uncover'));
+    }
+  }, [drawerState]);
+
   // Get contextual prompt based on current page or active section
   const currentPrompt = {
     question: activeSection || PAGE_PROMPTS[pathname]?.question || DEFAULT_PROMPT.question,

@@ -54,6 +54,9 @@ export function useScrollTracking() {
   // Track page entry time (for total time on page)
   const pageEntryTime = useRef<number>(0);
 
+  // Track if chat is in state 3 (covering content)
+  const chatCoveringContent = useRef<boolean>(false);
+
   useEffect(() => {
     // Set page entry time on mount
     pageEntryTime.current = Date.now();
@@ -102,7 +105,7 @@ export function useScrollTracking() {
           const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
           const isSignificantlyVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
 
-          if (isVisible && isSignificantlyVisible && pageVisible.current) {
+          if (isVisible && isSignificantlyVisible && pageVisible.current && !chatCoveringContent.current) {
             const sectionId = section.getAttribute('data-section-id');
             if (sectionId && !sectionPauseTimes.current.has(sectionId)) {
               sectionPauseTimes.current.set(sectionId, Date.now());
@@ -147,6 +150,29 @@ export function useScrollTracking() {
           sectionFirstSeen.current.clear();
         }
       }
+    };
+
+    // Chat overlay detection (state 3 only - when chat fully covers content)
+    const handleChatCover = () => {
+      chatCoveringContent.current = true;
+      const now = Date.now();
+
+      // Pause all active section timers (same logic as tab hidden)
+      sectionPauseTimes.current.forEach((pauseStart, sectionId) => {
+        const pauseDuration = Math.floor((now - pauseStart) / 1000);
+
+        if (pauseDuration >= 1) {
+          const accumulated = sectionAccumulatedTime.current.get(sectionId) || 0;
+          sectionAccumulatedTime.current.set(sectionId, accumulated + pauseDuration);
+        }
+      });
+
+      sectionPauseTimes.current.clear();
+    };
+
+    const handleChatUncover = () => {
+      chatCoveringContent.current = false;
+      // Resume tracking - scroll handler will restart timers naturally
     };
 
     // Intersection Observer for section entry/exit
@@ -249,6 +275,8 @@ export function useScrollTracking() {
     // Add event listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
     document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('athena:chat-cover', handleChatCover);
+    window.addEventListener('athena:chat-uncover', handleChatUncover);
 
     // Trigger initial scroll handler to detect visible sections
     handleScroll();
@@ -284,6 +312,8 @@ export function useScrollTracking() {
       // Remove listeners
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('athena:chat-cover', handleChatCover);
+      window.removeEventListener('athena:chat-uncover', handleChatUncover);
     };
   }, [pathname, trackSectionEngagement]);
 }

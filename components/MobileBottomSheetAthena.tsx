@@ -151,6 +151,16 @@ export default function MobileBottomSheetAthena() {
     window.addEventListener('athena:collapse', handleNavigation);
     return () => window.removeEventListener('athena:collapse', handleNavigation);
   }, []);
+
+  // Dispatch events when entering/exiting state 3 (chat mode that covers content)
+  useEffect(() => {
+    if (drawerState === 'chat') {
+      window.dispatchEvent(new Event('athena:chat-cover'));
+    } else {
+      window.dispatchEvent(new Event('athena:chat-uncover'));
+    }
+  }, [drawerState]);
+
   const [previousState, setPreviousState] = useState<DrawerState>('collapsed');
   const [showExpandedContent, setShowExpandedContent] = useState(false);
   const [startY, setStartY] = useState<number | null>(null);
