@@ -1184,47 +1184,6 @@ export default function GlobalAthenaChat() {
                                 </div>
                               ))}
 
-                              {isLoading && (
-                                <div className="flex gap-4">
-                                  <div className="flex-shrink-0">
-                                    <div className="relative flex items-center justify-center" style={{ width: '36px', height: '36px', transform: 'translateZ(0)' }}>
-                                      <Image
-                                        src="/images/athena-advisor.jpg"
-                                        alt="Athena"
-                                        width={36}
-                                        height={36}
-                                        className="rounded-full ring-2 ring-gray-100 shadow-sm"
-                                        style={{ width: '100%', height: '100%', objectFit: 'cover', transform: 'translateZ(0)' }}
-                                        priority
-                                        loading="eager"
-                                        quality={95}
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="flex-1" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                    <div className="flex items-baseline gap-3">
-                                      <span
-                                        className="font-semibold text-gray-900"
-                                        style={{ fontFamily: '"Noto Sans", sans-serif', fontSize: '14px' }}
-                                      >
-                                        Athena
-                                      </span>
-                                      <span className="text-gray-400" style={{ fontSize: '12px' }}>Strategic AI Advisor</span>
-                                      <div
-                                        className="animate-pulse"
-                                        style={{
-                                          width: '8px',
-                                          height: '8px',
-                                          borderRadius: '50%',
-                                          backgroundColor: '#D43225',
-                                          marginLeft: '4px'
-                                        }}
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                              )}
-
                               <div ref={messagesEndRef} />
                             </div>
                           </div>
