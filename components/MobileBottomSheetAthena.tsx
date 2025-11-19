@@ -712,6 +712,8 @@ export default function MobileBottomSheetAthena() {
 
     // Add user message and placeholder in one update
     // React Strict Mode will call setMessages twice, but using same object references prevents duplicates
+    // IMPORTANT: Capture the index BEFORE adding to prevent race conditions
+    const streamingMessageIndex = messages.length + 1; // +1 because we're adding user message first
     setMessages(prev => [...prev, userMessage, assistantPlaceholder]);
 
     try {
@@ -736,9 +738,8 @@ export default function MobileBottomSheetAthena() {
           const retryAfter = data.retryAfter || 60;
           setMessages(prev => {
             const newMessages = [...prev];
-            const lastAssistantIndex = newMessages.length - 1;
-            if (newMessages[lastAssistantIndex]?.role === 'assistant') {
-              newMessages[lastAssistantIndex] = {
+            if (newMessages[streamingMessageIndex]?.role === 'assistant') {
+              newMessages[streamingMessageIndex] = {
                 role: 'assistant',
                 content: `You're moving fast. Slow down for ${retryAfter} seconds.`
               };
@@ -770,9 +771,8 @@ export default function MobileBottomSheetAthena() {
           requestAnimationFrame(() => {
             setMessages(prev => {
               const newMessages = [...prev];
-              const lastAssistantIndex = newMessages.length - 1;
-              if (newMessages[lastAssistantIndex]?.role === 'assistant') {
-                newMessages[lastAssistantIndex] = {
+              if (newMessages[streamingMessageIndex]?.role === 'assistant') {
+                newMessages[streamingMessageIndex] = {
                   role: 'assistant',
                   content: accumulatedContent
                 };
@@ -791,9 +791,8 @@ export default function MobileBottomSheetAthena() {
           // Ensure final update is applied immediately
           setMessages(prev => {
             const newMessages = [...prev];
-            const lastAssistantIndex = newMessages.length - 1;
-            if (newMessages[lastAssistantIndex]?.role === 'assistant') {
-              newMessages[lastAssistantIndex] = {
+            if (newMessages[streamingMessageIndex]?.role === 'assistant') {
+              newMessages[streamingMessageIndex] = {
                 role: 'assistant',
                 content: accumulatedContent
               };
