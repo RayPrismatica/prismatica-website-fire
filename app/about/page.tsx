@@ -957,6 +957,22 @@ Best,
           </p>
 
           <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
+            Like, really rare. Our version? Three nav items and the faith that everything worth finding is <Link
+              href="/resources/frameworks/clarity-index-v2?ref=about&utm_source=manifesto"
+              style={{
+                color: '#444',
+                textDecoration: 'none',
+                transition: 'color 0.2s',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#D43225'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#444'}
+            >
+              hidden
+            </Link> in plain sight.
+          </p>
+
+          <p style={{ fontSize: '17px', lineHeight: '1.8', marginBottom: '32px', color: '#444' }}>
             We don't simplify by ignoring reality. We clarify by revealing structure.
           </p>
 

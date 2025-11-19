@@ -234,22 +234,25 @@ async function generateContent() {
       throw new Error('Failed to parse Claude response - missing required pieces');
     }
 
-    const newsInsight = insightMatch[1].trim().replace(/```/g, '');
-    const contentReminder = reminderMatch[1].trim().replace(/```/g, '');
-    const serviceDescription = serviceMatch[1].trim().replace(/```/g, '');
-    const esiDescription = esiMatch[1].trim().replace(/```/g, '');
-    const agencyDescription = agencyMatch[1].trim().replace(/```/g, '');
-    const ksoDescription = ksoMatch[1].trim().replace(/```/g, '');
-    const transactionDescription = transactionMatch[1].trim().replace(/```/g, '');
-    const triptychDescription = triptychMatch[1].trim().replace(/```/g, '');
-    const gtmDescription = gtmMatch[1].trim().replace(/```/g, '');
-    const creativeDescription = creativeMatch[1].trim().replace(/```/g, '');
-    const designDescription = designMatch[1].trim().replace(/```/g, '');
-    const aiDescription = aiMatch[1].trim().replace(/```/g, '');
-    const processDescription = processMatch[1].trim().replace(/```/g, '');
-    const marketingDescription = marketingMatch[1].trim().replace(/```/g, '');
-    const focusDescription = focusMatch[1].trim().replace(/```/g, '');
-    const valueDescription = valueMatch[1].trim().replace(/```/g, '');
+    // Convert literal \n\n strings to actual newlines for paragraph breaks
+    const convertNewlines = (text) => text.trim().replace(/```/g, '').replace(/\\n\\n/g, '\n\n');
+
+    const newsInsight = convertNewlines(insightMatch[1]);
+    const contentReminder = convertNewlines(reminderMatch[1]);
+    const serviceDescription = convertNewlines(serviceMatch[1]);
+    const esiDescription = convertNewlines(esiMatch[1]);
+    const agencyDescription = convertNewlines(agencyMatch[1]);
+    const ksoDescription = convertNewlines(ksoMatch[1]);
+    const transactionDescription = convertNewlines(transactionMatch[1]);
+    const triptychDescription = convertNewlines(triptychMatch[1]);
+    const gtmDescription = convertNewlines(gtmMatch[1]);
+    const creativeDescription = convertNewlines(creativeMatch[1]);
+    const designDescription = convertNewlines(designMatch[1]);
+    const aiDescription = convertNewlines(aiMatch[1]);
+    const processDescription = convertNewlines(processMatch[1]);
+    const marketingDescription = convertNewlines(marketingMatch[1]);
+    const focusDescription = convertNewlines(focusMatch[1]);
+    const valueDescription = convertNewlines(valueMatch[1]);
 
     const generationTime = Date.now() - startTime;
     console.log(`\n✓ Claude generated all sixteen pieces in ${generationTime}ms`);
